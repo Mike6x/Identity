@@ -1,0 +1,12 @@
+@Identity.API_HostAddress = http://localhost:5000
+@Identity = variable value
+
+POST {{Identity.API_HostAddress}}/api/login
+Content-Type: application/json
+Accept: application/json
+{
+    "email": "admin@localhost",
+    "password": "123P@ssw0rd"
+} 
+
+###

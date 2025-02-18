@@ -1,0 +1,135 @@
+{
+  "format": 1,
+  "restore": {
+    "/Volumes/DATA/Projects/Identity/Identity.API/Identity.API.csproj": {}
+  },
+  "projects": {
+    "/Volumes/DATA/Projects/Identity/Identity.API/Identity.API.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Volumes/DATA/Projects/Identity/Identity.API/Identity.API.csproj",
+        "projectName": "Identity.API",
+        "projectPath": "/Volumes/DATA/Projects/Identity/Identity.API/Identity.API.csproj",
+        "packagesPath": "/Users/tuanpa/.nuget/packages/",
+        "outputPath": "/Volumes/DATA/Projects/Identity/Identity.API/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/tuanpa/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net9.0"
+        ],
+        "sources": {
+          "/usr/local/share/dotnet/library-packs": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net9.0": {
+            "targetAlias": "net9.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "all"
+        },
+        "SdkAnalysisLevel": "9.0.100"
+      },
+      "frameworks": {
+        "net9.0": {
+          "targetAlias": "net9.0",
+          "dependencies": {
+            "AutoRegisterInject": {
+              "target": "Package",
+              "version": "[1.4.1, )"
+            },
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.2, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.2, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[9.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.2, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer.Design": {
+              "target": "Package",
+              "version": "[1.1.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[9.0.2, )"
+            },
+            "NSwag.AspNetCore": {
+              "target": "Package",
+              "version": "[14.2.0, )"
+            },
+            "NSwag.CodeGeneration.CSharp": {
+              "target": "Package",
+              "version": "[14.2.0, )"
+            },
+            "NSwag.CodeGeneration.TypeScript": {
+              "target": "Package",
+              "version": "[14.2.0, )"
+            },
+            "NSwag.Generation.AspNetCore": {
+              "target": "Package",
+              "version": "[14.2.0, )"
+            },
+            "OpenIddict.AspNetCore": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            },
+            "OpenIddict.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            },
+            "OpenIddict.Quartz": {
+              "target": "Package",
+              "version": "[6.1.0, )"
+            },
+            "Proggmatic.SpaServices.Vite": {
+              "target": "Package",
+              "version": "[9.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
