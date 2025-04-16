@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Identity.API.Data
 {
     public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) 
-        : IdentityDbContext<ApplicationUser>(options)
+        : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>(options)
     {
         
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

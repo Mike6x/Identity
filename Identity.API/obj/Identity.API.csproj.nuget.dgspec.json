@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Volumes/DATA/Projects/Identity/Identity.API/Identity.API.csproj": {}
+    "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.API/Identity.API.csproj": {}
   },
   "projects": {
-    "/Volumes/DATA/Projects/Identity/Identity.API/Identity.API.csproj": {
+    "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.API/Identity.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Volumes/DATA/Projects/Identity/Identity.API/Identity.API.csproj",
+        "projectUniqueName": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.API/Identity.API.csproj",
         "projectName": "Identity.API",
-        "projectPath": "/Volumes/DATA/Projects/Identity/Identity.API/Identity.API.csproj",
+        "projectPath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.API/Identity.API.csproj",
         "packagesPath": "/Users/tuanpa/.nuget/packages/",
-        "outputPath": "/Volumes/DATA/Projects/Identity/Identity.API/obj/",
+        "outputPath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/tuanpa/.nuget/NuGet/NuGet.Config"
@@ -37,9 +37,9 @@
         "restoreAuditProperties": {
           "enableAudit": "true",
           "auditLevel": "low",
-          "auditMode": "all"
+          "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net9.0": {
@@ -51,19 +51,19 @@
             },
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.2, )"
+              "version": "[9.0.4, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[9.0.2, )"
+              "version": "[9.0.4, )"
             },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[9.0.2, )"
+              "version": "[9.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
-              "version": "[9.0.2, )"
+              "version": "[9.0.4, )"
             },
             "Microsoft.EntityFrameworkCore.SqlServer.Design": {
               "target": "Package",
@@ -73,35 +73,35 @@
               "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
               "suppressParent": "All",
               "target": "Package",
-              "version": "[9.0.2, )"
+              "version": "[9.0.4, )"
             },
             "NSwag.AspNetCore": {
               "target": "Package",
-              "version": "[14.2.0, )"
+              "version": "[14.3.0, )"
             },
             "NSwag.CodeGeneration.CSharp": {
               "target": "Package",
-              "version": "[14.2.0, )"
+              "version": "[14.3.0, )"
             },
             "NSwag.CodeGeneration.TypeScript": {
               "target": "Package",
-              "version": "[14.2.0, )"
+              "version": "[14.3.0, )"
             },
             "NSwag.Generation.AspNetCore": {
               "target": "Package",
-              "version": "[14.2.0, )"
+              "version": "[14.3.0, )"
             },
             "OpenIddict.AspNetCore": {
               "target": "Package",
-              "version": "[6.1.0, )"
+              "version": "[6.2.0, )"
             },
             "OpenIddict.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.1.0, )"
+              "version": "[6.2.0, )"
             },
             "OpenIddict.Quartz": {
               "target": "Package",
-              "version": "[6.1.0, )"
+              "version": "[6.2.0, )"
             },
             "Proggmatic.SpaServices.Vite": {
               "target": "Package",
@@ -127,7 +127,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

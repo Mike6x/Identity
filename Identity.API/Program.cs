@@ -17,6 +17,9 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 {
     options.UseSqlServer(connectionString);
     // options.UseSqlite(connectionString);
+    
+    // options.UseNpgsql(connectionString);
+    // options.ConfigureWarnings(w => w.Ignore(RelationalEventId.PendingModelChangesWarning));
 });
 
 builder.Services
@@ -60,6 +63,7 @@ apiEnpoints.MapUsersEndpoints();
 apiEnpoints.MapIdentityEndpoints();
 
 app.MapOpenIdConnectEndpoints();
+app.MapExternalCallbackEndpoint();
 
 app.UseVueFallbackSpa();
 

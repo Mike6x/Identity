@@ -56,20 +56,20 @@
           }
         }
       },
-      "Fluid.Core/2.12.0": {
+      "Fluid.Core/2.21.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.FileProviders.Abstractions": "8.0.0",
-          "Parlot": "1.0.2",
-          "TimeZoneConverter": "6.1.0"
+          "Microsoft.Extensions.FileProviders.Abstractions": "9.0.0",
+          "Parlot": "1.3.5",
+          "TimeZoneConverter": "7.0.0"
         },
         "compile": {
-          "lib/net8.0/Fluid.dll": {
+          "lib/net9.0/Fluid.dll": {
             "related": ".pdb;.xml"
           }
         },
         "runtime": {
-          "lib/net8.0/Fluid.dll": {
+          "lib/net9.0/Fluid.dll": {
             "related": ".pdb;.xml"
           }
         }
@@ -87,7 +87,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Cryptography.Internal/9.0.2": {
+      "Microsoft.AspNetCore.Cryptography.Internal/9.0.4": {
         "type": "package",
         "compile": {
           "lib/net9.0/Microsoft.AspNetCore.Cryptography.Internal.dll": {
@@ -100,10 +100,10 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Cryptography.KeyDerivation/9.0.2": {
+      "Microsoft.AspNetCore.Cryptography.KeyDerivation/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Cryptography.Internal": "9.0.2"
+          "Microsoft.AspNetCore.Cryptography.Internal": "9.0.4"
         },
         "compile": {
           "lib/net9.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll": {
@@ -116,10 +116,10 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/9.0.2": {
+      "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "9.0.2"
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.4"
         },
         "compile": {
           "lib/net9.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll": {
@@ -135,11 +135,11 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/9.0.2": {
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Relational": "9.0.2",
-          "Microsoft.Extensions.Identity.Stores": "9.0.2"
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.4",
+          "Microsoft.Extensions.Identity.Stores": "9.0.4"
         },
         "compile": {
           "lib/net9.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll": {
@@ -152,7 +152,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.OpenApi/9.0.2": {
+      "Microsoft.AspNetCore.OpenApi/9.0.4": {
         "type": "package",
         "dependencies": {
           "Microsoft.OpenApi": "1.6.17"
@@ -592,13 +592,13 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore/9.0.2": {
+      "Microsoft.EntityFrameworkCore/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Abstractions": "9.0.2",
-          "Microsoft.EntityFrameworkCore.Analyzers": "9.0.2",
-          "Microsoft.Extensions.Caching.Memory": "9.0.2",
-          "Microsoft.Extensions.Logging": "9.0.2"
+          "Microsoft.EntityFrameworkCore.Abstractions": "9.0.4",
+          "Microsoft.EntityFrameworkCore.Analyzers": "9.0.4",
+          "Microsoft.Extensions.Caching.Memory": "9.0.4",
+          "Microsoft.Extensions.Logging": "9.0.4"
         },
         "compile": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.dll": {
@@ -614,7 +614,7 @@
           "buildTransitive/net8.0/Microsoft.EntityFrameworkCore.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Abstractions/9.0.2": {
+      "Microsoft.EntityFrameworkCore.Abstractions/9.0.4": {
         "type": "package",
         "compile": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll": {
@@ -627,10 +627,10 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Analyzers/9.0.2": {
+      "Microsoft.EntityFrameworkCore.Analyzers/9.0.4": {
         "type": "package"
       },
-      "Microsoft.EntityFrameworkCore.Design/9.0.2": {
+      "Microsoft.EntityFrameworkCore.Design/9.0.4": {
         "type": "package",
         "dependencies": {
           "Humanizer.Core": "2.14.1",
@@ -639,13 +639,13 @@
           "Microsoft.CodeAnalysis.CSharp": "4.8.0",
           "Microsoft.CodeAnalysis.CSharp.Workspaces": "4.8.0",
           "Microsoft.CodeAnalysis.Workspaces.MSBuild": "4.8.0",
-          "Microsoft.EntityFrameworkCore.Relational": "9.0.2",
-          "Microsoft.Extensions.Caching.Memory": "9.0.2",
-          "Microsoft.Extensions.Configuration.Abstractions": "9.0.2",
-          "Microsoft.Extensions.DependencyModel": "9.0.2",
-          "Microsoft.Extensions.Logging": "9.0.2",
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.4",
+          "Microsoft.Extensions.Caching.Memory": "9.0.4",
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.4",
+          "Microsoft.Extensions.DependencyModel": "9.0.4",
+          "Microsoft.Extensions.Logging": "9.0.4",
           "Mono.TextTemplating": "3.0.0",
-          "System.Text.Json": "9.0.2"
+          "System.Text.Json": "9.0.4"
         },
         "compile": {
           "lib/net8.0/_._": {
@@ -661,13 +661,13 @@
           "build/net8.0/Microsoft.EntityFrameworkCore.Design.props": {}
         }
       },
-      "Microsoft.EntityFrameworkCore.Relational/9.0.2": {
+      "Microsoft.EntityFrameworkCore.Relational/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore": "9.0.2",
-          "Microsoft.Extensions.Caching.Memory": "9.0.2",
-          "Microsoft.Extensions.Configuration.Abstractions": "9.0.2",
-          "Microsoft.Extensions.Logging": "9.0.2"
+          "Microsoft.EntityFrameworkCore": "9.0.4",
+          "Microsoft.Extensions.Caching.Memory": "9.0.4",
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.4",
+          "Microsoft.Extensions.Logging": "9.0.4"
         },
         "compile": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.Relational.dll": {
@@ -697,16 +697,16 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.SqlServer/9.0.2": {
+      "Microsoft.EntityFrameworkCore.SqlServer/9.0.4": {
         "type": "package",
         "dependencies": {
           "Microsoft.Data.SqlClient": "5.1.6",
-          "Microsoft.EntityFrameworkCore.Relational": "9.0.2",
-          "Microsoft.Extensions.Caching.Memory": "9.0.2",
-          "Microsoft.Extensions.Configuration.Abstractions": "9.0.2",
-          "Microsoft.Extensions.Logging": "9.0.2",
-          "System.Formats.Asn1": "9.0.2",
-          "System.Text.Json": "9.0.2"
+          "Microsoft.EntityFrameworkCore.Relational": "9.0.4",
+          "Microsoft.Extensions.Caching.Memory": "9.0.4",
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.4",
+          "Microsoft.Extensions.Logging": "9.0.4",
+          "System.Formats.Asn1": "9.0.4",
+          "System.Text.Json": "9.0.4"
         },
         "compile": {
           "lib/net8.0/Microsoft.EntityFrameworkCore.SqlServer.dll": {
@@ -737,10 +737,10 @@
           }
         }
       },
-      "Microsoft.EntityFrameworkCore.Tools/9.0.2": {
+      "Microsoft.EntityFrameworkCore.Tools/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.EntityFrameworkCore.Design": "9.0.2"
+          "Microsoft.EntityFrameworkCore.Design": "9.0.4"
         }
       },
       "Microsoft.Extensions.AmbientMetadata.Application/9.2.0": {
@@ -775,10 +775,10 @@
           "buildMultiTargeting/Microsoft.Extensions.ApiDescription.Server.targets": {}
         }
       },
-      "Microsoft.Extensions.Caching.Abstractions/9.0.2": {
+      "Microsoft.Extensions.Caching.Abstractions/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Primitives": "9.0.2"
+          "Microsoft.Extensions.Primitives": "9.0.4"
         },
         "compile": {
           "lib/net9.0/Microsoft.Extensions.Caching.Abstractions.dll": {
@@ -794,14 +794,14 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Caching.Memory/9.0.2": {
+      "Microsoft.Extensions.Caching.Memory/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "9.0.2",
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.2",
-          "Microsoft.Extensions.Logging.Abstractions": "9.0.2",
-          "Microsoft.Extensions.Options": "9.0.2",
-          "Microsoft.Extensions.Primitives": "9.0.2"
+          "Microsoft.Extensions.Caching.Abstractions": "9.0.4",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.4",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.4",
+          "Microsoft.Extensions.Options": "9.0.4",
+          "Microsoft.Extensions.Primitives": "9.0.4"
         },
         "compile": {
           "lib/net9.0/Microsoft.Extensions.Caching.Memory.dll": {
@@ -854,10 +854,10 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Configuration.Abstractions/9.0.2": {
+      "Microsoft.Extensions.Configuration.Abstractions/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Primitives": "9.0.2"
+          "Microsoft.Extensions.Primitives": "9.0.4"
         },
         "compile": {
           "lib/net9.0/Microsoft.Extensions.Configuration.Abstractions.dll": {
@@ -892,10 +892,10 @@
           "buildTransitive/netstandard2.0/Microsoft.Extensions.Configuration.Binder.targets": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection/9.0.2": {
+      "Microsoft.Extensions.DependencyInjection/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.2"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.4"
         },
         "compile": {
           "lib/net9.0/Microsoft.Extensions.DependencyInjection.dll": {
@@ -911,7 +911,7 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.2": {
+      "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.4": {
         "type": "package",
         "compile": {
           "lib/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll": {
@@ -946,7 +946,7 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "Microsoft.Extensions.DependencyModel/9.0.2": {
+      "Microsoft.Extensions.DependencyModel/9.0.4": {
         "type": "package",
         "compile": {
           "lib/net9.0/_._": {
@@ -1210,12 +1210,12 @@
           "buildTransitive/net8.0/Microsoft.Extensions.Http.Resilience.targets": {}
         }
       },
-      "Microsoft.Extensions.Identity.Core/9.0.2": {
+      "Microsoft.Extensions.Identity.Core/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "9.0.2",
-          "Microsoft.Extensions.Logging": "9.0.2",
-          "Microsoft.Extensions.Options": "9.0.2"
+          "Microsoft.AspNetCore.Cryptography.KeyDerivation": "9.0.4",
+          "Microsoft.Extensions.Logging": "9.0.4",
+          "Microsoft.Extensions.Options": "9.0.4"
         },
         "compile": {
           "lib/net9.0/Microsoft.Extensions.Identity.Core.dll": {
@@ -1228,12 +1228,12 @@
           }
         }
       },
-      "Microsoft.Extensions.Identity.Stores/9.0.2": {
+      "Microsoft.Extensions.Identity.Stores/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.Caching.Abstractions": "9.0.2",
-          "Microsoft.Extensions.Identity.Core": "9.0.2",
-          "Microsoft.Extensions.Logging": "9.0.2"
+          "Microsoft.Extensions.Caching.Abstractions": "9.0.4",
+          "Microsoft.Extensions.Identity.Core": "9.0.4",
+          "Microsoft.Extensions.Logging": "9.0.4"
         },
         "compile": {
           "lib/net9.0/Microsoft.Extensions.Identity.Stores.dll": {
@@ -1246,12 +1246,12 @@
           }
         }
       },
-      "Microsoft.Extensions.Logging/9.0.2": {
+      "Microsoft.Extensions.Logging/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection": "9.0.2",
-          "Microsoft.Extensions.Logging.Abstractions": "9.0.2",
-          "Microsoft.Extensions.Options": "9.0.2"
+          "Microsoft.Extensions.DependencyInjection": "9.0.4",
+          "Microsoft.Extensions.Logging.Abstractions": "9.0.4",
+          "Microsoft.Extensions.Options": "9.0.4"
         },
         "compile": {
           "lib/net9.0/Microsoft.Extensions.Logging.dll": {
@@ -1267,10 +1267,10 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Logging.Abstractions/9.0.2": {
+      "Microsoft.Extensions.Logging.Abstractions/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.2"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.4"
         },
         "compile": {
           "lib/net9.0/Microsoft.Extensions.Logging.Abstractions.dll": {
@@ -1325,11 +1325,11 @@
           }
         }
       },
-      "Microsoft.Extensions.Options/9.0.2": {
+      "Microsoft.Extensions.Options/9.0.4": {
         "type": "package",
         "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.2",
-          "Microsoft.Extensions.Primitives": "9.0.2"
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.4",
+          "Microsoft.Extensions.Primitives": "9.0.4"
         },
         "compile": {
           "lib/net9.0/Microsoft.Extensions.Options.dll": {
@@ -1368,7 +1368,7 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "Microsoft.Extensions.Primitives/9.0.2": {
+      "Microsoft.Extensions.Primitives/9.0.4": {
         "type": "package",
         "compile": {
           "lib/net9.0/Microsoft.Extensions.Primitives.dll": {
@@ -1693,7 +1693,7 @@
           "buildTransitive/Mono.TextTemplating.targets": {}
         }
       },
-      "Namotion.Reflection/3.2.0": {
+      "Namotion.Reflection/3.3.0": {
         "type": "package",
         "compile": {
           "lib/net8.0/Namotion.Reflection.dll": {
@@ -1768,38 +1768,42 @@
           }
         }
       },
-      "NJsonSchema/11.1.0": {
+      "NJsonSchema/11.2.0": {
         "type": "package",
         "dependencies": {
-          "NJsonSchema.Annotations": "11.1.0",
-          "Namotion.Reflection": "3.2.0",
+          "NJsonSchema.Annotations": "11.2.0",
+          "Namotion.Reflection": "3.3.0",
           "Newtonsoft.Json": "13.0.3"
         },
         "compile": {
-          "lib/net6.0/NJsonSchema.dll": {
+          "lib/net8.0/NJsonSchema.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/NJsonSchema.dll": {
+          "lib/net8.0/NJsonSchema.dll": {
             "related": ".xml"
           }
         }
       },
-      "NJsonSchema.Annotations/11.1.0": {
+      "NJsonSchema.Annotations/11.2.0": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.0/NJsonSchema.Annotations.dll": {}
+          "lib/netstandard2.0/NJsonSchema.Annotations.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/NJsonSchema.Annotations.dll": {}
+          "lib/netstandard2.0/NJsonSchema.Annotations.dll": {
+            "related": ".xml"
+          }
         }
       },
-      "NJsonSchema.CodeGeneration/11.1.0": {
+      "NJsonSchema.CodeGeneration/11.2.0": {
         "type": "package",
         "dependencies": {
-          "Fluid.Core": "2.12.0",
-          "NJsonSchema": "11.1.0"
+          "Fluid.Core": "2.21.0",
+          "NJsonSchema": "11.2.0"
         },
         "compile": {
           "lib/netstandard2.0/NJsonSchema.CodeGeneration.dll": {
@@ -1812,10 +1816,10 @@
           }
         }
       },
-      "NJsonSchema.CodeGeneration.CSharp/11.1.0": {
+      "NJsonSchema.CodeGeneration.CSharp/11.2.0": {
         "type": "package",
         "dependencies": {
-          "NJsonSchema.CodeGeneration": "11.1.0"
+          "NJsonSchema.CodeGeneration": "11.2.0"
         },
         "compile": {
           "lib/netstandard2.0/NJsonSchema.CodeGeneration.CSharp.dll": {
@@ -1828,10 +1832,10 @@
           }
         }
       },
-      "NJsonSchema.CodeGeneration.TypeScript/11.1.0": {
+      "NJsonSchema.CodeGeneration.TypeScript/11.2.0": {
         "type": "package",
         "dependencies": {
-          "NJsonSchema.CodeGeneration": "11.1.0"
+          "NJsonSchema.CodeGeneration": "11.2.0"
         },
         "compile": {
           "lib/netstandard2.0/NJsonSchema.CodeGeneration.TypeScript.dll": {
@@ -1844,10 +1848,10 @@
           }
         }
       },
-      "NJsonSchema.NewtonsoftJson/11.1.0": {
+      "NJsonSchema.NewtonsoftJson/11.2.0": {
         "type": "package",
         "dependencies": {
-          "NJsonSchema": "11.1.0",
+          "NJsonSchema": "11.2.0",
           "Newtonsoft.Json": "13.0.3"
         },
         "compile": {
@@ -1861,20 +1865,24 @@
           }
         }
       },
-      "NJsonSchema.Yaml/11.1.0": {
+      "NJsonSchema.Yaml/11.2.0": {
         "type": "package",
         "dependencies": {
-          "NJsonSchema": "11.1.0",
-          "YamlDotNet": "16.2.0"
+          "NJsonSchema": "11.2.0",
+          "YamlDotNet": "16.3.0"
         },
         "compile": {
-          "lib/netstandard2.0/NJsonSchema.Yaml.dll": {}
+          "lib/netstandard2.0/NJsonSchema.Yaml.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/NJsonSchema.Yaml.dll": {}
+          "lib/netstandard2.0/NJsonSchema.Yaml.dll": {
+            "related": ".xml"
+          }
         }
       },
-      "NSwag.Annotations/14.2.0": {
+      "NSwag.Annotations/14.3.0": {
         "type": "package",
         "compile": {
           "lib/netstandard2.0/NSwag.Annotations.dll": {
@@ -1887,16 +1895,16 @@
           }
         }
       },
-      "NSwag.AspNetCore/14.2.0": {
+      "NSwag.AspNetCore/14.3.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.ApiDescription.Server": "6.0.3",
           "Microsoft.Extensions.FileProviders.Embedded": "9.0.0",
-          "NSwag.Annotations": "14.2.0",
-          "NSwag.Core": "14.2.0",
-          "NSwag.Core.Yaml": "14.2.0",
-          "NSwag.Generation": "14.2.0",
-          "NSwag.Generation.AspNetCore": "14.2.0"
+          "NSwag.Annotations": "14.3.0",
+          "NSwag.Core": "14.3.0",
+          "NSwag.Core.Yaml": "14.3.0",
+          "NSwag.Generation": "14.3.0",
+          "NSwag.Generation.AspNetCore": "14.3.0"
         },
         "compile": {
           "lib/net9.0/NSwag.AspNetCore.dll": {
@@ -1917,11 +1925,11 @@
           "buildMultiTargeting/NSwag.AspNetCore.targets": {}
         }
       },
-      "NSwag.CodeGeneration/14.2.0": {
+      "NSwag.CodeGeneration/14.3.0": {
         "type": "package",
         "dependencies": {
-          "NJsonSchema.CodeGeneration": "11.1.0",
-          "NSwag.Core": "14.2.0"
+          "NJsonSchema.CodeGeneration": "11.2.0",
+          "NSwag.Core": "14.3.0"
         },
         "compile": {
           "lib/netstandard2.0/NSwag.CodeGeneration.dll": {
@@ -1934,11 +1942,11 @@
           }
         }
       },
-      "NSwag.CodeGeneration.CSharp/14.2.0": {
+      "NSwag.CodeGeneration.CSharp/14.3.0": {
         "type": "package",
         "dependencies": {
-          "NJsonSchema.CodeGeneration.CSharp": "11.1.0",
-          "NSwag.CodeGeneration": "14.2.0"
+          "NJsonSchema.CodeGeneration.CSharp": "11.2.0",
+          "NSwag.CodeGeneration": "14.3.0"
         },
         "compile": {
           "lib/netstandard2.0/NSwag.CodeGeneration.CSharp.dll": {
@@ -1951,11 +1959,11 @@
           }
         }
       },
-      "NSwag.CodeGeneration.TypeScript/14.2.0": {
+      "NSwag.CodeGeneration.TypeScript/14.3.0": {
         "type": "package",
         "dependencies": {
-          "NJsonSchema.CodeGeneration.TypeScript": "11.1.0",
-          "NSwag.CodeGeneration": "14.2.0"
+          "NJsonSchema.CodeGeneration.TypeScript": "11.2.0",
+          "NSwag.CodeGeneration": "14.3.0"
         },
         "compile": {
           "lib/netstandard2.0/NSwag.CodeGeneration.TypeScript.dll": {
@@ -1968,10 +1976,10 @@
           }
         }
       },
-      "NSwag.Core/14.2.0": {
+      "NSwag.Core/14.3.0": {
         "type": "package",
         "dependencies": {
-          "NJsonSchema": "11.1.0"
+          "NJsonSchema": "11.2.0"
         },
         "compile": {
           "lib/netstandard2.0/NSwag.Core.dll": {
@@ -1984,11 +1992,11 @@
           }
         }
       },
-      "NSwag.Core.Yaml/14.2.0": {
+      "NSwag.Core.Yaml/14.3.0": {
         "type": "package",
         "dependencies": {
-          "NJsonSchema.Yaml": "11.1.0",
-          "NSwag.Core": "14.2.0"
+          "NJsonSchema.Yaml": "11.2.0",
+          "NSwag.Core": "14.3.0"
         },
         "compile": {
           "lib/netstandard2.0/NSwag.Core.Yaml.dll": {}
@@ -1997,11 +2005,11 @@
           "lib/netstandard2.0/NSwag.Core.Yaml.dll": {}
         }
       },
-      "NSwag.Generation/14.2.0": {
+      "NSwag.Generation/14.3.0": {
         "type": "package",
         "dependencies": {
-          "NJsonSchema.NewtonsoftJson": "11.1.0",
-          "NSwag.Core": "14.2.0"
+          "NJsonSchema.NewtonsoftJson": "11.2.0",
+          "NSwag.Core": "14.3.0"
         },
         "compile": {
           "lib/netstandard2.0/NSwag.Generation.dll": {
@@ -2014,12 +2022,12 @@
           }
         }
       },
-      "NSwag.Generation.AspNetCore/14.2.0": {
+      "NSwag.Generation.AspNetCore/14.3.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.0",
           "Microsoft.Extensions.Options": "9.0.0",
-          "NSwag.Generation": "14.2.0"
+          "NSwag.Generation": "14.3.0"
         },
         "compile": {
           "lib/net9.0/NSwag.Generation.AspNetCore.dll": {
@@ -2035,19 +2043,19 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "OpenIddict/6.1.0": {
+      "OpenIddict/6.2.0": {
         "type": "package",
         "dependencies": {
-          "OpenIddict.Abstractions": "6.1.0",
-          "OpenIddict.Client": "6.1.0",
-          "OpenIddict.Client.SystemIntegration": "6.1.0",
-          "OpenIddict.Client.SystemNetHttp": "6.1.0",
-          "OpenIddict.Client.WebIntegration": "6.1.0",
-          "OpenIddict.Core": "6.1.0",
-          "OpenIddict.Server": "6.1.0",
-          "OpenIddict.Validation": "6.1.0",
-          "OpenIddict.Validation.ServerIntegration": "6.1.0",
-          "OpenIddict.Validation.SystemNetHttp": "6.1.0"
+          "OpenIddict.Abstractions": "6.2.0",
+          "OpenIddict.Client": "6.2.0",
+          "OpenIddict.Client.SystemIntegration": "6.2.0",
+          "OpenIddict.Client.SystemNetHttp": "6.2.0",
+          "OpenIddict.Client.WebIntegration": "6.2.0",
+          "OpenIddict.Core": "6.2.0",
+          "OpenIddict.Server": "6.2.0",
+          "OpenIddict.Validation": "6.2.0",
+          "OpenIddict.Validation.ServerIntegration": "6.2.0",
+          "OpenIddict.Validation.SystemNetHttp": "6.2.0"
         },
         "compile": {
           "lib/net9.0/_._": {}
@@ -2056,7 +2064,7 @@
           "lib/net9.0/_._": {}
         }
       },
-      "OpenIddict.Abstractions/6.1.0": {
+      "OpenIddict.Abstractions/6.2.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.2",
@@ -2074,16 +2082,16 @@
           }
         }
       },
-      "OpenIddict.AspNetCore/6.1.0": {
+      "OpenIddict.AspNetCore/6.2.0": {
         "type": "package",
         "dependencies": {
-          "OpenIddict": "6.1.0",
-          "OpenIddict.Client.AspNetCore": "6.1.0",
-          "OpenIddict.Client.DataProtection": "6.1.0",
-          "OpenIddict.Server.AspNetCore": "6.1.0",
-          "OpenIddict.Server.DataProtection": "6.1.0",
-          "OpenIddict.Validation.AspNetCore": "6.1.0",
-          "OpenIddict.Validation.DataProtection": "6.1.0"
+          "OpenIddict": "6.2.0",
+          "OpenIddict.Client.AspNetCore": "6.2.0",
+          "OpenIddict.Client.DataProtection": "6.2.0",
+          "OpenIddict.Server.AspNetCore": "6.2.0",
+          "OpenIddict.Server.DataProtection": "6.2.0",
+          "OpenIddict.Validation.AspNetCore": "6.2.0",
+          "OpenIddict.Validation.DataProtection": "6.2.0"
         },
         "compile": {
           "lib/net9.0/_._": {}
@@ -2092,13 +2100,13 @@
           "lib/net9.0/_._": {}
         }
       },
-      "OpenIddict.Client/6.1.0": {
+      "OpenIddict.Client/6.2.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging": "9.0.2",
           "Microsoft.IdentityModel.JsonWebTokens": "8.4.0",
           "Microsoft.IdentityModel.Protocols": "8.4.0",
-          "OpenIddict.Abstractions": "6.1.0"
+          "OpenIddict.Abstractions": "6.2.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Client.dll": {
@@ -2111,10 +2119,10 @@
           }
         }
       },
-      "OpenIddict.Client.AspNetCore/6.1.0": {
+      "OpenIddict.Client.AspNetCore/6.2.0": {
         "type": "package",
         "dependencies": {
-          "OpenIddict.Client": "6.1.0"
+          "OpenIddict.Client": "6.2.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Client.AspNetCore.dll": {
@@ -2130,10 +2138,10 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "OpenIddict.Client.DataProtection/6.1.0": {
+      "OpenIddict.Client.DataProtection/6.2.0": {
         "type": "package",
         "dependencies": {
-          "OpenIddict.Client": "6.1.0"
+          "OpenIddict.Client": "6.2.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Client.DataProtection.dll": {
@@ -2149,12 +2157,12 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "OpenIddict.Client.SystemIntegration/6.1.0": {
+      "OpenIddict.Client.SystemIntegration/6.2.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Hosting.Abstractions": "9.0.2",
           "Microsoft.Net.Http.Headers": "9.0.2",
-          "OpenIddict.Client": "6.1.0"
+          "OpenIddict.Client": "6.2.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Client.SystemIntegration.dll": {
@@ -2167,12 +2175,12 @@
           }
         }
       },
-      "OpenIddict.Client.SystemNetHttp/6.1.0": {
+      "OpenIddict.Client.SystemNetHttp/6.2.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Http.Polly": "9.0.2",
           "Microsoft.Extensions.Http.Resilience": "9.2.0",
-          "OpenIddict.Client": "6.1.0"
+          "OpenIddict.Client": "6.2.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Client.SystemNetHttp.dll": {
@@ -2185,11 +2193,11 @@
           }
         }
       },
-      "OpenIddict.Client.WebIntegration/6.1.0": {
+      "OpenIddict.Client.WebIntegration/6.2.0": {
         "type": "package",
         "dependencies": {
-          "OpenIddict.Client": "6.1.0",
-          "OpenIddict.Client.SystemNetHttp": "6.1.0"
+          "OpenIddict.Client": "6.2.0",
+          "OpenIddict.Client.SystemNetHttp": "6.2.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Client.WebIntegration.dll": {
@@ -2202,13 +2210,13 @@
           }
         }
       },
-      "OpenIddict.Core/6.1.0": {
+      "OpenIddict.Core/6.2.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Caching.Memory": "9.0.2",
           "Microsoft.Extensions.Logging": "9.0.2",
           "Microsoft.Extensions.Options": "9.0.2",
-          "OpenIddict.Abstractions": "6.1.0"
+          "OpenIddict.Abstractions": "6.2.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Core.dll": {
@@ -2221,12 +2229,12 @@
           }
         }
       },
-      "OpenIddict.EntityFrameworkCore/6.1.0": {
+      "OpenIddict.EntityFrameworkCore/6.2.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.EntityFrameworkCore.Relational": "9.0.2",
-          "OpenIddict.Core": "6.1.0",
-          "OpenIddict.EntityFrameworkCore.Models": "6.1.0"
+          "OpenIddict.Core": "6.2.0",
+          "OpenIddict.EntityFrameworkCore.Models": "6.2.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.EntityFrameworkCore.dll": {
@@ -2239,7 +2247,7 @@
           }
         }
       },
-      "OpenIddict.EntityFrameworkCore.Models/6.1.0": {
+      "OpenIddict.EntityFrameworkCore.Models/6.2.0": {
         "type": "package",
         "compile": {
           "lib/net9.0/OpenIddict.EntityFrameworkCore.Models.dll": {
@@ -2252,10 +2260,10 @@
           }
         }
       },
-      "OpenIddict.Quartz/6.1.0": {
+      "OpenIddict.Quartz/6.2.0": {
         "type": "package",
         "dependencies": {
-          "OpenIddict.Core": "6.1.0",
+          "OpenIddict.Core": "6.2.0",
           "Quartz.Extensions.DependencyInjection": "3.13.1"
         },
         "compile": {
@@ -2269,12 +2277,12 @@
           }
         }
       },
-      "OpenIddict.Server/6.1.0": {
+      "OpenIddict.Server/6.2.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging": "9.0.2",
           "Microsoft.IdentityModel.JsonWebTokens": "8.4.0",
-          "OpenIddict.Abstractions": "6.1.0"
+          "OpenIddict.Abstractions": "6.2.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Server.dll": {
@@ -2287,10 +2295,10 @@
           }
         }
       },
-      "OpenIddict.Server.AspNetCore/6.1.0": {
+      "OpenIddict.Server.AspNetCore/6.2.0": {
         "type": "package",
         "dependencies": {
-          "OpenIddict.Server": "6.1.0"
+          "OpenIddict.Server": "6.2.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Server.AspNetCore.dll": {
@@ -2306,10 +2314,10 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "OpenIddict.Server.DataProtection/6.1.0": {
+      "OpenIddict.Server.DataProtection/6.2.0": {
         "type": "package",
         "dependencies": {
-          "OpenIddict.Server": "6.1.0"
+          "OpenIddict.Server": "6.2.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Server.DataProtection.dll": {
@@ -2325,13 +2333,13 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "OpenIddict.Validation/6.1.0": {
+      "OpenIddict.Validation/6.2.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging": "9.0.2",
           "Microsoft.IdentityModel.JsonWebTokens": "8.4.0",
           "Microsoft.IdentityModel.Protocols": "8.4.0",
-          "OpenIddict.Abstractions": "6.1.0"
+          "OpenIddict.Abstractions": "6.2.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Validation.dll": {
@@ -2344,10 +2352,10 @@
           }
         }
       },
-      "OpenIddict.Validation.AspNetCore/6.1.0": {
+      "OpenIddict.Validation.AspNetCore/6.2.0": {
         "type": "package",
         "dependencies": {
-          "OpenIddict.Validation": "6.1.0"
+          "OpenIddict.Validation": "6.2.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Validation.AspNetCore.dll": {
@@ -2363,10 +2371,10 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "OpenIddict.Validation.DataProtection/6.1.0": {
+      "OpenIddict.Validation.DataProtection/6.2.0": {
         "type": "package",
         "dependencies": {
-          "OpenIddict.Validation": "6.1.0"
+          "OpenIddict.Validation": "6.2.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Validation.DataProtection.dll": {
@@ -2382,11 +2390,11 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "OpenIddict.Validation.ServerIntegration/6.1.0": {
+      "OpenIddict.Validation.ServerIntegration/6.2.0": {
         "type": "package",
         "dependencies": {
-          "OpenIddict.Server": "6.1.0",
-          "OpenIddict.Validation": "6.1.0"
+          "OpenIddict.Server": "6.2.0",
+          "OpenIddict.Validation": "6.2.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Validation.ServerIntegration.dll": {
@@ -2399,12 +2407,12 @@
           }
         }
       },
-      "OpenIddict.Validation.SystemNetHttp/6.1.0": {
+      "OpenIddict.Validation.SystemNetHttp/6.2.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Http.Polly": "9.0.2",
           "Microsoft.Extensions.Http.Resilience": "9.2.0",
-          "OpenIddict.Validation": "6.1.0"
+          "OpenIddict.Validation": "6.2.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Validation.SystemNetHttp.dll": {
@@ -2417,7 +2425,7 @@
           }
         }
       },
-      "Parlot/1.0.2": {
+      "Parlot/1.3.5": {
         "type": "package",
         "compile": {
           "lib/net8.0/Parlot.dll": {
@@ -3075,7 +3083,7 @@
           }
         }
       },
-      "System.Formats.Asn1/9.0.2": {
+      "System.Formats.Asn1/9.0.4": {
         "type": "package",
         "compile": {
           "lib/net9.0/_._": {
@@ -4116,7 +4124,7 @@
           }
         }
       },
-      "System.Text.Json/9.0.2": {
+      "System.Text.Json/9.0.4": {
         "type": "package",
         "compile": {
           "lib/net9.0/System.Text.Json.dll": {
@@ -4301,20 +4309,20 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "TimeZoneConverter/6.1.0": {
+      "TimeZoneConverter/7.0.0": {
         "type": "package",
         "compile": {
-          "lib/net6.0/TimeZoneConverter.dll": {
+          "lib/net9.0/TimeZoneConverter.dll": {
             "related": ".xml"
           }
         },
         "runtime": {
-          "lib/net6.0/TimeZoneConverter.dll": {
+          "lib/net9.0/TimeZoneConverter.dll": {
             "related": ".xml"
           }
         }
       },
-      "YamlDotNet/16.2.0": {
+      "YamlDotNet/16.3.0": {
         "type": "package",
         "compile": {
           "lib/net8.0/YamlDotNet.dll": {
@@ -4384,15 +4392,15 @@
         "lib/netstandard2.0/Azure.Identity.xml"
       ]
     },
-    "Fluid.Core/2.12.0": {
-      "sha512": "cOXkUnng3sclpWhUmL5Eg1tV8ieseeycge2K9NgCAJzW8oqZJz699xnVA3y5Bw+/zIDFGjkyldZ5rT14e2PDCA==",
+    "Fluid.Core/2.21.0": {
+      "sha512": "VpXoM6bG5UfHlhXyYVxL5NDC+Zus87yAMIKI2UFF9BoJDyGvqwSiodDwhL8Gqp+qnnBZespSd3F0noMNOEYMWQ==",
       "type": "package",
-      "path": "fluid.core/2.12.0",
+      "path": "fluid.core/2.21.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "README.md",
-        "fluid.core.2.12.0.nupkg.sha512",
+        "fluid.core.2.21.0.nupkg.sha512",
         "fluid.core.nuspec",
         "lib/net6.0/Fluid.dll",
         "lib/net6.0/Fluid.pdb",
@@ -4400,6 +4408,9 @@
         "lib/net8.0/Fluid.dll",
         "lib/net8.0/Fluid.pdb",
         "lib/net8.0/Fluid.xml",
+        "lib/net9.0/Fluid.dll",
+        "lib/net9.0/Fluid.pdb",
+        "lib/net9.0/Fluid.xml",
         "lib/netstandard2.0/Fluid.dll",
         "lib/netstandard2.0/Fluid.pdb",
         "lib/netstandard2.0/Fluid.xml",
@@ -4424,10 +4435,10 @@
         "logo.png"
       ]
     },
-    "Microsoft.AspNetCore.Cryptography.Internal/9.0.2": {
-      "sha512": "c628W4yUQyeZAjagLDWINOVAakvELBhS6WmjBYpoFVxrvBquo0JDmDMkQLe0zGffnaK5JoWBBHhT3dTJ6s06fw==",
+    "Microsoft.AspNetCore.Cryptography.Internal/9.0.4": {
+      "sha512": "E4pHyEb2Ul5a6bIwraGtw9TN39a/C2asyVPEJoyItc0reV4Y26FsPcEdcXyKjBbP4kSz9iU1Cz4Yhx/aOFPpqA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.cryptography.internal/9.0.2",
+      "path": "microsoft.aspnetcore.cryptography.internal/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4439,14 +4450,14 @@
         "lib/net9.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.Internal.xml",
-        "microsoft.aspnetcore.cryptography.internal.9.0.2.nupkg.sha512",
+        "microsoft.aspnetcore.cryptography.internal.9.0.4.nupkg.sha512",
         "microsoft.aspnetcore.cryptography.internal.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Cryptography.KeyDerivation/9.0.2": {
-      "sha512": "F4iMrER+27B2t4IkUhe7oZfFNPwg0ZRPSSCpA4H4FLAsmiUTN1k9sq2G187I3mUlPaysHh83JrPcMtZYtmKBBQ==",
+    "Microsoft.AspNetCore.Cryptography.KeyDerivation/9.0.4": {
+      "sha512": "5v9Kj2arRrCftLKW80Hfj31HkNnjcKyw57lQhF84drvGxJlCR63J0zMM1sMM+Hc+KCQjuoDmHtjwN0uOT+X3ag==",
       "type": "package",
-      "path": "microsoft.aspnetcore.cryptography.keyderivation/9.0.2",
+      "path": "microsoft.aspnetcore.cryptography.keyderivation/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4458,14 +4469,14 @@
         "lib/net9.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll",
         "lib/netstandard2.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.xml",
-        "microsoft.aspnetcore.cryptography.keyderivation.9.0.2.nupkg.sha512",
+        "microsoft.aspnetcore.cryptography.keyderivation.9.0.4.nupkg.sha512",
         "microsoft.aspnetcore.cryptography.keyderivation.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/9.0.2": {
-      "sha512": "VW8iMcjcJz4HFOlHgbvlutwTIrVgKJ3zbQ8FCjkA6OekN1tNSzdRzV4uW9f1Pmz0bL6RzjzRv9GX/DP1E8WTZQ==",
+    "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/9.0.4": {
+      "sha512": "9ywv/+Veve2UxSXIYYj2K7Lh1PvOwLczLBHPIs7Xswix+MdlSnc9OryF13x6R5ZHdUCj3unOpJ2lPI4slJFwRw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.diagnostics.entityframeworkcore/9.0.2",
+      "path": "microsoft.aspnetcore.diagnostics.entityframeworkcore/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4473,14 +4484,14 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net9.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll",
         "lib/net9.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.xml",
-        "microsoft.aspnetcore.diagnostics.entityframeworkcore.9.0.2.nupkg.sha512",
+        "microsoft.aspnetcore.diagnostics.entityframeworkcore.9.0.4.nupkg.sha512",
         "microsoft.aspnetcore.diagnostics.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/9.0.2": {
-      "sha512": "pWTIxKXMGmrTLPovVJDmkToemQU1/ovgB4LhKa+VfoZJ8nKYwIoBI/mMM5JOwJpLGX73a6kw7W8wIc69gvZwRQ==",
+    "Microsoft.AspNetCore.Identity.EntityFrameworkCore/9.0.4": {
+      "sha512": "IC3X6Db6H0cXdE2zGtyk/jmSwXhHbJZaiNpg7TNFV/Biu/NgO6l/GuwgE0D1U6U9pca00WsqxESkNov+WA77CA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.identity.entityframeworkcore/9.0.2",
+      "path": "microsoft.aspnetcore.identity.entityframeworkcore/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4488,14 +4499,14 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net9.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll",
         "lib/net9.0/Microsoft.AspNetCore.Identity.EntityFrameworkCore.xml",
-        "microsoft.aspnetcore.identity.entityframeworkcore.9.0.2.nupkg.sha512",
+        "microsoft.aspnetcore.identity.entityframeworkcore.9.0.4.nupkg.sha512",
         "microsoft.aspnetcore.identity.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.OpenApi/9.0.2": {
-      "sha512": "JUndpjRNdG8GvzBLH/J4hen4ehWaPcshtiQ6+sUs1Bcj3a7dOsmWpDloDlpPeMOVSlhHwUJ3Xld0ClZjsFLgFQ==",
+    "Microsoft.AspNetCore.OpenApi/9.0.4": {
+      "sha512": "GfZWPbZz1aAtEO3wGCkpeyRc0gzr/+VRHnUgY/YjqVPDlHbeKWCXw3IxKarQdo9myC2O1QBf652Mo50QqbXYRg==",
       "type": "package",
-      "path": "microsoft.aspnetcore.openapi/9.0.2",
+      "path": "microsoft.aspnetcore.openapi/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -4504,7 +4515,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net9.0/Microsoft.AspNetCore.OpenApi.dll",
         "lib/net9.0/Microsoft.AspNetCore.OpenApi.xml",
-        "microsoft.aspnetcore.openapi.9.0.2.nupkg.sha512",
+        "microsoft.aspnetcore.openapi.9.0.4.nupkg.sha512",
         "microsoft.aspnetcore.openapi.nuspec"
       ]
     },
@@ -5581,10 +5592,10 @@
         "runtimes/win-x86/native/Microsoft.Data.SqlClient.SNI.dll"
       ]
     },
-    "Microsoft.EntityFrameworkCore/9.0.2": {
-      "sha512": "P90ZuybgcpW32y985eOYxSoZ9IiL0UTYQlY0y1Pt1iHAnpZj/dQHREpSpry1RNvk8YjAeoAkWFdem5conqB9zQ==",
+    "Microsoft.EntityFrameworkCore/9.0.4": {
+      "sha512": "+5IAX0aicQYCRfN4pAjad+JPwdEYoVEM3Z1Cl8/EiEv3FVHQHdd8TJQpQIslQDDQS/UsUMb0MsOXwqOh+TJtRw==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore/9.0.2",
+      "path": "microsoft.entityframeworkcore/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5593,14 +5604,14 @@
         "buildTransitive/net8.0/Microsoft.EntityFrameworkCore.props",
         "lib/net8.0/Microsoft.EntityFrameworkCore.dll",
         "lib/net8.0/Microsoft.EntityFrameworkCore.xml",
-        "microsoft.entityframeworkcore.9.0.2.nupkg.sha512",
+        "microsoft.entityframeworkcore.9.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Abstractions/9.0.2": {
-      "sha512": "oVSjNSIYHsk0N66eqAWgDcyo9etEFbUswbz7SmlYR6nGp05byHrJAYM5N8U2aGWJWJI6WvIC2e4TXJgH6GZ6HQ==",
+    "Microsoft.EntityFrameworkCore.Abstractions/9.0.4": {
+      "sha512": "E0pkWzI0liqu2ogqJ1kohk2eGkYRhf5tI75HGF6IQDARsshY/0w+prGyLvNuUeV7B8I7vYQZ4CzAKYKxw7b9gQ==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.abstractions/9.0.2",
+      "path": "microsoft.entityframeworkcore.abstractions/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5608,28 +5619,28 @@
         "PACKAGE.md",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Abstractions.dll",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Abstractions.xml",
-        "microsoft.entityframeworkcore.abstractions.9.0.2.nupkg.sha512",
+        "microsoft.entityframeworkcore.abstractions.9.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.abstractions.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Analyzers/9.0.2": {
-      "sha512": "w4jzX7XI+L3erVGzbHXpx64A3QaLXxqG3f1vPpGYYZGpxOIHkh7e4iLLD7cq4Ng1vjkwzWl5ZJp0Kj/nHsgFYg==",
+    "Microsoft.EntityFrameworkCore.Analyzers/9.0.4": {
+      "sha512": "cMsm1O7g9X5qbB2wjHf3BVVvGwkG+zeXQ+M91I1Bm6RfylFMImqBPzs0+vmuef7fPxr2yOzPhIfJ2wQJfmtaSw==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.analyzers/9.0.2",
+      "path": "microsoft.entityframeworkcore.analyzers/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "analyzers/dotnet/cs/Microsoft.EntityFrameworkCore.Analyzers.dll",
         "docs/PACKAGE.md",
-        "microsoft.entityframeworkcore.analyzers.9.0.2.nupkg.sha512",
+        "microsoft.entityframeworkcore.analyzers.9.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.analyzers.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Design/9.0.2": {
-      "sha512": "WWRmTxb/yd05cTW+k32lLvIhffxilgYvwKHDxiqe7GRLKeceyMspuf5BRpW65sFF7S2G+Be9JgjUe1ypGqt9tg==",
+    "Microsoft.EntityFrameworkCore.Design/9.0.4": {
+      "sha512": "0NdtmsbYfMr2HyF+W6L+kPaHJl1nAmFjWj0MfI5G+CFeWZxDwltQxzzwSmZQ4QhS5z8zjczGXwHZ8e3iFaoiXA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.design/9.0.2",
+      "path": "microsoft.entityframeworkcore.design/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5638,14 +5649,14 @@
         "build/net8.0/Microsoft.EntityFrameworkCore.Design.props",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Design.dll",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Design.xml",
-        "microsoft.entityframeworkcore.design.9.0.2.nupkg.sha512",
+        "microsoft.entityframeworkcore.design.9.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.design.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Relational/9.0.2": {
-      "sha512": "r7O4N5uaM95InVSGUj7SMOQWN0f1PBF2Y30ow7Jg+pGX5GJCRVd/1fq83lQ50YMyq+EzyHac5o4CDQA2RsjKJQ==",
+    "Microsoft.EntityFrameworkCore.Relational/9.0.4": {
+      "sha512": "OjJ+xh/wQff5b0wiC3SPvoQqTA2boZeJQf+15+3+OJPtjBKzvxuwr25QRIu1p1t+K8ryQ8pzaoZ7eOpXfNzVGA==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.relational/9.0.2",
+      "path": "microsoft.entityframeworkcore.relational/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5653,7 +5664,7 @@
         "PACKAGE.md",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Relational.dll",
         "lib/net8.0/Microsoft.EntityFrameworkCore.Relational.xml",
-        "microsoft.entityframeworkcore.relational.9.0.2.nupkg.sha512",
+        "microsoft.entityframeworkcore.relational.9.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.relational.nuspec"
       ]
     },
@@ -5672,10 +5683,10 @@
         "microsoft.entityframeworkcore.relational.design.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.SqlServer/9.0.2": {
-      "sha512": "PN65soRvSajLqr1kVRvpUwqI/rmab4x/6TxcYzyUVvg52DMPxx4Y760EZ6OzFhJnilP/WFEEzdftHsTsHQ64IQ==",
+    "Microsoft.EntityFrameworkCore.SqlServer/9.0.4": {
+      "sha512": "UCo6rRUIx2Rhl6xVkMPf1yL/97jcYkwrryOKB5e68YCZ7NdQyk+7wfXJzEDvkFcjTw45H5sy4/1vW6vXCs/Kag==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.sqlserver/9.0.2",
+      "path": "microsoft.entityframeworkcore.sqlserver/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -5683,7 +5694,7 @@
         "PACKAGE.md",
         "lib/net8.0/Microsoft.EntityFrameworkCore.SqlServer.dll",
         "lib/net8.0/Microsoft.EntityFrameworkCore.SqlServer.xml",
-        "microsoft.entityframeworkcore.sqlserver.9.0.2.nupkg.sha512",
+        "microsoft.entityframeworkcore.sqlserver.9.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.sqlserver.nuspec"
       ]
     },
@@ -5702,17 +5713,17 @@
         "microsoft.entityframeworkcore.sqlserver.design.nuspec"
       ]
     },
-    "Microsoft.EntityFrameworkCore.Tools/9.0.2": {
-      "sha512": "5D4LQ9zYexFOcq0WzXOCCnP74+s9mBGNjh5mtkWFzM/DbY+rpDqrXjPq7peob/ZHAAqK+9Pfv2VK+tNf8C6QaQ==",
+    "Microsoft.EntityFrameworkCore.Tools/9.0.4": {
+      "sha512": "QW87VJ1TRTN/tOATTfaXlP8BZZjpi9XkOwJHvDUQosS7cmD03bkYkbp3eoLwIlLOHRJaWi1NhOjqQ9zoBPZa9w==",
       "type": "package",
-      "path": "microsoft.entityframeworkcore.tools/9.0.2",
+      "path": "microsoft.entityframeworkcore.tools/9.0.4",
       "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "Icon.png",
         "docs/PACKAGE.md",
-        "microsoft.entityframeworkcore.tools.9.0.2.nupkg.sha512",
+        "microsoft.entityframeworkcore.tools.9.0.4.nupkg.sha512",
         "microsoft.entityframeworkcore.tools.nuspec",
         "tools/EntityFrameworkCore.PS2.psd1",
         "tools/EntityFrameworkCore.PS2.psm1",
@@ -5979,10 +5990,10 @@
         "tools/netcoreapp2.1/System.Diagnostics.DiagnosticSource.dll"
       ]
     },
-    "Microsoft.Extensions.Caching.Abstractions/9.0.2": {
-      "sha512": "a7QhA25n+BzSM5r5d7JznfyluMBGI7z3qyLlFviZ1Eiqv6DdiK27sLZdP/rpYirBM6UYAKxu5TbmfhIy13GN9A==",
+    "Microsoft.Extensions.Caching.Abstractions/9.0.4": {
+      "sha512": "imcZ5BGhBw5mNsWLepBbqqumWaFe0GtvyCvne2/2wsDIBRa2+Lhx4cU/pKt/4BwOizzUEOls2k1eOJQXHGMalg==",
       "type": "package",
-      "path": "microsoft.extensions.caching.abstractions/9.0.2",
+      "path": "microsoft.extensions.caching.abstractions/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6002,15 +6013,15 @@
         "lib/net9.0/Microsoft.Extensions.Caching.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Caching.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Caching.Abstractions.xml",
-        "microsoft.extensions.caching.abstractions.9.0.2.nupkg.sha512",
+        "microsoft.extensions.caching.abstractions.9.0.4.nupkg.sha512",
         "microsoft.extensions.caching.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Caching.Memory/9.0.2": {
-      "sha512": "AlEfp0DMz8E1h1Exi8LBrUCNmCYcGDfSM4F/uK1D1cYx/R3w0LVvlmjICqxqXTsy7BEZaCf5leRZY2FuPEiFaw==",
+    "Microsoft.Extensions.Caching.Memory/9.0.4": {
+      "sha512": "G5rEq1Qez5VJDTEyRsRUnewAspKjaY57VGsdZ8g8Ja6sXXzoiI3PpTd1t43HjHqNWD5A06MQveb2lscn+2CU+w==",
       "type": "package",
-      "path": "microsoft.extensions.caching.memory/9.0.2",
+      "path": "microsoft.extensions.caching.memory/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6030,7 +6041,7 @@
         "lib/net9.0/Microsoft.Extensions.Caching.Memory.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Caching.Memory.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Caching.Memory.xml",
-        "microsoft.extensions.caching.memory.9.0.2.nupkg.sha512",
+        "microsoft.extensions.caching.memory.9.0.4.nupkg.sha512",
         "microsoft.extensions.caching.memory.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -6082,10 +6093,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Configuration.Abstractions/9.0.2": {
-      "sha512": "I0O/270E/lUNqbBxlRVjxKOMZyYjP88dpEgQTveml+h2lTzAP4vbawLVwjS9SC7lKaU893bwyyNz0IVJYsm9EA==",
+    "Microsoft.Extensions.Configuration.Abstractions/9.0.4": {
+      "sha512": "0LN/DiIKvBrkqp7gkF3qhGIeZk6/B63PthAHjQsxymJfIBcz0kbf4/p/t4lMgggVxZ+flRi5xvTwlpPOoZk8fg==",
       "type": "package",
-      "path": "microsoft.extensions.configuration.abstractions/9.0.2",
+      "path": "microsoft.extensions.configuration.abstractions/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6105,7 +6116,7 @@
         "lib/net9.0/Microsoft.Extensions.Configuration.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Configuration.Abstractions.xml",
-        "microsoft.extensions.configuration.abstractions.9.0.2.nupkg.sha512",
+        "microsoft.extensions.configuration.abstractions.9.0.4.nupkg.sha512",
         "microsoft.extensions.configuration.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -6149,10 +6160,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.DependencyInjection/9.0.2": {
-      "sha512": "ZffbJrskOZ40JTzcTyKwFHS5eACSWp2bUQBBApIgGV+es8RaTD4OxUG7XxFr3RIPLXtYQ1jQzF2DjKB5fZn7Qg==",
+    "Microsoft.Extensions.DependencyInjection/9.0.4": {
+      "sha512": "f2MTUaS2EQ3lX4325ytPAISZqgBfXmY0WvgD80ji6Z20AoDNiCESxsqo6mFRwHJD/jfVKRw9FsW6+86gNre3ug==",
       "type": "package",
-      "path": "microsoft.extensions.dependencyinjection/9.0.2",
+      "path": "microsoft.extensions.dependencyinjection/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6174,15 +6185,15 @@
         "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.xml",
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.dll",
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.xml",
-        "microsoft.extensions.dependencyinjection.9.0.2.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.9.0.4.nupkg.sha512",
         "microsoft.extensions.dependencyinjection.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.2": {
-      "sha512": "MNe7GSTBf3jQx5vYrXF0NZvn6l7hUKF6J54ENfAgCO8y6xjN1XUmKKWG464LP2ye6QqDiA1dkaWEZBYnhoZzjg==",
+    "Microsoft.Extensions.DependencyInjection.Abstractions/9.0.4": {
+      "sha512": "UI0TQPVkS78bFdjkTodmkH0Fe8lXv9LnhGFKgKrsgUJ5a5FVdFRcgjIkBVLbGgdRhxWirxH/8IXUtEyYJx6GQg==",
       "type": "package",
-      "path": "microsoft.extensions.dependencyinjection.abstractions/9.0.2",
+      "path": "microsoft.extensions.dependencyinjection.abstractions/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6204,7 +6215,7 @@
         "lib/netstandard2.0/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.dll",
         "lib/netstandard2.1/Microsoft.Extensions.DependencyInjection.Abstractions.xml",
-        "microsoft.extensions.dependencyinjection.abstractions.9.0.2.nupkg.sha512",
+        "microsoft.extensions.dependencyinjection.abstractions.9.0.4.nupkg.sha512",
         "microsoft.extensions.dependencyinjection.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -6230,10 +6241,10 @@
         "microsoft.extensions.dependencyinjection.autoactivation.nuspec"
       ]
     },
-    "Microsoft.Extensions.DependencyModel/9.0.2": {
-      "sha512": "3ImbcbS68jy9sKr9Z9ToRbEEX0bvIRdb8zyf5ebtL9Av2CUCGHvaO5wsSXfRfAjr60Vrq0tlmNji9IzAxW6EOw==",
+    "Microsoft.Extensions.DependencyModel/9.0.4": {
+      "sha512": "ACtnvl3H3M/f8Z42980JxsNu7V9PPbzys4vBs83ZewnsgKd7JeYK18OMPo0g+MxAHrpgMrjmlinXDiaSRPcVnA==",
       "type": "package",
-      "path": "microsoft.extensions.dependencymodel/9.0.2",
+      "path": "microsoft.extensions.dependencymodel/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6253,7 +6264,7 @@
         "lib/net9.0/Microsoft.Extensions.DependencyModel.xml",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.dll",
         "lib/netstandard2.0/Microsoft.Extensions.DependencyModel.xml",
-        "microsoft.extensions.dependencymodel.9.0.2.nupkg.sha512",
+        "microsoft.extensions.dependencymodel.9.0.4.nupkg.sha512",
         "microsoft.extensions.dependencymodel.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -6556,10 +6567,10 @@
         "microsoft.extensions.http.resilience.nuspec"
       ]
     },
-    "Microsoft.Extensions.Identity.Core/9.0.2": {
-      "sha512": "rD3WoEPV4TJ4sb/SLaf7GHwSv8iZhIpviigAxloYivrPTaN8MbOLhSZMn53LtVXFugTQzkBlGSOcB99vJdk5pA==",
+    "Microsoft.Extensions.Identity.Core/9.0.4": {
+      "sha512": "KKfCsoIHFGZmmCEjZBPuvDW0pCjboMru/Z3vbEyC/OIwUVeKrdPugFyjc81i7rNSjcPcDxVvGl/Ks8HLelKocg==",
       "type": "package",
-      "path": "microsoft.extensions.identity.core/9.0.2",
+      "path": "microsoft.extensions.identity.core/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6571,14 +6582,14 @@
         "lib/net9.0/Microsoft.Extensions.Identity.Core.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Core.xml",
-        "microsoft.extensions.identity.core.9.0.2.nupkg.sha512",
+        "microsoft.extensions.identity.core.9.0.4.nupkg.sha512",
         "microsoft.extensions.identity.core.nuspec"
       ]
     },
-    "Microsoft.Extensions.Identity.Stores/9.0.2": {
-      "sha512": "1gY/SvkkvMv/Ea/UUMpTmkMI8ZP+I3dLBiPMSaaSaDK7WclHifheUmmsJqnXrhsswAI0xLLbGwff4xcsXedt4A==",
+    "Microsoft.Extensions.Identity.Stores/9.0.4": {
+      "sha512": "0F6lSngwyXzrv+qtX46nhHYBOlPxEzj0qyCCef1kvlyEYhbj8kBL13FuDk4nEPkzk1yVjZgsnXBG19+TrNdakQ==",
       "type": "package",
-      "path": "microsoft.extensions.identity.stores/9.0.2",
+      "path": "microsoft.extensions.identity.stores/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6590,14 +6601,14 @@
         "lib/net9.0/Microsoft.Extensions.Identity.Stores.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Identity.Stores.xml",
-        "microsoft.extensions.identity.stores.9.0.2.nupkg.sha512",
+        "microsoft.extensions.identity.stores.9.0.4.nupkg.sha512",
         "microsoft.extensions.identity.stores.nuspec"
       ]
     },
-    "Microsoft.Extensions.Logging/9.0.2": {
-      "sha512": "loV/0UNpt2bD+6kCDzFALVE63CDtqzPeC0LAetkdhiEr/tTNbvOlQ7CBResH7BQBd3cikrwiBfaHdyHMFUlc2g==",
+    "Microsoft.Extensions.Logging/9.0.4": {
+      "sha512": "xW6QPYsqhbuWBO9/1oA43g/XPKbohJx+7G8FLQgQXIriYvY7s+gxr2wjQJfRoPO900dvvv2vVH7wZovG+M1m6w==",
       "type": "package",
-      "path": "microsoft.extensions.logging/9.0.2",
+      "path": "microsoft.extensions.logging/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6619,15 +6630,15 @@
         "lib/netstandard2.0/Microsoft.Extensions.Logging.xml",
         "lib/netstandard2.1/Microsoft.Extensions.Logging.dll",
         "lib/netstandard2.1/Microsoft.Extensions.Logging.xml",
-        "microsoft.extensions.logging.9.0.2.nupkg.sha512",
+        "microsoft.extensions.logging.9.0.4.nupkg.sha512",
         "microsoft.extensions.logging.nuspec",
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Logging.Abstractions/9.0.2": {
-      "sha512": "dV9s2Lamc8jSaqhl2BQSPn/AryDIH2sSbQUyLitLXV0ROmsb+SROnn2cH939JFbsNrnf3mIM3GNRKT7P0ldwLg==",
+    "Microsoft.Extensions.Logging.Abstractions/9.0.4": {
+      "sha512": "0MXlimU4Dud6t+iNi5NEz3dO2w1HXdhoOLaYFuLPCjAsvlPQGwOT6V2KZRMLEhCAm/stSZt1AUv0XmDdkjvtbw==",
       "type": "package",
-      "path": "microsoft.extensions.logging.abstractions/9.0.2",
+      "path": "microsoft.extensions.logging.abstractions/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6690,7 +6701,7 @@
         "lib/net9.0/Microsoft.Extensions.Logging.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Logging.Abstractions.xml",
-        "microsoft.extensions.logging.abstractions.9.0.2.nupkg.sha512",
+        "microsoft.extensions.logging.abstractions.9.0.4.nupkg.sha512",
         "microsoft.extensions.logging.abstractions.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -6741,10 +6752,10 @@
         "microsoft.extensions.objectpool.nuspec"
       ]
     },
-    "Microsoft.Extensions.Options/9.0.2": {
-      "sha512": "zr98z+AN8+isdmDmQRuEJ/DAKZGUTHmdv3t0ZzjHvNqvA44nAgkXE9kYtfoN6581iALChhVaSw2Owt+Z2lVbkQ==",
+    "Microsoft.Extensions.Options/9.0.4": {
+      "sha512": "fiFI2+58kicqVZyt/6obqoFwHiab7LC4FkQ3mmiBJ28Yy4fAvy2+v9MRnSvvlOO8chTOjKsdafFl/K9veCPo5g==",
       "type": "package",
-      "path": "microsoft.extensions.options/9.0.2",
+      "path": "microsoft.extensions.options/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6781,7 +6792,7 @@
         "lib/netstandard2.0/Microsoft.Extensions.Options.xml",
         "lib/netstandard2.1/Microsoft.Extensions.Options.dll",
         "lib/netstandard2.1/Microsoft.Extensions.Options.xml",
-        "microsoft.extensions.options.9.0.2.nupkg.sha512",
+        "microsoft.extensions.options.9.0.4.nupkg.sha512",
         "microsoft.extensions.options.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -6814,10 +6825,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.Extensions.Primitives/9.0.2": {
-      "sha512": "puBMtKe/wLuYa7H6docBkLlfec+h8L35DXqsDKKJgW0WY5oCwJ3cBJKcDaZchv6knAyqOMfsl6VUbaR++E5LXA==",
+    "Microsoft.Extensions.Primitives/9.0.4": {
+      "sha512": "SPFyMjyku1nqTFFJ928JAMd0QnRe4xjE7KeKnZMWXf3xk+6e0WiOZAluYtLdbJUXtsl2cCRSi8cBquJ408k8RA==",
       "type": "package",
-      "path": "microsoft.extensions.primitives/9.0.2",
+      "path": "microsoft.extensions.primitives/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6837,7 +6848,7 @@
         "lib/net9.0/Microsoft.Extensions.Primitives.xml",
         "lib/netstandard2.0/Microsoft.Extensions.Primitives.dll",
         "lib/netstandard2.0/Microsoft.Extensions.Primitives.xml",
-        "microsoft.extensions.primitives.9.0.2.nupkg.sha512",
+        "microsoft.extensions.primitives.9.0.4.nupkg.sha512",
         "microsoft.extensions.primitives.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -7252,10 +7263,10 @@
         "readme.md"
       ]
     },
-    "Namotion.Reflection/3.2.0": {
-      "sha512": "YfGjDPzMEs3vRMI4CMkJwOg75SV5JEDV72kMccD2GCo++TfgOYb5ZTpABYq3dUQqFtnAPpqMKM+deLlrUwnN1g==",
+    "Namotion.Reflection/3.3.0": {
+      "sha512": "8bIO+tMrKLv/5Hx1rnJgoz8MjGhpiWtSxadvhmGYm/WTeOLAnfR1ZKNz1FMmhQ0YmchNebn6ERVUOwBqV81GXQ==",
       "type": "package",
-      "path": "namotion.reflection/3.2.0",
+      "path": "namotion.reflection/3.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7266,7 +7277,7 @@
         "lib/net8.0/Namotion.Reflection.xml",
         "lib/netstandard2.0/Namotion.Reflection.dll",
         "lib/netstandard2.0/Namotion.Reflection.xml",
-        "namotion.reflection.3.2.0.nupkg.sha512",
+        "namotion.reflection.3.3.0.nupkg.sha512",
         "namotion.reflection.nuspec"
       ]
     },
@@ -7313,42 +7324,44 @@
         "packageIcon.png"
       ]
     },
-    "NJsonSchema/11.1.0": {
-      "sha512": "H7QO+bM/2uzF81mVyy4U8ha4MXS9eOX06rTvBgJKquzIuLUGuiOTc4nknkCFKW7mr+xnWgzY7Spevz5ZEK8fGg==",
+    "NJsonSchema/11.2.0": {
+      "sha512": "ucPJuxr7d3sbOB4pewr50lDhjCloIFgyFV3OwyIGWGKiSL4H2FNjfT0kYwaIbPdhT8psPyphYpMYhzbdBZpudw==",
       "type": "package",
-      "path": "njsonschema/11.1.0",
+      "path": "njsonschema/11.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "NuGetIcon.png",
         "lib/net462/NJsonSchema.dll",
         "lib/net462/NJsonSchema.xml",
-        "lib/net6.0/NJsonSchema.dll",
-        "lib/net6.0/NJsonSchema.xml",
+        "lib/net8.0/NJsonSchema.dll",
+        "lib/net8.0/NJsonSchema.xml",
         "lib/netstandard2.0/NJsonSchema.dll",
         "lib/netstandard2.0/NJsonSchema.xml",
-        "njsonschema.11.1.0.nupkg.sha512",
+        "njsonschema.11.2.0.nupkg.sha512",
         "njsonschema.nuspec"
       ]
     },
-    "NJsonSchema.Annotations/11.1.0": {
-      "sha512": "2gU72pKhMLrQt7TjHv+nrb8CxxgUaBk2SD/CaB5f00SxuWdOT4YVQaGy+jTVx+8IgQit+9WWMvBWU9f6U2HNiQ==",
+    "NJsonSchema.Annotations/11.2.0": {
+      "sha512": "YY7oavkCD+lbcFsjvDY0+h1/C+TgX5lYRQaracIq5zqF6FC35ddig+hARrta4Hk5/O3RbjH5I22/Qg25YNqmrA==",
       "type": "package",
-      "path": "njsonschema.annotations/11.1.0",
+      "path": "njsonschema.annotations/11.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "NuGetIcon.png",
         "lib/net462/NJsonSchema.Annotations.dll",
+        "lib/net462/NJsonSchema.Annotations.xml",
         "lib/netstandard2.0/NJsonSchema.Annotations.dll",
-        "njsonschema.annotations.11.1.0.nupkg.sha512",
+        "lib/netstandard2.0/NJsonSchema.Annotations.xml",
+        "njsonschema.annotations.11.2.0.nupkg.sha512",
         "njsonschema.annotations.nuspec"
       ]
     },
-    "NJsonSchema.CodeGeneration/11.1.0": {
-      "sha512": "oFpYrDjlPHB35qzlBOHgprzHCleG5WWpEBS0/+X2VXubuFfy00ouC31WYdN4w3zctWGPx9KjOqSQ5gN86CiYCw==",
+    "NJsonSchema.CodeGeneration/11.2.0": {
+      "sha512": "/5m8YskvCRMg/Ngjbt2aGcbuCzkZas+GxO0Hnh0ftcHZbyr7AmD7GAMpJDk/kTW5vZuJ1HwkI9J+3Fhh6B/Wpg==",
       "type": "package",
-      "path": "njsonschema.codegeneration/11.1.0",
+      "path": "njsonschema.codegeneration/11.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7357,14 +7370,14 @@
         "lib/net462/NJsonSchema.CodeGeneration.xml",
         "lib/netstandard2.0/NJsonSchema.CodeGeneration.dll",
         "lib/netstandard2.0/NJsonSchema.CodeGeneration.xml",
-        "njsonschema.codegeneration.11.1.0.nupkg.sha512",
+        "njsonschema.codegeneration.11.2.0.nupkg.sha512",
         "njsonschema.codegeneration.nuspec"
       ]
     },
-    "NJsonSchema.CodeGeneration.CSharp/11.1.0": {
-      "sha512": "SHHTxQ9PTMvkNnIr1qN7qZ3KUIc1h9NG4xKY9YFgFpyI7YhxeyyyrXWLK94oT1LTzSH5i+8ugMhWthg4A/xhsA==",
+    "NJsonSchema.CodeGeneration.CSharp/11.2.0": {
+      "sha512": "DSALvoIxOO+gseUVVHHsc8uGSy4squqmOEsVnBrtluaYtDfmrTDYC4vF6xvqOE/XNDfCkmiQtcQydwpXa5CVPw==",
       "type": "package",
-      "path": "njsonschema.codegeneration.csharp/11.1.0",
+      "path": "njsonschema.codegeneration.csharp/11.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7373,14 +7386,14 @@
         "lib/net462/NJsonSchema.CodeGeneration.CSharp.xml",
         "lib/netstandard2.0/NJsonSchema.CodeGeneration.CSharp.dll",
         "lib/netstandard2.0/NJsonSchema.CodeGeneration.CSharp.xml",
-        "njsonschema.codegeneration.csharp.11.1.0.nupkg.sha512",
+        "njsonschema.codegeneration.csharp.11.2.0.nupkg.sha512",
         "njsonschema.codegeneration.csharp.nuspec"
       ]
     },
-    "NJsonSchema.CodeGeneration.TypeScript/11.1.0": {
-      "sha512": "MegGrn1fCTc2ogkn4x7t/65/EkZHYu5C89Hkkf7TWaF/QbCRt5V1VBkwtU1Cu/dUjGbzPRszCKeZebjHqQyWVQ==",
+    "NJsonSchema.CodeGeneration.TypeScript/11.2.0": {
+      "sha512": "rcKdi08qKDN2cNyAcoLzRxLtQhXYbs3SczMOgXld45fi4HgAjVCU5Qy6Mt9LtY8Gdx8OBCd0m9lyTxk5Dx617w==",
       "type": "package",
-      "path": "njsonschema.codegeneration.typescript/11.1.0",
+      "path": "njsonschema.codegeneration.typescript/11.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7389,14 +7402,14 @@
         "lib/net462/NJsonSchema.CodeGeneration.TypeScript.xml",
         "lib/netstandard2.0/NJsonSchema.CodeGeneration.TypeScript.dll",
         "lib/netstandard2.0/NJsonSchema.CodeGeneration.TypeScript.xml",
-        "njsonschema.codegeneration.typescript.11.1.0.nupkg.sha512",
+        "njsonschema.codegeneration.typescript.11.2.0.nupkg.sha512",
         "njsonschema.codegeneration.typescript.nuspec"
       ]
     },
-    "NJsonSchema.NewtonsoftJson/11.1.0": {
-      "sha512": "7eC9PNAqHt2RU1CWz4xzZsBdTWCOVH1dpytV2UF5vifi8gOOEAftPdTRUw9O0txNTY65AQUvHU0+P7yuCGWo/g==",
+    "NJsonSchema.NewtonsoftJson/11.2.0": {
+      "sha512": "5+40CksxHlx9CWQ0MnAkpJGA8MDFdlCR+18SNcg85X+UecT+EYfVVpiZX81mLYBsmbsWHXvPMm/Jipekm0XC8Q==",
       "type": "package",
-      "path": "njsonschema.newtonsoftjson/11.1.0",
+      "path": "njsonschema.newtonsoftjson/11.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7405,28 +7418,30 @@
         "lib/net462/NJsonSchema.NewtonsoftJson.xml",
         "lib/netstandard2.0/NJsonSchema.NewtonsoftJson.dll",
         "lib/netstandard2.0/NJsonSchema.NewtonsoftJson.xml",
-        "njsonschema.newtonsoftjson.11.1.0.nupkg.sha512",
+        "njsonschema.newtonsoftjson.11.2.0.nupkg.sha512",
         "njsonschema.newtonsoftjson.nuspec"
       ]
     },
-    "NJsonSchema.Yaml/11.1.0": {
-      "sha512": "SUQMwNageNORSEsP0/CUhHSf1TT5iZ2dNN6CFQppVEI2hqo1VRFVs17wFxlKI8TUOks4kgXP3Kn5p7atgNzGUA==",
+    "NJsonSchema.Yaml/11.2.0": {
+      "sha512": "s7K5l7evqCbAxG9fzNhxtTJMb/UOqWeLMkKWU7VU8myBv3zJEvrZE8LGEuXGY/rLwp2TRViIU1jhAeuOiZWdmA==",
       "type": "package",
-      "path": "njsonschema.yaml/11.1.0",
+      "path": "njsonschema.yaml/11.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "NuGetIcon.png",
         "lib/net462/NJsonSchema.Yaml.dll",
+        "lib/net462/NJsonSchema.Yaml.xml",
         "lib/netstandard2.0/NJsonSchema.Yaml.dll",
-        "njsonschema.yaml.11.1.0.nupkg.sha512",
+        "lib/netstandard2.0/NJsonSchema.Yaml.xml",
+        "njsonschema.yaml.11.2.0.nupkg.sha512",
         "njsonschema.yaml.nuspec"
       ]
     },
-    "NSwag.Annotations/14.2.0": {
-      "sha512": "156Gc3UluDj75KQOpBuh/72r8Nv3InNDkrfNNL8mqPLqhIkTCAGkkhD3lsW8V3i7Cz23Aqu1D0aJIWrEVzt+Uw==",
+    "NSwag.Annotations/14.3.0": {
+      "sha512": "y6xf+prDBQXoQu9EF2HsJdtAaVRBZCZsXMC1M2X2vy1P4urtSOiTgbWtT8+YqLOnyGyQ0cQUUh0a28B5Msniyg==",
       "type": "package",
-      "path": "nswag.annotations/14.2.0",
+      "path": "nswag.annotations/14.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7435,14 +7450,14 @@
         "lib/net462/NSwag.Annotations.xml",
         "lib/netstandard2.0/NSwag.Annotations.dll",
         "lib/netstandard2.0/NSwag.Annotations.xml",
-        "nswag.annotations.14.2.0.nupkg.sha512",
+        "nswag.annotations.14.3.0.nupkg.sha512",
         "nswag.annotations.nuspec"
       ]
     },
-    "NSwag.AspNetCore/14.2.0": {
-      "sha512": "K0qYdx4MmsIPyKlwVQLhAWgb5gE596e1qzIgpO+xOMV88En+lONQ49n1zxGiT7kYa1UoOIZd714fEo9BpRe2wg==",
+    "NSwag.AspNetCore/14.3.0": {
+      "sha512": "wbxAMnyF4EPCCBktCwRLM3e2DPYclRlPqctK3TKCDL/mTI1T9IzlVmo93B0h4lb6bwU6CW12kunTFr8kdlLlTg==",
       "type": "package",
-      "path": "nswag.aspnetcore/14.2.0",
+      "path": "nswag.aspnetcore/14.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7459,14 +7474,14 @@
         "lib/net9.0/NSwag.AspNetCore.xml",
         "lib/netstandard2.0/NSwag.AspNetCore.dll",
         "lib/netstandard2.0/NSwag.AspNetCore.xml",
-        "nswag.aspnetcore.14.2.0.nupkg.sha512",
+        "nswag.aspnetcore.14.3.0.nupkg.sha512",
         "nswag.aspnetcore.nuspec"
       ]
     },
-    "NSwag.CodeGeneration/14.2.0": {
-      "sha512": "pSMyhUtvBHT+yfD9FfL4Ts4hfWVcyscXLOKVTyX277yVBDfblmC6mLbYCW8QH0tckSWvrRq5v0fIUxz+wUAi4Q==",
+    "NSwag.CodeGeneration/14.3.0": {
+      "sha512": "I7HkyH9nedPn56/+86qRFN35USqvFIpNVRS2MBGKlslK3Hn+izXeO2+/eNVmkCkhNlHFht5SvkdJgHJyIugxDQ==",
       "type": "package",
-      "path": "nswag.codegeneration/14.2.0",
+      "path": "nswag.codegeneration/14.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7475,14 +7490,14 @@
         "lib/net462/NSwag.CodeGeneration.xml",
         "lib/netstandard2.0/NSwag.CodeGeneration.dll",
         "lib/netstandard2.0/NSwag.CodeGeneration.xml",
-        "nswag.codegeneration.14.2.0.nupkg.sha512",
+        "nswag.codegeneration.14.3.0.nupkg.sha512",
         "nswag.codegeneration.nuspec"
       ]
     },
-    "NSwag.CodeGeneration.CSharp/14.2.0": {
-      "sha512": "dONnJ/fm2K0Tf+bJo2N4ILo+PzwxqLFRoSMGNV2p7kV/nRd+NrzUjYkGvVMXvxLY7Q58HoqQu8b5T4WFsoWy/g==",
+    "NSwag.CodeGeneration.CSharp/14.3.0": {
+      "sha512": "TGPqRXtitu77/WUyOYFuYWvvtGOnAIFzvIiNeGi675uSs1lvT5HysnG+7QV2q83Kzkdg/8EbFTDyJAblGSz4yg==",
       "type": "package",
-      "path": "nswag.codegeneration.csharp/14.2.0",
+      "path": "nswag.codegeneration.csharp/14.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7491,14 +7506,14 @@
         "lib/net462/NSwag.CodeGeneration.CSharp.xml",
         "lib/netstandard2.0/NSwag.CodeGeneration.CSharp.dll",
         "lib/netstandard2.0/NSwag.CodeGeneration.CSharp.xml",
-        "nswag.codegeneration.csharp.14.2.0.nupkg.sha512",
+        "nswag.codegeneration.csharp.14.3.0.nupkg.sha512",
         "nswag.codegeneration.csharp.nuspec"
       ]
     },
-    "NSwag.CodeGeneration.TypeScript/14.2.0": {
-      "sha512": "vJmrv1xpmUY1h2Pl3A45nMeIOQ32nZYTHp/m+MCzqd9v+dpfO+iXrupYF67mTxQSOybfOKxHFrrFuGoVa/tmfg==",
+    "NSwag.CodeGeneration.TypeScript/14.3.0": {
+      "sha512": "1T8PXsvq1CyerRL3DcGT3KWVliJg1ZnXKnlIOKflFKun6v6HCgCTOMRf4Q+YE/BEtnbyFTjr6uZiZHipkgMXDg==",
       "type": "package",
-      "path": "nswag.codegeneration.typescript/14.2.0",
+      "path": "nswag.codegeneration.typescript/14.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7507,14 +7522,14 @@
         "lib/net462/NSwag.CodeGeneration.TypeScript.xml",
         "lib/netstandard2.0/NSwag.CodeGeneration.TypeScript.dll",
         "lib/netstandard2.0/NSwag.CodeGeneration.TypeScript.xml",
-        "nswag.codegeneration.typescript.14.2.0.nupkg.sha512",
+        "nswag.codegeneration.typescript.14.3.0.nupkg.sha512",
         "nswag.codegeneration.typescript.nuspec"
       ]
     },
-    "NSwag.Core/14.2.0": {
-      "sha512": "1dcOFGimKGRZnSEyu/cLaWX7vPJrHpZzFs3uSNE8x/48SFBK6zzjBsXdhNvSaInvQp2dDJHcAIy90I7fOp+IIw==",
+    "NSwag.Core/14.3.0": {
+      "sha512": "j+wzDKITFuHcP9TbCGmhKkMCNn8plLqKftR8awcL47VRob+7GqxVJu7Ol2GIjNtE0Mk3Dc2V1ihaRKBhyzi6jA==",
       "type": "package",
-      "path": "nswag.core/14.2.0",
+      "path": "nswag.core/14.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7523,28 +7538,28 @@
         "lib/net462/NSwag.Core.xml",
         "lib/netstandard2.0/NSwag.Core.dll",
         "lib/netstandard2.0/NSwag.Core.xml",
-        "nswag.core.14.2.0.nupkg.sha512",
+        "nswag.core.14.3.0.nupkg.sha512",
         "nswag.core.nuspec"
       ]
     },
-    "NSwag.Core.Yaml/14.2.0": {
-      "sha512": "ULOD9qNCI25oy5Ke9CfNmJM2nI4fDxWWI6BOZaiTaAJdFsC9N6/Lt7pNQw6cKVl1XXQV5WdtUFeBqP0ZRwDxiA==",
+    "NSwag.Core.Yaml/14.3.0": {
+      "sha512": "od7zHVgWUwf8vpiXtA+Xy3OQAfbbEGEaNCbiwrEIzXv7TK7OyFinNHVhMfBeDWqQxx0DBeJKpg9gjAz0etJxiA==",
       "type": "package",
-      "path": "nswag.core.yaml/14.2.0",
+      "path": "nswag.core.yaml/14.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
         "NuGetIcon.png",
         "lib/net462/NSwag.Core.Yaml.dll",
         "lib/netstandard2.0/NSwag.Core.Yaml.dll",
-        "nswag.core.yaml.14.2.0.nupkg.sha512",
+        "nswag.core.yaml.14.3.0.nupkg.sha512",
         "nswag.core.yaml.nuspec"
       ]
     },
-    "NSwag.Generation/14.2.0": {
-      "sha512": "FNUSJgqR1u+rsVKwSKsPXF4mIZb6Woac/Ucui5m+dfsuCFZe1VgMsTYCeGpmDqpjIwtTNUaIcGuwqMHH9Fstlw==",
+    "NSwag.Generation/14.3.0": {
+      "sha512": "j7CpTmowgvseYF19tkEHXbDmNtehZrcbzWODKvneFxkDn0dwWX8yihFHYMDD5yhtcb5xFhqW26+Ln+yHWz/3MA==",
       "type": "package",
-      "path": "nswag.generation/14.2.0",
+      "path": "nswag.generation/14.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7553,14 +7568,14 @@
         "lib/net462/NSwag.Generation.xml",
         "lib/netstandard2.0/NSwag.Generation.dll",
         "lib/netstandard2.0/NSwag.Generation.xml",
-        "nswag.generation.14.2.0.nupkg.sha512",
+        "nswag.generation.14.3.0.nupkg.sha512",
         "nswag.generation.nuspec"
       ]
     },
-    "NSwag.Generation.AspNetCore/14.2.0": {
-      "sha512": "9VO43wD5IK9O79ZESXD44QtNhoWZi2/5oLHV2JbCd0dR6bJ+9SHqcn+LK3VJFvcRZjFry0JSNd6WBDQL+AH72A==",
+    "NSwag.Generation.AspNetCore/14.3.0": {
+      "sha512": "1+XqYkYD2pSEY1jW9/ddngX72sgCKKfd4z13SF8kd+dQqMky8WvWa5jd+AQSDE6LJws+jckyfzDnSMTbBkYweg==",
       "type": "package",
-      "path": "nswag.generation.aspnetcore/14.2.0",
+      "path": "nswag.generation.aspnetcore/14.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7573,14 +7588,14 @@
         "lib/net9.0/NSwag.Generation.AspNetCore.xml",
         "lib/netstandard2.0/NSwag.Generation.AspNetCore.dll",
         "lib/netstandard2.0/NSwag.Generation.AspNetCore.xml",
-        "nswag.generation.aspnetcore.14.2.0.nupkg.sha512",
+        "nswag.generation.aspnetcore.14.3.0.nupkg.sha512",
         "nswag.generation.aspnetcore.nuspec"
       ]
     },
-    "OpenIddict/6.1.0": {
-      "sha512": "Axx84PYPY+u6ZPYB317oU4Z/jF+Ib++y2zEZbaMHsiOa7K5RA0DOq1rh+Tvnr1ZUVs3hfeR/Gjx7i01w9PNUOA==",
+    "OpenIddict/6.2.0": {
+      "sha512": "MToERl9MtM0dslmz+GzAHy3CExXL1Ujd4JKLittGPG/HZ1K+8lGKZcowAztWDhshjdTi3DStgjY8Ik4T8/Drmg==",
       "type": "package",
-      "path": "openiddict/6.1.0",
+      "path": "openiddict/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7608,14 +7623,14 @@
         "lib/netcore50/_._",
         "lib/netstandard2.0/_._",
         "lib/netstandard2.1/_._",
-        "openiddict.6.1.0.nupkg.sha512",
+        "openiddict.6.2.0.nupkg.sha512",
         "openiddict.nuspec"
       ]
     },
-    "OpenIddict.Abstractions/6.1.0": {
-      "sha512": "bfAkk6GTA09wMmbUEbNEG+pzeqzRqYCiwqdwkyUGoaheJpMVr57bd8xyRIPWmNd4050Qaizt066CCUnDFh1L1Q==",
+    "OpenIddict.Abstractions/6.2.0": {
+      "sha512": "5TXPUWUz5QfBwGm9i0mFhPp9xd667YQG4BoaiYa7NCSulna4FF264z/qXQ0SWCaZtTnBoFDDjA7tyLcnsbG06w==",
       "type": "package",
-      "path": "openiddict.abstractions/6.1.0",
+      "path": "openiddict.abstractions/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7636,14 +7651,14 @@
         "lib/netstandard2.0/OpenIddict.Abstractions.xml",
         "lib/netstandard2.1/OpenIddict.Abstractions.dll",
         "lib/netstandard2.1/OpenIddict.Abstractions.xml",
-        "openiddict.abstractions.6.1.0.nupkg.sha512",
+        "openiddict.abstractions.6.2.0.nupkg.sha512",
         "openiddict.abstractions.nuspec"
       ]
     },
-    "OpenIddict.AspNetCore/6.1.0": {
-      "sha512": "YhVKEpbN6GDZHkLZXnf8vJALkX6Yf/jZ6RRGe+5ZJ60ho7ZYtxXYtRRSFOojPmZMl81z770YtIssQiofS6DQWw==",
+    "OpenIddict.AspNetCore/6.2.0": {
+      "sha512": "PhOynSGDCUt9Sic+s46zTRUo4A3j30WMuWHvLw0ruJG5s3NQAuZLpK+AsuIbCttNMcrLnCJE48nRj1BEkEVMCw==",
       "type": "package",
-      "path": "openiddict.aspnetcore/6.1.0",
+      "path": "openiddict.aspnetcore/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7654,14 +7669,14 @@
         "lib/net6.0/_._",
         "lib/net8.0/_._",
         "lib/net9.0/_._",
-        "openiddict.aspnetcore.6.1.0.nupkg.sha512",
+        "openiddict.aspnetcore.6.2.0.nupkg.sha512",
         "openiddict.aspnetcore.nuspec"
       ]
     },
-    "OpenIddict.Client/6.1.0": {
-      "sha512": "VNAaHAbT2N9KkjkRPXtOeSJVz8holF1Y9dtWdv+3UTWg5wQLmKqkSlmsYW15ideKK5NqnsYufvqZFkWMM3ZBBQ==",
+    "OpenIddict.Client/6.2.0": {
+      "sha512": "eCrFZ0YEhGAPdNLevvcWP4EUwzbkrHBJ7bZm5Vuuwv2n0RPu5sWpfKHBUhfBcha8V0aivkK8TrW0L5JHK4vEFg==",
       "type": "package",
-      "path": "openiddict.client/6.1.0",
+      "path": "openiddict.client/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7682,14 +7697,14 @@
         "lib/netstandard2.0/OpenIddict.Client.xml",
         "lib/netstandard2.1/OpenIddict.Client.dll",
         "lib/netstandard2.1/OpenIddict.Client.xml",
-        "openiddict.client.6.1.0.nupkg.sha512",
+        "openiddict.client.6.2.0.nupkg.sha512",
         "openiddict.client.nuspec"
       ]
     },
-    "OpenIddict.Client.AspNetCore/6.1.0": {
-      "sha512": "KIZ21IDv4su3fwO0b9/Y/KbDUFFnqUfLAI7Ph/LfIikTzfX12J+FpTwNcftsKdkqcJ068UtHZnnib/nFnTnTig==",
+    "OpenIddict.Client.AspNetCore/6.2.0": {
+      "sha512": "avXi3lPOAbyIamL3HpgEmep8qoJxn/1K0A20xenqf65EQMAX8rRH878igOX+eQGcgR+7mT7PHMvLmZcFUZ91EA==",
       "type": "package",
-      "path": "openiddict.client.aspnetcore/6.1.0",
+      "path": "openiddict.client.aspnetcore/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7706,14 +7721,14 @@
         "lib/net8.0/OpenIddict.Client.AspNetCore.xml",
         "lib/net9.0/OpenIddict.Client.AspNetCore.dll",
         "lib/net9.0/OpenIddict.Client.AspNetCore.xml",
-        "openiddict.client.aspnetcore.6.1.0.nupkg.sha512",
+        "openiddict.client.aspnetcore.6.2.0.nupkg.sha512",
         "openiddict.client.aspnetcore.nuspec"
       ]
     },
-    "OpenIddict.Client.DataProtection/6.1.0": {
-      "sha512": "xBQAkxWIZsEyPZQ/FT9FH7G9CYFdL/tsJi35yJVMAZ/UdHPGouS3PxRU0Vy1xkrNf2SqfVBxxDXjQCEGBjugRQ==",
+    "OpenIddict.Client.DataProtection/6.2.0": {
+      "sha512": "q7c4PbvWP1L0m4QOcDsvHwHfhUyzoiCecs8+dKsYjTDQP9ZRruFN6BZfNn815cUy5xmww0w3TYfRsnEbmbZdmQ==",
       "type": "package",
-      "path": "openiddict.client.dataprotection/6.1.0",
+      "path": "openiddict.client.dataprotection/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7734,14 +7749,14 @@
         "lib/netstandard2.0/OpenIddict.Client.DataProtection.xml",
         "lib/netstandard2.1/OpenIddict.Client.DataProtection.dll",
         "lib/netstandard2.1/OpenIddict.Client.DataProtection.xml",
-        "openiddict.client.dataprotection.6.1.0.nupkg.sha512",
+        "openiddict.client.dataprotection.6.2.0.nupkg.sha512",
         "openiddict.client.dataprotection.nuspec"
       ]
     },
-    "OpenIddict.Client.SystemIntegration/6.1.0": {
-      "sha512": "7bkJ5zTB5qiRIP7/KUEK2YJi6DYFIfUyZ/3EgUsuwR3Y96k+DmZg4iLQN/BKfxjaod98sJK8ShQnxeM2dHz3Sg==",
+    "OpenIddict.Client.SystemIntegration/6.2.0": {
+      "sha512": "T10jI2ctKLUsG76REeuayZrqgZS/o72vRIk7i7m7iFFMcEbu9XnaqxcS8Q8b8Bmrd8Illvs8ilpr3LtaBDxMTw==",
       "type": "package",
-      "path": "openiddict.client.systemintegration/6.1.0",
+      "path": "openiddict.client.systemintegration/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7792,14 +7807,14 @@
         "lib/netstandard2.1/OpenIddict.Client.SystemIntegration.xml",
         "lib/uap10.0.17763/OpenIddict.Client.SystemIntegration.dll",
         "lib/uap10.0.17763/OpenIddict.Client.SystemIntegration.xml",
-        "openiddict.client.systemintegration.6.1.0.nupkg.sha512",
+        "openiddict.client.systemintegration.6.2.0.nupkg.sha512",
         "openiddict.client.systemintegration.nuspec"
       ]
     },
-    "OpenIddict.Client.SystemNetHttp/6.1.0": {
-      "sha512": "Mj1ShqSqid5Z9xmIVuAObaz618h5StzEhJWHkdmwCa8wCK7Y1yYlzhZL3MvR0CZsok+RmYk/Yw9VSilHGj0vEw==",
+    "OpenIddict.Client.SystemNetHttp/6.2.0": {
+      "sha512": "DpA+rND7RT8AhV4v0HC5e4HdU1hrFBACMlT0tr6ocWb6qa0u2OH70sCblEJrDDdLi11Nzfa1q2U0AWNcSnC1+Q==",
       "type": "package",
-      "path": "openiddict.client.systemnethttp/6.1.0",
+      "path": "openiddict.client.systemnethttp/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7820,14 +7835,14 @@
         "lib/netstandard2.0/OpenIddict.Client.SystemNetHttp.xml",
         "lib/netstandard2.1/OpenIddict.Client.SystemNetHttp.dll",
         "lib/netstandard2.1/OpenIddict.Client.SystemNetHttp.xml",
-        "openiddict.client.systemnethttp.6.1.0.nupkg.sha512",
+        "openiddict.client.systemnethttp.6.2.0.nupkg.sha512",
         "openiddict.client.systemnethttp.nuspec"
       ]
     },
-    "OpenIddict.Client.WebIntegration/6.1.0": {
-      "sha512": "vHA5LgYirmbOwYuKD5dwwMh4Z2XiYmz8HHdAeB0qhCLd0fNBzLG0omUsKDFVAz0rpUCxw9bbLbvwMraiSGzvfQ==",
+    "OpenIddict.Client.WebIntegration/6.2.0": {
+      "sha512": "kMMBiZqpe14whnWScZ0OCpbMYM1sgCsjCv+jzWPhadP9sHNTyYq3GzHrbHVx/V8MASgLP7RnyUXDQhAd4MPE6w==",
       "type": "package",
-      "path": "openiddict.client.webintegration/6.1.0",
+      "path": "openiddict.client.webintegration/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7848,14 +7863,14 @@
         "lib/netstandard2.0/OpenIddict.Client.WebIntegration.xml",
         "lib/netstandard2.1/OpenIddict.Client.WebIntegration.dll",
         "lib/netstandard2.1/OpenIddict.Client.WebIntegration.xml",
-        "openiddict.client.webintegration.6.1.0.nupkg.sha512",
+        "openiddict.client.webintegration.6.2.0.nupkg.sha512",
         "openiddict.client.webintegration.nuspec"
       ]
     },
-    "OpenIddict.Core/6.1.0": {
-      "sha512": "QElJ412sBiMouEJCv/79zRy+O7L+5v9zZw6F7MJbScnUFQvSXeCf+VxxOvQn0NKihPskiEqqtJ27oW2iu/d7TA==",
+    "OpenIddict.Core/6.2.0": {
+      "sha512": "xW62xoahIQnpvnCl7ZM1onk7f96sVcDV9E+mA01qHSfHRQElJAGvb6znOOCckbED2laddXqMGMf1g2hZElMlvw==",
       "type": "package",
-      "path": "openiddict.core/6.1.0",
+      "path": "openiddict.core/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7876,14 +7891,14 @@
         "lib/netstandard2.0/OpenIddict.Core.xml",
         "lib/netstandard2.1/OpenIddict.Core.dll",
         "lib/netstandard2.1/OpenIddict.Core.xml",
-        "openiddict.core.6.1.0.nupkg.sha512",
+        "openiddict.core.6.2.0.nupkg.sha512",
         "openiddict.core.nuspec"
       ]
     },
-    "OpenIddict.EntityFrameworkCore/6.1.0": {
-      "sha512": "N30yO+qs4QN77t/D/MVHJmv9Ztouj/tNVpNM3Ux01UEtO1tObZsb3Ge+TL+v65BoMJ6TxsyV6FfCD8Liwmv/LA==",
+    "OpenIddict.EntityFrameworkCore/6.2.0": {
+      "sha512": "93zXCvBr5ol8eQvpNYHDhsa9pSZI3ncs8eI0T4hIFFBopCWQYqyVy0pCKSf40Og2EtcwaYDABBiBKTNDAEmDrg==",
       "type": "package",
-      "path": "openiddict.entityframeworkcore/6.1.0",
+      "path": "openiddict.entityframeworkcore/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7904,14 +7919,14 @@
         "lib/netstandard2.0/OpenIddict.EntityFrameworkCore.xml",
         "lib/netstandard2.1/OpenIddict.EntityFrameworkCore.dll",
         "lib/netstandard2.1/OpenIddict.EntityFrameworkCore.xml",
-        "openiddict.entityframeworkcore.6.1.0.nupkg.sha512",
+        "openiddict.entityframeworkcore.6.2.0.nupkg.sha512",
         "openiddict.entityframeworkcore.nuspec"
       ]
     },
-    "OpenIddict.EntityFrameworkCore.Models/6.1.0": {
-      "sha512": "/Cvh5DkTgxabQEvqFPwMmImAzzPtRZUqeMH/JJ9cnEndqqLS79ZejRJKFHEL01YZ9MlfUtiKHGolKCQ6TRw5hQ==",
+    "OpenIddict.EntityFrameworkCore.Models/6.2.0": {
+      "sha512": "RE0gR1uYkP1m67tPSLviWeEeJVza6827q10bfXUS34vy4E9pP7ulcEjesv5bXoukiJYvNFSbam41QEFO209c6Q==",
       "type": "package",
-      "path": "openiddict.entityframeworkcore.models/6.1.0",
+      "path": "openiddict.entityframeworkcore.models/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7932,14 +7947,14 @@
         "lib/netstandard2.0/OpenIddict.EntityFrameworkCore.Models.xml",
         "lib/netstandard2.1/OpenIddict.EntityFrameworkCore.Models.dll",
         "lib/netstandard2.1/OpenIddict.EntityFrameworkCore.Models.xml",
-        "openiddict.entityframeworkcore.models.6.1.0.nupkg.sha512",
+        "openiddict.entityframeworkcore.models.6.2.0.nupkg.sha512",
         "openiddict.entityframeworkcore.models.nuspec"
       ]
     },
-    "OpenIddict.Quartz/6.1.0": {
-      "sha512": "DIZsnMUUzEsKqvmBySpD7AiFiRPQDCMzqL9uyVdwr3LDjysSOKQ4XZZYcefUlL82tkExeAoHjNDjt8w2Ki29WQ==",
+    "OpenIddict.Quartz/6.2.0": {
+      "sha512": "KopZEbjZCS5MqPAuQVsc14qmxR0YyabkLOMfr6mGEduyc4ShUZ1tqcSnuVOmmtyNZAt9d77LjxUKUHPTGvRPpg==",
       "type": "package",
-      "path": "openiddict.quartz/6.1.0",
+      "path": "openiddict.quartz/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7960,14 +7975,14 @@
         "lib/netstandard2.0/OpenIddict.Quartz.xml",
         "lib/netstandard2.1/OpenIddict.Quartz.dll",
         "lib/netstandard2.1/OpenIddict.Quartz.xml",
-        "openiddict.quartz.6.1.0.nupkg.sha512",
+        "openiddict.quartz.6.2.0.nupkg.sha512",
         "openiddict.quartz.nuspec"
       ]
     },
-    "OpenIddict.Server/6.1.0": {
-      "sha512": "Y2PGkVTZl3xjXdcDds+YA1eJu5U/hGstwbpvDQR21MGDtI1D+lZ/3eHLaFRSJvVBuVk5ih5vcpXNUiQL8FiwlQ==",
+    "OpenIddict.Server/6.2.0": {
+      "sha512": "96s4J7/h8RDVLCAd1ECndZBc96WB7qjaw1ci7I6YXvCUIVJ1TTJMQQVml8nEzJoljg8fONkteUSFXVzJx65l0w==",
       "type": "package",
-      "path": "openiddict.server/6.1.0",
+      "path": "openiddict.server/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -7988,14 +8003,14 @@
         "lib/netstandard2.0/OpenIddict.Server.xml",
         "lib/netstandard2.1/OpenIddict.Server.dll",
         "lib/netstandard2.1/OpenIddict.Server.xml",
-        "openiddict.server.6.1.0.nupkg.sha512",
+        "openiddict.server.6.2.0.nupkg.sha512",
         "openiddict.server.nuspec"
       ]
     },
-    "OpenIddict.Server.AspNetCore/6.1.0": {
-      "sha512": "A5mve+73jD9HY9Us5vndvKQufR0sZnEHnHgF6ozQxGA0bJcXZmtWrmR2QQlsYzrZ057RdGfyOXm///NGEh5CwA==",
+    "OpenIddict.Server.AspNetCore/6.2.0": {
+      "sha512": "Esqy0AibJJai1WZXHAkX4G9adHXeTm8SDTO7AGKnTCQmEILzlvhCSV6FAOQ/QFDMKWHescTir21dLBPRmKgumA==",
       "type": "package",
-      "path": "openiddict.server.aspnetcore/6.1.0",
+      "path": "openiddict.server.aspnetcore/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8012,14 +8027,14 @@
         "lib/net8.0/OpenIddict.Server.AspNetCore.xml",
         "lib/net9.0/OpenIddict.Server.AspNetCore.dll",
         "lib/net9.0/OpenIddict.Server.AspNetCore.xml",
-        "openiddict.server.aspnetcore.6.1.0.nupkg.sha512",
+        "openiddict.server.aspnetcore.6.2.0.nupkg.sha512",
         "openiddict.server.aspnetcore.nuspec"
       ]
     },
-    "OpenIddict.Server.DataProtection/6.1.0": {
-      "sha512": "KljvM83fbAaRKobmzuLZZinfB1X2R1/HcIBhfVOYvSATPYmU+qokIV77xGOnXjg8EVvoeTBh4s3gpN6EjNle7w==",
+    "OpenIddict.Server.DataProtection/6.2.0": {
+      "sha512": "IJkus1HgXpa5ApdfD98vxgskxlcvCMShLSy3hD2WrEQcdXsPsKyfBwh3bKmxQsH3QZPGqtvCqBY9a+9V370c+A==",
       "type": "package",
-      "path": "openiddict.server.dataprotection/6.1.0",
+      "path": "openiddict.server.dataprotection/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8040,14 +8055,14 @@
         "lib/netstandard2.0/OpenIddict.Server.DataProtection.xml",
         "lib/netstandard2.1/OpenIddict.Server.DataProtection.dll",
         "lib/netstandard2.1/OpenIddict.Server.DataProtection.xml",
-        "openiddict.server.dataprotection.6.1.0.nupkg.sha512",
+        "openiddict.server.dataprotection.6.2.0.nupkg.sha512",
         "openiddict.server.dataprotection.nuspec"
       ]
     },
-    "OpenIddict.Validation/6.1.0": {
-      "sha512": "9SvcjFbKx5oQFTfdkxEDWVkeL1eoXJvghp4x39T3YrAvYzcsBY1ogHk0IS29TqoxjTvLZQv2OfdOw5ZG8TXSCQ==",
+    "OpenIddict.Validation/6.2.0": {
+      "sha512": "nnMjnIEnpNeF3dTNy3HG22kJ5nUiy+U661L+4eltje1nUZ2vfnFn08u7uusG4D9l8xtkKjcleebzlMGQ8SB3HQ==",
       "type": "package",
-      "path": "openiddict.validation/6.1.0",
+      "path": "openiddict.validation/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8068,14 +8083,14 @@
         "lib/netstandard2.0/OpenIddict.Validation.xml",
         "lib/netstandard2.1/OpenIddict.Validation.dll",
         "lib/netstandard2.1/OpenIddict.Validation.xml",
-        "openiddict.validation.6.1.0.nupkg.sha512",
+        "openiddict.validation.6.2.0.nupkg.sha512",
         "openiddict.validation.nuspec"
       ]
     },
-    "OpenIddict.Validation.AspNetCore/6.1.0": {
-      "sha512": "Y5em9hxn0RH2zK4Bo78/sDce19Z7SB4auOUDuzDomCMfCYthUJAFLBWkMQcbOCx2pp3vq1y17nd4MKaG0J6Hdg==",
+    "OpenIddict.Validation.AspNetCore/6.2.0": {
+      "sha512": "MlBgDp9e0+vMGX8H0ZDQFZqy6bdBvDQ0FIxUVKeKVmvdpCYvNl3MOaB+QkhsJCrohUmwph1lSJK6C+5ACBFeaA==",
       "type": "package",
-      "path": "openiddict.validation.aspnetcore/6.1.0",
+      "path": "openiddict.validation.aspnetcore/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8092,14 +8107,14 @@
         "lib/net8.0/OpenIddict.Validation.AspNetCore.xml",
         "lib/net9.0/OpenIddict.Validation.AspNetCore.dll",
         "lib/net9.0/OpenIddict.Validation.AspNetCore.xml",
-        "openiddict.validation.aspnetcore.6.1.0.nupkg.sha512",
+        "openiddict.validation.aspnetcore.6.2.0.nupkg.sha512",
         "openiddict.validation.aspnetcore.nuspec"
       ]
     },
-    "OpenIddict.Validation.DataProtection/6.1.0": {
-      "sha512": "Wz9zvcRnGDfO9NQuwywlHEHy8awsRy1Xq13x/s8fH8dt/VI414emOydVJTcluLvNZCyrXPmmKRMjsItkwA38tg==",
+    "OpenIddict.Validation.DataProtection/6.2.0": {
+      "sha512": "eamr5Qu8mxXYKSSoBY66pCE06zkeoao1D5kq8AkeiVSLYLL7Di1isaZlSgOfBDhYkxs30ctVOuX+TIw2wRYoYA==",
       "type": "package",
-      "path": "openiddict.validation.dataprotection/6.1.0",
+      "path": "openiddict.validation.dataprotection/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8120,14 +8135,14 @@
         "lib/netstandard2.0/OpenIddict.Validation.DataProtection.xml",
         "lib/netstandard2.1/OpenIddict.Validation.DataProtection.dll",
         "lib/netstandard2.1/OpenIddict.Validation.DataProtection.xml",
-        "openiddict.validation.dataprotection.6.1.0.nupkg.sha512",
+        "openiddict.validation.dataprotection.6.2.0.nupkg.sha512",
         "openiddict.validation.dataprotection.nuspec"
       ]
     },
-    "OpenIddict.Validation.ServerIntegration/6.1.0": {
-      "sha512": "TkvsTxdY5bGGma3uGMRPLDpZnlkl/9F0uyWi8R3v3o1IwN8ntXO3WmM4a4CDN8Tr2QVGTEBLNfmtL4mfVu7Kxw==",
+    "OpenIddict.Validation.ServerIntegration/6.2.0": {
+      "sha512": "70kG8X8kL/FmboBL1I56Dduqj1xDJcEuovkMcMjROgCEx40/0AMSy+1eY0FwjfH1IBUFcs4NckK0DpGRqPjrsg==",
       "type": "package",
-      "path": "openiddict.validation.serverintegration/6.1.0",
+      "path": "openiddict.validation.serverintegration/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8148,14 +8163,14 @@
         "lib/netstandard2.0/OpenIddict.Validation.ServerIntegration.xml",
         "lib/netstandard2.1/OpenIddict.Validation.ServerIntegration.dll",
         "lib/netstandard2.1/OpenIddict.Validation.ServerIntegration.xml",
-        "openiddict.validation.serverintegration.6.1.0.nupkg.sha512",
+        "openiddict.validation.serverintegration.6.2.0.nupkg.sha512",
         "openiddict.validation.serverintegration.nuspec"
       ]
     },
-    "OpenIddict.Validation.SystemNetHttp/6.1.0": {
-      "sha512": "Iw6LurFQkjaiN1UJNGylSJJKCOSXjReYxKpfYmUzkhLZnGFm2TKSgYVQY/PhgUhBrVLwYI2YD1uAx5c3/NG8zA==",
+    "OpenIddict.Validation.SystemNetHttp/6.2.0": {
+      "sha512": "EEzZ3ef4HazuEaUYATXC6mlq2CrnbeJ7OCqHbZj0OvK5S66M7x301cRz3D2935MzGYzgYWLG/q0UoqqUVccPqA==",
       "type": "package",
-      "path": "openiddict.validation.systemnethttp/6.1.0",
+      "path": "openiddict.validation.systemnethttp/6.2.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8176,14 +8191,14 @@
         "lib/netstandard2.0/OpenIddict.Validation.SystemNetHttp.xml",
         "lib/netstandard2.1/OpenIddict.Validation.SystemNetHttp.dll",
         "lib/netstandard2.1/OpenIddict.Validation.SystemNetHttp.xml",
-        "openiddict.validation.systemnethttp.6.1.0.nupkg.sha512",
+        "openiddict.validation.systemnethttp.6.2.0.nupkg.sha512",
         "openiddict.validation.systemnethttp.nuspec"
       ]
     },
-    "Parlot/1.0.2": {
-      "sha512": "MVF15eZfdTxA0yH43E4xDgByRPlyrLkXKq5/0FtQQvNwOJIljz2p4/phEdLnjWhhftu9isae1EGVydnY333AFw==",
+    "Parlot/1.3.5": {
+      "sha512": "F22bBSTGJgzJBBngX7SmgPzbCjrzwt4sPIOUlQ/K9p3mvau+o0mGnDxYTTik7ODOjXBDalpsZacaa8eSnPoEFw==",
       "type": "package",
-      "path": "parlot/1.0.2",
+      "path": "parlot/1.3.5",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -8195,7 +8210,7 @@
         "lib/net8.0/Parlot.xml",
         "lib/netstandard2.0/Parlot.dll",
         "lib/netstandard2.0/Parlot.xml",
-        "parlot.1.0.2.nupkg.sha512",
+        "parlot.1.3.5.nupkg.sha512",
         "parlot.nuspec"
       ]
     },
@@ -9383,10 +9398,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Formats.Asn1/9.0.2": {
-      "sha512": "OKWHCPYQr/+cIoO8EVjFn7yFyiT8Mnf1wif/5bYGsqxQV6PrwlX2HQ9brZNx57ViOvRe4ing1xgHCKl/5Ko8xg==",
+    "System.Formats.Asn1/9.0.4": {
+      "sha512": "WklXbMuiSM9X7UyM6t9UzNnMGGO9RV3OTtLjR++mvR4fcrMnuPPH3ui+BKVe2RhmDC3Z7ytWJCl+j8KOqKsVzw==",
       "type": "package",
-      "path": "system.formats.asn1/9.0.2",
+      "path": "system.formats.asn1/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -9406,7 +9421,7 @@
         "lib/net9.0/System.Formats.Asn1.xml",
         "lib/netstandard2.0/System.Formats.Asn1.dll",
         "lib/netstandard2.0/System.Formats.Asn1.xml",
-        "system.formats.asn1.9.0.2.nupkg.sha512",
+        "system.formats.asn1.9.0.4.nupkg.sha512",
         "system.formats.asn1.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -11954,10 +11969,10 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "System.Text.Json/9.0.2": {
-      "sha512": "4TY2Yokh5Xp8XHFhsY9y84yokS7B0rhkaZCXuRiKppIiKwPVH4lVSFD9EEFzRpXdBM5ZeZXD43tc2vB6njEwwQ==",
+    "System.Text.Json/9.0.4": {
+      "sha512": "pYtmpcO6R3Ef1XilZEHgXP2xBPVORbYEzRP7dl0IAAbN8Dm+kfwio8aCKle97rAWXOExr292MuxWYurIuwN62g==",
       "type": "package",
-      "path": "system.text.json/9.0.2",
+      "path": "system.text.json/9.0.4",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -12020,7 +12035,7 @@
         "lib/net9.0/System.Text.Json.xml",
         "lib/netstandard2.0/System.Text.Json.dll",
         "lib/netstandard2.0/System.Text.Json.xml",
-        "system.text.json.9.0.2.nupkg.sha512",
+        "system.text.json.9.0.4.nupkg.sha512",
         "system.text.json.nuspec",
         "useSharedDesignerContext.txt"
       ]
@@ -12563,27 +12578,32 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "TimeZoneConverter/6.1.0": {
-      "sha512": "UGdtyKWJqXXinyvGB9X6NVoIYbTAidoZYmn3aXzxeEYC9+OL8vF36eDt1qjb6RqBkWDl4v7iE84ecI+dFhA80A==",
+    "TimeZoneConverter/7.0.0": {
+      "sha512": "sFbY65N/5GdsHx7nkdHFHUG+5Ar4W0w6Aks7Y2X+Q4NOTw6XyX2Il7jm+4tPkc//4mA3nG0RdxI8gKgoJitdLw==",
       "type": "package",
-      "path": "timezoneconverter/6.1.0",
+      "path": "timezoneconverter/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "README.md",
         "lib/net462/TimeZoneConverter.dll",
         "lib/net462/TimeZoneConverter.xml",
         "lib/net6.0/TimeZoneConverter.dll",
         "lib/net6.0/TimeZoneConverter.xml",
+        "lib/net8.0/TimeZoneConverter.dll",
+        "lib/net8.0/TimeZoneConverter.xml",
+        "lib/net9.0/TimeZoneConverter.dll",
+        "lib/net9.0/TimeZoneConverter.xml",
         "lib/netstandard2.0/TimeZoneConverter.dll",
         "lib/netstandard2.0/TimeZoneConverter.xml",
-        "timezoneconverter.6.1.0.nupkg.sha512",
+        "timezoneconverter.7.0.0.nupkg.sha512",
         "timezoneconverter.nuspec"
       ]
     },
-    "YamlDotNet/16.2.0": {
-      "sha512": "iKVYog7JNiFOTr4gMHSjCqrGFD2NyABUHgSkRq9XR8A2+fsWepSWTpjHAOnKo1LVAHjy33o6I0u6lo5Ng0NtAw==",
+    "YamlDotNet/16.3.0": {
+      "sha512": "SgMOdxbz8X65z8hraIs6hOEdnkH6hESTAIUa7viEngHOYaH+6q5XJmwr1+yb9vJpNQ19hCQY69xbFsLtXpobQA==",
       "type": "package",
-      "path": "yamldotnet/16.2.0",
+      "path": "yamldotnet/16.3.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -12599,7 +12619,7 @@
         "lib/netstandard2.0/YamlDotNet.xml",
         "lib/netstandard2.1/YamlDotNet.dll",
         "lib/netstandard2.1/YamlDotNet.xml",
-        "yamldotnet.16.2.0.nupkg.sha512",
+        "yamldotnet.16.3.0.nupkg.sha512",
         "yamldotnet.nuspec"
       ]
     }
@@ -12607,19 +12627,19 @@
   "projectFileDependencyGroups": {
     "net9.0": [
       "AutoRegisterInject >= 1.4.1",
-      "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 9.0.2",
-      "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 9.0.2",
-      "Microsoft.AspNetCore.OpenApi >= 9.0.2",
-      "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.2",
+      "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 9.0.4",
+      "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 9.0.4",
+      "Microsoft.AspNetCore.OpenApi >= 9.0.4",
+      "Microsoft.EntityFrameworkCore.SqlServer >= 9.0.4",
       "Microsoft.EntityFrameworkCore.SqlServer.Design >= 1.1.6",
-      "Microsoft.EntityFrameworkCore.Tools >= 9.0.2",
-      "NSwag.AspNetCore >= 14.2.0",
-      "NSwag.CodeGeneration.CSharp >= 14.2.0",
-      "NSwag.CodeGeneration.TypeScript >= 14.2.0",
-      "NSwag.Generation.AspNetCore >= 14.2.0",
-      "OpenIddict.AspNetCore >= 6.1.0",
-      "OpenIddict.EntityFrameworkCore >= 6.1.0",
-      "OpenIddict.Quartz >= 6.1.0",
+      "Microsoft.EntityFrameworkCore.Tools >= 9.0.4",
+      "NSwag.AspNetCore >= 14.3.0",
+      "NSwag.CodeGeneration.CSharp >= 14.3.0",
+      "NSwag.CodeGeneration.TypeScript >= 14.3.0",
+      "NSwag.Generation.AspNetCore >= 14.3.0",
+      "OpenIddict.AspNetCore >= 6.2.0",
+      "OpenIddict.EntityFrameworkCore >= 6.2.0",
+      "OpenIddict.Quartz >= 6.2.0",
       "Proggmatic.SpaServices.Vite >= 9.0.1"
     ]
   },
@@ -12629,11 +12649,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Volumes/DATA/Projects/Identity/Identity.API/Identity.API.csproj",
+      "projectUniqueName": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.API/Identity.API.csproj",
       "projectName": "Identity.API",
-      "projectPath": "/Volumes/DATA/Projects/Identity/Identity.API/Identity.API.csproj",
+      "projectPath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.API/Identity.API.csproj",
       "packagesPath": "/Users/tuanpa/.nuget/packages/",
-      "outputPath": "/Volumes/DATA/Projects/Identity/Identity.API/obj/",
+      "outputPath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.API/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/tuanpa/.nuget/NuGet/NuGet.Config"
@@ -12659,9 +12679,9 @@
       "restoreAuditProperties": {
         "enableAudit": "true",
         "auditLevel": "low",
-        "auditMode": "all"
+        "auditMode": "direct"
       },
-      "SdkAnalysisLevel": "9.0.100"
+      "SdkAnalysisLevel": "9.0.200"
     },
     "frameworks": {
       "net9.0": {
@@ -12673,19 +12693,19 @@
           },
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
             "target": "Package",
-            "version": "[9.0.2, )"
+            "version": "[9.0.4, )"
           },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
-            "version": "[9.0.2, )"
+            "version": "[9.0.4, )"
           },
           "Microsoft.AspNetCore.OpenApi": {
             "target": "Package",
-            "version": "[9.0.2, )"
+            "version": "[9.0.4, )"
           },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
-            "version": "[9.0.2, )"
+            "version": "[9.0.4, )"
           },
           "Microsoft.EntityFrameworkCore.SqlServer.Design": {
             "target": "Package",
@@ -12695,35 +12715,35 @@
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
             "target": "Package",
-            "version": "[9.0.2, )"
+            "version": "[9.0.4, )"
           },
           "NSwag.AspNetCore": {
             "target": "Package",
-            "version": "[14.2.0, )"
+            "version": "[14.3.0, )"
           },
           "NSwag.CodeGeneration.CSharp": {
             "target": "Package",
-            "version": "[14.2.0, )"
+            "version": "[14.3.0, )"
           },
           "NSwag.CodeGeneration.TypeScript": {
             "target": "Package",
-            "version": "[14.2.0, )"
+            "version": "[14.3.0, )"
           },
           "NSwag.Generation.AspNetCore": {
             "target": "Package",
-            "version": "[14.2.0, )"
+            "version": "[14.3.0, )"
           },
           "OpenIddict.AspNetCore": {
             "target": "Package",
-            "version": "[6.1.0, )"
+            "version": "[6.2.0, )"
           },
           "OpenIddict.EntityFrameworkCore": {
             "target": "Package",
-            "version": "[6.1.0, )"
+            "version": "[6.2.0, )"
           },
           "OpenIddict.Quartz": {
             "target": "Package",
-            "version": "[6.1.0, )"
+            "version": "[6.2.0, )"
           },
           "Proggmatic.SpaServices.Vite": {
             "target": "Package",
@@ -12749,30 +12769,8 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.100/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/9.0.200/PortableRuntimeIdentifierGraph.json"
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Net.Http' 4.3.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-7jgj-8wvc-jh57",
-      "libraryId": "System.Net.Http",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    },
-    {
-      "code": "NU1903",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Package 'System.Text.RegularExpressions' 4.3.0 has a known high severity vulnerability, https://github.com/advisories/GHSA-cmhx-cq75-c4mj",
-      "libraryId": "System.Text.RegularExpressions",
-      "targetGraphs": [
-        "net9.0"
-      ]
-    }
-  ]
+  }
 }

@@ -9,23 +9,23 @@
 
     <ItemGroup>
         <PackageReference Include="AutoRegisterInject" Version="1.4.1" />
-        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.2" />
-        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.2" />
-        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.2" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.2" />
+        <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="9.0.4" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="9.0.4" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4" />
+        <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="9.0.4" />
         <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer.Design" Version="1.1.6" />
-        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.2">
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.4">
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="NSwag.AspNetCore" Version="14.2.0" />
-        <PackageReference Include="NSwag.CodeGeneration.CSharp" Version="14.2.0" />
-        <PackageReference Include="NSwag.CodeGeneration.TypeScript" Version="14.2.0" />
-        <PackageReference Include="NSwag.Generation.AspNetCore" Version="14.2.0" />
+        <PackageReference Include="NSwag.AspNetCore" Version="14.3.0" />
+        <PackageReference Include="NSwag.CodeGeneration.CSharp" Version="14.3.0" />
+        <PackageReference Include="NSwag.CodeGeneration.TypeScript" Version="14.3.0" />
+        <PackageReference Include="NSwag.Generation.AspNetCore" Version="14.3.0" />
         
-        <PackageReference Include="OpenIddict.AspNetCore" Version="6.1.0" />
-        <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="6.1.0" />
-        <PackageReference Include="OpenIddict.Quartz" Version="6.1.0" />
+        <PackageReference Include="OpenIddict.AspNetCore" Version="6.2.0" />
+        <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="6.2.0" />
+        <PackageReference Include="OpenIddict.Quartz" Version="6.2.0" />
         <PackageReference Include="Proggmatic.SpaServices.Vite" Version="9.0.1" />
     </ItemGroup>
 
