@@ -1,4 +1,4 @@
-namespace Identity.API.Hosting;
+namespace Identity.API.Configurations;
 
 public static class StaticFilesConfig
 {

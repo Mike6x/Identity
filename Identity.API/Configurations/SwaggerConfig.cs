@@ -5,17 +5,14 @@ using NSwag.CodeGeneration.CSharp;
 using NSwag.CodeGeneration.OperationNameGenerators;
 using NSwag.CodeGeneration.TypeScript;
 
-namespace Identity.API.Hosting;
+namespace Identity.API.Configurations;
 public static class SwaggerConfig
 {
     private const string SwaggerSpecUrl = "swagger/v1/swagger.json";
     //const string outputFolder = "{ProjectName}.Client/src/resources/api-clients/";
 
-    public static IHostApplicationBuilder ConfigureSwagger(this IHostApplicationBuilder app)
+    public static IServiceCollection AddSwagger(this IServiceCollection services, IConfiguration configuration)
     {
-        var configuraration = app.Configuration;
-        var services = app.Services;
-
         services.AddEndpointsApiExplorer();
         //services.AddSwaggerGen();
         services.AddOpenApiDocument(options =>
@@ -31,7 +28,7 @@ public static class SwaggerConfig
             //    new OperationSecurityScopeProcessor("token"));
         });
 
-        return app;
+        return services;
     }
 
     public static IApplicationBuilder UseSwagger(this WebApplication app)

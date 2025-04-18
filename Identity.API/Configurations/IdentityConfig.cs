@@ -3,13 +3,13 @@ using Identity.API.Models;
 using Microsoft.AspNetCore.Identity;
 using OpenIddict.Abstractions;
 
-namespace Identity.API.Hosting;
+namespace Identity.API.Configurations;
 public static class IdentityConfig
 {
-    public static IHostApplicationBuilder ConfigureIdentity(this IHostApplicationBuilder app)
+    public static IServiceCollection AddIdentityConfig(this IServiceCollection services, IConfiguration configuration)
     {
 
-        app.Services
+        services
             .AddIdentityCore<ApplicationUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
@@ -34,7 +34,7 @@ public static class IdentityConfig
             .AddDefaultTokenProviders();
         
         // Register scopes (permissions)
-        app.Services.Configure<IdentityOptions>(options =>
+        services.Configure<IdentityOptions>(options =>
         {
             options.ClaimsIdentity.UserNameClaimType = OpenIddictConstants.Claims.Email;
             //options.ClaimsIdentity.UserNameClaimType = OpenIddictConstants.Claims.Name;
@@ -42,7 +42,7 @@ public static class IdentityConfig
             options.ClaimsIdentity.RoleClaimType = OpenIddictConstants.Claims.Role;
         }); 
 
-        app.Services.AddAuthentication(options =>
+        services.AddAuthentication(options =>
         {
             options.DefaultScheme = IdentityConstants.ApplicationScheme;
             options.DefaultSignInScheme = IdentityConstants.ExternalScheme;
@@ -57,10 +57,10 @@ public static class IdentityConfig
         });
 
 
-        app.Services.AddAuthorization();
+        services.AddAuthorization();
 
 
-        return app;
+        return services;
     }
 
     public static IApplicationBuilder UseIdentity(this WebApplication app)

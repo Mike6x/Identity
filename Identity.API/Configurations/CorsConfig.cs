@@ -1,13 +1,11 @@
 using Identity.API.Models;
 
-namespace Identity.API.Hosting;
+namespace Identity.API.Configurations;
 
 public static class CorsConfig
 {
-    public static IHostApplicationBuilder ConfigureCors(this IHostApplicationBuilder app)
+    public static IServiceCollection AddCorsPolicy(this IServiceCollection services, IConfiguration configuration)
     {
-        var configuration = app.Configuration;
-        var services = app.Services;
 
         var origins = configuration.GetSection("Cors:Origins").Get<string[]>() ?? Array.Empty<string>();
 
@@ -31,16 +29,9 @@ public static class CorsConfig
             });
         });
 
-        return app;
+        return services;
     }
-
-    public static IApplicationBuilder Cors(this WebApplication app)
-    {
-        app.UseCors();
-
-        return app;
-    }
-
+    
     private static string GetBaseAddressFromRedirectUri(string redirectUri)
     {
         var uri = new Uri(redirectUri);

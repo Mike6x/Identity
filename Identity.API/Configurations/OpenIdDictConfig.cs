@@ -1,26 +1,26 @@
-using Quartz;
-using System.Security.Cryptography.X509Certificates;
 using System.Security.Cryptography;
+using System.Security.Cryptography.X509Certificates;
 using Identity.API.Data;
 using Identity.API.Models;
-using static OpenIddict.Abstractions.OpenIddictConstants;
 using Microsoft.IdentityModel.Tokens;
+using Quartz;
+using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Identity.API.Hosting;
+namespace Identity.API.Configurations;
 
 public static class OpenIdDictConfig
 {
-    public static IHostApplicationBuilder ConfigureOpenIddict(this IHostApplicationBuilder app)
+    public static IServiceCollection AddOpenIdDictConfig(this IServiceCollection services, IConfiguration configuration)
     {
-        var openIddictSettings = app.Configuration.GetSection("OpenIdDict").Get<OpenIddictSettingsConfig>();
+        var openIddictSettings = configuration.GetSection("OpenIdDict").Get<OpenIddictSettingsConfig>();
 
-        app.Services.AddQuartz(options =>
+        services.AddQuartz(options =>
         {
             options.UseSimpleTypeLoader();
             options.UseInMemoryStore();
         });
 
-        app.Services
+        services
             .AddOpenIddict()
             .AddCore(options =>
             {
@@ -155,7 +155,7 @@ public static class OpenIdDictConfig
 
 
 
-        return app;
+        return services;
     }
 
     public static IApplicationBuilder UseOpenIddict(this WebApplication app)
