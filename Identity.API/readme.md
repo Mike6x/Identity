@@ -5,6 +5,9 @@ dotnet ef database update
 
 dotnet dev-certs https --trust  
 
+ dotnet ef migrations add "Add Identity Schema" --output-dir Data/Migrations  --context ApplicationDbContext
+
+
 dotnet ef migrations add Role_Guid --output-dir Data/Migrations 
 
 

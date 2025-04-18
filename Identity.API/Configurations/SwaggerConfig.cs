@@ -11,7 +11,7 @@ public static class SwaggerConfig
     private const string SwaggerSpecUrl = "swagger/v1/swagger.json";
     //const string outputFolder = "{ProjectName}.Client/src/resources/api-clients/";
 
-    public static IServiceCollection AddSwagger(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddSwaggerConfig(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddEndpointsApiExplorer();
         //services.AddSwaggerGen();

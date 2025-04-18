@@ -7,7 +7,7 @@ using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Identity.API.Workers;
 
-[RegisterHostedService]
+// [RegisterHostedService]
 public class OpenIdDictWorker(IServiceProvider serviceProvider, IConfiguration configuration) : IHostedService
 {
     public async Task StartAsync(CancellationToken cancellationToken)
@@ -16,15 +16,16 @@ public class OpenIdDictWorker(IServiceProvider serviceProvider, IConfiguration c
 
         await scope.ServiceProvider.GetRequiredService<ApplicationDbContext>()
             .Database
-            .MigrateAsync();
+            .MigrateAsync(cancellationToken: cancellationToken);
 
+        await AddScopes(scope,cancellationToken);
         await CreateApplicationsAsync(scope, cancellationToken);
         await CreateUsersAsync(scope, cancellationToken);
     }
 
     private async Task CreateApplicationsAsync(IServiceScope scope, CancellationToken cancellationToken)
     {
-        var applications = configuration.GetSection("OpenIddict:ApplicationConfigs").Get<IEnumerable<ApplicationConfig>>();
+        var applications = configuration.GetSection("OpenIdDict:ApplicationConfigs").Get<IEnumerable<ApplicationConfig>>();
 
         var manager = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
         foreach (var applicationConfig in applications)
@@ -32,7 +33,7 @@ public class OpenIdDictWorker(IServiceProvider serviceProvider, IConfiguration c
             var client = await manager.FindByClientIdAsync(applicationConfig.ClientId, cancellationToken);
             if(client != null)
             {
-                await manager.DeleteAsync(client);
+                await manager.DeleteAsync(client, cancellationToken);
                 client = null;
             }
 
@@ -81,6 +82,36 @@ public class OpenIdDictWorker(IServiceProvider serviceProvider, IConfiguration c
             }
 
         }
+        
+        var client1 = await manager.FindByClientIdAsync("blazorwasm-oidc-application", cancellationToken);
+        if (client1 != null)
+        {
+            await manager.DeleteAsync(client1, cancellationToken);
+        }
+
+        await manager.CreateAsync(new OpenIddictApplicationDescriptor
+        {
+            ClientId = "blazorwasm-oidc-application",
+            ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C206",
+            ConsentType = OpenIddictConstants.ConsentTypes.Explicit,
+            DisplayName = "BlazorWasm Application",
+            RedirectUris =
+            {
+                    
+                new Uri("https://localhost:7002/authentication/login-callback")
+            },
+            PostLogoutRedirectUris =
+            {
+                new Uri("https://localhost:7002/authentication/logout-callback")
+            },
+            Permissions =
+            {
+                OpenIddictConstants.Permissions.Endpoints.Token,
+                OpenIddictConstants.Permissions.GrantTypes.Password,
+                OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
+                $"{OpenIddictConstants.Permissions.Prefixes.Scope}api1"
+            },
+        }, cancellationToken);
 
     }
 
@@ -112,6 +143,25 @@ public class OpenIdDictWorker(IServiceProvider serviceProvider, IConfiguration c
                 Console.WriteLine($"Creating user {userConfig.Email}");
             }
         }
+    }
+
+    private async Task AddScopes(IServiceScope scope, CancellationToken cancellationToken)
+    {
+
+        var manager = scope.ServiceProvider.GetRequiredService<IOpenIddictScopeManager>();
+
+        var apiScope = await manager.FindByNameAsync("api1");
+        if (apiScope != null) await manager.DeleteAsync(apiScope);
+
+        await manager.CreateAsync(new OpenIddictScopeDescriptor
+        {
+            DisplayName = "Api scope",
+            Name = "api1",
+            Resources =
+            {
+                "resource_server_1"
+            }
+        }, cancellationToken);
     }
 
 

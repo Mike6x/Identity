@@ -1,4 +1,5 @@
 using Identity.API.Configurations;
+using Identity.API.Workers;
 
 namespace Identity.API.Extensions;
 
@@ -14,12 +15,15 @@ public static class IdentityServiceRegistration
         
         services.AddCorsPolicy(configuration);
 
-        services.AddSwagger(configuration);
+        services.AddSwaggerConfig(configuration);
 
 
         services.AddAntiforgery();
         
         services.AddOpenApi();
+        
+        services
+            .AddHostedService<OpenIdDictWorker>();
         
         //builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
         return services;
