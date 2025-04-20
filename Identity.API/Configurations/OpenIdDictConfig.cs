@@ -12,7 +12,7 @@ public static class OpenIdDictConfig
 {
     public static IServiceCollection AddOpenIdDictConfig(this IServiceCollection services, IConfiguration configuration)
     {
-        var openIddictSettings = configuration.GetSection("OpenIdDict").Get<OpenIddictSettingsConfig>();
+        var openIddictSettings = configuration.GetSection("OpenIddict").Get<OpenIddictSettingsConfig>();
 
         services.AddQuartz(options =>
         {
@@ -55,6 +55,15 @@ public static class OpenIdDictConfig
                     .SetIntrospectionEndpointUris("/connect/introspect")
                     .SetUserInfoEndpointUris("/connect/userinfo");
                 
+                //allowed grant types
+                options.AllowRefreshTokenFlow();
+                
+                options.AllowAuthorizationCodeFlow();
+                options.AllowClientCredentialsFlow();
+                options.AllowPasswordFlow().AllowRefreshTokenFlow();
+                //PKCE
+                options.RequireProofKeyForCodeExchange();
+                
                 options
                     .SetAccessTokenLifetime(TimeSpan.FromSeconds(3600))
                     .SetRefreshTokenLifetime(TimeSpan.FromSeconds(86400));
@@ -68,16 +77,8 @@ public static class OpenIdDictConfig
 
                 options.RegisterScopes(scopes.ToArray());
 
-                //allowed grant types
-                options.AllowClientCredentialsFlow();
-                options.AllowAuthorizationCodeFlow();
-                options.AllowRefreshTokenFlow();
-                //PKCE
-                options.RequireProofKeyForCodeExchange();
-
-
-                // Register the signing and encryption credentials.
-                //todo only dev
+                // RegisterUser the signing and encryption credentials.
+                // todo only dev
                 options.AddDevelopmentEncryptionCertificate()
                        .AddDevelopmentSigningCertificate();
 
@@ -92,7 +93,7 @@ public static class OpenIdDictConfig
                     var path = openIddictSettings.Encryption?.Cert?.Path ?? "./cert.pfx";
 
                     if (openIddictSettings?.Encryption?.Cert?.GenerateIfEmpty == true)
-                        GenerateCerificate(path, openIddictSettings?.Encryption?.Cert, CertificateType.Encryption);
+                        GenerateCertificate(path, openIddictSettings?.Encryption?.Cert, CertificateType.Encryption);
 
                     if (!File.Exists(openIddictSettings?.Encryption?.Cert?.Path))
                     {
@@ -115,7 +116,7 @@ public static class OpenIdDictConfig
                     var path = openIddictSettings.Signing?.Cert?.Path ?? "./cert.pfx";
 
                     if (openIddictSettings?.Signing?.Cert?.GenerateIfEmpty == true)
-                        GenerateCerificate(path, openIddictSettings?.Signing?.Cert, CertificateType.Signing);
+                        GenerateCertificate(path, openIddictSettings?.Signing?.Cert, CertificateType.Signing);
                     if (!File.Exists(openIddictSettings?.Signing?.Cert?.Path))
                     {
                         throw new FileNotFoundException($"Certificate not found at {path}");
@@ -126,10 +127,10 @@ public static class OpenIdDictConfig
               
 
                 var aspBuilder = options.UseAspNetCore()
-                       .EnableAuthorizationEndpointPassthrough()
-                       .EnableTokenEndpointPassthrough()
-                       .EnableEndSessionEndpointPassthrough()
-                       .EnableUserInfoEndpointPassthrough();
+                        .EnableTokenEndpointPassthrough()
+                        .EnableAuthorizationEndpointPassthrough()
+                        .EnableEndSessionEndpointPassthrough()
+                        .EnableUserInfoEndpointPassthrough();
 
                 if(openIddictSettings?.OnlyAllowHttps != true)
                 {
@@ -146,10 +147,10 @@ public static class OpenIdDictConfig
             //    // Import the configuration from the local OpenIddict server instance.
             //    options.UseLocalServer();
 
-            //    // Register the System.Net.Http. integration
+            //    // RegisterUser the System.Net.Http. integration
             //    options.UseSystemNetHttp();
 
-            //    // Register the ASP.NET Core host.
+            //    // RegisterUser the ASP.NET Core host.
             //    options.UseAspNetCore();
             //});
 
@@ -165,7 +166,7 @@ public static class OpenIdDictConfig
         return app;
     }
 
-    private static void GenerateCerificate(string path, CertConfig? cert, CertificateType type)
+    private static void GenerateCertificate(string path, CertConfig? cert, CertificateType type)
     {
         if(File.Exists(path))
         {

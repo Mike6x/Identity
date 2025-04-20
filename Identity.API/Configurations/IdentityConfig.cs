@@ -10,7 +10,7 @@ public static class IdentityConfig
     {
 
         services
-            .AddIdentityCore<ApplicationUser>(options =>
+            .AddIdentityCore<AppUser>(options =>
             {
                 options.SignIn.RequireConfirmedAccount = true;
                 options.SignIn.RequireConfirmedEmail = true;
@@ -33,7 +33,7 @@ public static class IdentityConfig
             .AddSignInManager()
             .AddDefaultTokenProviders();
         
-        // Register scopes (permissions)
+        // RegisterUser scopes (permissions)
         services.Configure<IdentityOptions>(options =>
         {
             options.ClaimsIdentity.UserNameClaimType = OpenIddictConstants.Claims.Email;
@@ -63,10 +63,10 @@ public static class IdentityConfig
         return services;
     }
 
-    public static IApplicationBuilder UseIdentity(this WebApplication app)
-    {
-        app.UseCors();
-
-        return app;
-    }
+    // public static IApplicationBuilder UseIdentity(this WebApplication app)
+    // {
+    //     app.UseCors();
+    //
+    //     return app;
+    // }
 }

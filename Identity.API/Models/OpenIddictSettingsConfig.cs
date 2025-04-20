@@ -21,5 +21,5 @@ public class CertConfig
     public bool GenerateIfEmpty { get; set; }
     public string Password { get; set; }
     public int ValidityMonths { get; set; }
-    public string Issuer { get; set; } = "OpenIddict";
+    public string Issuer { get; set; } = "OpenIdDict";
 }

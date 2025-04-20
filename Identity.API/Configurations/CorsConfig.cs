@@ -7,14 +7,14 @@ public static class CorsConfig
     public static IServiceCollection AddCorsPolicy(this IServiceCollection services, IConfiguration configuration)
     {
 
-        var origins = configuration.GetSection("Cors:Origins").Get<string[]>() ?? Array.Empty<string>();
+        var allowedOrigins = configuration.GetSection("Cors:AllowedOrigins").Get<string[]>() ?? [];
 
         var applications = configuration.GetSection("OpenIddict:ApplicationConfigs").Get<IEnumerable<ApplicationConfig>>();
         if(applications?.Any() == true)
         {
-            origins = origins.Concat(
+            allowedOrigins = allowedOrigins.Concat(
                 applications.SelectMany(
-                    a => a.RedirectUri?.Select(r => GetBaseAddressFromRedirectUri(r)) ?? Enumerable.Empty<string>())
+                    a => a.RedirectUri?.Select(r => GetBaseAddressFromRedirectUri(r)) ?? [])
             ).ToArray();
         }
 
@@ -22,7 +22,7 @@ public static class CorsConfig
         {
             options.AddDefaultPolicy(policy =>
             {
-                policy.WithOrigins(origins)
+                policy.WithOrigins(allowedOrigins)
                     .AllowAnyHeader()
                     .AllowCredentials()
                     .AllowAnyMethod();

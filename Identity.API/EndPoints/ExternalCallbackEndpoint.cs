@@ -19,14 +19,14 @@ public static class ExternalCallbackEndpoint
 
     private static async Task<IResult> HandleExternalLogin(
         HttpContext context,
-        UserManager<ApplicationUser> userManager,
-        SignInManager<ApplicationUser> signInManager,
+        UserManager<AppUser> userManager,
+        SignInManager<AppUser> signInManager,
         string returnUri = "~/"
     )
     {
         var authenticateResult =
             await context.AuthenticateAsync(OpenIddictClientAspNetCoreDefaults.AuthenticationScheme);
-        if (!authenticateResult.Succeeded) return Results.Redirect($"/Identity/Account/Login?returnUri={returnUri}");
+        if (!authenticateResult.Succeeded) return Results.Redirect($"/Authentication/Account/Login?returnUri={returnUri}");
 
         if (!(authenticateResult.Principal?.Identity?.IsAuthenticated ?? false))
             return Results.UnprocessableEntity("The external authorization data cannot be used for authentication.");
@@ -73,11 +73,11 @@ public static class ExternalCallbackEndpoint
         return Results.SignIn(new(identity), properties, CookieAuthenticationDefaults.AuthenticationScheme);
     }
 
-    private static ApplicationUser? CreateUser()
+    private static AppUser? CreateUser()
     {
         try
         {
-            return Activator.CreateInstance<ApplicationUser>();
+            return Activator.CreateInstance<AppUser>();
         }
         catch
         {

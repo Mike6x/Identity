@@ -1,4 +1,5 @@
 using Identity.API.Configurations;
+
 using Identity.API.Workers;
 
 namespace Identity.API.Extensions;
@@ -22,10 +23,9 @@ public static class IdentityServiceRegistration
         
         services.AddOpenApi();
         
+  //builder.Services.AddSingleton<IEmailSender<AppUser>, IdentityNoOpEmailSender>();
         services
             .AddHostedService<OpenIdDictWorker>();
-        
-        //builder.Services.AddSingleton<IEmailSender<ApplicationUser>, IdentityNoOpEmailSender>();
         return services;
     }
 }

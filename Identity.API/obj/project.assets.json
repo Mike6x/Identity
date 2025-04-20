@@ -2,15 +2,6 @@
   "version": 3,
   "targets": {
     "net9.0": {
-      "AutoRegisterInject/1.4.1": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/AutoRegisterInject.dll": {}
-        },
-        "runtime": {
-          "lib/netstandard2.0/AutoRegisterInject.dll": {}
-        }
-      },
       "Azure.Core/1.38.0": {
         "type": "package",
         "dependencies": {
@@ -4334,26 +4325,20 @@
             "related": ".xml"
           }
         }
+      },
+      "Identity.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Identity.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Identity.Shared.dll": {}
+        }
       }
     }
   },
   "libraries": {
-    "AutoRegisterInject/1.4.1": {
-      "sha512": "z0/euKCH/4pFFJtaI2c9EooVEGhjcBUfoDSSvyW3vDdCUM82QDJNXatpzQ8NuOqcpeen7hjEe2fpKoSF9D1WRQ==",
-      "type": "package",
-      "path": "autoregisterinject/1.4.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "LICENSE.txt",
-        "README.md",
-        "analyzers/dotnet/cs/AutoRegisterInject.dll",
-        "autoregisterinject.1.4.1.nupkg.sha512",
-        "autoregisterinject.nuspec",
-        "lib/netstandard2.0/AutoRegisterInject.dll"
-      ]
-    },
     "Azure.Core/1.38.0": {
       "sha512": "IuEgCoVA0ef7E4pQtpC3+TkPbzaoQfa77HlfJDmfuaJUCVJmn7fT0izamZiryW5sYUFKizsftIxMkXKbgIcPMQ==",
       "type": "package",
@@ -12622,11 +12607,16 @@
         "yamldotnet.16.3.0.nupkg.sha512",
         "yamldotnet.nuspec"
       ]
+    },
+    "Identity.Shared/1.0.0": {
+      "type": "project",
+      "path": "../Identity.Shared/Identity.Shared.csproj",
+      "msbuildProject": "../Identity.Shared/Identity.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "AutoRegisterInject >= 1.4.1",
+      "Identity.Shared >= 1.0.0",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 9.0.4",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 9.0.4",
       "Microsoft.AspNetCore.OpenApi >= 9.0.4",
@@ -12668,7 +12658,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/Identity.Shared.csproj": {
+              "projectPath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/Identity.Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
@@ -12687,10 +12681,6 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
-          "AutoRegisterInject": {
-            "target": "Package",
-            "version": "[1.4.1, )"
-          },
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
             "target": "Package",
             "version": "[9.0.4, )"

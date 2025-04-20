@@ -186,9 +186,45 @@ export class UsersClient extends ClientBase {
         }
         return Promise.resolve<UserDto>(null as any);
     }
+
+    users(model: RegisterInputModel): Promise<void> {
+        let url_ = this.baseUrl + "/api/users";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(model);
+
+        let options_: RequestInit = {
+            body: content_,
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.transformResult(url_, _response, (_response: Response) => this.processUsers(_response));
+        });
+    }
+
+    protected processUsers(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
 }
 
-export class IdentityClient extends ClientBase {
+export class AuthenticationClient extends ClientBase {
     private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -200,7 +236,7 @@ export class IdentityClient extends ClientBase {
     }
 
     login(dto: LoginRequest): Promise<void> {
-        let url_ = this.baseUrl + "/api/login";
+        let url_ = this.baseUrl + "/api/Auth/login";
         url_ = url_.replace(/[?&]$/, "");
 
         const content_ = JSON.stringify(dto);
@@ -236,7 +272,7 @@ export class IdentityClient extends ClientBase {
     }
 
     logout(): Promise<void> {
-        let url_ = this.baseUrl + "/api/logout";
+        let url_ = this.baseUrl + "/api/Auth/logout";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {
@@ -268,7 +304,7 @@ export class IdentityClient extends ClientBase {
     }
 }
 
-export class OpenIdConnectClient extends ClientBase {
+export class AuthorizationClient extends ClientBase {
     private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -311,7 +347,7 @@ export class OpenIdConnectClient extends ClientBase {
         return Promise.resolve<void>(null as any);
     }
 
-    token(): Promise<void> {
+    tokenPost(): Promise<void> {
         let url_ = this.baseUrl + "/connect/token";
         url_ = url_.replace(/[?&]$/, "");
 
@@ -324,11 +360,43 @@ export class OpenIdConnectClient extends ClientBase {
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.transformResult(url_, _response, (_response: Response) => this.processToken(_response));
+            return this.transformResult(url_, _response, (_response: Response) => this.processTokenPost(_response));
         });
     }
 
-    protected processToken(response: Response): Promise<void> {
+    protected processTokenPost(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    tokenGet(): Promise<void> {
+        let url_ = this.baseUrl + "/connect/token";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.transformResult(url_, _response, (_response: Response) => this.processTokenGet(_response));
+        });
+    }
+
+    protected processTokenGet(response: Response): Promise<void> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -505,6 +573,50 @@ export interface IUserDto {
     id?: string;
     userName?: string;
     email?: string;
+}
+
+export class RegisterInputModel implements IRegisterInputModel {
+    email!: string;
+    password!: string;
+    confirmPassword?: string;
+
+    constructor(data?: IRegisterInputModel) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.email = _data["email"];
+            this.password = _data["password"];
+            this.confirmPassword = _data["confirmPassword"];
+        }
+    }
+
+    static fromJS(data: any): RegisterInputModel {
+        data = typeof data === 'object' ? data : {};
+        let result = new RegisterInputModel();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["email"] = this.email;
+        data["password"] = this.password;
+        data["confirmPassword"] = this.confirmPassword;
+        return data;
+    }
+}
+
+export interface IRegisterInputModel {
+    email: string;
+    password: string;
+    confirmPassword?: string;
 }
 
 export class LoginRequest implements ILoginRequest {

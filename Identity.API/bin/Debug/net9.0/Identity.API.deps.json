@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v9.0": {
       "Identity.API/1.0.0": {
         "dependencies": {
-          "AutoRegisterInject": "1.4.1",
+          "Identity.Shared": "1.0.0",
           "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": "9.0.4",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "9.0.4",
           "Microsoft.AspNetCore.OpenApi": "9.0.4",
@@ -26,14 +26,6 @@
         },
         "runtime": {
           "Identity.API.dll": {}
-        }
-      },
-      "AutoRegisterInject/1.4.1": {
-        "runtime": {
-          "lib/netstandard2.0/AutoRegisterInject.dll": {
-            "assemblyVersion": "1.4.1.0",
-            "fileVersion": "1.4.1.0"
-          }
         }
       },
       "Azure.Core/1.38.0": {
@@ -2571,6 +2563,14 @@
             "fileVersion": "16.3.0.0"
           }
         }
+      },
+      "Identity.Shared/1.0.0": {
+        "runtime": {
+          "Identity.Shared.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
       }
     }
   },
@@ -2579,13 +2579,6 @@
       "type": "project",
       "serviceable": false,
       "sha512": ""
-    },
-    "AutoRegisterInject/1.4.1": {
-      "type": "package",
-      "serviceable": true,
-      "sha512": "sha512-z0/euKCH/4pFFJtaI2c9EooVEGhjcBUfoDSSvyW3vDdCUM82QDJNXatpzQ8NuOqcpeen7hjEe2fpKoSF9D1WRQ==",
-      "path": "autoregisterinject/1.4.1",
-      "hashPath": "autoregisterinject.1.4.1.nupkg.sha512"
     },
     "Azure.Core/1.38.0": {
       "type": "package",
@@ -4210,6 +4203,11 @@
       "sha512": "sha512-SgMOdxbz8X65z8hraIs6hOEdnkH6hESTAIUa7viEngHOYaH+6q5XJmwr1+yb9vJpNQ19hCQY69xbFsLtXpobQA==",
       "path": "yamldotnet/16.3.0",
       "hashPath": "yamldotnet.16.3.0.nupkg.sha512"
+    },
+    "Identity.Shared/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     }
   }
 }

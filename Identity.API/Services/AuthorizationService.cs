@@ -48,11 +48,10 @@ public static class AuthorizationService
     {
         List<string> destinations = [];
 
-        if (claim.Type is Claims.Name or Claims.Username
-            or Claims.Role)
+        if (claim.Type is Claims.Name or Claims.Username or Claims.Role)
             destinations.Add(Destinations.AccessToken);
 
-        if (claim.Type is Claims.Name or Claims.Username or Claims.Email or Claims.Role)
+        if (claim.Type is Claims.Name or Claims.Username or Claims.Role or Claims.Email )
             destinations.Add(Destinations.IdentityToken);
 
         return destinations;

@@ -1,4 +1,5 @@
 using Identity.API.Dtos;
+using Identity.API.EndPoints.Users.Handler;
 using Identity.API.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
@@ -14,27 +15,15 @@ public static class UsersEndpoints
             .WithName("Users");
 
 
-        group.MapGet("me", CurrentUserHandler)
+        group.MapGet("me", CurrentUser.Handler)
             .WithName("CurrentUser")
+            .AllowAnonymous();
+        
+        group.MapPost("/", RegisterUser.Handler)
+            .WithName("RegisterUser")
             .AllowAnonymous();
 
         return app;
-    }
-
-    private static async Task<Results<Ok<UserDto?>, ForbidHttpResult>> CurrentUserHandler(HttpContext httpContext, UserManager<ApplicationUser> userManager)
-    {
-        if (httpContext.User?.Identity?.IsAuthenticated != true)
-            return TypedResults.Ok<UserDto?>(null);
-
-        var user = await userManager.GetUserAsync(httpContext.User);
-        if (user is null)
-            return TypedResults.Forbid();
-        return TypedResults.Ok<UserDto?>(new UserDto
-        {
-            Id = user.Id,
-            Email = user.Email,
-            UserName = user.UserName,
-        });
     }
 
 }

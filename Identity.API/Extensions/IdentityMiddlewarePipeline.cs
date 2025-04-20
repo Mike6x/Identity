@@ -1,7 +1,7 @@
 using Identity.API.Configurations;
 using Identity.API.EndPoints;
-using Identity.API.EndPoints.Identity;
-using Identity.API.EndPoints.OpenIDConnect;
+using Identity.API.EndPoints.Authentication;
+using Identity.API.EndPoints.Authorization;
 using Identity.API.EndPoints.Users;
 
 namespace Identity.API.Extensions;
