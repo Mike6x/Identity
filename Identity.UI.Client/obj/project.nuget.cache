@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YYmX6i8K9vU=",
+  "dgSpecHash": "6AlrprxDUFU=",
   "success": true,
-  "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Client/Identity.UI.Client.csproj",
+  "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client/Identity.UI.Client.csproj",
   "expectedPackageFiles": [
     "/Users/tuanpa/.nuget/packages/blazored.localstorage/4.5.0/blazored.localstorage.4.5.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.authorization/9.0.4/microsoft.aspnetcore.authorization.9.0.4.nupkg.sha512",

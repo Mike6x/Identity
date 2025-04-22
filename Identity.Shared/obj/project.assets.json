@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/Identity.Shared.csproj",
+      "projectUniqueName": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj",
       "projectName": "Identity.Shared",
-      "projectPath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/Identity.Shared.csproj",
+      "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj",
       "packagesPath": "/Users/tuanpa/.nuget/packages/",
-      "outputPath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/obj/",
+      "outputPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/tuanpa/.nuget/NuGet/NuGet.Config"

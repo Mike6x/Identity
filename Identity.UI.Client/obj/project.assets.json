@@ -2673,11 +2673,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Client/Identity.UI.Client.csproj",
+      "projectUniqueName": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client/Identity.UI.Client.csproj",
       "projectName": "Identity.UI.Client",
-      "projectPath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Client/Identity.UI.Client.csproj",
+      "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client/Identity.UI.Client.csproj",
       "packagesPath": "/Users/tuanpa/.nuget/packages/",
-      "outputPath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Client/obj/",
+      "outputPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/tuanpa/.nuget/NuGet/NuGet.Config"
@@ -2693,11 +2693,11 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/Identity.Shared.csproj": {
-              "projectPath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/Identity.Shared.csproj"
+            "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj": {
+              "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj"
             },
-            "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Infrastructure/Identity.UI.Infrastructure.csproj": {
-              "projectPath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Infrastructure/Identity.UI.Infrastructure.csproj"
+            "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Infrastructure/Identity.UI.Infrastructure.csproj": {
+              "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Infrastructure/Identity.UI.Infrastructure.csproj"
             }
           }
         }

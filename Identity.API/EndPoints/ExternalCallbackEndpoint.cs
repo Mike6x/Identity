@@ -12,9 +12,15 @@ namespace Identity.API.EndPoints;
 
 public static class ExternalCallbackEndpoint
 {
-    public static void MapExternalCallbackEndpoint(this IEndpointRouteBuilder app)
+    public static IEndpointRouteBuilder MapExternalCallbackEndpoint(this IEndpointRouteBuilder app)
     {
-        app.MapMethods("~/signin-google", [HttpMethods.Get, HttpMethods.Post], HandleExternalLogin);
+        var group = app.MapGroup("Auth")
+            .WithTags("ExternalCallback")
+            .WithName("ExternalCallback");
+        
+        group.MapMethods("/signin-google", [HttpMethods.Get, HttpMethods.Post], HandleExternalLogin);
+        
+        return app;
     }
 
     private static async Task<IResult> HandleExternalLogin(

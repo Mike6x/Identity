@@ -1,6 +1,8 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Identity.UI.Infrastructure.Api;
+using Identity.UI.Infrastructure.Infra;
+using Microsoft.Extensions.DependencyInjection;
 
-namespace Identity.UI.Infrastructure.Infra;
+namespace Identity.UI.Infrastructure;
 
 public static class ServicesRegistration
 {
@@ -9,5 +11,7 @@ public static class ServicesRegistration
         services.AddScoped<IJwtTokenService, JwtTokenService>();
         services.AddScoped<ILoginService, LoginService>();
         services.AddScoped<ILogoutService, LogoutService>();
+        
+        services.AddTransient<IApiClient, ApiClient>();
     }
 }

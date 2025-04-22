@@ -23,9 +23,10 @@ public static class IdentityMiddlewarePipeline
         apiEnpoints.MapStatusEndpoints();
         apiEnpoints.MapUsersEndpoints();
         apiEnpoints.MapIdentityEndpoints();
-
+        apiEnpoints.MapExternalCallbackEndpoint();
+        
         app.MapOpenIdConnectEndpoints();
-        app.MapExternalCallbackEndpoint();
+        
 
         app.UseVueFallbackSpa();
         

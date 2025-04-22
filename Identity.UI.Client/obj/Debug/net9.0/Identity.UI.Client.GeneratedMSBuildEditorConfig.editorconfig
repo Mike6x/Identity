@@ -13,53 +13,53 @@ build_property.EnforceExtendedAnalyzerRules =
 build_property._SupportedPlatformList = browser
 build_property.RootNamespace = Identity.UI.Client
 build_property.RootNamespace = Identity.UI.Client
-build_property.ProjectDir = /Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Client/
+build_property.ProjectDir = /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client/
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = false
 build_property.RazorLangVersion = 9.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = /Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Client
+build_property.MSBuildProjectDirectory = /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client
 build_property._RazorSourceGeneratorDebug = 
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
-[/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Client/App.razor]
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client/App.razor]
 build_metadata.AdditionalFiles.TargetPath = QXBwLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Client/Layout/AuthLayout.razor]
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client/Layout/AuthLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0L0F1dGhMYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Client/Pages/Counter.razor]
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client/Pages/Counter.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ291bnRlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Client/Pages/Home.razor]
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvSG9tZS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Client/Pages/LoginForm.razor]
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client/Pages/LoginForm.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvTG9naW5Gb3JtLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Client/Pages/Register.razor]
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client/Pages/Register.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvUmVnaXN0ZXIucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Client/Pages/Weather.razor]
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client/Pages/Weather.razor]
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvV2VhdGhlci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Client/_Imports.razor]
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client/_Imports.razor]
 build_metadata.AdditionalFiles.TargetPath = X0ltcG9ydHMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Client/Layout/MainLayout.razor]
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client/Layout/MainLayout.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0L01haW5MYXlvdXQucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-7kc1f9dxxt
 
-[/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Client/Layout/NavMenu.razor]
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = TGF5b3V0L05hdk1lbnUucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = b-hf048abhjd

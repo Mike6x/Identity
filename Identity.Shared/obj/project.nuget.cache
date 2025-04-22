@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "gwfk3bt8cRo=",
+  "dgSpecHash": "xiijnjtE2l0=",
   "success": true,
-  "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/Identity.Shared.csproj",
+  "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }

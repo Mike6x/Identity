@@ -8,90 +8,6 @@
 /* eslint-disable */
 // ReSharper disable InconsistentNaming
 
-export class Client extends ClientBase {
-    private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
-    private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
-
-    constructor(baseUrl?: string, http?: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> }) {
-        super();
-        this.http = http ? http : window as any;
-        this.baseUrl = this.getBaseUrl("https://localhost:7000", baseUrl);
-    }
-
-    signinGoogleGet(returnUri?: string | undefined): Promise<void> {
-        let url_ = this.baseUrl + "/~/signin-google?";
-        if (returnUri === null)
-            throw new Error("The parameter 'returnUri' cannot be null.");
-        else if (returnUri !== undefined)
-            url_ += "returnUri=" + encodeURIComponent("" + returnUri) + "&";
-        url_ = url_.replace(/[?&]$/, "");
-
-        let options_: RequestInit = {
-            method: "GET",
-            headers: {
-            }
-        };
-
-        return this.transformOptions(options_).then(transformedOptions_ => {
-            return this.http.fetch(url_, transformedOptions_);
-        }).then((_response: Response) => {
-            return this.transformResult(url_, _response, (_response: Response) => this.processSigninGoogleGet(_response));
-        });
-    }
-
-    protected processSigninGoogleGet(response: Response): Promise<void> {
-        const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
-        if (status === 200) {
-            return response.text().then((_responseText) => {
-            return;
-            });
-        } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
-        }
-        return Promise.resolve<void>(null as any);
-    }
-
-    signinGooglePost(returnUri?: string | undefined): Promise<void> {
-        let url_ = this.baseUrl + "/~/signin-google?";
-        if (returnUri === null)
-            throw new Error("The parameter 'returnUri' cannot be null.");
-        else if (returnUri !== undefined)
-            url_ += "returnUri=" + encodeURIComponent("" + returnUri) + "&";
-        url_ = url_.replace(/[?&]$/, "");
-
-        let options_: RequestInit = {
-            method: "POST",
-            headers: {
-            }
-        };
-
-        return this.transformOptions(options_).then(transformedOptions_ => {
-            return this.http.fetch(url_, transformedOptions_);
-        }).then((_response: Response) => {
-            return this.transformResult(url_, _response, (_response: Response) => this.processSigninGooglePost(_response));
-        });
-    }
-
-    protected processSigninGooglePost(response: Response): Promise<void> {
-        const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
-        if (status === 200) {
-            return response.text().then((_responseText) => {
-            return;
-            });
-        } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
-        }
-        return Promise.resolve<void>(null as any);
-    }
-}
-
 export class StatusClient extends ClientBase {
     private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
     private baseUrl: string;
@@ -289,6 +205,90 @@ export class AuthenticationClient extends ClientBase {
     }
 
     protected processLogout(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+}
+
+export class ExternalCallbackClient extends ClientBase {
+    private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(baseUrl?: string, http?: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> }) {
+        super();
+        this.http = http ? http : window as any;
+        this.baseUrl = this.getBaseUrl("https://localhost:7000", baseUrl);
+    }
+
+    signinGoogleGet(returnUri?: string | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/Auth/signin-google?";
+        if (returnUri === null)
+            throw new Error("The parameter 'returnUri' cannot be null.");
+        else if (returnUri !== undefined)
+            url_ += "returnUri=" + encodeURIComponent("" + returnUri) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.transformResult(url_, _response, (_response: Response) => this.processSigninGoogleGet(_response));
+        });
+    }
+
+    protected processSigninGoogleGet(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    signinGooglePost(returnUri?: string | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/Auth/signin-google?";
+        if (returnUri === null)
+            throw new Error("The parameter 'returnUri' cannot be null.");
+        else if (returnUri !== undefined)
+            url_ += "returnUri=" + encodeURIComponent("" + returnUri) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "POST",
+            headers: {
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.transformResult(url_, _response, (_response: Response) => this.processSigninGooglePost(_response));
+        });
+    }
+
+    protected processSigninGooglePost(response: Response): Promise<void> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
@@ -866,4 +866,4 @@ function throwException(message: string, status: number, response: string, heade
         throw new ApiException(message, status, response, headers, null);
 }
 
-//Extension Not Found at /Volumes/DATA/Projects/OpenIdDict/Identity/Identity.API/../Identity.Client/src/resources/api-clients/identity-api-client-extension.ts
+//Extension Not Found at /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.API/../Identity.Client/src/resources/api-clients/identity-api-client-extension.ts

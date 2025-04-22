@@ -2,12 +2,14 @@
 @using Microsoft.AspNetCore.Components.Authorization
 
 @using Identity.Shared.Models
+@using Identity.UI.Infrastructure.Api
 @using Identity.UI.Infrastructure.Infra
 @inject NavigationManager NavigationManager
 @inject AuthenticationStateProvider AuthState
 @inject IConfiguration Configuration
 @inject ILoginService LoginService
 
+@inject IApiClient ApiClient
 <div class="card mt-3 shadow-sm rounded auth-card">
     <div class="px-4 pt-4">
         <h2 class="card-title">Log in @Environment</h2>
@@ -52,7 +54,9 @@
     private async Task LoginUserAsync()
     {
         var result = await LoginService.LoginUserAsync(LoginInputModel.Email, LoginInputModel.Password);
-        if (result == null)  return; 
+        if (result == null)  return;
+
+        await ApiClient.StatusAsync();
         
         await ((CustomAuthenticationStateProvider)AuthState).UpdateAuthenticationState(result.access_token, result.refresh_token);
         NavigationManager.NavigateTo("/");

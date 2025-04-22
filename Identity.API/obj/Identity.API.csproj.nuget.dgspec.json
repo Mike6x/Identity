@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.API/Identity.API.csproj": {}
+    "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.API/Identity.API.csproj": {}
   },
   "projects": {
-    "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.API/Identity.API.csproj": {
+    "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.API/Identity.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.API/Identity.API.csproj",
+        "projectUniqueName": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.API/Identity.API.csproj",
         "projectName": "Identity.API",
-        "projectPath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.API/Identity.API.csproj",
+        "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.API/Identity.API.csproj",
         "packagesPath": "/Users/tuanpa/.nuget/packages/",
-        "outputPath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.API/obj/",
+        "outputPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.API/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/tuanpa/.nuget/NuGet/NuGet.Config"
@@ -27,8 +27,8 @@
           "net9.0": {
             "targetAlias": "net9.0",
             "projectReferences": {
-              "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/Identity.Shared.csproj": {
-                "projectPath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/Identity.Shared.csproj"
+              "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj": {
+                "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj"
               }
             }
           }
@@ -131,14 +131,14 @@
         }
       }
     },
-    "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/Identity.Shared.csproj": {
+    "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/Identity.Shared.csproj",
+        "projectUniqueName": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj",
         "projectName": "Identity.Shared",
-        "projectPath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/Identity.Shared.csproj",
+        "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj",
         "packagesPath": "/Users/tuanpa/.nuget/packages/",
-        "outputPath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/obj/",
+        "outputPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "/Users/tuanpa/.nuget/NuGet/NuGet.Config"

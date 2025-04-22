@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6psSlJUcyxw=",
+  "dgSpecHash": "1yMdZHMRTA0=",
   "success": true,
-  "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/Identity/Identity.API/Identity.API.csproj",
+  "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.API/Identity.API.csproj",
   "expectedPackageFiles": [
     "/Users/tuanpa/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",
