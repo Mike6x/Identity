@@ -56,7 +56,7 @@
         var result = await LoginService.LoginUserAsync(LoginInputModel.Email, LoginInputModel.Password);
         if (result == null)  return;
 
-        await ApiClient.StatusAsync();
+      //  await ApiClient.StatusAsync();
         
         await ((CustomAuthenticationStateProvider)AuthState).UpdateAuthenticationState(result.access_token, result.refresh_token);
         NavigationManager.NavigateTo("/");

@@ -7,16 +7,22 @@ public static class StatusEndpoints
 {
     public static IEndpointRouteBuilder MapStatusEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app
-            .MapGroup("status")
-            .WithTags("Status")
-            .WithName("Status");
-
-        group.MapGet("", StatusHandler)
-            .WithName("Status")
-            .AllowAnonymous();
+        app.MapGetStatusEndpoint();
 
         return app;
+    }
+}
+
+
+public static class GetStatusEndpoint
+{
+    public static RouteHandlerBuilder MapGetStatusEndpoint(this IEndpointRouteBuilder endpoints)
+    {
+        return endpoints.MapGet("/status", StatusHandler )
+            .WithName(nameof(GetStatusEndpoint))
+            .WithSummary("Get status of application ")
+            // .RequirePermission("Permissions.Handlers.View")
+            .WithDescription("Return status of Application");
     }
 
     private static async Task<Ok<StatusDto>> StatusHandler(HttpContext httpContext, ApplicationDbContext dbContext)
@@ -32,7 +38,7 @@ public static class StatusEndpoints
         });
     }
 
-    public class StatusDto
+    private class StatusDto
     {
         public string Api { get; set; }
         public string Db { get; set; }

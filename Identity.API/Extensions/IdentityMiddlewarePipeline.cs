@@ -19,13 +19,20 @@ public static class IdentityMiddlewarePipeline
         app.UseAuthentication();
         app.UseAuthorization();
 
-        var apiEnpoints = app.MapGroup("api");
-        apiEnpoints.MapStatusEndpoints();
-        apiEnpoints.MapUsersEndpoints();
-        apiEnpoints.MapIdentityEndpoints();
-        apiEnpoints.MapExternalCallbackEndpoint();
+        var callbackGroup = app.MapGroup("api/callback").WithTags("External Logins");
+        callbackGroup.MapExternalCallbackEndpoints();
         
-        app.MapOpenIdConnectEndpoints();
+        var authGroup = app.MapGroup("api/auth").WithTags("Authentications");
+        authGroup.MapIdentityEndpoints();
+        
+        var userGroup = app.MapGroup("api/users").WithTags("Users");
+        userGroup.MapUsersEndpoints();
+        
+        var statusGroup = app.MapGroup("api/status").WithTags("Status");
+        statusGroup.MapStatusEndpoints();
+        
+        var authorizationGroup = app.MapGroup("/").WithTags("Authorizations");
+        authorizationGroup.MapOpenIdConnectEndpoints();
         
 
         app.UseVueFallbackSpa();

@@ -1,93 +1,33 @@
-using System.Security.Claims;
-using Identity.API.Models;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity;
-using OpenIddict.Abstractions;
-using OpenIddict.Client.AspNetCore;
-using static OpenIddict.Abstractions.OpenIddictConstants;
-using static OpenIddict.Client.AspNetCore.OpenIddictClientAspNetCoreConstants;
-
 namespace Identity.API.EndPoints;
 
-public static class ExternalCallbackEndpoint
+public static class Extensions
 {
-    public static IEndpointRouteBuilder MapExternalCallbackEndpoint(this IEndpointRouteBuilder app)
+    public static IEndpointRouteBuilder MapExternalCallbackEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("Auth")
-            .WithTags("ExternalCallback")
-            .WithName("ExternalCallback");
-        
-        group.MapMethods("/signin-google", [HttpMethods.Get, HttpMethods.Post], HandleExternalLogin);
+ 
+        app.MapGetExternalCallbackEndpoint();
+        app.MapExternalCallbackEndpoint();
         
         return app;
     }
+}
 
-    private static async Task<IResult> HandleExternalLogin(
-        HttpContext context,
-        UserManager<AppUser> userManager,
-        SignInManager<AppUser> signInManager,
-        string returnUri = "~/"
-    )
+public static class GetExternalCallbackEndpoint
+{
+    public static RouteHandlerBuilder MapGetExternalCallbackEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        var authenticateResult =
-            await context.AuthenticateAsync(OpenIddictClientAspNetCoreDefaults.AuthenticationScheme);
-        if (!authenticateResult.Succeeded) return Results.Redirect($"/Authentication/Account/Login?returnUri={returnUri}");
-
-        if (!(authenticateResult.Principal?.Identity?.IsAuthenticated ?? false))
-            return Results.UnprocessableEntity("The external authorization data cannot be used for authentication.");
-
-        var email = authenticateResult.Principal.FindFirst(ClaimTypes.Email)?.Value;
-        if (string.IsNullOrEmpty(email)) return Results.NotFound("Email claim not found.");
-
-        var user = await userManager.FindByEmailAsync(email);
-        if (user is null)
-        {
-            user = CreateUser();
-            if (user is null) return Results.Problem("Failed to create user");
-
-            user.Email = email;
-            user.UserName = email;
-
-            var result = await userManager.CreateAsync(user);
-            if (!result.Succeeded)
-                return Results.Problem(
-                    string.Join(", ", result.Errors.Select(e => e.Description)),
-                    statusCode: StatusCodes.Status400BadRequest
-                );
-        }
-
-        var identity = new ClaimsIdentity(CookieAuthenticationDefaults.AuthenticationScheme);
-        identity.SetClaim(ClaimTypes.Email, email)
-            .SetClaim(ClaimTypes.Name, authenticateResult.Principal.GetClaim(ClaimTypes.Name))
-            .SetClaim(ClaimTypes.NameIdentifier,
-                authenticateResult.Principal.GetClaim(Claims.Private.RegistrationId));
-
-        var properties = new AuthenticationProperties(authenticateResult.Properties.Items)
-        {
-            RedirectUri = authenticateResult.Properties.RedirectUri ?? "/",
-        };
-
-        var tokensToStore = authenticateResult.Properties.GetTokens()
-            .Where(token =>
-                token.Name is Tokens.BackchannelAccessToken or Tokens.BackchannelIdentityToken or Tokens.RefreshToken);
-
-        properties.StoreTokens(tokensToStore);
-
-        await signInManager.SignInAsync(user, false, CookieAuthenticationDefaults.AuthenticationScheme);
-
-        return Results.SignIn(new(identity), properties, CookieAuthenticationDefaults.AuthenticationScheme);
+        return endpoints.MapGet("/signin-google", ExternalLogin.Handler)
+                .WithName(nameof(GetExternalCallbackEndpoint))
+            ;
     }
+}
 
-    private static AppUser? CreateUser()
+public static class ExternalCallbackEndpoint
+{
+    public static RouteHandlerBuilder MapExternalCallbackEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        try
-        {
-            return Activator.CreateInstance<AppUser>();
-        }
-        catch
-        {
-            return null;
-        }
+        return endpoints.MapPost("/signin-google", ExternalLogin.Handler)
+            .WithName(nameof(ExternalCallbackEndpoint));
     }
+    
 }

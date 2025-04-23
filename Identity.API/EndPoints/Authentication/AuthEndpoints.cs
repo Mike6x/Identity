@@ -8,73 +8,85 @@ public static class AuthEndpoints
 {
     public static IEndpointRouteBuilder MapIdentityEndpoints(this IEndpointRouteBuilder app)
     {
-        var group = app.MapGroup("Auth")
-            .WithTags("Authentication")
-            .WithName("Authentication");
-
-        group.MapPost("/login", LoginHandler)
-            .WithName("Login")
-            .AllowAnonymous();
-
-        group.MapPost("/logout", LogoutHandler)
-            .WithName("Logout")
-            .RequireAuthorization();
-
-
-        #region Handlers
-
-
-        async Task<IResult> LoginHandler(
-                       LoginRequest dto,
-
-                       SignInManager<AppUser> signInManager,
-                       UserManager<AppUser> userManager,
-                       HttpContext httpContext)
-        {
-            var user = await userManager.FindByEmailAsync(dto.Email);
-
-            var isPersistent = true;
-
-            if (string.IsNullOrWhiteSpace(user?.UserName))
-            {
-                await Task.Delay(Random.Shared.Next(100, 500));
-                return Results.Unauthorized();
-            }
-
-            var result = await signInManager.PasswordSignInAsync(user.UserName, dto.Password, isPersistent, false);
-
-            if (result.RequiresTwoFactor)
-            {
-                if (!string.IsNullOrEmpty(dto.TwoFactorCode))
-                {
-                    result = await signInManager.TwoFactorAuthenticatorSignInAsync(dto.TwoFactorCode, isPersistent, rememberClient: isPersistent);
-                }
-                else if (!string.IsNullOrEmpty(dto.TwoFactorRecoveryCode))
-                {
-                    result = await signInManager.TwoFactorRecoveryCodeSignInAsync(dto.TwoFactorRecoveryCode);
-                }
-                if (!result.Succeeded)
-                    return Results.Accepted("Otp Required");
-            }
-
-            //var user = await userManager.FindByEmailAsync("admin@localhost");
-
-            //await signInManager.SignInAsync(user, true);
-            if (!result.Succeeded)
-                return Results.Unauthorized();
-
-            return Results.Ok("Logged In");
-        }
-
-        async Task LogoutHandler(SignInManager<AppUser> signInManager)
-        {
-            await signInManager.SignOutAsync();
-        }
-
-        #endregion
+        app.MapLogInEndpoint();
+        app.MapLogOutEndpoint();
 
         return app;
     }
 
+
+}
+
+public static class LogInEndpoint
+{
+    public static RouteHandlerBuilder MapLogInEndpoint(this IEndpointRouteBuilder endpoints)
+    {
+        return endpoints.MapPost("/login",
+                LoginHandler)
+            .WithName(nameof(LogInEndpoint))
+            .WithSummary("Login User")
+            .WithDescription("Login User")
+            .AllowAnonymous();
+    }
+    
+    private static async Task<IResult> LoginHandler(
+        LoginRequest dto,
+
+        SignInManager<AppUser> signInManager,
+        UserManager<AppUser> userManager,
+        HttpContext httpContext)
+    {
+        var user = await userManager.FindByEmailAsync(dto.Email);
+
+        var isPersistent = true;
+
+        if (string.IsNullOrWhiteSpace(user?.UserName))
+        {
+            await Task.Delay(Random.Shared.Next(100, 500));
+            return Results.Unauthorized();
+        }
+
+        var result = await signInManager.PasswordSignInAsync(user.UserName, dto.Password, isPersistent, false);
+
+        if (result.RequiresTwoFactor)
+        {
+            if (!string.IsNullOrEmpty(dto.TwoFactorCode))
+            {
+                result = await signInManager.TwoFactorAuthenticatorSignInAsync(dto.TwoFactorCode, isPersistent, rememberClient: isPersistent);
+            }
+            else if (!string.IsNullOrEmpty(dto.TwoFactorRecoveryCode))
+            {
+                result = await signInManager.TwoFactorRecoveryCodeSignInAsync(dto.TwoFactorRecoveryCode);
+            }
+            if (!result.Succeeded)
+                return Results.Accepted("Otp Required");
+        }
+
+        //var user = await userManager.FindByEmailAsync("admin@localhost");
+
+        //await signInManager.SignInAsync(user, true);
+        if (!result.Succeeded)
+            return Results.Unauthorized();
+
+        return Results.Ok("Logged In");
+    }
+
+}
+
+public static class LogOutEndpoint
+{
+    public static RouteHandlerBuilder MapLogOutEndpoint(this IEndpointRouteBuilder endpoints)
+    {
+        return endpoints.MapPost("/logout", LogoutHandler)
+            .WithName(nameof(LogOutEndpoint))
+            .WithSummary("Log Out")
+            .WithDescription("Log Out.")
+            .RequireAuthorization();
+    }
+    
+    private static async Task LogoutHandler(SignInManager<AppUser> signInManager)
+    {
+        await signInManager.SignOutAsync();
+    }
 
 }

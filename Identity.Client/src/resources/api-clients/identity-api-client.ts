@@ -8,7 +8,7 @@
 /* eslint-disable */
 // ReSharper disable InconsistentNaming
 
-export class StatusClient extends ClientBase {
+export class External_LoginsClient extends ClientBase {
     private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -19,40 +19,156 @@ export class StatusClient extends ClientBase {
         this.baseUrl = this.getBaseUrl("https://localhost:7000", baseUrl);
     }
 
-    status(): Promise<StatusDto> {
-        let url_ = this.baseUrl + "/api/status";
+    signinGoogleGet(returnUri?: string | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/callback/signin-google?";
+        if (returnUri === null)
+            throw new Error("The parameter 'returnUri' cannot be null.");
+        else if (returnUri !== undefined)
+            url_ += "returnUri=" + encodeURIComponent("" + returnUri) + "&";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {
             method: "GET",
             headers: {
-                "Accept": "application/json"
             }
         };
 
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.transformResult(url_, _response, (_response: Response) => this.processStatus(_response));
+            return this.transformResult(url_, _response, (_response: Response) => this.processSigninGoogleGet(_response));
         });
     }
 
-    protected processStatus(response: Response): Promise<StatusDto> {
+    protected processSigninGoogleGet(response: Response): Promise<void> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            result200 = StatusDto.fromJS(resultData200);
-            return result200;
+            return;
             });
         } else if (status !== 200 && status !== 204) {
             return response.text().then((_responseText) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<StatusDto>(null as any);
+        return Promise.resolve<void>(null as any);
+    }
+
+    signinGooglePost(returnUri?: string | undefined): Promise<void> {
+        let url_ = this.baseUrl + "/api/callback/signin-google?";
+        if (returnUri === null)
+            throw new Error("The parameter 'returnUri' cannot be null.");
+        else if (returnUri !== undefined)
+            url_ += "returnUri=" + encodeURIComponent("" + returnUri) + "&";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "POST",
+            headers: {
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.transformResult(url_, _response, (_response: Response) => this.processSigninGooglePost(_response));
+        });
+    }
+
+    protected processSigninGooglePost(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+}
+
+export class AuthenticationsClient extends ClientBase {
+    private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
+    private baseUrl: string;
+    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
+
+    constructor(baseUrl?: string, http?: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> }) {
+        super();
+        this.http = http ? http : window as any;
+        this.baseUrl = this.getBaseUrl("https://localhost:7000", baseUrl);
+    }
+
+    login(dto: LoginRequest): Promise<void> {
+        let url_ = this.baseUrl + "/api/auth/login";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(dto);
+
+        let options_: RequestInit = {
+            body: content_,
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.transformResult(url_, _response, (_response: Response) => this.processLogin(_response));
+        });
+    }
+
+    protected processLogin(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    logout(): Promise<void> {
+        let url_ = this.baseUrl + "/api/auth/logout";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "POST",
+            headers: {
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.transformResult(url_, _response, (_response: Response) => this.processLogout(_response));
+        });
+    }
+
+    protected processLogout(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
     }
 }
 
@@ -65,6 +181,42 @@ export class UsersClient extends ClientBase {
         super();
         this.http = http ? http : window as any;
         this.baseUrl = this.getBaseUrl("https://localhost:7000", baseUrl);
+    }
+
+    register(model: RegisterInputModel): Promise<void> {
+        let url_ = this.baseUrl + "/api/users/register";
+        url_ = url_.replace(/[?&]$/, "");
+
+        const content_ = JSON.stringify(model);
+
+        let options_: RequestInit = {
+            body: content_,
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.transformResult(url_, _response, (_response: Response) => this.processRegister(_response));
+        });
+    }
+
+    protected processRegister(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
     }
 
     me(): Promise<UserDto> {
@@ -103,17 +255,14 @@ export class UsersClient extends ClientBase {
         return Promise.resolve<UserDto>(null as any);
     }
 
-    users(model: RegisterInputModel): Promise<void> {
+    users(): Promise<UserDto[]> {
         let url_ = this.baseUrl + "/api/users";
         url_ = url_.replace(/[?&]$/, "");
 
-        const content_ = JSON.stringify(model);
-
         let options_: RequestInit = {
-            body: content_,
-            method: "POST",
+            method: "GET",
             headers: {
-                "Content-Type": "application/json",
+                "Accept": "application/json"
             }
         };
 
@@ -124,23 +273,33 @@ export class UsersClient extends ClientBase {
         });
     }
 
-    protected processUsers(response: Response): Promise<void> {
+    protected processUsers(response: Response): Promise<UserDto[]> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
-            return;
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            if (Array.isArray(resultData200)) {
+                result200 = [] as any;
+                for (let item of resultData200)
+                    result200!.push(UserDto.fromJS(item));
+            }
+            else {
+                result200 = <any>null;
+            }
+            return result200;
             });
         } else if (status !== 200 && status !== 204) {
             return response.text().then((_responseText) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<void>(null as any);
+        return Promise.resolve<UserDto[]>(null as any);
     }
 }
 
-export class AuthenticationClient extends ClientBase {
+export class StatusClient extends ClientBase {
     private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -151,160 +310,44 @@ export class AuthenticationClient extends ClientBase {
         this.baseUrl = this.getBaseUrl("https://localhost:7000", baseUrl);
     }
 
-    login(dto: LoginRequest): Promise<void> {
-        let url_ = this.baseUrl + "/api/Auth/login";
-        url_ = url_.replace(/[?&]$/, "");
-
-        const content_ = JSON.stringify(dto);
-
-        let options_: RequestInit = {
-            body: content_,
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            }
-        };
-
-        return this.transformOptions(options_).then(transformedOptions_ => {
-            return this.http.fetch(url_, transformedOptions_);
-        }).then((_response: Response) => {
-            return this.transformResult(url_, _response, (_response: Response) => this.processLogin(_response));
-        });
-    }
-
-    protected processLogin(response: Response): Promise<void> {
-        const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
-        if (status === 200) {
-            return response.text().then((_responseText) => {
-            return;
-            });
-        } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
-        }
-        return Promise.resolve<void>(null as any);
-    }
-
-    logout(): Promise<void> {
-        let url_ = this.baseUrl + "/api/Auth/logout";
-        url_ = url_.replace(/[?&]$/, "");
-
-        let options_: RequestInit = {
-            method: "POST",
-            headers: {
-            }
-        };
-
-        return this.transformOptions(options_).then(transformedOptions_ => {
-            return this.http.fetch(url_, transformedOptions_);
-        }).then((_response: Response) => {
-            return this.transformResult(url_, _response, (_response: Response) => this.processLogout(_response));
-        });
-    }
-
-    protected processLogout(response: Response): Promise<void> {
-        const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
-        if (status === 200) {
-            return response.text().then((_responseText) => {
-            return;
-            });
-        } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
-        }
-        return Promise.resolve<void>(null as any);
-    }
-}
-
-export class ExternalCallbackClient extends ClientBase {
-    private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
-    private baseUrl: string;
-    protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
-
-    constructor(baseUrl?: string, http?: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> }) {
-        super();
-        this.http = http ? http : window as any;
-        this.baseUrl = this.getBaseUrl("https://localhost:7000", baseUrl);
-    }
-
-    signinGoogleGet(returnUri?: string | undefined): Promise<void> {
-        let url_ = this.baseUrl + "/api/Auth/signin-google?";
-        if (returnUri === null)
-            throw new Error("The parameter 'returnUri' cannot be null.");
-        else if (returnUri !== undefined)
-            url_ += "returnUri=" + encodeURIComponent("" + returnUri) + "&";
+    status(): Promise<StatusDto> {
+        let url_ = this.baseUrl + "/api/status/status";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {
             method: "GET",
             headers: {
+                "Accept": "application/json"
             }
         };
 
         return this.transformOptions(options_).then(transformedOptions_ => {
             return this.http.fetch(url_, transformedOptions_);
         }).then((_response: Response) => {
-            return this.transformResult(url_, _response, (_response: Response) => this.processSigninGoogleGet(_response));
+            return this.transformResult(url_, _response, (_response: Response) => this.processStatus(_response));
         });
     }
 
-    protected processSigninGoogleGet(response: Response): Promise<void> {
+    protected processStatus(response: Response): Promise<StatusDto> {
         const status = response.status;
         let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
         if (status === 200) {
             return response.text().then((_responseText) => {
-            return;
+            let result200: any = null;
+            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
+            result200 = StatusDto.fromJS(resultData200);
+            return result200;
             });
         } else if (status !== 200 && status !== 204) {
             return response.text().then((_responseText) => {
             return throwException("An unexpected server error occurred.", status, _responseText, _headers);
             });
         }
-        return Promise.resolve<void>(null as any);
-    }
-
-    signinGooglePost(returnUri?: string | undefined): Promise<void> {
-        let url_ = this.baseUrl + "/api/Auth/signin-google?";
-        if (returnUri === null)
-            throw new Error("The parameter 'returnUri' cannot be null.");
-        else if (returnUri !== undefined)
-            url_ += "returnUri=" + encodeURIComponent("" + returnUri) + "&";
-        url_ = url_.replace(/[?&]$/, "");
-
-        let options_: RequestInit = {
-            method: "POST",
-            headers: {
-            }
-        };
-
-        return this.transformOptions(options_).then(transformedOptions_ => {
-            return this.http.fetch(url_, transformedOptions_);
-        }).then((_response: Response) => {
-            return this.transformResult(url_, _response, (_response: Response) => this.processSigninGooglePost(_response));
-        });
-    }
-
-    protected processSigninGooglePost(response: Response): Promise<void> {
-        const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
-        if (status === 200) {
-            return response.text().then((_responseText) => {
-            return;
-            });
-        } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
-        }
-        return Promise.resolve<void>(null as any);
+        return Promise.resolve<StatusDto>(null as any);
     }
 }
 
-export class AuthorizationClient extends ClientBase {
+export class AuthorizationsClient extends ClientBase {
     private http: { fetch(url: RequestInfo, init?: RequestInit): Promise<Response> };
     private baseUrl: string;
     protected jsonParseReviver: ((key: string, value: any) => any) | undefined = undefined;
@@ -316,7 +359,7 @@ export class AuthorizationClient extends ClientBase {
     }
 
     authorize(): Promise<void> {
-        let url_ = this.baseUrl + "/connect/authorize";
+        let url_ = this.baseUrl + "/authorize";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {
@@ -347,8 +390,72 @@ export class AuthorizationClient extends ClientBase {
         return Promise.resolve<void>(null as any);
     }
 
+    userinfo(): Promise<void> {
+        let url_ = this.baseUrl + "/userinfo";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.transformResult(url_, _response, (_response: Response) => this.processUserinfo(_response));
+        });
+    }
+
+    protected processUserinfo(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
+    endsession(): Promise<void> {
+        let url_ = this.baseUrl + "/endsession";
+        url_ = url_.replace(/[?&]$/, "");
+
+        let options_: RequestInit = {
+            method: "GET",
+            headers: {
+            }
+        };
+
+        return this.transformOptions(options_).then(transformedOptions_ => {
+            return this.http.fetch(url_, transformedOptions_);
+        }).then((_response: Response) => {
+            return this.transformResult(url_, _response, (_response: Response) => this.processEndsession(_response));
+        });
+    }
+
+    protected processEndsession(response: Response): Promise<void> {
+        const status = response.status;
+        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
+        if (status === 200) {
+            return response.text().then((_responseText) => {
+            return;
+            });
+        } else if (status !== 200 && status !== 204) {
+            return response.text().then((_responseText) => {
+            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
+            });
+        }
+        return Promise.resolve<void>(null as any);
+    }
+
     tokenPost(): Promise<void> {
-        let url_ = this.baseUrl + "/connect/token";
+        let url_ = this.baseUrl + "/token";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {
@@ -380,7 +487,7 @@ export class AuthorizationClient extends ClientBase {
     }
 
     tokenGet(): Promise<void> {
-        let url_ = this.baseUrl + "/connect/token";
+        let url_ = this.baseUrl + "/token";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {
@@ -410,213 +517,6 @@ export class AuthorizationClient extends ClientBase {
         }
         return Promise.resolve<void>(null as any);
     }
-
-    userinfo(): Promise<Claim[]> {
-        let url_ = this.baseUrl + "/connect/userinfo";
-        url_ = url_.replace(/[?&]$/, "");
-
-        let options_: RequestInit = {
-            method: "GET",
-            headers: {
-                "Accept": "application/json"
-            }
-        };
-
-        return this.transformOptions(options_).then(transformedOptions_ => {
-            return this.http.fetch(url_, transformedOptions_);
-        }).then((_response: Response) => {
-            return this.transformResult(url_, _response, (_response: Response) => this.processUserinfo(_response));
-        });
-    }
-
-    protected processUserinfo(response: Response): Promise<Claim[]> {
-        const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
-        if (status === 200) {
-            return response.text().then((_responseText) => {
-            let result200: any = null;
-            let resultData200 = _responseText === "" ? null : JSON.parse(_responseText, this.jsonParseReviver);
-            if (Array.isArray(resultData200)) {
-                result200 = [] as any;
-                for (let item of resultData200)
-                    result200!.push(Claim.fromJS(item));
-            }
-            else {
-                result200 = <any>null;
-            }
-            return result200;
-            });
-        } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
-        }
-        return Promise.resolve<Claim[]>(null as any);
-    }
-
-    endsession(): Promise<void> {
-        let url_ = this.baseUrl + "/connect/endsession";
-        url_ = url_.replace(/[?&]$/, "");
-
-        let options_: RequestInit = {
-            method: "GET",
-            headers: {
-            }
-        };
-
-        return this.transformOptions(options_).then(transformedOptions_ => {
-            return this.http.fetch(url_, transformedOptions_);
-        }).then((_response: Response) => {
-            return this.transformResult(url_, _response, (_response: Response) => this.processEndsession(_response));
-        });
-    }
-
-    protected processEndsession(response: Response): Promise<void> {
-        const status = response.status;
-        let _headers: any = {}; if (response.headers && response.headers.forEach) { response.headers.forEach((v: any, k: any) => _headers[k] = v); };
-        if (status === 200) {
-            return response.text().then((_responseText) => {
-            return;
-            });
-        } else if (status !== 200 && status !== 204) {
-            return response.text().then((_responseText) => {
-            return throwException("An unexpected server error occurred.", status, _responseText, _headers);
-            });
-        }
-        return Promise.resolve<void>(null as any);
-    }
-}
-
-export class StatusDto implements IStatusDto {
-    api?: string;
-    db?: string;
-    timeStamp?: Date;
-
-    constructor(data?: IStatusDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.api = _data["api"];
-            this.db = _data["db"];
-            this.timeStamp = _data["timeStamp"] ? new Date(_data["timeStamp"].toString()) : <any>undefined;
-        }
-    }
-
-    static fromJS(data: any): StatusDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new StatusDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["api"] = this.api;
-        data["db"] = this.db;
-        data["timeStamp"] = this.timeStamp ? this.timeStamp.toISOString() : <any>undefined;
-        return data;
-    }
-}
-
-export interface IStatusDto {
-    api?: string;
-    db?: string;
-    timeStamp?: Date;
-}
-
-export class UserDto implements IUserDto {
-    id?: string;
-    userName?: string;
-    email?: string;
-
-    constructor(data?: IUserDto) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.id = _data["id"];
-            this.userName = _data["userName"];
-            this.email = _data["email"];
-        }
-    }
-
-    static fromJS(data: any): UserDto {
-        data = typeof data === 'object' ? data : {};
-        let result = new UserDto();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["id"] = this.id;
-        data["userName"] = this.userName;
-        data["email"] = this.email;
-        return data;
-    }
-}
-
-export interface IUserDto {
-    id?: string;
-    userName?: string;
-    email?: string;
-}
-
-export class RegisterInputModel implements IRegisterInputModel {
-    email!: string;
-    password!: string;
-    confirmPassword?: string;
-
-    constructor(data?: IRegisterInputModel) {
-        if (data) {
-            for (var property in data) {
-                if (data.hasOwnProperty(property))
-                    (<any>this)[property] = (<any>data)[property];
-            }
-        }
-    }
-
-    init(_data?: any) {
-        if (_data) {
-            this.email = _data["email"];
-            this.password = _data["password"];
-            this.confirmPassword = _data["confirmPassword"];
-        }
-    }
-
-    static fromJS(data: any): RegisterInputModel {
-        data = typeof data === 'object' ? data : {};
-        let result = new RegisterInputModel();
-        result.init(data);
-        return result;
-    }
-
-    toJSON(data?: any) {
-        data = typeof data === 'object' ? data : {};
-        data["email"] = this.email;
-        data["password"] = this.password;
-        data["confirmPassword"] = this.confirmPassword;
-        return data;
-    }
-}
-
-export interface IRegisterInputModel {
-    email: string;
-    password: string;
-    confirmPassword?: string;
 }
 
 export class LoginRequest implements ILoginRequest {
@@ -667,17 +567,12 @@ export interface ILoginRequest {
     twoFactorRecoveryCode?: string | undefined;
 }
 
-export class Claim implements IClaim {
-    customSerializationData?: string | undefined;
-    issuer?: string;
-    originalIssuer?: string;
-    properties?: { [key: string]: string; };
-    subject?: ClaimsIdentity | undefined;
-    type?: string;
-    value?: string;
-    valueType?: string;
+export class RegisterInputModel implements IRegisterInputModel {
+    email!: string;
+    password!: string;
+    confirmPassword?: string;
 
-    constructor(data?: IClaim) {
+    constructor(data?: IRegisterInputModel) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -688,75 +583,40 @@ export class Claim implements IClaim {
 
     init(_data?: any) {
         if (_data) {
-            this.customSerializationData = _data["customSerializationData"];
-            this.issuer = _data["issuer"];
-            this.originalIssuer = _data["originalIssuer"];
-            if (_data["properties"]) {
-                this.properties = {} as any;
-                for (let key in _data["properties"]) {
-                    if (_data["properties"].hasOwnProperty(key))
-                        (<any>this.properties)![key] = _data["properties"][key];
-                }
-            }
-            this.subject = _data["subject"] ? ClaimsIdentity.fromJS(_data["subject"]) : <any>undefined;
-            this.type = _data["type"];
-            this.value = _data["value"];
-            this.valueType = _data["valueType"];
+            this.email = _data["email"];
+            this.password = _data["password"];
+            this.confirmPassword = _data["confirmPassword"];
         }
     }
 
-    static fromJS(data: any): Claim {
+    static fromJS(data: any): RegisterInputModel {
         data = typeof data === 'object' ? data : {};
-        let result = new Claim();
+        let result = new RegisterInputModel();
         result.init(data);
         return result;
     }
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["customSerializationData"] = this.customSerializationData;
-        data["issuer"] = this.issuer;
-        data["originalIssuer"] = this.originalIssuer;
-        if (this.properties) {
-            data["properties"] = {};
-            for (let key in this.properties) {
-                if (this.properties.hasOwnProperty(key))
-                    (<any>data["properties"])[key] = (<any>this.properties)[key];
-            }
-        }
-        data["subject"] = this.subject ? this.subject.toJSON() : <any>undefined;
-        data["type"] = this.type;
-        data["value"] = this.value;
-        data["valueType"] = this.valueType;
+        data["email"] = this.email;
+        data["password"] = this.password;
+        data["confirmPassword"] = this.confirmPassword;
         return data;
     }
 }
 
-export interface IClaim {
-    customSerializationData?: string | undefined;
-    issuer?: string;
-    originalIssuer?: string;
-    properties?: { [key: string]: string; };
-    subject?: ClaimsIdentity | undefined;
-    type?: string;
-    value?: string;
-    valueType?: string;
+export interface IRegisterInputModel {
+    email: string;
+    password: string;
+    confirmPassword?: string;
 }
 
-export class ClaimsIdentity implements IClaimsIdentity {
-    authenticationType?: string | undefined;
-    isAuthenticated?: boolean;
-    actor?: ClaimsIdentity | undefined;
-    bootstrapContext?: any | undefined;
-    claims?: Claim[];
-    customSerializationData?: string | undefined;
-    externalClaims?: Claim[][];
-    label?: string | undefined;
-    name?: string | undefined;
-    nameClaimType?: string;
-    roleClaimType?: string;
+export class UserDto implements IUserDto {
+    id?: string;
+    userName?: string;
+    email?: string;
 
-    constructor(data?: IClaimsIdentity) {
+    constructor(data?: IUserDto) {
         if (data) {
             for (var property in data) {
                 if (data.hasOwnProperty(property))
@@ -767,72 +627,76 @@ export class ClaimsIdentity implements IClaimsIdentity {
 
     init(_data?: any) {
         if (_data) {
-            this.authenticationType = _data["authenticationType"];
-            this.isAuthenticated = _data["isAuthenticated"];
-            this.actor = _data["actor"] ? ClaimsIdentity.fromJS(_data["actor"]) : <any>undefined;
-            this.bootstrapContext = _data["bootstrapContext"];
-            if (Array.isArray(_data["claims"])) {
-                this.claims = [] as any;
-                for (let item of _data["claims"])
-                    this.claims!.push(Claim.fromJS(item));
-            }
-            this.customSerializationData = _data["customSerializationData"];
-            if (Array.isArray(_data["externalClaims"])) {
-                this.externalClaims = [] as any;
-                for (let item of _data["externalClaims"])
-                    this.externalClaims!.push(item);
-            }
-            this.label = _data["label"];
-            this.name = _data["name"];
-            this.nameClaimType = _data["nameClaimType"];
-            this.roleClaimType = _data["roleClaimType"];
+            this.id = _data["id"];
+            this.userName = _data["userName"];
+            this.email = _data["email"];
         }
     }
 
-    static fromJS(data: any): ClaimsIdentity {
+    static fromJS(data: any): UserDto {
         data = typeof data === 'object' ? data : {};
-        let result = new ClaimsIdentity();
+        let result = new UserDto();
         result.init(data);
         return result;
     }
 
     toJSON(data?: any) {
         data = typeof data === 'object' ? data : {};
-        data["authenticationType"] = this.authenticationType;
-        data["isAuthenticated"] = this.isAuthenticated;
-        data["actor"] = this.actor ? this.actor.toJSON() : <any>undefined;
-        data["bootstrapContext"] = this.bootstrapContext;
-        if (Array.isArray(this.claims)) {
-            data["claims"] = [];
-            for (let item of this.claims)
-                data["claims"].push(item.toJSON());
-        }
-        data["customSerializationData"] = this.customSerializationData;
-        if (Array.isArray(this.externalClaims)) {
-            data["externalClaims"] = [];
-            for (let item of this.externalClaims)
-                data["externalClaims"].push(item);
-        }
-        data["label"] = this.label;
-        data["name"] = this.name;
-        data["nameClaimType"] = this.nameClaimType;
-        data["roleClaimType"] = this.roleClaimType;
+        data["id"] = this.id;
+        data["userName"] = this.userName;
+        data["email"] = this.email;
         return data;
     }
 }
 
-export interface IClaimsIdentity {
-    authenticationType?: string | undefined;
-    isAuthenticated?: boolean;
-    actor?: ClaimsIdentity | undefined;
-    bootstrapContext?: any | undefined;
-    claims?: Claim[];
-    customSerializationData?: string | undefined;
-    externalClaims?: Claim[][];
-    label?: string | undefined;
-    name?: string | undefined;
-    nameClaimType?: string;
-    roleClaimType?: string;
+export interface IUserDto {
+    id?: string;
+    userName?: string;
+    email?: string;
+}
+
+export class StatusDto implements IStatusDto {
+    api?: string;
+    db?: string;
+    timeStamp?: Date;
+
+    constructor(data?: IStatusDto) {
+        if (data) {
+            for (var property in data) {
+                if (data.hasOwnProperty(property))
+                    (<any>this)[property] = (<any>data)[property];
+            }
+        }
+    }
+
+    init(_data?: any) {
+        if (_data) {
+            this.api = _data["api"];
+            this.db = _data["db"];
+            this.timeStamp = _data["timeStamp"] ? new Date(_data["timeStamp"].toString()) : <any>undefined;
+        }
+    }
+
+    static fromJS(data: any): StatusDto {
+        data = typeof data === 'object' ? data : {};
+        let result = new StatusDto();
+        result.init(data);
+        return result;
+    }
+
+    toJSON(data?: any) {
+        data = typeof data === 'object' ? data : {};
+        data["api"] = this.api;
+        data["db"] = this.db;
+        data["timeStamp"] = this.timeStamp ? this.timeStamp.toISOString() : <any>undefined;
+        return data;
+    }
+}
+
+export interface IStatusDto {
+    api?: string;
+    db?: string;
+    timeStamp?: Date;
 }
 
 export class ApiException extends Error {
