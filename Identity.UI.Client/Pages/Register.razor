@@ -59,7 +59,7 @@
     public async Task RegisterUserAsync(EditContext editContext)
     {
         var httpclient = HttpClientFactory.CreateClient("AuthorityHttpClient");
-        var response = await httpclient.PostAsJsonAsync("api/users", RegisterInputModel);
+        var response = await httpclient.PostAsJsonAsync("api/users/register", RegisterInputModel);
         if (response.StatusCode == HttpStatusCode.OK)
         {
             NavigationManager.NavigateTo("/account/login");

@@ -31,7 +31,7 @@ public static class IdentityMiddlewarePipeline
         var statusGroup = app.MapGroup("api/status").WithTags("Status");
         statusGroup.MapStatusEndpoints();
         
-        var authorizationGroup = app.MapGroup("/").WithTags("Authorizations");
+        var authorizationGroup = app.MapGroup("connect").WithTags("Authorizations");
         authorizationGroup.MapOpenIdConnectEndpoints();
         
 

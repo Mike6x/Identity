@@ -359,7 +359,7 @@ export class AuthorizationsClient extends ClientBase {
     }
 
     authorize(): Promise<void> {
-        let url_ = this.baseUrl + "/authorize";
+        let url_ = this.baseUrl + "/connect/authorize";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {
@@ -391,7 +391,7 @@ export class AuthorizationsClient extends ClientBase {
     }
 
     userinfo(): Promise<void> {
-        let url_ = this.baseUrl + "/userinfo";
+        let url_ = this.baseUrl + "/connect/userinfo";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {
@@ -423,7 +423,7 @@ export class AuthorizationsClient extends ClientBase {
     }
 
     endsession(): Promise<void> {
-        let url_ = this.baseUrl + "/endsession";
+        let url_ = this.baseUrl + "/connect/endsession";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {
@@ -455,7 +455,7 @@ export class AuthorizationsClient extends ClientBase {
     }
 
     tokenPost(): Promise<void> {
-        let url_ = this.baseUrl + "/token";
+        let url_ = this.baseUrl + "/connect/token";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {
@@ -487,7 +487,7 @@ export class AuthorizationsClient extends ClientBase {
     }
 
     tokenGet(): Promise<void> {
-        let url_ = this.baseUrl + "/token";
+        let url_ = this.baseUrl + "/connect/token";
         url_ = url_.replace(/[?&]$/, "");
 
         let options_: RequestInit = {

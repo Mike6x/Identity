@@ -644,8 +644,8 @@ namespace MyNamespace
 
                     var urlBuilder_ = new System.Text.StringBuilder();
                     if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "authorize"
-                    urlBuilder_.Append("authorize");
+                    // Operation Path: "connect/authorize"
+                    urlBuilder_.Append("connect/authorize");
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -708,8 +708,8 @@ namespace MyNamespace
 
                     var urlBuilder_ = new System.Text.StringBuilder();
                     if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "userinfo"
-                    urlBuilder_.Append("userinfo");
+                    // Operation Path: "connect/userinfo"
+                    urlBuilder_.Append("connect/userinfo");
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -772,8 +772,8 @@ namespace MyNamespace
 
                     var urlBuilder_ = new System.Text.StringBuilder();
                     if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "endsession"
-                    urlBuilder_.Append("endsession");
+                    // Operation Path: "connect/endsession"
+                    urlBuilder_.Append("connect/endsession");
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -837,8 +837,8 @@ namespace MyNamespace
 
                     var urlBuilder_ = new System.Text.StringBuilder();
                     if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "token"
-                    urlBuilder_.Append("token");
+                    // Operation Path: "connect/token"
+                    urlBuilder_.Append("connect/token");
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -901,8 +901,8 @@ namespace MyNamespace
 
                     var urlBuilder_ = new System.Text.StringBuilder();
                     if (!string.IsNullOrEmpty(_baseUrl)) urlBuilder_.Append(_baseUrl);
-                    // Operation Path: "token"
-                    urlBuilder_.Append("token");
+                    // Operation Path: "connect/token"
+                    urlBuilder_.Append("connect/token");
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
