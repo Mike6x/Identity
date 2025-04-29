@@ -6,7 +6,7 @@ public static class ServicesRegistration
 {
     public static void RegisterServices(this WebApplicationBuilder builder)
     {
-        builder.Services.AddTransient<AuthService>();
+        builder.Services.AddTransient<AuthorizationService>();
         builder.Services.AddTransient<ClientSeeder>();
         
     }

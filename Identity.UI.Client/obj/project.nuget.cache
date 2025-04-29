@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "6AlrprxDUFU=",
+  "dgSpecHash": "T0lhgPuGLNw=",
   "success": true,
   "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Client/Identity.UI.Client.csproj",
   "expectedPackageFiles": [
@@ -32,19 +32,20 @@
     "/Users/tuanpa/.nuget/packages/microsoft.extensions.options/9.0.4/microsoft.extensions.options.9.0.4.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.extensions.options.configurationextensions/9.0.4/microsoft.extensions.options.configurationextensions.9.0.4.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.extensions.primitives/9.0.4/microsoft.extensions.primitives.9.0.4.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.abstractions/8.8.0/microsoft.identitymodel.abstractions.8.8.0.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.jsonwebtokens/8.8.0/microsoft.identitymodel.jsonwebtokens.8.8.0.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.logging/8.8.0/microsoft.identitymodel.logging.8.8.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.abstractions/8.9.0/microsoft.identitymodel.abstractions.8.9.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.jsonwebtokens/8.9.0/microsoft.identitymodel.jsonwebtokens.8.9.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.logging/8.9.0/microsoft.identitymodel.logging.8.9.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.protocols/8.4.0/microsoft.identitymodel.protocols.8.4.0.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.tokens/8.8.0/microsoft.identitymodel.tokens.8.8.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.tokens/8.9.0/microsoft.identitymodel.tokens.8.9.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.jsinterop/9.0.4/microsoft.jsinterop.9.0.4.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.jsinterop.webassembly/9.0.4/microsoft.jsinterop.webassembly.9.0.4.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/microsoft.net.illink.tasks/9.0.2/microsoft.net.illink.tasks.9.0.2.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/microsoft.net.sdk.webassembly.pack/9.0.2/microsoft.net.sdk.webassembly.pack.9.0.2.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/openiddict.abstractions/6.2.0/openiddict.abstractions.6.2.0.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/openiddict.client/6.2.0/openiddict.client.6.2.0.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/system.identitymodel.tokens.jwt/8.8.0/system.identitymodel.tokens.jwt.8.8.0.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/9.0.2/microsoft.netcore.app.runtime.mono.browser-wasm.9.0.2.nupkg.sha512"
+    "/Users/tuanpa/.nuget/packages/microsoft.net.illink.tasks/9.0.1/microsoft.net.illink.tasks.9.0.1.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.net.sdk.webassembly.pack/9.0.0/microsoft.net.sdk.webassembly.pack.9.0.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/openiddict.abstractions/6.2.1/openiddict.abstractions.6.2.1.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/openiddict.client/6.2.1/openiddict.client.6.2.1.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/system.identitymodel.tokens.jwt/8.9.0/system.identitymodel.tokens.jwt.8.9.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/9.0.0/microsoft.netcore.app.runtime.mono.browser-wasm.9.0.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.1/microsoft.aspnetcore.app.ref.9.0.1.nupkg.sha512"
   ],
   "logs": []
 }

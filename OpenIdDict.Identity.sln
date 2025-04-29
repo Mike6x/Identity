@@ -8,6 +8,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.UI.Infrastructure"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.UI.Client", "Identity.UI.Client\Identity.UI.Client.csproj", "{50347708-BA06-4A0E-B957-16EA1741459C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Resource", "Resource\Resource.csproj", "{9CB2E450-0320-434D-8310-9721FAE632B2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,5 +32,9 @@ Global
 		{50347708-BA06-4A0E-B957-16EA1741459C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{50347708-BA06-4A0E-B957-16EA1741459C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{50347708-BA06-4A0E-B957-16EA1741459C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9CB2E450-0320-434D-8310-9721FAE632B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9CB2E450-0320-434D-8310-9721FAE632B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9CB2E450-0320-434D-8310-9721FAE632B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9CB2E450-0320-434D-8310-9721FAE632B2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

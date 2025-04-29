@@ -2,58 +2,52 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.Extensions.Primitives;
 using OpenIddict.Abstractions;
-using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Identity.API.Services;
 
-public static class AuthorizationService
+public class AuthorizationService
 {
-    public static IDictionary<string, StringValues> ParseOAuthParameters(HttpContext context,
-        List<string>? excluding = null)
+
+    public string BuildRedirectUrl(HttpRequest request, IDictionary<string, StringValues> parameters)
     {
-        excluding ??= [];
-
-        var parameters = context.Request.HasFormContentType
-            ? context.Request.Form
-                .Where(v => !excluding.Contains(v.Key))
-                .ToDictionary(v => v.Key, v => v.Value)
-            : context.Request.Query
-                .Where(v => !excluding.Contains(v.Key))
-                .ToDictionary(v => v.Key, v => v.Value);
-
-        return parameters;
-    }
-
-    public static string BuildRedirectUrl(HttpRequest request, IDictionary<string, StringValues> oAuthparameters)
-    {
-        var url = $"{request.PathBase}{request.Path}{QueryString.Create(oAuthparameters)}";
+        var url = request.PathBase + request.Path + QueryString.Create(parameters);
         return url;
     }
-
-    public static bool IsAuthenticated(AuthenticateResult authenticateResult, OpenIddictRequest request)
+    
+    public bool IsAuthenticated(AuthenticateResult? result, OpenIddictRequest request)
     {
-        if (!authenticateResult.Succeeded) return false;
+        if (result is { Succeeded: false }) { return false; }
 
-        if (!request.MaxAge.HasValue || authenticateResult.Properties is null) return true;
-
+        if (!request.MaxAge.HasValue || result?.Properties == null) return true;
+        
         var maxAgeSeconds = TimeSpan.FromSeconds(request.MaxAge.Value);
-
-        var expired = !authenticateResult.Properties.IssuedUtc.HasValue ||
-                      DateTimeOffset.UtcNow - authenticateResult.Properties.IssuedUtc > maxAgeSeconds;
-
+        var expired = !result.Properties.IssuedUtc.HasValue 
+                      || DateTimeOffset.UtcNow - result.Properties.IssuedUtc > maxAgeSeconds;
         return !expired;
     }
+    
+    public IDictionary<string, StringValues> ParseOAuthParameters(HttpContext httpContext, List<string?> excluding = null) =>
+        httpContext.Request.HasFormContentType
+            ? httpContext.Request.Form.Where(parameter => !excluding.Contains(parameter.Key))
+                .ToDictionary()
+            : httpContext.Request.Query.Where(parameter => !excluding.Contains(parameter.Key))
+                .ToDictionary();
 
     public static List<string> GetDestinations(ClaimsIdentity identity, Claim claim)
     {
-        List<string> destinations = [];
+        var destinations = new List<string>();
 
-        if (claim.Type is Claims.Name or Claims.Username or Claims.Role)
-            destinations.Add(Destinations.AccessToken);
+        if (claim.Type is OpenIddictConstants.Claims.Name or OpenIddictConstants.Claims.Email)
+        {
+            destinations.Add(OpenIddictConstants.Destinations.AccessToken);
 
-        if (claim.Type is Claims.Name or Claims.Username or Claims.Role or Claims.Email )
-            destinations.Add(Destinations.IdentityToken);
+            if (identity.HasScope(OpenIddictConstants.Scopes.OpenId))
+            {
+                destinations.Add(OpenIddictConstants.Destinations.IdentityToken);
+            }
+        }
 
         return destinations;
     }
+    
 }
