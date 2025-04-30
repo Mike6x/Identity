@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bbyU/mwKSnc=",
+  "dgSpecHash": "QohLSmoFraM=",
   "success": true,
   "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.API/Identity.API.csproj",
   "expectedPackageFiles": [
@@ -130,6 +130,9 @@
     "/Users/tuanpa/.nuget/packages/proggmatic.spaservices.vite/9.0.1/proggmatic.spaservices.vite.9.0.1.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/quartz/3.13.1/quartz.3.13.1.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/quartz.extensions.dependencyinjection/3.13.1/quartz.extensions.dependencyinjection.3.13.1.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/serilog/4.2.0/serilog.4.2.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/serilog.sinks.console/6.0.0/serilog.sinks.console.6.0.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/serilog.sinks.file/7.0.0/serilog.sinks.file.7.0.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/system.clientmodel/1.0.0/system.clientmodel.1.0.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/system.codedom/6.0.0/system.codedom.6.0.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/system.composition/7.0.0/system.composition.7.0.0.nupkg.sha512",

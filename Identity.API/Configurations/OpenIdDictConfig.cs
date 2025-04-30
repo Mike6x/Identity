@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using System.Security.Cryptography.X509Certificates;
-using Identity.API.Data;
-using Identity.API.Models;
+using Identity.Core.Entities;
+using Identity.Infrastructure.Data;
 using Microsoft.IdentityModel.Tokens;
 using Quartz;
 using static OpenIddict.Abstractions.OpenIddictConstants;

@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using Identity.API.EndPoints.Authorization.Handlers;
 using Identity.API.Extensions;
-using Identity.API.Models;
+using Identity.Core.Entities;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;

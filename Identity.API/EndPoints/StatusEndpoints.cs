@@ -1,4 +1,4 @@
-using Identity.API.Data;
+using Identity.Infrastructure.Data;
 using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace Identity.API.EndPoints;

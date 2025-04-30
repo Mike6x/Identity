@@ -1,6 +1,5 @@
 using Identity.API.Configurations;
-
-using Identity.API.Workers;
+using Identity.Infrastructure.Data;
 
 namespace Identity.API.Extensions;
 
@@ -18,10 +17,11 @@ public static class IdentityServiceRegistration
 
         services.AddSwaggerConfig(configuration);
 
-
+        
         services.AddAntiforgery();
         
         services.AddOpenApi();
+
         
   //builder.Services.AddSingleton<IEmailSender<AppUser>, IdentityNoOpEmailSender>();
         services

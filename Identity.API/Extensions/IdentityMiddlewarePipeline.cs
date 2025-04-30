@@ -2,6 +2,7 @@ using Identity.API.Configurations;
 using Identity.API.EndPoints;
 using Identity.API.EndPoints.Authentication;
 using Identity.API.EndPoints.Authorization;
+using Identity.API.EndPoints.ExternalLogin;
 using Identity.API.EndPoints.Users;
 
 namespace Identity.API.Extensions;

@@ -1,4 +1,4 @@
-using Identity.API.Models;
+using Identity.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
 

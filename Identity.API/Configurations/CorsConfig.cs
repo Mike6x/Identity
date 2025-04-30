@@ -1,4 +1,4 @@
-using Identity.API.Models;
+using Identity.Core.Entities;
 
 namespace Identity.API.Configurations;
 

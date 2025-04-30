@@ -1,5 +1,5 @@
-using Identity.API.Data;
-using Identity.API.Models;
+using Identity.Core.Entities;
+using Identity.Infrastructure.Data;
 using Microsoft.AspNetCore.Identity;
 using OpenIddict.Abstractions;
 

@@ -1,6 +1,4 @@
-using Identity.API.Dtos;
 using Identity.API.EndPoints.Users.Handler;
-using Identity.API.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 

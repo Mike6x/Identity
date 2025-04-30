@@ -1,5 +1,5 @@
-using Identity.API.Dtos;
-using Identity.API.Models;
+using Identity.Core.Dtos.Users;
+using Identity.Core.Entities;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Identity;
 
