@@ -1849,6 +1849,16 @@
         "runtime": {
           "bin/placeholder/Identity.Core.dll": {}
         }
+      },
+      "Identity.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Identity.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Identity.Shared.dll": {}
+        }
       }
     }
   },
@@ -4507,11 +4517,17 @@
       "type": "project",
       "path": "../Identity.Core/Identity.Core.csproj",
       "msbuildProject": "../Identity.Core/Identity.Core.csproj"
+    },
+    "Identity.Shared/1.0.0": {
+      "type": "project",
+      "path": "../Identity.Shared/Identity.Shared.csproj",
+      "msbuildProject": "../Identity.Shared/Identity.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
       "Identity.Core >= 1.0.0",
+      "Identity.Shared >= 1.0.0",
       "Microsoft.AspNetCore.Http.Extensions >= 2.3.0",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 9.0.4",
       "Microsoft.EntityFrameworkCore >= 9.0.4",
@@ -4552,6 +4568,9 @@
           "projectReferences": {
             "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Core/Identity.Core.csproj": {
               "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Core/Identity.Core.csproj"
+            },
+            "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj": {
+              "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj"
             }
           }
         }

@@ -1,4 +1,6 @@
-namespace Identity.Core.Entities;
+using Identity.Core.Entities;
+
+namespace Identity.Core.Settings;
 
 public class OpenIddictSettingsConfig
 {

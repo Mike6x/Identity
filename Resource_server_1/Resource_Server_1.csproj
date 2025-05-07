@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>aspnet-Resource_server_1-890f13eb-7839-4d36-b64e-760e63b6f790</UserSecretsId>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.4" NoWarn="NU1605" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.4" NoWarn="NU1605" />
+        <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.4" />
+        <PackageReference Include="Microsoft.Identity.Web" Version="3.8.4" />
+        <PackageReference Include="Microsoft.Identity.Web.DownstreamApi" Version="3.8.4" />
+        <PackageReference Include="NSwag.AspNetCore" Version="14.4.0" />
+        <PackageReference Include="NSwag.CodeGeneration" Version="14.4.0" />
+        <PackageReference Include="NSwag.CodeGeneration.CSharp" Version="14.4.0" />
+        <PackageReference Include="NSwag.CodeGeneration.TypeScript" Version="14.4.0" />
+        <PackageReference Include="NSwag.Generation.AspNetCore" Version="14.4.0" />
+        <PackageReference Include="OpenIddict.Validation.AspNetCore" Version="6.2.1" />
+        <PackageReference Include="OpenIddict.Validation.SystemNetHttp" Version="6.2.1" />
+    </ItemGroup>
+
+</Project>

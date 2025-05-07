@@ -24,48 +24,7 @@ public class ClientSeeder(IServiceProvider serviceProvider)
         });
     }
     
-    public async Task AddClientCredentialsClient()
-    {
-        await using var scope = serviceProvider.CreateAsyncScope();
-        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        await context.Database.EnsureCreatedAsync();
-        var manager = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
-        var client = await manager.FindByClientIdAsync("client-credentials-oidc-application");
-        if (client != null) await manager.DeleteAsync(client);
-
-        await manager.CreateAsync(new OpenIddictApplicationDescriptor
-        {
-            ClientId = "client-credentials-oidc-application",
-            ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C201",
-            Permissions =
-            {
-                OpenIddictConstants.Permissions.Endpoints.Token,
-                OpenIddictConstants.Permissions.GrantTypes.ClientCredentials
-            }
-        });
-    }
-    
-    public async Task AddPasswordClient()
-    {
-        await using var scope = serviceProvider.CreateAsyncScope();
-        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-        await context.Database.EnsureCreatedAsync();
-        var manager = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
-        var client = await manager.FindByClientIdAsync("password-oidc-application");
-        if (client != null) await manager.DeleteAsync(client);
-
-        await manager.CreateAsync(new OpenIddictApplicationDescriptor
-        {
-            ClientId = "password-oidc-application",
-            ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C202",
-            Permissions =
-            {
-                OpenIddictConstants.Permissions.Endpoints.Token,
-                OpenIddictConstants.Permissions.GrantTypes.Password
-            }
-        });
-    }
-    
+        
     public async Task AddAuthorizationClient()
         {
             await using var scope = serviceProvider.CreateAsyncScope();
@@ -113,7 +72,47 @@ public class ClientSeeder(IServiceProvider serviceProvider)
                 //}
             });
         }
-    
+    public async Task AddClientCredentialsClient()
+    {
+        await using var scope = serviceProvider.CreateAsyncScope();
+        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        await context.Database.EnsureCreatedAsync();
+        var manager = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
+        var client = await manager.FindByClientIdAsync("client-credentials-oidc-application");
+        if (client != null) await manager.DeleteAsync(client);
+
+        await manager.CreateAsync(new OpenIddictApplicationDescriptor
+        {
+            ClientId = "client-credentials-oidc-application",
+            ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C201",
+            Permissions =
+            {
+                OpenIddictConstants.Permissions.Endpoints.Token,
+                OpenIddictConstants.Permissions.GrantTypes.ClientCredentials
+            }
+        });
+    }
+    public async Task AddPasswordClient()
+    {
+        await using var scope = serviceProvider.CreateAsyncScope();
+        var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+        await context.Database.EnsureCreatedAsync();
+        var manager = scope.ServiceProvider.GetRequiredService<IOpenIddictApplicationManager>();
+        var client = await manager.FindByClientIdAsync("password-oidc-application");
+        if (client != null) await manager.DeleteAsync(client);
+
+        await manager.CreateAsync(new OpenIddictApplicationDescriptor
+        {
+            ClientId = "password-oidc-application",
+            ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C202",
+            Permissions =
+            {
+                OpenIddictConstants.Permissions.Endpoints.Token,
+                OpenIddictConstants.Permissions.GrantTypes.Password
+            }
+        });
+    }
+
     public async Task AddBlazorWasmClient()
         {
             await using var scope = serviceProvider.CreateAsyncScope();
@@ -153,8 +152,6 @@ public class ClientSeeder(IServiceProvider serviceProvider)
                 },
             });
         }
-    
-
     public async Task AddReactClient()
     {
         await using var scope = serviceProvider.CreateAsyncScope();
@@ -202,7 +199,6 @@ public class ClientSeeder(IServiceProvider serviceProvider)
             //}
         });
     }
-        
     public async Task AddWebClient()
     {
         await using var scope = serviceProvider.CreateAsyncScope();

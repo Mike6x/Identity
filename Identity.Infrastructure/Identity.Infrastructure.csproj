@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\Identity.Core\Identity.Core.csproj" />
+      <ProjectReference Include="..\Identity.Shared\Identity.Shared.csproj" />
     </ItemGroup>
 
     <ItemGroup>

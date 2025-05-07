@@ -6,16 +6,29 @@ using OpenIddict.Abstractions;
 
 namespace Identity.Infrastructure.Services;
 
-public class AuthorizationService
+public static class AuthorizationService
 {
-
-    public string BuildRedirectUrl(HttpRequest request, IDictionary<string, StringValues> parameters)
+    public static IDictionary<string, StringValues> ParseOAuthParameters(HttpContext context, List<string>? excluding = null)
     {
-        var url = request.PathBase + request.Path + QueryString.Create(parameters);
+        excluding ??= [];
+        var parameters = context.Request.HasFormContentType
+            ? context.Request.Form
+                .Where(parameter => !excluding.Contains(parameter.Key))
+                .ToDictionary()
+            : context.Request.Query
+                .Where(parameter => !excluding.Contains(parameter.Key))
+                .ToDictionary();
+        
+        return parameters;
+    }
+    
+    public static string BuildRedirectUrl(HttpRequest request, IDictionary<string, StringValues> parameters)
+    {
+        var url = $"{request.PathBase}{request.Path}{QueryString.Create(parameters)}";
         return url;
     }
     
-    public bool IsAuthenticated(AuthenticateResult? result, OpenIddictRequest request)
+    public static bool IsAuthenticated(AuthenticateResult? result, OpenIddictRequest request)
     {
         if (result is { Succeeded: false }) { return false; }
 
@@ -26,19 +39,13 @@ public class AuthorizationService
                       || DateTimeOffset.UtcNow - result.Properties.IssuedUtc > maxAgeSeconds;
         return !expired;
     }
-    
-    public IDictionary<string, StringValues> ParseOAuthParameters(HttpContext httpContext, List<string?> excluding = null) =>
-        httpContext.Request.HasFormContentType
-            ? httpContext.Request.Form.Where(parameter => !excluding.Contains(parameter.Key))
-                .ToDictionary()
-            : httpContext.Request.Query.Where(parameter => !excluding.Contains(parameter.Key))
-                .ToDictionary();
 
     public static List<string> GetDestinations(ClaimsIdentity identity, Claim claim)
     {
         var destinations = new List<string>();
 
-        if (claim.Type is OpenIddictConstants.Claims.Name or OpenIddictConstants.Claims.Email)
+        if (claim.Type is OpenIddictConstants.Claims.Name 
+            or OpenIddictConstants.Claims.Email)
         {
             destinations.Add(OpenIddictConstants.Destinations.AccessToken);
 
