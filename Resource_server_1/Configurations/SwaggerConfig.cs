@@ -78,7 +78,7 @@ public static class SwaggerConfig
             {
                 settings.OAuth2Client = new OAuth2ClientSettings
                 {
-                    ClientId = "web-client",
+                    ClientId = "swagger-client",
                     ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C205",
                     UsePkceWithAuthorizationCodeGrant = true
                 };

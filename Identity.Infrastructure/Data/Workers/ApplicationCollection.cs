@@ -92,11 +92,13 @@ public class ApplicationCollection
             DisplayName = "Swagger client application",
             RedirectUris =
             {
+                new Uri($"{IdentityHost}/authentication/oauth2-redirect.html"),
                 new Uri("https://localhost:7201/swagger/oauth2-redirect.html"),
                 new Uri("https://localhost:7202/swagger/oauth2-redirect.html")
             },
             PostLogoutRedirectUris =
             {
+                new Uri($"{IdentityHost}/resources"),
                 new Uri("https://localhost:7201/resources"),
                 new Uri("https://localhost:7201/resources")
             },

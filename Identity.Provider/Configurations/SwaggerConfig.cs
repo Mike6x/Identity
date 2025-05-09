@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Hosting.Server;
 using Microsoft.AspNetCore.Hosting.Server.Features;
 using NSwag;
+using NSwag.AspNetCore;
 using NSwag.CodeGeneration.CSharp;
 using NSwag.CodeGeneration.OperationNameGenerators;
 using NSwag.CodeGeneration.TypeScript;
+using NSwag.Generation.Processors.Security;
 
 namespace Identity.Provider.Configurations;
 public static class SwaggerConfig
@@ -13,19 +15,56 @@ public static class SwaggerConfig
 
     public static IServiceCollection AddSwaggerConfig(this IServiceCollection services, IConfiguration configuration)
     {
+        var identityHost = configuration["IdentityHost"] ;
+        var identityServerUrl = string.IsNullOrEmpty(identityHost) ? "https://localhost:7000" : identityHost;
+        
         services.AddEndpointsApiExplorer();
-        //services.AddSwaggerGen();
+
         services.AddOpenApiDocument(options =>
         {
-            //options.AddSecurity("token", new OpenApiSecurityScheme
-            //{
-            //    In = OpenApiSecurityApiKeyLocation.Header,
-            //    Name = "Authorization",
-            //    Type = OpenApiSecuritySchemeType.ApiKey
-            //});
+                        
+            options.AddSecurity("oauth2",  new OpenApiSecurityScheme
+            {
+                Type = OpenApiSecuritySchemeType.OAuth2,
+                Name = "Authorization",
+                Flows = new OpenApiOAuthFlows
+                {
+                    AuthorizationCode = new OpenApiOAuthFlow
+                    {
+                        AuthorizationUrl = $"{identityServerUrl}/connect/authorize",
+                        TokenUrl = $"{identityServerUrl}/connect/token",
+                        Scopes = new Dictionary<string, string>
+                        {
+                            { "api1", "resource server scope" }
+                        }
+                    }
+                }
+                
+            });
 
-            //options.OperationProcessors.Add(
-            //    new OperationSecurityScopeProcessor("token"));
+            options.OperationProcessors.Add(
+                new OperationSecurityScopeProcessor("oauth2"));
+            
+            options.PostProcess = document =>
+            {
+                document.Info = new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "OpenIddict API",
+                    Description = "An OpenIddict API for managing Identity items",
+                    TermsOfService = "https://example.com/terms",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Example Contact",
+                        Url = "https://example.com/contact"
+                    },
+                    License = new OpenApiLicense
+                    {
+                        Name = "Example License",
+                        Url = "https://example.com/license"
+                    }
+                };
+            };
         });
 
         return services;
@@ -35,12 +74,21 @@ public static class SwaggerConfig
     {
         app.UseOpenApi(config =>
         {
+            
         });
 
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
-            app.UseSwaggerUi();
+            app.UseSwaggerUi(settings =>
+            {
+                settings.OAuth2Client = new OAuth2ClientSettings
+                {
+                    ClientId = "swagger-client",
+                    ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C205",
+                    UsePkceWithAuthorizationCodeGrant = true
+                };
+            });
             app.UseReDoc();
         }
         

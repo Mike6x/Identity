@@ -23,33 +23,3 @@ app.Run();
 // await app.GenerateClients();
 //
 // await app.WaitForShutdownAsync();
-
-// var builder = WebApplication.CreateBuilder(args);
-//
-// builder.Services.AddAuthentication(OpenIdConnectDefaults.AuthenticationScheme)
-//     .AddMicrosoftIdentityWebApp(builder.Configuration.GetSection("AzureAdB2C"));
-// builder.Services.AddRazorPages()
-//     .AddMicrosoftIdentityUI();
-//
-// var app = builder.Build();
-//
-//
-// if (!app.Environment.IsDevelopment())
-// {
-//     app.UseExceptionHandler("/Error");
-//
-//     app.UseHsts();
-// }
-//
-// app.UseHttpsRedirection();
-//
-// app.UseRouting();
-//
-// app.UseAuthorization();
-//
-// app.MapStaticAssets();
-// app.MapRazorPages()
-//     .WithStaticAssets();
-// app.MapControllers();
-//
-// app.Run();

@@ -21,6 +21,7 @@ public static class GetUsersEndpoint
         return endpoints.MapGet("/", GetUsers.Handler)
             .WithName(nameof(GetUsersEndpoint))
             .WithSummary("get all users ")
+            .RequireAuthorization()
             // .RequirePermission("Permissions.Users.Search")
             .WithDescription("get all users ");
     }
