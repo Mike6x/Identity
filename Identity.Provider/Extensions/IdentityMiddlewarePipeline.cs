@@ -32,6 +32,7 @@ public static class IdentityMiddlewarePipeline
         app.UseRouting();
         
         app.UseAntiforgery();
+        app.UseCorsPolicy();
         app.UseAuthentication();
         app.UseAuthorization();
 
@@ -57,8 +58,6 @@ public static class IdentityMiddlewarePipeline
         app.MapRazorPages()
             .WithStaticAssets();
         app.MapControllers();
-        
-        app.UseCorsPolicy();
         
         return app;
     }

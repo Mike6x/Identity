@@ -15,7 +15,7 @@ public class ApplicationCollection
     {
         IdentityHost = string.IsNullOrEmpty(identityHost) ? "https://localhost:7000" : identityHost;
         
-#region Authorization Code Flow applications
+        #region Authorization Code Flow applications
 
         // postman - oidc-debugger
         _applications.Add( new OpenIddictApplicationDescriptor
@@ -86,17 +86,19 @@ public class ApplicationCollection
         //swagger client : authorization-oidc-application
         _applications.Add( new OpenIddictApplicationDescriptor
         {
-            ClientId = "web-client",
+            ClientId = "swagger-client",
             ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C205",
             ConsentType = OpenIddictConstants.ConsentTypes.Explicit,
             DisplayName = "Swagger client application",
             RedirectUris =
             {
-                new Uri("https://localhost:7002/swagger/oauth2-redirect.html")
+                new Uri("https://localhost:7201/swagger/oauth2-redirect.html"),
+                new Uri("https://localhost:7202/swagger/oauth2-redirect.html")
             },
             PostLogoutRedirectUris =
             {
-                new Uri("https://localhost:7002/resources")
+                new Uri("https://localhost:7201/resources"),
+                new Uri("https://localhost:7201/resources")
             },
             Permissions =
             {
@@ -111,6 +113,7 @@ public class ApplicationCollection
                 OpenIddictConstants.Permissions.Scopes.Profile,
                 OpenIddictConstants.Permissions.Scopes.Roles,
                 $"{OpenIddictConstants.Permissions.Prefixes.Scope}api1",
+                $"{OpenIddictConstants.Permissions.Prefixes.Scope}api",
             },
             //Requirements =
             //{
@@ -157,7 +160,7 @@ public class ApplicationCollection
         });
         #endregion
         
-#region Client Credentials Flow Applications
+        #region Client Credentials Flow Applications
         
         // client-credentials-oidc-application  
         _applications.Add( new OpenIddictApplicationDescriptor
@@ -166,8 +169,10 @@ public class ApplicationCollection
             ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C201",
             Permissions =
             {
+                OpenIddictConstants.Permissions.GrantTypes.ClientCredentials,
+                
                 OpenIddictConstants.Permissions.Endpoints.Token,
-                OpenIddictConstants.Permissions.GrantTypes.ClientCredentials
+                $"{OpenIddictConstants.Permissions.Prefixes.Scope}api1"
             }
         });
         
@@ -230,7 +235,7 @@ public class ApplicationCollection
         
         #endregion
         
-#region Admin client
+        #region Admin client
         
         // pixel-identity-ui
         _applications.Add(new OpenIddictApplicationDescriptor

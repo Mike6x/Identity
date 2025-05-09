@@ -40,7 +40,7 @@ public static class Authorize
 
         if (!IsAuthenticated(result, request))
             return Results.Challenge(
-                new()
+                new AuthenticationProperties
                 {
                     RedirectUri = BuildRedirectUrl(context.Request, parameters),
                 },
@@ -131,8 +131,4 @@ public static class Authorize
             OpenIddictServerAspNetCoreDefaults.AuthenticationScheme
         );
     }
-    
-    
-
-    
 }

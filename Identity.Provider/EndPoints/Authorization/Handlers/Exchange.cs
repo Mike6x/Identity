@@ -213,7 +213,7 @@ public static class Exchange
             // Add Custom claims => sub claims are mandatory
             identity.AddClaim(new Claim(Claims.Subject, user.Id.ToString()));
             identity.AddClaim(new Claim(Claims.PreferredUsername, (user.Email ?? user.UserName) ?? throw new InvalidOperationException()));
-            identity.AddClaim(new Claim(Claims.Audience, "Resourse"));
+            identity.AddClaim(new Claim(Claims.Audience, "Resource"));
             identity.AddClaim(new Claim("some-claim", "some-value"));
 
             // Setting destinations of claims i.e., identity token or access token
