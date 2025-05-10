@@ -94,13 +94,15 @@ public class ApplicationCollection
             {
                 new Uri($"{IdentityHost}/authentication/oauth2-redirect.html"),
                 new Uri("https://localhost:7201/swagger/oauth2-redirect.html"),
-                new Uri("https://localhost:7202/swagger/oauth2-redirect.html")
+                new Uri("https://localhost:7202/swagger/oauth2-redirect.html"),
+                new Uri("https://localhost:7203/swagger/oauth2-redirect.html")
             },
             PostLogoutRedirectUris =
             {
-                new Uri($"{IdentityHost}/resources"),
+                new Uri($"{IdentityHost}/swagger"),
                 new Uri("https://localhost:7201/resources"),
-                new Uri("https://localhost:7201/resources")
+                new Uri("https://localhost:7202/resources"),
+                new Uri("https://localhost:7203/resources")
             },
             Permissions =
             {
@@ -122,6 +124,43 @@ public class ApplicationCollection
             //    Requirements.Features.ProofKeyForCodeExchange
             //}
 
+        });
+        
+        // web-client : authorization-oidc-application
+        _applications.Add(new OpenIddictApplicationDescriptor
+        {
+            ClientId = "web-client",
+            ClientSecret = "901564A5-E7FE-42CB-B10D-61EF6A8F3654",
+            DisplayName = "Web Client Application",
+            ConsentType = OpenIddictConstants.ConsentTypes.Explicit,
+
+            RedirectUris =
+            {
+                new Uri("https://localhost:7201/swagger/oauth2-redirect.html"),
+                new Uri("https://localhost:7051/swagger/oauth2-redirect.html"),
+                new Uri("https://localhost:7153/callback/login/local"),
+                new Uri("https://localhost:7002/signin-oidc"),
+                new Uri("https://oidcdebugger.com/debug")
+            },
+            PostLogoutRedirectUris =
+            {
+                new Uri("https://localhost:7002/resources")
+            },
+            Permissions =
+            {
+                OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
+                
+                OpenIddictConstants.Permissions.Endpoints.Authorization,
+                OpenIddictConstants.Permissions.Endpoints.EndSession,
+                OpenIddictConstants.Permissions.Endpoints.Token,
+                
+                OpenIddictConstants.Permissions.ResponseTypes.Code,
+
+                OpenIddictConstants.Permissions.Scopes.Email,
+                OpenIddictConstants.Permissions.Scopes.Profile,
+                OpenIddictConstants.Permissions.Scopes.Roles,
+                OpenIddictConstants.Permissions.Prefixes.Scope + "api1",
+            },
         });
         
         // mvc-client : authorization-oidc-application
@@ -160,6 +199,7 @@ public class ApplicationCollection
                 // OpenIddictConstants.Permissions.Prefixes.ResponseType + "code"
             },
         });
+        
         #endregion
         
         #region Client Credentials Flow Applications
@@ -296,8 +336,9 @@ public class ApplicationCollection
             },
             Permissions =
             {
-                OpenIddictConstants.Permissions.Endpoints.Token,
                 OpenIddictConstants.Permissions.GrantTypes.Password,
+                
+                OpenIddictConstants.Permissions.Endpoints.Token,
                 OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
                 $"{OpenIddictConstants.Permissions.Prefixes.Scope}api1"
             },

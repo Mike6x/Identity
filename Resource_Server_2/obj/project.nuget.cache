@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "yo2LWpm78iU=",
+  "dgSpecHash": "3LeEljDz3IU=",
   "success": true,
   "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Resource_Server_2/Resource_Server_2.csproj",
   "expectedPackageFiles": [
@@ -48,7 +48,7 @@
     "/Users/tuanpa/.nuget/packages/polly.extensions/8.4.2/polly.extensions.8.4.2.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/polly.extensions.http/3.0.0/polly.extensions.http.3.0.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/polly.ratelimiting/8.4.2/polly.ratelimiting.8.4.2.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/scalar.aspnetcore/2.2.1/scalar.aspnetcore.2.2.1.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/scalar.aspnetcore/2.2.7/scalar.aspnetcore.2.2.7.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/serilog/4.2.0/serilog.4.2.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/serilog.aspnetcore/9.0.0/serilog.aspnetcore.9.0.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/serilog.extensions.hosting/9.0.0/serilog.extensions.hosting.9.0.0.nupkg.sha512",

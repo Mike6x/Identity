@@ -13,8 +13,8 @@ public static class GetUsers
             .Select(user => new UserDto
             { 
                 Id = user.Id,
-                Email = user.Email,
-                UserName = user.UserName,
+                Email = user.Email ?? "",
+                UserName = user.UserName ?? "Anonymous User",
             })
             .ToListAsync(cancellationToken);
         

@@ -41,7 +41,9 @@ if (app.Environment.IsDevelopment())
 
 app.UseSwagger();
 
-app.MapResourceEndpoints();
+var resourceGroup = app.MapGroup("resources").WithTags("resources server 1");
+resourceGroup.MapResourceEndpoints();
+// app.MapResourceEndpoints();
 
 app.UseHttpsRedirection();
 

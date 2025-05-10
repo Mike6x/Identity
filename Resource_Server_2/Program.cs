@@ -1,6 +1,7 @@
 using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Validation.AspNetCore;
 using Resource_Server_2;
+using Resource_Server_2.Configurations;
 using Resource_Server_2.Endpoints;
 using Scalar.AspNetCore;
 
@@ -39,7 +40,16 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
-    app.MapScalarApiReference();
+    // app.MapScalarApiReference();
+    app.MapScalarApiReference(options => options
+        .WithPreferredScheme("OAuth2")
+        .AddAuthorizationCodeFlow("OAuth2", flow =>
+        {
+            flow.ClientId = "mvc-client";
+            flow.ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C205";
+            flow.Pkce = Pkce.Sha256;
+            flow.SelectedScopes = ["profile", "email", "api"];
+        }));
 }
 
 app.UseAuthentication();

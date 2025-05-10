@@ -1,3 +1,5 @@
+using Resource_Server_2.Configurations;
+
 namespace Resource_Server_2.Endpoints;
 
 public static class ResourceEndpoints

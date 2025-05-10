@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.Identity.Web.Resource;
+using Resource_Server_1.Configurations;
 
 namespace Resource_Server_1.Endpoints;
 
@@ -6,6 +8,23 @@ public static class ResourceEndpoints
 {
     public static void MapResourceEndpoints(this IEndpointRouteBuilder app)
     {
+        app.MapGet("/logout", (HttpContext context) =>
+            {
+                context.SignOutAsync("Cookies");
+                context.SignOutAsync("OpenIddict.Server.AspNetCore");
+            })
+            .WithOpenApi()
+            .WithName("Logout endpoint");
+        
+        app.MapGet("/currentUser", (HttpContext context, ILogger<Program> logger) =>
+            {
+                var user = context.User.Identity?.Name ?? "Anonymous";
+                return $"user: {user}";
+            })
+            .WithOpenApi()
+            .WithName("logon_user endpoint")
+            .RequireAuthorization();
+        
         app.MapGet("/unprotected", () => "Ladies and gentlemen, we got him")
             .WithOpenApi()
             .WithName("Unprotected endpoint");
@@ -19,7 +38,7 @@ public static class ResourceEndpoints
             .WithName("Protected endpoint")
             .RequireAuthorization();
 
-        app.MapGet("/mustbeeditor", context =>
+        app.MapGet("/mustbeEditor", context =>
             {
                 var user = context.User.Identity?.Name ?? "Anonymous";
                 return context.Response.WriteAsJsonAsync(new { user });
@@ -33,7 +52,7 @@ public static class ResourceEndpoints
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
         
-        app.MapGet("/weatherforecast", (HttpContext httpContext) =>
+        app.MapGet("/protectWeather", (HttpContext httpContext) =>
             {
                 var forecast = Enumerable.Range(1, 5).Select(index =>
                         new WeatherForecast
@@ -49,7 +68,7 @@ public static class ResourceEndpoints
             .WithOpenApi()
             .RequireAuthorization();
         
-        app.MapGet("/weatherinfo", (HttpContext httpContext) =>
+        app.MapGet("/unprotectWeather", (HttpContext httpContext) =>
             {
                 var forecast = Enumerable.Range(1, 5).Select(index =>
                         new WeatherForecast

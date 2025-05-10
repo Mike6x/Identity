@@ -19,8 +19,8 @@ public static class CurrentUser
         return TypedResults.Ok<UserDto?>(new UserDto
         {
             Id = user.Id,
-            Email = user.Email,
-            UserName = user.UserName,
+            Email = user.Email ?? "",
+            UserName = user.UserName ?? "Anonymous User",
         });
     }
 

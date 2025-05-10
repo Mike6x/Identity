@@ -150,8 +150,8 @@ public static class OpenIdDictConfig
             .AddValidation(options =>
             {
                 options.UseLocalServer();
-                options.UseSystemNetHttp();
                 options.UseAspNetCore();
+                options.UseSystemNetHttp();
             });
         
         return services;
