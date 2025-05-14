@@ -11,3 +11,16 @@
 /Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Infrastructure/obj/Debug/net9.0/refint/Identity.UI.Infrastructure.dll
 /Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Infrastructure/obj/Debug/net9.0/Identity.UI.Infrastructure.pdb
 /Volumes/DATA/Projects/OpenIdDict/Identity/Identity.UI.Infrastructure/obj/Debug/net9.0/ref/Identity.UI.Infrastructure.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Infrastructure/bin/Debug/net9.0/Identity.UI.Infrastructure.deps.json
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Infrastructure/bin/Debug/net9.0/Identity.UI.Infrastructure.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Infrastructure/bin/Debug/net9.0/Identity.UI.Infrastructure.pdb
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Infrastructure/obj/Debug/net9.0/Identity.UI.Infrastructure.csproj.AssemblyReference.cache
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Infrastructure/obj/Debug/net9.0/Identity.UI.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Infrastructure/obj/Debug/net9.0/Identity.UI.Infrastructure.AssemblyInfoInputs.cache
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Infrastructure/obj/Debug/net9.0/Identity.UI.Infrastructure.AssemblyInfo.cs
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Infrastructure/obj/Debug/net9.0/Identity.UI.Infrastructure.csproj.CoreCompileInputs.cache
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Infrastructure/obj/Debug/net9.0/Identity.UI.Infrastructure.sourcelink.json
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Infrastructure/obj/Debug/net9.0/Identity.UI.Infrastructure.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Infrastructure/obj/Debug/net9.0/refint/Identity.UI.Infrastructure.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Infrastructure/obj/Debug/net9.0/Identity.UI.Infrastructure.pdb
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Infrastructure/obj/Debug/net9.0/ref/Identity.UI.Infrastructure.dll

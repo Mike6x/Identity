@@ -415,16 +415,15 @@
               "target": "Package",
               "version": "[4.5.0, )"
             },
-            "Microsoft.AspNetCore.Components.Authorization": {
-              "target": "Package",
-              "version": "[9.0.4, )"
-            },
             "Microsoft.AspNetCore.Components.WebAssembly": {
               "target": "Package",
               "version": "[9.0.4, )"
             },
+            "Microsoft.AspNetCore.Components.WebAssembly.Authentication": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
             "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
-              "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.4, )"
             },
@@ -447,10 +446,6 @@
               "target": "Package",
               "version": "[9.0.0, )",
               "autoReferenced": true
-            },
-            "OpenIddict.Client": {
-              "target": "Package",
-              "version": "[6.2.1, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
@@ -827,6 +822,10 @@
               "version": "[4.5.0, )"
             },
             "Microsoft.AspNetCore.Components.Authorization": {
+              "target": "Package",
+              "version": "[9.0.4, )"
+            },
+            "Microsoft.AspNetCore.Components.WebAssembly.Authentication": {
               "target": "Package",
               "version": "[9.0.4, )"
             },

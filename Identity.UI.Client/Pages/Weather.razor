@@ -1,5 +1,6 @@
 ﻿@page "/weather"
-@inject HttpClient Http
+@using Identity.UI.Infrastructure.Models
+@using Identity.UI.Infrastructure.Services
 
 <PageTitle>Weather</PageTitle>
 
@@ -7,11 +8,10 @@
 
 <p>This component demonstrates fetching data from the server.</p>
 
+
 @if (_forecasts == null)
 {
-    <p>
-        <em>Loading...</em>
-    </p>
+    <p><em>Loading...</em></p>
 }
 else
 {
@@ -19,8 +19,8 @@ else
         <thead>
         <tr>
             <th>Date</th>
-            <th aria-label="Temperature in Celsius">Temp. (C)</th>
-            <th aria-label="Temperature in Farenheit">Temp. (F)</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
             <th>Summary</th>
         </tr>
         </thead>
@@ -39,22 +39,15 @@ else
 }
 
 @code {
-    private WeatherForecast[]? _forecasts;
+    
+    private IEnumerable<WeatherForecast> _forecasts;
+
+    [Inject]
+    IWeatherService WeatherService { get; set; } = null!;
 
     protected override async Task OnInitializedAsync()
     {
-        _forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
-    }
-
-    public class WeatherForecast
-    {
-        public DateOnly Date { get; set; }
-
-        public int TemperatureC { get; set; }
-
-        public string? Summary { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+        _forecasts = await WeatherService.GetWeatherInfoAsync();
     }
 
 }

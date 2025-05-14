@@ -131,6 +131,29 @@
           "build/net9.0/Microsoft.AspNetCore.Components.WebAssembly.props": {}
         }
       },
+      "Microsoft.AspNetCore.Components.WebAssembly.Authentication/9.0.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Authorization": "9.0.4",
+          "Microsoft.AspNetCore.Components.Web": "9.0.4"
+        },
+        "compile": {
+          "lib/net9.0/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/Microsoft.AspNetCore.Components.WebAssembly.Authentication.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.AspNetCore.Components.WebAssembly.Authentication.props": {}
+        }
+      },
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer/9.0.4": {
         "type": "package",
         "build": {
@@ -553,22 +576,6 @@
           }
         }
       },
-      "Microsoft.IdentityModel.Protocols/8.4.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.IdentityModel.Tokens": "8.4.0"
-        },
-        "compile": {
-          "lib/net9.0/Microsoft.IdentityModel.Protocols.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net9.0/Microsoft.IdentityModel.Protocols.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Microsoft.IdentityModel.Tokens/8.9.0": {
         "type": "package",
         "dependencies": {
@@ -628,43 +635,6 @@
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.targets": {}
         }
       },
-      "OpenIddict.Abstractions/6.2.1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.2",
-          "Microsoft.Extensions.Primitives": "9.0.2",
-          "Microsoft.IdentityModel.Tokens": "8.4.0"
-        },
-        "compile": {
-          "lib/net9.0/OpenIddict.Abstractions.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net9.0/OpenIddict.Abstractions.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "OpenIddict.Client/6.2.1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Logging": "9.0.2",
-          "Microsoft.IdentityModel.JsonWebTokens": "8.4.0",
-          "Microsoft.IdentityModel.Protocols": "8.4.0",
-          "OpenIddict.Abstractions": "6.2.1"
-        },
-        "compile": {
-          "lib/net9.0/OpenIddict.Client.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net9.0/OpenIddict.Client.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "System.IdentityModel.Tokens.Jwt/8.9.0": {
         "type": "package",
         "dependencies": {
@@ -698,6 +668,7 @@
         "dependencies": {
           "Blazored.LocalStorage": "4.5.0",
           "Microsoft.AspNetCore.Components.Authorization": "9.0.4",
+          "Microsoft.AspNetCore.Components.WebAssembly.Authentication": "9.0.4",
           "Microsoft.Extensions.Configuration.Abstractions": "9.0.4",
           "Microsoft.Extensions.Http": "9.0.4",
           "System.IdentityModel.Tokens.Jwt": "8.9.0"
@@ -840,6 +811,29 @@
           "build/net9.0/Microsoft.AspNetCore.Components.WebAssembly.props": {}
         }
       },
+      "Microsoft.AspNetCore.Components.WebAssembly.Authentication/9.0.4": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Components.Authorization": "9.0.4",
+          "Microsoft.AspNetCore.Components.Web": "9.0.4"
+        },
+        "compile": {
+          "lib/net9.0/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/Microsoft.AspNetCore.Components.WebAssembly.Authentication.props": {}
+        },
+        "buildMultiTargeting": {
+          "buildMultiTargeting/Microsoft.AspNetCore.Components.WebAssembly.Authentication.props": {}
+        }
+      },
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer/9.0.4": {
         "type": "package",
         "build": {
@@ -1262,22 +1256,6 @@
           }
         }
       },
-      "Microsoft.IdentityModel.Protocols/8.4.0": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.IdentityModel.Tokens": "8.4.0"
-        },
-        "compile": {
-          "lib/net9.0/Microsoft.IdentityModel.Protocols.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net9.0/Microsoft.IdentityModel.Protocols.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "Microsoft.IdentityModel.Tokens/8.9.0": {
         "type": "package",
         "dependencies": {
@@ -1337,43 +1315,6 @@
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.targets": {}
         }
       },
-      "OpenIddict.Abstractions/6.2.1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.2",
-          "Microsoft.Extensions.Primitives": "9.0.2",
-          "Microsoft.IdentityModel.Tokens": "8.4.0"
-        },
-        "compile": {
-          "lib/net9.0/OpenIddict.Abstractions.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net9.0/OpenIddict.Abstractions.dll": {
-            "related": ".xml"
-          }
-        }
-      },
-      "OpenIddict.Client/6.2.1": {
-        "type": "package",
-        "dependencies": {
-          "Microsoft.Extensions.Logging": "9.0.2",
-          "Microsoft.IdentityModel.JsonWebTokens": "8.4.0",
-          "Microsoft.IdentityModel.Protocols": "8.4.0",
-          "OpenIddict.Abstractions": "6.2.1"
-        },
-        "compile": {
-          "lib/net9.0/OpenIddict.Client.dll": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/net9.0/OpenIddict.Client.dll": {
-            "related": ".xml"
-          }
-        }
-      },
       "System.IdentityModel.Tokens.Jwt/8.9.0": {
         "type": "package",
         "dependencies": {
@@ -1407,6 +1348,7 @@
         "dependencies": {
           "Blazored.LocalStorage": "4.5.0",
           "Microsoft.AspNetCore.Components.Authorization": "9.0.4",
+          "Microsoft.AspNetCore.Components.WebAssembly.Authentication": "9.0.4",
           "Microsoft.Extensions.Configuration.Abstractions": "9.0.4",
           "Microsoft.Extensions.Http": "9.0.4",
           "System.IdentityModel.Tokens.Jwt": "8.9.0"
@@ -1547,6 +1489,27 @@
         "lib/net9.0/Microsoft.AspNetCore.Components.WebAssembly.xml",
         "microsoft.aspnetcore.components.webassembly.9.0.4.nupkg.sha512",
         "microsoft.aspnetcore.components.webassembly.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Components.WebAssembly.Authentication/9.0.4": {
+      "sha512": "775SLCWMRna3OoYVZxEH63pmGg8tWyNNp4K/utnWt1H8eoxQGvRJ/bc3NrpQf6ch2BPiMnFCL2F7FmA/P8Sqtw==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.components.webassembly.authentication/9.0.4",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.txt",
+        "build/Microsoft.AspNetCore.Components.WebAssembly.Authentication.props",
+        "build/Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+        "build/Microsoft.AspNetCore.StaticWebAssets.props",
+        "buildMultiTargeting/Microsoft.AspNetCore.Components.WebAssembly.Authentication.props",
+        "buildTransitive/Microsoft.AspNetCore.Components.WebAssembly.Authentication.props",
+        "lib/net9.0/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll",
+        "lib/net9.0/Microsoft.AspNetCore.Components.WebAssembly.Authentication.xml",
+        "microsoft.aspnetcore.components.webassembly.authentication.9.0.4.nupkg.sha512",
+        "microsoft.aspnetcore.components.webassembly.authentication.nuspec",
+        "staticwebassets/AuthenticationService.js"
       ]
     },
     "Microsoft.AspNetCore.Components.WebAssembly.DevServer/9.0.4": {
@@ -2389,30 +2352,6 @@
         "microsoft.identitymodel.logging.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.Protocols/8.4.0": {
-      "sha512": "cDvZZ8JYto6L1I64sWW17JGwYGuFZ5Qm+WZG+wLk0QHjtuSosujDVAc4nr/sx6+n88q1mdW93rGEl7TCniNp5Q==",
-      "type": "package",
-      "path": "microsoft.identitymodel.protocols/8.4.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "lib/net462/Microsoft.IdentityModel.Protocols.dll",
-        "lib/net462/Microsoft.IdentityModel.Protocols.xml",
-        "lib/net472/Microsoft.IdentityModel.Protocols.dll",
-        "lib/net472/Microsoft.IdentityModel.Protocols.xml",
-        "lib/net6.0/Microsoft.IdentityModel.Protocols.dll",
-        "lib/net6.0/Microsoft.IdentityModel.Protocols.xml",
-        "lib/net8.0/Microsoft.IdentityModel.Protocols.dll",
-        "lib/net8.0/Microsoft.IdentityModel.Protocols.xml",
-        "lib/net9.0/Microsoft.IdentityModel.Protocols.dll",
-        "lib/net9.0/Microsoft.IdentityModel.Protocols.xml",
-        "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.dll",
-        "lib/netstandard2.0/Microsoft.IdentityModel.Protocols.xml",
-        "microsoft.identitymodel.protocols.8.4.0.nupkg.sha512",
-        "microsoft.identitymodel.protocols.nuspec"
-      ]
-    },
     "Microsoft.IdentityModel.Tokens/8.9.0": {
       "sha512": "qK6kW5qZvDj7E5RLWQ9gzJxQe5GUz7+7bXrLQQydSDF9hTf5Ip2qHuAQW3Fg9GND6jkjTr7IXAZFmBHadNQi4Q==",
       "type": "package",
@@ -2560,62 +2499,6 @@
         "tools/net9.0/Microsoft.NET.WebAssembly.Webcil.dll"
       ]
     },
-    "OpenIddict.Abstractions/6.2.1": {
-      "sha512": "YW6djPWEZkTEAujiF0jCDO+ZN09WxCXmCD5qyJS49OgW/Rp5qtFAx0vtCjpz1R/YYGd4GlEBpqM+P2EjhW/i7w==",
-      "type": "package",
-      "path": "openiddict.abstractions/6.2.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "lib/net462/OpenIddict.Abstractions.dll",
-        "lib/net462/OpenIddict.Abstractions.xml",
-        "lib/net472/OpenIddict.Abstractions.dll",
-        "lib/net472/OpenIddict.Abstractions.xml",
-        "lib/net48/OpenIddict.Abstractions.dll",
-        "lib/net48/OpenIddict.Abstractions.xml",
-        "lib/net6.0/OpenIddict.Abstractions.dll",
-        "lib/net6.0/OpenIddict.Abstractions.xml",
-        "lib/net8.0/OpenIddict.Abstractions.dll",
-        "lib/net8.0/OpenIddict.Abstractions.xml",
-        "lib/net9.0/OpenIddict.Abstractions.dll",
-        "lib/net9.0/OpenIddict.Abstractions.xml",
-        "lib/netstandard2.0/OpenIddict.Abstractions.dll",
-        "lib/netstandard2.0/OpenIddict.Abstractions.xml",
-        "lib/netstandard2.1/OpenIddict.Abstractions.dll",
-        "lib/netstandard2.1/OpenIddict.Abstractions.xml",
-        "openiddict.abstractions.6.2.1.nupkg.sha512",
-        "openiddict.abstractions.nuspec"
-      ]
-    },
-    "OpenIddict.Client/6.2.1": {
-      "sha512": "28wBUl4Df3doBvzgRPPG0fJCm7uCTrfn0y/mwFclxWTHi+iRY6BoPwOXtROlm3A+2X/K3giLasUhfASgBilSbQ==",
-      "type": "package",
-      "path": "openiddict.client/6.2.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "Icon.png",
-        "lib/net462/OpenIddict.Client.dll",
-        "lib/net462/OpenIddict.Client.xml",
-        "lib/net472/OpenIddict.Client.dll",
-        "lib/net472/OpenIddict.Client.xml",
-        "lib/net48/OpenIddict.Client.dll",
-        "lib/net48/OpenIddict.Client.xml",
-        "lib/net6.0/OpenIddict.Client.dll",
-        "lib/net6.0/OpenIddict.Client.xml",
-        "lib/net8.0/OpenIddict.Client.dll",
-        "lib/net8.0/OpenIddict.Client.xml",
-        "lib/net9.0/OpenIddict.Client.dll",
-        "lib/net9.0/OpenIddict.Client.xml",
-        "lib/netstandard2.0/OpenIddict.Client.dll",
-        "lib/netstandard2.0/OpenIddict.Client.xml",
-        "lib/netstandard2.1/OpenIddict.Client.dll",
-        "lib/netstandard2.1/OpenIddict.Client.xml",
-        "openiddict.client.6.2.1.nupkg.sha512",
-        "openiddict.client.nuspec"
-      ]
-    },
     "System.IdentityModel.Tokens.Jwt/8.9.0": {
       "sha512": "7Pu9UjF1+so0s8zgzcIxSxbRQoiM2DMdwazVGmNptX3O6gDfMyeWZBd/Zn6VueDteN0ZTHw2acsf6+mAe8UpMw==",
       "type": "package",
@@ -2656,14 +2539,13 @@
       "Blazored.LocalStorage >= 4.5.0",
       "Identity.Shared >= 1.0.0",
       "Identity.UI.Infrastructure >= 1.0.0",
-      "Microsoft.AspNetCore.Components.Authorization >= 9.0.4",
       "Microsoft.AspNetCore.Components.WebAssembly >= 9.0.4",
+      "Microsoft.AspNetCore.Components.WebAssembly.Authentication >= 9.0.4",
       "Microsoft.AspNetCore.Components.WebAssembly.DevServer >= 9.0.4",
       "Microsoft.Extensions.DependencyInjection >= 9.0.4",
       "Microsoft.Extensions.Http >= 9.0.4",
       "Microsoft.NET.ILLink.Tasks >= 9.0.1",
       "Microsoft.NET.Sdk.WebAssembly.Pack >= 9.0.0",
-      "OpenIddict.Client >= 6.2.1",
       "System.IdentityModel.Tokens.Jwt >= 8.9.0"
     ]
   },
@@ -2722,16 +2604,15 @@
             "target": "Package",
             "version": "[4.5.0, )"
           },
-          "Microsoft.AspNetCore.Components.Authorization": {
-            "target": "Package",
-            "version": "[9.0.4, )"
-          },
           "Microsoft.AspNetCore.Components.WebAssembly": {
             "target": "Package",
             "version": "[9.0.4, )"
           },
+          "Microsoft.AspNetCore.Components.WebAssembly.Authentication": {
+            "target": "Package",
+            "version": "[9.0.4, )"
+          },
           "Microsoft.AspNetCore.Components.WebAssembly.DevServer": {
-            "suppressParent": "All",
             "target": "Package",
             "version": "[9.0.4, )"
           },
@@ -2754,10 +2635,6 @@
             "target": "Package",
             "version": "[9.0.0, )",
             "autoReferenced": true
-          },
-          "OpenIddict.Client": {
-            "target": "Package",
-            "version": "[6.2.1, )"
           },
           "System.IdentityModel.Tokens.Jwt": {
             "target": "Package",

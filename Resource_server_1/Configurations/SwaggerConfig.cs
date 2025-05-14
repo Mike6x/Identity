@@ -73,7 +73,7 @@ public static class SwaggerConfig
         return services;
     }
 
-    public static IApplicationBuilder UseSwagger(this WebApplication app)
+    public static IApplicationBuilder UseSwaggerService(this WebApplication app)
     {
         
         if (app.Environment.IsDevelopment())

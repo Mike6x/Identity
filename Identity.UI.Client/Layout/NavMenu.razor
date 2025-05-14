@@ -1,69 +1,39 @@
-﻿@using System.Diagnostics
-@using System.Security.Claims
-@using Identity.UI.Infrastructure.Infra
-@using Microsoft.AspNetCore.Components.Authorization
-@inject ILogoutService LogoutService
-@inject NavigationManager NavigationManager
-@inject AuthenticationStateProvider GetAuthenticationStateAsync
-
-<div class="top-row ps-3 navbar navbar-dark">
+﻿<div class="top-row ps-3 navbar navbar-dark">
     <div class="container-fluid">
-        <a class="navbar-brand" href="">OpenIddict</a>
+        <a class="navbar-brand" href="">Samples.Blazor.App</a>
         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu">
             <span class="navbar-toggler-icon"></span>
         </button>
     </div>
 </div>
 
-<div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu">
+<div class="@NavMenuCssClass" @onclick="ToggleNavMenu">
     <nav class="flex-column">
         <div class="nav-item px-3">
             <NavLink class="nav-link" href="" Match="NavLinkMatch.All">
-                <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home
+                <span class="oi oi-home" aria-hidden="true"></span> Home
             </NavLink>
         </div>
-        <AuthorizeView>
-            <Authorized>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="weather">
-                        <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather
-                    </NavLink>
-                </div>
-
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="account/Manage/Profile">
-                        <span class="bi bi-person-fill-nav-menu" aria-hidden="true"></span> @Name
-                    </NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <button class="btn btn-primary" @onclick="LogoutAsync">
-                        <span class="bi bi-arrow-bar-left-nav-menu" aria-hidden="true"></span> Logout
-                    </button>
-                </div>
-            </Authorized>
-            <NotAuthorized>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="counter">
-                        <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter
-                    </NavLink>
-                </div>
-                
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="account/register">
-                        <span class="bi bi-person-nav-menu" aria-hidden="true"></span> Register
-                    </NavLink>
-                </div>
-                <div class="nav-item px-3">
-                    <NavLink class="nav-link" href="account/login">
-                        <span class="bi bi-person-badge-nav-menu" aria-hidden="true"></span> Login
-                    </NavLink>
-                </div>
-
-                @* <div class="nav-item px-3"> *@
-                @*     <button class="btn btn-primary" @onclick="LogoutAsync">LogOut</button> *@
-                @* </div> *@
-            </NotAuthorized>
-        </AuthorizeView>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="counter">
+                <span class="oi oi-plus" aria-hidden="true"></span> Counter
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="weather">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch unprotected data
+            </NavLink>
+        </div>
+        <div class="nav-item px-3">
+            <NavLink class="nav-link" href="fetchdata">
+                <span class="oi oi-list-rich" aria-hidden="true"></span> Fetch protected data
+            </NavLink>
+        </div>
+        @* <div class="nav-item px-3"> *@
+        @*     <NavLink class="nav-link" href="me"> *@
+        @*         <span class="oi oi-list-rich" aria-hidden="true"></span> My Profile *@
+        @*     </NavLink> *@
+        @* </div> *@
     </nav>
 </div>
 
@@ -76,64 +46,4 @@
     {
         _collapseNavMenu = !_collapseNavMenu;
     }
-
-    private async Task LogoutAsync()
-    {
-        await LogoutService.LogoutAsync();
-        NavigationManager.NavigateTo("/account/login");
-    }
-    
-    protected override async Task OnInitializedAsync()
-    {
-        var authState = await GetAuthenticationStateAsync.GetAuthenticationStateAsync();
-        var user = authState.User;
-        Name = user.Claims.FirstOrDefault(x => x.Type == "email")?.Value;
-        user.Claims.ToList().ForEach(x => Debug.WriteLine(x.Type + " : " + x.Value ));
-    }
-
-    private string? Name { get; set; }
-
 }
-
-
-
-@* <div class="top-row ps-3 navbar navbar-dark"> *@
-@*     <div class="container-fluid"> *@
-@*         <a class="navbar-brand" href="">Identity.UI.Client</a> *@
-@*         <button title="Navigation menu" class="navbar-toggler" @onclick="ToggleNavMenu"> *@
-@*             <span class="navbar-toggler-icon"></span> *@
-@*         </button> *@
-@*     </div> *@
-@* </div> *@
-@* *@
-@* <div class="@NavMenuCssClass nav-scrollable" @onclick="ToggleNavMenu"> *@
-@*     <nav class="nav flex-column"> *@
-@*         <div class="nav-item px-3"> *@
-@*             <NavLink class="nav-link" href="" Match="NavLinkMatch.All"> *@
-@*                 <span class="bi bi-house-door-fill-nav-menu" aria-hidden="true"></span> Home *@
-@*             </NavLink> *@
-@*         </div> *@
-@*         <div class="nav-item px-3"> *@
-@*             <NavLink class="nav-link" href="counter"> *@
-@*                 <span class="bi bi-plus-square-fill-nav-menu" aria-hidden="true"></span> Counter *@
-@*             </NavLink> *@
-@*         </div> *@
-@*         <div class="nav-item px-3"> *@
-@*             <NavLink class="nav-link" href="weather"> *@
-@*                 <span class="bi bi-list-nested-nav-menu" aria-hidden="true"></span> Weather *@
-@*             </NavLink> *@
-@*         </div> *@
-@*     </nav> *@
-@* </div> *@
-@* *@
-@* @code { *@
-@*     private bool collapseNavMenu = true; *@
-@* *@
-@*     private string? NavMenuCssClass => collapseNavMenu ? "collapse" : null; *@
-@* *@
-@*     private void ToggleNavMenu() *@
-@*     { *@
-@*         collapseNavMenu = !collapseNavMenu; *@
-@*     } *@
-@* *@
-@* } *@

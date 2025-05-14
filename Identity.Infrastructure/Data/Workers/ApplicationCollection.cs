@@ -5,15 +5,85 @@ namespace Identity.Infrastructure.Data.Workers;
 
 public class ApplicationCollection
 {
-    private readonly List<OpenIddictApplicationDescriptor> _applications = [];
-
     private string IdentityHost { get; set; }
-
+    
+    private readonly List<OpenIddictApplicationDescriptor> _applications = [];
+    
     public IEnumerable<OpenIddictApplicationDescriptor> GetAllApplications() => _applications;
 
     public ApplicationCollection(string? identityHost)
     {
         IdentityHost = string.IsNullOrEmpty(identityHost) ? "https://localhost:7000" : identityHost;
+        
+        const string adminUiUrl = "https://localhost:7002";
+
+        #region Sample Clients
+
+        // web-client: authorization-oidc-application
+        _applications.Add(new OpenIddictApplicationDescriptor
+        {
+            ClientId = "web-client",
+            ClientSecret = "901564A5-E7FE-42CB-B10D-61EF6A8F3654",
+            DisplayName = "MVC Web Client Application",
+            ConsentType = OpenIddictConstants.ConsentTypes.Explicit,
+
+            RedirectUris =
+            {
+                new Uri("https://localhost:7004/authentication/login-callback"),
+                new Uri("https://localhost:7004/signin-oidc"),
+                new Uri("https://oidcdebugger.com/debug")
+            },
+            PostLogoutRedirectUris =
+            {
+                new Uri("https://localhost:7004/authentication/logout-callback")
+            },
+            Permissions =
+            {
+                OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
+                
+                OpenIddictConstants.Permissions.Endpoints.Authorization,
+                OpenIddictConstants.Permissions.Endpoints.EndSession,
+                OpenIddictConstants.Permissions.Endpoints.Token,
+                
+                OpenIddictConstants.Permissions.ResponseTypes.Code,
+
+                OpenIddictConstants.Permissions.Scopes.Email,
+                OpenIddictConstants.Permissions.Scopes.Profile,
+                OpenIddictConstants.Permissions.Scopes.Roles,
+                OpenIddictConstants.Permissions.Prefixes.Scope + "api1",
+            },
+        });
+
+                
+        // blazorwasm-oidc-application
+        _applications.Add( new OpenIddictApplicationDescriptor
+        {
+            ClientId = "blazorwasm-oidc-application",
+            ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C206",
+            ConsentType = OpenIddictConstants.ConsentTypes.Explicit,
+            DisplayName = "BlazorWasm code PKCE Application",
+            RedirectUris =
+            {
+                new Uri("https://localhost:7002/signin-oidc"),
+                new Uri("https://localhost:7002/authentication/login-callback")
+            },
+            PostLogoutRedirectUris =
+            {
+                new Uri("https://localhost:7002/signout-callback-oidc"),
+                new Uri("https://localhost:7002/authentication/logout-callback")
+            },
+            Permissions =
+            {
+                OpenIddictConstants.Permissions.GrantTypes.Password,
+                
+                OpenIddictConstants.Permissions.Endpoints.Token,
+                OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
+                $"{OpenIddictConstants.Permissions.Prefixes.Scope}api1"
+            },
+
+        });
+
+        #endregion
         
         #region Authorization Code Flow applications
 
@@ -126,43 +196,7 @@ public class ApplicationCollection
 
         });
         
-        // web-client : authorization-oidc-application
-        _applications.Add(new OpenIddictApplicationDescriptor
-        {
-            ClientId = "web-client",
-            ClientSecret = "901564A5-E7FE-42CB-B10D-61EF6A8F3654",
-            DisplayName = "Web Client Application",
-            ConsentType = OpenIddictConstants.ConsentTypes.Explicit,
 
-            RedirectUris =
-            {
-                new Uri("https://localhost:7201/swagger/oauth2-redirect.html"),
-                new Uri("https://localhost:7051/swagger/oauth2-redirect.html"),
-                new Uri("https://localhost:7153/callback/login/local"),
-                new Uri("https://localhost:7002/signin-oidc"),
-                new Uri("https://oidcdebugger.com/debug")
-            },
-            PostLogoutRedirectUris =
-            {
-                new Uri("https://localhost:7002/resources")
-            },
-            Permissions =
-            {
-                OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
-                
-                OpenIddictConstants.Permissions.Endpoints.Authorization,
-                OpenIddictConstants.Permissions.Endpoints.EndSession,
-                OpenIddictConstants.Permissions.Endpoints.Token,
-                
-                OpenIddictConstants.Permissions.ResponseTypes.Code,
-
-                OpenIddictConstants.Permissions.Scopes.Email,
-                OpenIddictConstants.Permissions.Scopes.Profile,
-                OpenIddictConstants.Permissions.Scopes.Roles,
-                OpenIddictConstants.Permissions.Prefixes.Scope + "api1",
-            },
-        });
-        
         // mvc-client : authorization-oidc-application
         _applications.Add(new OpenIddictApplicationDescriptor
         {
@@ -279,33 +313,32 @@ public class ApplicationCollection
         
         #region Admin client
         
-        // pixel-identity-ui
+        // identity-ui
         _applications.Add(new OpenIddictApplicationDescriptor
         {
             ApplicationType = OpenIddictConstants.ApplicationTypes.Web,
             ClientId = "pixel-identity-ui",
             ConsentType = OpenIddictConstants.ConsentTypes.Implicit,
             ClientType = OpenIddictConstants.ClientTypes.Public,
-            DisplayName = "Pixel Identity",
-            PostLogoutRedirectUris =
-            {
-                new Uri($"{IdentityHost}/authentication/logout-callback")
-                // new Uri($"{configuration["IdentityHost"]}/authentication/logout-callback")
-            },
+            DisplayName = "Identity UI",
             RedirectUris =
             {
-                new Uri($"{IdentityHost}/authentication/login-callback")
-                // new Uri($"{configuration["IdentityHost"]}/authentication/login-callback")
+                new Uri($"{adminUiUrl}/authentication/login-callback")
             },
+            PostLogoutRedirectUris =
+            {
+                new Uri($"{adminUiUrl}/authentication/logout-callback")
+            },
+
             Permissions =
             {
+                OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
+                OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
+                
                 OpenIddictConstants.Permissions.Endpoints.Authorization,
                 OpenIddictConstants.Permissions.Endpoints.EndSession,
                 OpenIddictConstants.Permissions.Endpoints.Token,
                 OpenIddictConstants.Permissions.Endpoints.Introspection,
-
-                OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
-                OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
 
                 OpenIddictConstants.Permissions.ResponseTypes.Code,
                 OpenIddictConstants.Permissions.Scopes.Email,
@@ -317,34 +350,6 @@ public class ApplicationCollection
                 OpenIddictConstants.Requirements.Features.ProofKeyForCodeExchange
             }
         });
-        
-        // blazorwasm-oidc-application
-        _applications.Add( new OpenIddictApplicationDescriptor
-        {
-            ClientId = "blazorwasm-oidc-application",
-            ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C206",
-            ConsentType = OpenIddictConstants.ConsentTypes.Explicit,
-            DisplayName = "BlazorWasm Application",
-            RedirectUris =
-            {
-                
-                new Uri("https://localhost:7002/authentication/login-callback")
-            },
-            PostLogoutRedirectUris =
-            {
-                new Uri("https://localhost:7002/authentication/logout-callback")
-            },
-            Permissions =
-            {
-                OpenIddictConstants.Permissions.GrantTypes.Password,
-                
-                OpenIddictConstants.Permissions.Endpoints.Token,
-                OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
-                $"{OpenIddictConstants.Permissions.Prefixes.Scope}api1"
-            },
-
-        });
-        
 
         // gateway resource server
         _applications.Add( new OpenIddictApplicationDescriptor

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9BqEpSCZ8lk=",
+  "dgSpecHash": "tqilWwxYHeI=",
   "success": true,
   "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.UI.Infrastructure/Identity.UI.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -9,8 +9,9 @@
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components/9.0.4/microsoft.aspnetcore.components.9.0.4.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components.analyzers/9.0.4/microsoft.aspnetcore.components.analyzers.9.0.4.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components.authorization/9.0.4/microsoft.aspnetcore.components.authorization.9.0.4.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components.forms/8.0.0/microsoft.aspnetcore.components.forms.8.0.0.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components.web/8.0.0/microsoft.aspnetcore.components.web.8.0.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components.forms/9.0.4/microsoft.aspnetcore.components.forms.9.0.4.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components.web/9.0.4/microsoft.aspnetcore.components.web.9.0.4.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components.webassembly.authentication/9.0.4/microsoft.aspnetcore.components.webassembly.authentication.9.0.4.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.metadata/9.0.4/microsoft.aspnetcore.metadata.9.0.4.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.extensions.configuration/9.0.4/microsoft.extensions.configuration.9.0.4.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.extensions.configuration.abstractions/9.0.4/microsoft.extensions.configuration.abstractions.9.0.4.nupkg.sha512",
@@ -29,7 +30,7 @@
     "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.jsonwebtokens/8.9.0/microsoft.identitymodel.jsonwebtokens.8.9.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.logging/8.9.0/microsoft.identitymodel.logging.8.9.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.tokens/8.9.0/microsoft.identitymodel.tokens.8.9.0.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/microsoft.jsinterop/8.0.0/microsoft.jsinterop.8.0.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.jsinterop/9.0.4/microsoft.jsinterop.9.0.4.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/nswag.msbuild/14.4.0/nswag.msbuild.14.4.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/system.identitymodel.tokens.jwt/8.9.0/system.identitymodel.tokens.jwt.8.9.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.netcore.app.ref/9.0.1/microsoft.netcore.app.ref.9.0.1.nupkg.sha512",

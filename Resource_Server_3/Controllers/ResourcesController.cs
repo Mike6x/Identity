@@ -1,12 +1,21 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Resource_Server_3.Controllers;
 
 [ApiController]
-[Route("resources")]
-public class ResourceController : Controller
+[Route("[controller]")]
+
+public class ResourcesController : Controller
 {
+    [HttpGet("logout")]
+    public async Task Logout()
+    {
+        await HttpContext.SignOutAsync("Cookies");
+        await HttpContext.SignOutAsync("OpenIddict.Server.AspNetCore");
+    }
+    
     [Authorize]
     [HttpGet]
     public async Task<IActionResult> GetSecretResources()
@@ -16,7 +25,7 @@ public class ResourceController : Controller
     }
     
     [Authorize]
-    [HttpGet ("/protectWeatherInfo")]
+    [HttpGet ("WeatherForecast")]
     public async Task<IActionResult> GetWeartherResources()
     {
         var summaries = new[]
@@ -37,7 +46,7 @@ public class ResourceController : Controller
     }
     
 
-    [HttpGet ("/unprotectWeatherInfo")]
+    [HttpGet ("WeatherInfo")]
     public async Task<IActionResult> GetWeartherInfo()
     {
         var summaries = new[]
