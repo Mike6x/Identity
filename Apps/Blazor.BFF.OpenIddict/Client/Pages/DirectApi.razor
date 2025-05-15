@@ -1,0 +1,39 @@
+﻿@page "/directapi"
+@inject IAntiforgeryHttpClientFactory HttpClientFactory
+@inject IJSRuntime JSRuntime
+
+<h1>Data from Direct API</h1>
+
+@if (_apiData == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Data</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var data in _apiData)
+            {
+                <tr>
+                    <td>@data</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    private string[]? _apiData;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var client = await HttpClientFactory.CreateClientAsync();
+
+        _apiData = await client.GetFromJsonAsync<string[]>("api/DirectApi");
+    }
+}

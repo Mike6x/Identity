@@ -1,0 +1,24 @@
+﻿@page "/"
+
+<AuthorizeView>
+    <Authorized>
+        <h2>Hello @context.User.Identity?.Name !</h2>
+        <br/>
+        <br/>
+        <h4> Here's the list of your claims:</h4>
+        <br/>
+        <ul>
+            @foreach (var claimGroup in context.User.Claims.GroupBy(a => a.Type))
+            {
+                foreach(var claimValue in claimGroup.Select(s => s.Value).Distinct())
+                {
+                    <li><b>@claimGroup.Key</b>: @claimValue</li>
+                }               
+            }
+        </ul>
+    </Authorized>
+    <NotAuthorized>
+        <h1>OpenID Connect using cookies</h1>
+        @* <RedirectToLogin/> *@
+    </NotAuthorized>
+</AuthorizeView>
