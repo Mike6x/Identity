@@ -1,0 +1,6 @@
+@Resource_server_3_HostAddress = https://localhost:7203
+
+GET {{Resource_server_3_HostAddress}}/Resources/weather-forecast/
+Accept: application/json
+
+###

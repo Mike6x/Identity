@@ -3,11 +3,11 @@
 
 @inject IHttpClientFactory HttpClientFactory
 
-<PageTitle>Weather</PageTitle>
+<PageTitle>Secure Weather</PageTitle>
 
-<h1>Secure Weather</h1>
+<h1>Secure Weather Data</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p>This component demonstrates fetching secure data from the server.</p>
 
 @if (_forecasts == null)
 {
@@ -43,7 +43,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        var http = HttpClientFactory.CreateClient("Resource_3_HttpClient");
+        var http = HttpClientFactory.CreateClient("resource3Client");
         _forecasts = await http.GetFromJsonAsync<WeatherForecast[]>("resources/secure-weather-forecast");
     }
 

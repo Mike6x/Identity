@@ -2,11 +2,11 @@
 @using global::Client.Infrastructure.Models
 @inject IHttpClientFactory HttpClientFactory
 
-<PageTitle>Weather</PageTitle>
+<PageTitle>UnSecure Weather</PageTitle>
 
-<h1>Weather</h1>
+<h1>Weather Forecast Data</h1>
 
-<p>This component demonstrates fetching data from the server.</p>
+<p>This component demonstrates fetching unsecure data from the server.</p>
 
 @if (_forecasts == null)
 {
@@ -42,7 +42,7 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        var http = HttpClientFactory.CreateClient("Resource_3_Client");
+        var http = HttpClientFactory.CreateClient("resource3Client");
         _forecasts = await http.GetFromJsonAsync<WeatherForecast[]>("resources/weather-forecast");
     }
 

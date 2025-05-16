@@ -18,6 +18,11 @@
       </PackageReference>
       <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.9.0" />
     </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Services\Resource_1\" />
+      <Folder Include="Services\Resource_2\" />
+    </ItemGroup>
     <Target Name="NSwag">
         <Exec WorkingDirectory="$(ProjectDir)\Api" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net80) run ./nswag.json /variables:Configuration=$(Configuration)" />
     </Target>

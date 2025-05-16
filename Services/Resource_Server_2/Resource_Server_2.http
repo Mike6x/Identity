@@ -1,0 +1,6 @@
+@Resource_Server_2_HostAddress = https://localhost:7202
+
+GET {{Resource_Server_2_HostAddress}}/unprotected
+Accept: application/json
+
+###

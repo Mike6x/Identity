@@ -1,6 +1,7 @@
 using System.Net.Http.Headers;
 using Blazor.BFF.OpenIddict.Client.Services;
 using Client.Infrastructure.Services;
+using Client.Infrastructure.Services.Resource_3;
 
 namespace Blazor.BFF.OpenIddict.Client.Configurations;
 
@@ -8,6 +9,7 @@ public static class HttpClientRegistration
 {
     public static IServiceCollection RegisterHttpClient(this IServiceCollection services, string serverBaseAddress)
     {
+        const string resoure3Address = "https://localhost:7203";
 
         services.AddHttpClient("default", client =>
         {
@@ -21,9 +23,9 @@ public static class HttpClientRegistration
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }).AddHttpMessageHandler<AuthorizedHandler>();
         
-        services.AddHttpClient<IWeatherService, WeatherService>("Resource_3_Client", client =>
+        services.AddHttpClient<IWeatherService, WeatherService>("resource3Client", client =>
         {
-            client.BaseAddress = new Uri("https://localhost:7203/");
+            client.BaseAddress = new Uri(resoure3Address);
             client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }).AddHttpMessageHandler<AuthorizedHandler>();
 

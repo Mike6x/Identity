@@ -61,6 +61,8 @@ services.AddAuthentication(options =>
         NameClaimType = "name",
         RoleClaimType = "role"
     };
+    
+    options.Scope.Add("api1");
 });
 
 services.AddControllersWithViews(options =>
