@@ -1,0 +1,24 @@
+using Blazor.Wasm.Client.Configurations;
+using Blazored.LocalStorage;
+using Client.Infrastructure;
+
+namespace Blazor.Wasm.Client;
+
+public static class Extensions
+{
+    public static IServiceCollection AddClientServices(this IServiceCollection services, IConfiguration configuration)
+    {
+        var settingAuthorityUrl = configuration["AuthorityUrl"];
+        var authorityUrl = string.IsNullOrEmpty(settingAuthorityUrl)
+                                    ? "https://localhost:7000"
+                                    : settingAuthorityUrl;
+        
+        services.AddBlazoredLocalStorage();
+        services.AddInfraServices();
+        
+        services.RegisterHttpClient(authorityUrl);
+        services.AddOpenIdDictConfig(authorityUrl);
+        
+       return services;
+    }
+}

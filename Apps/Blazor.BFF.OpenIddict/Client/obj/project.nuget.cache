@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "+OIowv6lMXo=",
+  "dgSpecHash": "LDJASLcejJs=",
   "success": true,
-  "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/AspNetCoreOpeniddict/Blazor.BFF.OpenIddict/Client/Blazor.BFF.OpenIddict.Client.csproj",
+  "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/Blazor.BFF.OpenIddict/Client/Blazor.BFF.OpenIddict.Client.csproj",
   "expectedPackageFiles": [
+    "/Users/tuanpa/.nuget/packages/blazored.localstorage/4.5.0/blazored.localstorage.4.5.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.authorization/9.0.5/microsoft.aspnetcore.authorization.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components/9.0.5/microsoft.aspnetcore.components.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components.analyzers/9.0.5/microsoft.aspnetcore.components.analyzers.9.0.5.nupkg.sha512",
@@ -32,10 +33,15 @@
     "/Users/tuanpa/.nuget/packages/microsoft.extensions.options/9.0.5/microsoft.extensions.options.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.extensions.options.configurationextensions/9.0.5/microsoft.extensions.options.configurationextensions.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.extensions.primitives/9.0.5/microsoft.extensions.primitives.9.0.5.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.abstractions/8.10.0/microsoft.identitymodel.abstractions.8.10.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.jsonwebtokens/8.10.0/microsoft.identitymodel.jsonwebtokens.8.10.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.logging/8.10.0/microsoft.identitymodel.logging.8.10.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.tokens/8.10.0/microsoft.identitymodel.tokens.8.10.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.jsinterop/9.0.5/microsoft.jsinterop.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.jsinterop.webassembly/9.0.5/microsoft.jsinterop.webassembly.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.net.illink.tasks/9.0.1/microsoft.net.illink.tasks.9.0.1.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.net.sdk.webassembly.pack/9.0.0/microsoft.net.sdk.webassembly.pack.9.0.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/system.identitymodel.tokens.jwt/8.10.0/system.identitymodel.tokens.jwt.8.10.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/9.0.0/microsoft.netcore.app.runtime.mono.browser-wasm.9.0.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.1/microsoft.aspnetcore.app.ref.9.0.1.nupkg.sha512"
   ],

@@ -1,0 +1,13 @@
+﻿services:
+  identity.provider:
+    image: identity.provider
+    build:
+      context: .
+      dockerfile: Identity.Provider/Dockerfile
+
+  provider:
+    image: provider
+    build:
+      context: .
+      dockerfile: Provider/Dockerfile
+

@@ -822,7 +822,7 @@
           }
         }
       },
-      "Scalar.AspNetCore/2.3.0": {
+      "Scalar.AspNetCore/2.3.1": {
         "type": "package",
         "compile": {
           "lib/net9.0/Scalar.AspNetCore.dll": {
@@ -2171,10 +2171,10 @@
         "polly.ratelimiting.nuspec"
       ]
     },
-    "Scalar.AspNetCore/2.3.0": {
-      "sha512": "uC+lEJWXNnjHwTRYCK7hJweCN9CYGs9HZ5vx4l+uQEdkXvHE9ZXcxfvKWn7GZ6pVQFwCTKt/HPfE2bpJd/C6aQ==",
+    "Scalar.AspNetCore/2.3.1": {
+      "sha512": "x1j9LafJP7kdQnPh31RubohQvE3DTln/+YOVnoPu2LJ9cV9nWiSDyTAyKXUAHvITbYOd8aWSj4WbgcjrJcEsrA==",
       "type": "package",
-      "path": "scalar.aspnetcore/2.3.0",
+      "path": "scalar.aspnetcore/2.3.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2184,7 +2184,7 @@
         "lib/net8.0/Scalar.AspNetCore.xml",
         "lib/net9.0/Scalar.AspNetCore.dll",
         "lib/net9.0/Scalar.AspNetCore.xml",
-        "scalar.aspnetcore.2.3.0.nupkg.sha512",
+        "scalar.aspnetcore.2.3.1.nupkg.sha512",
         "scalar.aspnetcore.nuspec"
       ]
     },
@@ -2429,7 +2429,7 @@
       "Microsoft.AspNetCore.OpenApi >= 9.0.5",
       "OpenIddict.Validation.AspNetCore >= 6.3.0",
       "OpenIddict.Validation.SystemNetHttp >= 6.3.0",
-      "Scalar.AspNetCore >= 2.3.0",
+      "Scalar.AspNetCore >= 2.3.1",
       "Serilog.AspNetCore >= 9.0.0"
     ]
   },
@@ -2491,7 +2491,7 @@
           },
           "Scalar.AspNetCore": {
             "target": "Package",
-            "version": "[2.3.0, )"
+            "version": "[2.3.1, )"
           },
           "Serilog.AspNetCore": {
             "target": "Package",

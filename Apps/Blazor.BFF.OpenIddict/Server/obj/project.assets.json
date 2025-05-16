@@ -2,6 +2,15 @@
   "version": 3,
   "targets": {
     "net9.0": {
+      "Blazored.LocalStorage/4.5.0": {
+        "type": "package",
+        "compile": {
+          "lib/net8.0/Blazored.LocalStorage.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/Blazored.LocalStorage.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Authentication.OpenIdConnect/9.0.5": {
         "type": "package",
         "dependencies": {
@@ -551,7 +560,7 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
-      "Microsoft.IdentityModel.Abstractions/8.0.1": {
+      "Microsoft.IdentityModel.Abstractions/8.10.0": {
         "type": "package",
         "compile": {
           "lib/net9.0/Microsoft.IdentityModel.Abstractions.dll": {
@@ -564,10 +573,10 @@
           }
         }
       },
-      "Microsoft.IdentityModel.JsonWebTokens/8.0.1": {
+      "Microsoft.IdentityModel.JsonWebTokens/8.10.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IdentityModel.Tokens": "8.0.1"
+          "Microsoft.IdentityModel.Tokens": "8.10.0"
         },
         "compile": {
           "lib/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll": {
@@ -580,10 +589,10 @@
           }
         }
       },
-      "Microsoft.IdentityModel.Logging/8.0.1": {
+      "Microsoft.IdentityModel.Logging/8.10.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IdentityModel.Abstractions": "8.0.1"
+          "Microsoft.IdentityModel.Abstractions": "8.10.0"
         },
         "compile": {
           "lib/net9.0/Microsoft.IdentityModel.Logging.dll": {
@@ -629,10 +638,10 @@
           }
         }
       },
-      "Microsoft.IdentityModel.Tokens/8.0.1": {
+      "Microsoft.IdentityModel.Tokens/8.10.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IdentityModel.Logging": "8.0.1"
+          "Microsoft.IdentityModel.Logging": "8.10.0"
         },
         "compile": {
           "lib/net9.0/Microsoft.IdentityModel.Tokens.dll": {
@@ -709,11 +718,11 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "System.IdentityModel.Tokens.Jwt/8.0.1": {
+      "System.IdentityModel.Tokens.Jwt/8.10.0": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IdentityModel.JsonWebTokens": "8.0.1",
-          "Microsoft.IdentityModel.Tokens": "8.0.1"
+          "Microsoft.IdentityModel.JsonWebTokens": "8.10.0",
+          "Microsoft.IdentityModel.Tokens": "8.10.0"
         },
         "compile": {
           "lib/net9.0/System.IdentityModel.Tokens.Jwt.dll": {
@@ -730,7 +739,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
-          "Blazor.BFF.OpenIddict.Shared": "1.0.0",
+          "Client.Infrastructure": "1.0.0",
+          "Identity.Shared": "1.0.0",
           "Microsoft.AspNetCore.Components.WebAssembly": "9.0.5",
           "Microsoft.AspNetCore.Components.WebAssembly.Authentication": "9.0.5",
           "Microsoft.Extensions.Http": "9.0.5"
@@ -742,19 +752,53 @@
           "bin/placeholder/Blazor.BFF.OpenIddict.Client.dll": {}
         }
       },
-      "Blazor.BFF.OpenIddict.Shared/1.0.0": {
+      "Client.Infrastructure/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "Blazored.LocalStorage": "4.5.0",
+          "Microsoft.AspNetCore.Components.Authorization": "9.0.5",
+          "Microsoft.AspNetCore.Components.WebAssembly.Authentication": "9.0.5",
+          "Microsoft.Extensions.Configuration.Abstractions": "9.0.5",
+          "Microsoft.Extensions.Http": "9.0.5",
+          "System.IdentityModel.Tokens.Jwt": "8.10.0"
+        },
+        "compile": {
+          "bin/placeholder/Client.Infrastructure.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Client.Infrastructure.dll": {}
+        }
+      },
+      "Identity.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "compile": {
-          "bin/placeholder/Blazor.BFF.OpenIddict.Shared.dll": {}
+          "bin/placeholder/Identity.Shared.dll": {}
         },
         "runtime": {
-          "bin/placeholder/Blazor.BFF.OpenIddict.Shared.dll": {}
+          "bin/placeholder/Identity.Shared.dll": {}
         }
       }
     }
   },
   "libraries": {
+    "Blazored.LocalStorage/4.5.0": {
+      "sha512": "6nZuJwA7zNIKx83IsObiHXZb09ponJOpCClU3en+hI8ZFvrOKXeOw+H7TegQZQrvdR1n9fkrVkEBQZg8vx6ZTw==",
+      "type": "package",
+      "path": "blazored.localstorage/4.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "README.md",
+        "blazored.localstorage.4.5.0.nupkg.sha512",
+        "blazored.localstorage.nuspec",
+        "icon.png",
+        "lib/net6.0/Blazored.LocalStorage.dll",
+        "lib/net7.0/Blazored.LocalStorage.dll",
+        "lib/net8.0/Blazored.LocalStorage.dll"
+      ]
+    },
     "Microsoft.AspNetCore.Authentication.OpenIdConnect/9.0.5": {
       "sha512": "bTZm2vTbJGTTtuW41E7sBP1p2tMgKQBbKULBuE6YvtwOK4/gzjXcD2n9pfWfloayfOvxCRwJYJ5deJhuQiIOeg==",
       "type": "package",
@@ -1531,13 +1575,14 @@
         "useSharedDesignerContext.txt"
       ]
     },
-    "Microsoft.IdentityModel.Abstractions/8.0.1": {
-      "sha512": "OtlIWcyX01olfdevPKZdIPfBEvbcioDyBiE/Z2lHsopsMD7twcKtlN9kMevHmI5IIPhFpfwCIiR6qHQz1WHUIw==",
+    "Microsoft.IdentityModel.Abstractions/8.10.0": {
+      "sha512": "JxKG5YRBB3b6kSGFec7sbIOngEzPxu4EKPBEIdj/l0ufS1Qhc4wLxAPGJYGhEYOomTbDWaA+ZKVEaJNU+2iWUQ==",
       "type": "package",
-      "path": "microsoft.identitymodel.abstractions/8.0.1",
+      "path": "microsoft.identitymodel.abstractions/8.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "README.md",
         "lib/net462/Microsoft.IdentityModel.Abstractions.dll",
         "lib/net462/Microsoft.IdentityModel.Abstractions.xml",
         "lib/net472/Microsoft.IdentityModel.Abstractions.dll",
@@ -1550,17 +1595,18 @@
         "lib/net9.0/Microsoft.IdentityModel.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.IdentityModel.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.Abstractions.xml",
-        "microsoft.identitymodel.abstractions.8.0.1.nupkg.sha512",
+        "microsoft.identitymodel.abstractions.8.10.0.nupkg.sha512",
         "microsoft.identitymodel.abstractions.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.JsonWebTokens/8.0.1": {
-      "sha512": "s6++gF9x0rQApQzOBbSyp4jUaAlwm+DroKfL8gdOHxs83k8SJfUXhuc46rDB3rNXBQ1MVRxqKUrqFhO/M0E97g==",
+    "Microsoft.IdentityModel.JsonWebTokens/8.10.0": {
+      "sha512": "6YcL0exWuiHBUmQIkcocQ0x0mvvNewKbmpJpsZw4uzbweotSmAmb0pOK3CdIDYq31atjxrVOvlfF51+0FmrI5g==",
       "type": "package",
-      "path": "microsoft.identitymodel.jsonwebtokens/8.0.1",
+      "path": "microsoft.identitymodel.jsonwebtokens/8.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "README.md",
         "lib/net462/Microsoft.IdentityModel.JsonWebTokens.dll",
         "lib/net462/Microsoft.IdentityModel.JsonWebTokens.xml",
         "lib/net472/Microsoft.IdentityModel.JsonWebTokens.dll",
@@ -1573,17 +1619,18 @@
         "lib/net9.0/Microsoft.IdentityModel.JsonWebTokens.xml",
         "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.xml",
-        "microsoft.identitymodel.jsonwebtokens.8.0.1.nupkg.sha512",
+        "microsoft.identitymodel.jsonwebtokens.8.10.0.nupkg.sha512",
         "microsoft.identitymodel.jsonwebtokens.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.Logging/8.0.1": {
-      "sha512": "UCPF2exZqBXe7v/6sGNiM6zCQOUXXQ9+v5VTb9gPB8ZSUPnX53BxlN78v2jsbIvK9Dq4GovQxo23x8JgWvm/Qg==",
+    "Microsoft.IdentityModel.Logging/8.10.0": {
+      "sha512": "BnkYC9lKYOL3zk7pmle9VJWAzSTPCjkvLyoKPmr4suFZo2hG3YYnFrffjUgdKHIUlyhcd1eHsBHMkfa1S3o/tA==",
       "type": "package",
-      "path": "microsoft.identitymodel.logging/8.0.1",
+      "path": "microsoft.identitymodel.logging/8.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "README.md",
         "lib/net462/Microsoft.IdentityModel.Logging.dll",
         "lib/net462/Microsoft.IdentityModel.Logging.xml",
         "lib/net472/Microsoft.IdentityModel.Logging.dll",
@@ -1596,7 +1643,7 @@
         "lib/net9.0/Microsoft.IdentityModel.Logging.xml",
         "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.Logging.xml",
-        "microsoft.identitymodel.logging.8.0.1.nupkg.sha512",
+        "microsoft.identitymodel.logging.8.10.0.nupkg.sha512",
         "microsoft.identitymodel.logging.nuspec"
       ]
     },
@@ -1646,13 +1693,14 @@
         "microsoft.identitymodel.protocols.openidconnect.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.Tokens/8.0.1": {
-      "sha512": "kDimB6Dkd3nkW2oZPDkMkVHfQt3IDqO5gL0oa8WVy3OP4uE8Ij+8TXnqg9TOd9ufjsY3IDiGz7pCUbnfL18tjg==",
+    "Microsoft.IdentityModel.Tokens/8.10.0": {
+      "sha512": "lKS/JCsPnw422g0uk4+iOIJA2Uvq3v6QydDEiOdCFGN1ge/lSeSb8ruZLGLOBMPdN4snSGGn21p92VDuHt4pew==",
       "type": "package",
-      "path": "microsoft.identitymodel.tokens/8.0.1",
+      "path": "microsoft.identitymodel.tokens/8.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "README.md",
         "lib/net462/Microsoft.IdentityModel.Tokens.dll",
         "lib/net462/Microsoft.IdentityModel.Tokens.xml",
         "lib/net472/Microsoft.IdentityModel.Tokens.dll",
@@ -1665,7 +1713,7 @@
         "lib/net9.0/Microsoft.IdentityModel.Tokens.xml",
         "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.xml",
-        "microsoft.identitymodel.tokens.8.0.1.nupkg.sha512",
+        "microsoft.identitymodel.tokens.8.10.0.nupkg.sha512",
         "microsoft.identitymodel.tokens.nuspec"
       ]
     },
@@ -1729,13 +1777,14 @@
         "netescapades.aspnetcore.securityheaders.taghelpers.nuspec"
       ]
     },
-    "System.IdentityModel.Tokens.Jwt/8.0.1": {
-      "sha512": "GJw3bYkWpOgvN3tJo5X4lYUeIFA2HD293FPUhKmp7qxS+g5ywAb34Dnd3cDAFLkcMohy5XTpoaZ4uAHuw0uSPQ==",
+    "System.IdentityModel.Tokens.Jwt/8.10.0": {
+      "sha512": "UYIcKbMifWTg1CdljV3YSr7X4MKGSjUwLMKNLuSNKOsF65NvDPez0917YSDOr3tXF1GTZKCkfbZwYyPsW2owsQ==",
       "type": "package",
-      "path": "system.identitymodel.tokens.jwt/8.0.1",
+      "path": "system.identitymodel.tokens.jwt/8.10.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
+        "README.md",
         "lib/net462/System.IdentityModel.Tokens.Jwt.dll",
         "lib/net462/System.IdentityModel.Tokens.Jwt.xml",
         "lib/net472/System.IdentityModel.Tokens.Jwt.dll",
@@ -1748,7 +1797,7 @@
         "lib/net9.0/System.IdentityModel.Tokens.Jwt.xml",
         "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll",
         "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.xml",
-        "system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512",
+        "system.identitymodel.tokens.jwt.8.10.0.nupkg.sha512",
         "system.identitymodel.tokens.jwt.nuspec"
       ]
     },
@@ -1757,16 +1806,21 @@
       "path": "../Client/Blazor.BFF.OpenIddict.Client.csproj",
       "msbuildProject": "../Client/Blazor.BFF.OpenIddict.Client.csproj"
     },
-    "Blazor.BFF.OpenIddict.Shared/1.0.0": {
+    "Client.Infrastructure/1.0.0": {
       "type": "project",
-      "path": "../Shared/Blazor.BFF.OpenIddict.Shared.csproj",
-      "msbuildProject": "../Shared/Blazor.BFF.OpenIddict.Shared.csproj"
+      "path": "../../Client.Infrastructure/Client.Infrastructure.csproj",
+      "msbuildProject": "../../Client.Infrastructure/Client.Infrastructure.csproj"
+    },
+    "Identity.Shared/1.0.0": {
+      "type": "project",
+      "path": "../../../Identity.Shared/Identity.Shared.csproj",
+      "msbuildProject": "../../../Identity.Shared/Identity.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
       "Blazor.BFF.OpenIddict.Client >= 1.0.0",
-      "Blazor.BFF.OpenIddict.Shared >= 1.0.0",
+      "Identity.Shared >= 1.0.0",
       "Microsoft.AspNetCore.Authentication.OpenIdConnect >= 9.0.5",
       "Microsoft.AspNetCore.Components.WebAssembly.Server >= 9.0.5",
       "NetEscapades.AspNetCore.SecurityHeaders >= 1.1.0",
@@ -1779,11 +1833,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Volumes/DATA/Projects/OpenIdDict/AspNetCoreOpeniddict/Blazor.BFF.OpenIddict/Server/Blazor.BFF.OpenIddict.Server.csproj",
+      "projectUniqueName": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/Blazor.BFF.OpenIddict/Server/Blazor.BFF.OpenIddict.Server.csproj",
       "projectName": "Blazor.BFF.OpenIddict.Server",
-      "projectPath": "/Volumes/DATA/Projects/OpenIdDict/AspNetCoreOpeniddict/Blazor.BFF.OpenIddict/Server/Blazor.BFF.OpenIddict.Server.csproj",
+      "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/Blazor.BFF.OpenIddict/Server/Blazor.BFF.OpenIddict.Server.csproj",
       "packagesPath": "/Users/tuanpa/.nuget/packages/",
-      "outputPath": "/Volumes/DATA/Projects/OpenIdDict/AspNetCoreOpeniddict/Blazor.BFF.OpenIddict/Server/obj/",
+      "outputPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/Blazor.BFF.OpenIddict/Server/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/tuanpa/.nuget/NuGet/NuGet.Config"
@@ -1799,11 +1853,11 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Volumes/DATA/Projects/OpenIdDict/AspNetCoreOpeniddict/Blazor.BFF.OpenIddict/Client/Blazor.BFF.OpenIddict.Client.csproj": {
-              "projectPath": "/Volumes/DATA/Projects/OpenIdDict/AspNetCoreOpeniddict/Blazor.BFF.OpenIddict/Client/Blazor.BFF.OpenIddict.Client.csproj"
+            "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/Blazor.BFF.OpenIddict/Client/Blazor.BFF.OpenIddict.Client.csproj": {
+              "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/Blazor.BFF.OpenIddict/Client/Blazor.BFF.OpenIddict.Client.csproj"
             },
-            "/Volumes/DATA/Projects/OpenIdDict/AspNetCoreOpeniddict/Blazor.BFF.OpenIddict/Shared/Blazor.BFF.OpenIddict.Shared.csproj": {
-              "projectPath": "/Volumes/DATA/Projects/OpenIdDict/AspNetCoreOpeniddict/Blazor.BFF.OpenIddict/Shared/Blazor.BFF.OpenIddict.Shared.csproj"
+            "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj": {
+              "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj"
             }
           }
         }

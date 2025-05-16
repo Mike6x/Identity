@@ -65,11 +65,11 @@
             },
             "Microsoft.Identity.Web": {
               "target": "Package",
-              "version": "[3.8.4, )"
+              "version": "[3.9.0, )"
             },
             "Microsoft.Identity.Web.DownstreamApi": {
               "target": "Package",
-              "version": "[3.8.4, )"
+              "version": "[3.9.0, )"
             },
             "NSwag.AspNetCore": {
               "target": "Package",
