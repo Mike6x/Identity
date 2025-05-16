@@ -1,0 +1,11 @@
+﻿@page "/"
+@using Blazor.Server.Oidc
+@namespace BlazorServerOidc.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    Layout = "_Layout";
+}
+
+<component type="typeof(App)" render-mode="ServerPrerendered" />
+
+@Html.AntiForgeryToken()

@@ -1,4 +1,4 @@
-using Identity.Provider.Extensions;
+using Identity.Provider;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -14,7 +14,7 @@ var app = builder.Build();
 
 app.UseSerilogRequestLogging();
 
-app.UseAuthMiddlewarePipeline();
+app.UseAuthPipeline();
 
 app.Run();
 

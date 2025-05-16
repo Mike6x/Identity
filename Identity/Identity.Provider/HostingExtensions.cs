@@ -1,3 +1,5 @@
+using Identity.Infrastructure.Data.Workers;
+using Identity.Infrastructure.Extensions;
 using Identity.Provider.Configurations;
 using Identity.Provider.EndPoints;
 using Identity.Provider.EndPoints.Authentication;
@@ -5,11 +7,36 @@ using Identity.Provider.EndPoints.Authorization;
 using Identity.Provider.EndPoints.ExternalLogin;
 using Identity.Provider.EndPoints.Users;
 
-namespace Identity.Provider.Extensions;
+namespace Identity.Provider;
 
-public static class IdentityMiddlewarePipeline
+internal static class HostingExtensions
 {
-    public static WebApplication UseAuthMiddlewarePipeline(this WebApplication app)
+    // private static IWebHostEnvironment _env;
+    
+    public static IServiceCollection AddAuthServices(this IServiceCollection services, IConfiguration configuration)
+    {
+        services.AddDatabaseConfig(configuration);
+        
+        services.AddIdentityConfig(configuration);
+        
+        services.AddOpenIdDictConfig(configuration);
+        
+        services.AddCorsPolicy(configuration);
+
+        services.AddSwaggerConfig(configuration);
+
+        services.AddInfraServices(configuration);
+        
+        services.AddAntiforgery();
+        
+        services.AddOpenApi();
+        
+        services.AddHostedService<OpenIdDictWorker>();
+        
+        return services;
+    }
+
+    public static WebApplication UseAuthPipeline(this WebApplication app)
     {
         // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
@@ -61,4 +88,5 @@ public static class IdentityMiddlewarePipeline
         
         return app;
     }
+    
 }

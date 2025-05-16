@@ -1,0 +1,22 @@
+{
+  "version": 2,
+  "dgSpecHash": "mDIgz12/Bn8=",
+  "success": true,
+  "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/BlazorServerOidc/BlazorServerOidc/BlazorServerOidc.csproj",
+  "expectedPackageFiles": [
+    "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.authentication.openidconnect/9.0.4/microsoft.aspnetcore.authentication.openidconnect.9.0.4.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.abstractions/8.0.1/microsoft.identitymodel.abstractions.8.0.1.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.jsonwebtokens/8.0.1/microsoft.identitymodel.jsonwebtokens.8.0.1.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.logging/8.0.1/microsoft.identitymodel.logging.8.0.1.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.protocols/8.0.1/microsoft.identitymodel.protocols.8.0.1.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/8.0.1/microsoft.identitymodel.protocols.openidconnect.8.0.1.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.tokens/8.0.1/microsoft.identitymodel.tokens.8.0.1.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/netescapades.aspnetcore.securityheaders/1.0.0/netescapades.aspnetcore.securityheaders.1.0.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/netescapades.aspnetcore.securityheaders.taghelpers/1.0.0/netescapades.aspnetcore.securityheaders.taghelpers.1.0.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/system.identitymodel.tokens.jwt/8.0.1/system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.netcore.app.ref/9.0.1/microsoft.netcore.app.ref.9.0.1.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.1/microsoft.aspnetcore.app.ref.9.0.1.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.netcore.app.host.osx-arm64/9.0.1/microsoft.netcore.app.host.osx-arm64.9.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}
