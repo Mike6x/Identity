@@ -1,4 +1,4 @@
-namespace Blazor.Server.Oidc.Data
+namespace Blazor.Server.MockData
 {
     public class WeatherForecast
     {

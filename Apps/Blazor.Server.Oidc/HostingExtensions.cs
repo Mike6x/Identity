@@ -1,5 +1,5 @@
 using Blazor.Server.Oidc.Configurations;
-using Blazor.Server.Oidc.Data;
+using Blazor.Server.Oidc.MockData;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;

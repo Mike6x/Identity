@@ -23,7 +23,7 @@ services.AddSecurityHeaderPolicies()
   .SetPolicySelector((PolicySelectorContext ctx) =>
   {
       return SecurityHeadersDefinitions.GetHeaderPolicyCollection(env.IsDevelopment(),
-        configuration["OpenIDConnectSettings:Authority"]!);
+        configuration["OpenIDConnectSettings:Authority"]);
   });
 
 services.AddAntiforgery(options =>
@@ -46,6 +46,7 @@ services.AddAuthentication(options =>
 .AddOpenIdConnect(options =>
 {
     configuration.GetSection("OpenIDConnectSettings").Bind(options);
+    
     options.Authority = configuration["OpenIDConnectSettings:Authority"];
     options.ClientId = configuration["OpenIDConnectSettings:ClientId"];
     options.ClientSecret = configuration["OpenIDConnectSettings:ClientSecret"];
@@ -103,6 +104,7 @@ app.UseAuthorization();
 
 app.MapRazorPages();
 app.MapControllers();
+
 app.MapNotFound("/api/{**segment}");
 app.MapFallbackToPage("/_Host");
 

@@ -390,11 +390,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Volumes/DATA/Projects/OpenIdDict/BlazorServerOidc/BlazorServerOidc/BlazorServerOidc.csproj",
-      "projectName": "BlazorServerOidc",
-      "projectPath": "/Volumes/DATA/Projects/OpenIdDict/BlazorServerOidc/BlazorServerOidc/BlazorServerOidc.csproj",
+      "projectUniqueName": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/Blazor.Server.Oidc/Blazor.Server.Oidc.csproj",
+      "projectName": "Blazor.Server.Oidc",
+      "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/Blazor.Server.Oidc/Blazor.Server.Oidc.csproj",
       "packagesPath": "/Users/tuanpa/.nuget/packages/",
-      "outputPath": "/Volumes/DATA/Projects/OpenIdDict/BlazorServerOidc/BlazorServerOidc/obj/",
+      "outputPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/Blazor.Server.Oidc/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/tuanpa/.nuget/NuGet/NuGet.Config"

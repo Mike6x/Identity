@@ -63,17 +63,13 @@ public class ApplicationCollection
             DisplayName = "BlazorWasm code PKCE Application",
             RedirectUris =
             {
-                // new Uri("https://localhost:44348/signin-oidc"),
-                // new Uri("https://localhost:5001/signin-oidc"),
+                new Uri("https://localhost:7006/signin-oidc"),
                 new Uri("https://localhost:7008/signin-oidc"),
-                // new Uri("https://localhost:7008/authentication/login-callback")
-            },
+       },
             PostLogoutRedirectUris =
             {
-                // new Uri("https://localhost:44348/signout-callback-oidc"),
-                // new Uri("https://localhost:5001/signout-callback-oidc"),
+                new Uri("https://localhost:7006/signout-callback-oidc"),
                 new Uri("https://localhost:7008/signout-callback-oidc"),
-                // new Uri("https://localhost:7008/authentication/logout-callback")
             },
             Permissions =
             {
