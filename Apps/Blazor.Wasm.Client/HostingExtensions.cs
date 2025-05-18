@@ -17,6 +17,8 @@ public static class HostingExtensions
         services.AddInfraServices();
         
         services.RegisterHttpClient(authorityUrl);
+        
+        services.AddCascadingAuthenticationState();
         // services.AddOpenIdDictConfig(authorityUrl);
         
         services.AddOpenIdDictCfg(configuration);

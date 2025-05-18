@@ -24,7 +24,7 @@ public class ApplicationCollection
         {
             ClientId = "web-client",
             ClientSecret = "901564A5-E7FE-42CB-B10D-61EF6A8F3654",
-            DisplayName = "MVC Web Client Application",
+            DisplayName = "Blazor Wasm Client Application",
             ConsentType = OpenIddictConstants.ConsentTypes.Explicit,
 
             RedirectUris =
@@ -35,7 +35,8 @@ public class ApplicationCollection
             },
             PostLogoutRedirectUris =
             {
-                new Uri("https://localhost:7004/authentication/logout-callback")
+                new Uri("https://localhost:7004/authentication/logout-callback"),
+                new Uri("https://localhost:7004/signout-callback-oidc"),
             },
             Permissions =
             {
