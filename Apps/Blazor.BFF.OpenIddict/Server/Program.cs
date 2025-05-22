@@ -23,7 +23,7 @@ services.AddSecurityHeaderPolicies()
   .SetPolicySelector((PolicySelectorContext ctx) =>
   {
       return SecurityHeadersDefinitions.GetHeaderPolicyCollection(env.IsDevelopment(),
-        configuration["OpenIDConnectSettings:Authority"]);
+        configuration["OIDCSettings:Authority"]);
   });
 
 services.AddAntiforgery(options =>
@@ -45,11 +45,11 @@ services.AddAuthentication(options =>
 .AddCookie()
 .AddOpenIdConnect(options =>
 {
-    configuration.GetSection("OpenIDConnectSettings").Bind(options);
+    configuration.GetSection("OIDCSettings").Bind(options);
     
-    options.Authority = configuration["OpenIDConnectSettings:Authority"];
-    options.ClientId = configuration["OpenIDConnectSettings:ClientId"];
-    options.ClientSecret = configuration["OpenIDConnectSettings:ClientSecret"];
+    options.Authority = configuration["OIDCSettings:Authority"];
+    options.ClientId = configuration["OIDCSettings:ClientId"];
+    options.ClientSecret = configuration["OIDCSettings:ClientSecret"];
 
     options.CallbackPath = "/signin-oidc";
     options.SignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;

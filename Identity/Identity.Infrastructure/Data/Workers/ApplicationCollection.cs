@@ -19,24 +19,25 @@ public class ApplicationCollection
 
         #region Sample Clients
 
-        // web-client: authorization-oidc-application
+        // blazorwasm-oidc-client
         _applications.Add(new OpenIddictApplicationDescriptor
         {
-            ClientId = "web-client",
-            ClientSecret = "901564A5-E7FE-42CB-B10D-61EF6A8F3654",
-            DisplayName = "Blazor Wasm Client Application",
+            ClientId = "blazorwasm.oidc.application",
+
+            ClientType = OpenIddictConstants.ClientTypes.Public,
+            DisplayName = "BlazorWASM OIDC Standalone Client",
             ConsentType = OpenIddictConstants.ConsentTypes.Explicit,
 
             RedirectUris =
             {
                 new Uri("https://localhost:7004/authentication/login-callback"),
-                new Uri("https://localhost:7004/signin-oidc"),
+                // new Uri("https://localhost:7004/signin-oidc"),
                 new Uri("https://oidcdebugger.com/debug")
             },
             PostLogoutRedirectUris =
             {
                 new Uri("https://localhost:7004/authentication/logout-callback"),
-                new Uri("https://localhost:7004/signout-callback-oidc"),
+                // new Uri("https://localhost:7004/signout-callback-oidc"),
             },
             Permissions =
             {
@@ -48,20 +49,26 @@ public class ApplicationCollection
                 
                 OpenIddictConstants.Permissions.ResponseTypes.Code,
 
-                OpenIddictConstants.Permissions.Scopes.Email,
                 OpenIddictConstants.Permissions.Scopes.Profile,
-                OpenIddictConstants.Permissions.Scopes.Roles,
+                OpenIddictConstants.Permissions.Scopes.Email,
+                OpenIddictConstants.Permissions.Scopes.Roles, 
+                "offline_access",
                 OpenIddictConstants.Permissions.Prefixes.Scope + "api1",
+                OpenIddictConstants.Permissions.Prefixes.Scope + "dataEventRecords",
             },
+            Requirements =
+            {
+                OpenIddictConstants.Requirements.Features.ProofKeyForCodeExchange
+            }
         });
 
-        // blazorwasm-oidc-application
+        // blazorweb-oidc-application
         _applications.Add( new OpenIddictApplicationDescriptor
         {
-            ClientId = "blazorwasm-oidc-application",
+            ClientId = "blazorweb.oidc.application",
             ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C206",
             ConsentType = OpenIddictConstants.ConsentTypes.Explicit,
-            DisplayName = "BlazorWasm code PKCE Application",
+            DisplayName = "BlazorWeb Code PKCE Client",
             RedirectUris =
             {
                 new Uri("https://localhost:7006/signin-oidc"),
@@ -317,9 +324,10 @@ public class ApplicationCollection
         {
             ApplicationType = OpenIddictConstants.ApplicationTypes.Web,
             ClientId = "pixel-identity-ui",
-            ClientSecret = "admin-ui-secret",
+
+            ClientType = OpenIddictConstants.ClientTypes.Public,
             ConsentType = OpenIddictConstants.ConsentTypes.Implicit,
-            ClientType = OpenIddictConstants.ClientTypes.Confidential,
+        
             DisplayName = "OpenIddict Admin UI",
             RedirectUris =
             {
@@ -345,7 +353,8 @@ public class ApplicationCollection
                 OpenIddictConstants.Permissions.ResponseTypes.Code,
                 OpenIddictConstants.Permissions.Scopes.Email,
                 OpenIddictConstants.Permissions.Scopes.Profile,
-                OpenIddictConstants.Permissions.Scopes.Roles
+                OpenIddictConstants.Permissions.Scopes.Roles,
+                "offline_access"
             },
             Requirements =
             {

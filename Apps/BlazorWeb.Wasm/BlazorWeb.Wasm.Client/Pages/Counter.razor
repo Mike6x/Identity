@@ -1,0 +1,65 @@
+﻿@page "/counter"
+@using Microsoft.AspNetCore.Authorization
+
+@using BlazorWeb.Wasm.Client.Services
+@using Microsoft.AspNetCore.Components.Authorization
+
+@rendermode InteractiveAuto
+@inject IHttpClientFactory HttpClientFactory
+@inject HostingEnvironmentService HostingEnvironmentService
+@attribute [Authorize]
+
+<PageTitle>Counter</PageTitle>
+
+<h1>Counter</h1>
+
+<p role="status">Current count: @_currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+<button class="btn btn-primary" @onclick="SayHello">SayHello</button>
+<p role="status">Say: @_say</p>
+
+
+@code {
+    private int _currentCount = 0;
+    private string _say = string.Empty;
+
+    [SupplyParameterFromForm]
+    public string? Text { get; set; }
+
+    private bool _isSaving;
+
+    [CascadingParameter]
+    private Task<AuthenticationState>? AuthenticationState { get; set; }
+
+    private async Task SayHello()
+    {        
+        var client = HttpClientFactory.CreateClient("API");
+        _say = await client.GetStringAsync("api/Counter");
+		_say = _say + " called from " + HostingEnvironmentService.EnvironmentName;
+    }
+
+    private void IncrementCount()
+    {
+        _currentCount++;
+    }
+
+    private async void HandleSubmit()
+    {
+
+        _isSaving = true;
+        await Task.Delay(2000);
+
+        _isSaving = false;
+        StateHasChanged();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if (AuthenticationState is not null)
+        {
+            var authState = await AuthenticationState;
+            await SayHello();
+        }
+    }
+}

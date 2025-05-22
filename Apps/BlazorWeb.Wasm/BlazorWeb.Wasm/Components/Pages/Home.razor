@@ -1,0 +1,23 @@
+﻿@page "/"
+@using Microsoft.AspNetCore.Components.Authorization
+
+<PageTitle>Home</PageTitle>
+
+<h1>Blazor Web Wasm with OpenIdDict</h1>
+
+<AuthorizeView>
+    <Authorized>
+        <br/>
+        <h2>Hello @context.User.Identity?.Name, here's the list of your claims:</h2>
+        <ul>
+            @foreach (var claimGroup in context.User.Claims.GroupBy(a => a.Type))
+            {
+                foreach (var claimValue in claimGroup.Select(s => s.Value).Distinct())
+                {
+                    <li><b>@claimGroup.Key</b>: @claimValue</li>
+                }
+            }
+        </ul>
+        <br/>
+    </Authorized>
+</AuthorizeView>

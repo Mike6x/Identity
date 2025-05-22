@@ -1,0 +1,53 @@
+﻿@using BlazorWeb.Server.Configurations
+@inject BlazorNonceService BlazorNonceService
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <base href="/"/>
+    <link rel="stylesheet" href="@Assets["lib/bootstrap/dist/css/bootstrap.min.css"]"/>
+    <link rel="stylesheet" href="@Assets["app.css"]"/>
+    <link rel="stylesheet" href="@Assets["BlazorWeb.Server.styles.css"]"/>
+    <ImportMap/>
+    <link rel="icon" type="image/png" href="favicon.png"/>
+   
+    <HeadOutlet @rendermode="InteractiveServer" />
+</head>
+
+<body>
+    <Routes @rendermode="InteractiveServer" />
+
+    <script nonce="@BlazorNonceService.Nonce" src="_framework/blazor.web.js"></script>
+</body>
+
+</html>
+
+@code
+{
+    /// <summary>
+    /// Original src: https://github.com/javiercn/BlazorWebNonceService
+    /// </summary>
+    [CascadingParameter] HttpContext Context { get; set; } = default!;
+
+    protected override void OnInitialized()
+    {
+        var nonce = GetNonce();
+        if (nonce != null)
+        {
+            BlazorNonceService.SetNonce(nonce);
+        }
+    }
+
+    public string? GetNonce()
+    {
+        if (Context.Items.TryGetValue("nonce", out var item) && item is string nonce and not null)
+        {
+            return nonce;
+        }
+
+        return null;
+    }
+}
