@@ -103,8 +103,8 @@
 /Volumes/DATA/Projects/OpenIdDict/BlazorServerOidc/BlazorWeb.Server/obj/Debug/net9.0/ref/BlazorWeb.Server.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/appsettings.Development.json
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/appsettings.json
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/BlazorWeb.Server.staticwebassets.endpoints.json
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/BlazorWeb.Server.staticwebassets.runtime.json
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/BlazorWeb.Server.staticwebassets.endpoints.json
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/BlazorWeb.Server
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/BlazorWeb.Server.deps.json
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/BlazorWeb.Server.runtimeconfig.json

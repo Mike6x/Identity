@@ -1,3 +1,4 @@
+using Identity.Shared.Auth;
 using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Validation.AspNetCore;
 using Resource_Server_2.Configurations;
@@ -8,30 +9,18 @@ namespace Resource_Server_2;
 
 internal static class HostingExtensions
 {
-    // private static IWebHostEnvironment _env;
-    
     public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
     {
-        var securityConfig = configuration.GetSection("SecurityConfig").Get<SecurityConfig>() ??
-                             throw new NullReferenceException("SecurityConfig is null");
+ 
+        services.AddControllers();
         
         services.AddOpenApi();
-
-        services.AddOpenIddict()
-            .AddValidation(options =>
-            {
-                options.SetIssuer(securityConfig.Issuer);
-                options.AddAudiences(securityConfig.Audience);
-
-                options.AddEncryptionKey(new SymmetricSecurityKey(Convert.FromBase64String(securityConfig.Key)));
-
-                options.UseSystemNetHttp();
-                options.UseAspNetCore();
-            });
-
+        
+        services.AddOpenIdDictConfig(configuration);
+        
         services.AddAuthentication(OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme);
         services.AddAuthorizationBuilder()
-            .AddPolicy(Constants.AuthPolicy,
+            .AddPolicy(PolicyConstants.AuthPolicy,
                 policy => policy.RequireRole("Editor"));
         
         return services;
@@ -39,11 +28,11 @@ internal static class HostingExtensions
 
     public static WebApplication UsePipeline(this WebApplication app)
     {
-        // Configure the HTTP request pipeline.
         if (app.Environment.IsDevelopment())
         {
             app.MapOpenApi();
-            // app.MapScalarApiReference();
+            
+            // app.MapScalarApiReference()
             app.MapScalarApiReference(options => options
                 .WithPreferredScheme("OAuth2")
                 .AddAuthorizationCodeFlow("OAuth2", flow =>
@@ -54,12 +43,15 @@ internal static class HostingExtensions
                     flow.SelectedScopes = ["profile", "email", "api"];
                 }));
         }
+        
+        app.UseHttpsRedirection();
 
         app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapResourceEndpoints();
-        app.UseHttpsRedirection();
+
+        app.MapControllers();
 
         return app;
     }

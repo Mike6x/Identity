@@ -6,6 +6,8 @@ using BlazorWeb.Wasm.Components;
 using BlazorWeb.Wasm.Configurations;
 using BlazorWeb.Wasm.EndPoints;
 using BlazorWeb.Wasm.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
 
 namespace BlazorWeb.Wasm;
@@ -25,12 +27,20 @@ internal static class HostingExtensions
         services.AddCascadingAuthenticationState();
         
         services.AddOidcConfig(configuration, environment);
+        
+        // ConfigureCookieOidcRefresh attaches a cookie OnValidatePrincipal callback to get
+        // a new access token when the current one expires, and reissue a cookie with the
+        // new access token saved inside. If the refresh fails, the user will be signed
+        // out. OIDC connect options are set for saving tokens and the offline access
+        // scope.
+        services.ConfigureCookieOidcRefresh(CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme);
+
 
         services.AddSingleton<IAuthorizationMiddlewareResultHandler, BlazorAuthorizationMiddlewareResultHandler>();
         services.AddScoped<HostingEnvironmentService>();
         services.AddSingleton<BaseUrlProvider>();
+        
         services.AddHttpContextAccessor();
-
         services
             .AddTransient<CookieHandler>()
             .AddScoped(sp => sp

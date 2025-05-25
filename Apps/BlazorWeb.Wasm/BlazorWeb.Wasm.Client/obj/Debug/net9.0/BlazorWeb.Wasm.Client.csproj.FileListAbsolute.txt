@@ -205,8 +205,8 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/icudt_CJK.tjcz0u77k5.dat
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/icudt_EFIGS.tptq2av103.dat
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/icudt_no_CJK.lfu7j35m59.dat
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/BlazorWeb.Wasm.Client.8lt9c1q06w.wasm
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/BlazorWeb.Wasm.Client.q9sde9sjzv.pdb
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/BlazorWeb.Wasm.Client.drstp2okbc.wasm
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/BlazorWeb.Wasm.Client.3tyczy9dwk.pdb
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/blazor.boot.json
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/blazor.webassembly.js.gz
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/Microsoft.AspNetCore.Authorization.n7we7nbch1.wasm.gz
@@ -415,8 +415,8 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/icudt_CJK.tjcz0u77k5.dat.gz
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/icudt_EFIGS.tptq2av103.dat.gz
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/icudt_no_CJK.lfu7j35m59.dat.gz
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/BlazorWeb.Wasm.Client.8lt9c1q06w.wasm.gz
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/BlazorWeb.Wasm.Client.q9sde9sjzv.pdb.gz
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/BlazorWeb.Wasm.Client.drstp2okbc.wasm.gz
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/BlazorWeb.Wasm.Client.3tyczy9dwk.pdb.gz
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/wwwroot/_framework/blazor.boot.json.gz
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/BlazorWeb.Wasm.Client.staticwebassets.runtime.json
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/bin/Debug/net9.0/BlazorWeb.Wasm.Client.staticwebassets.endpoints.json
@@ -1046,9 +1046,9 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/obj/Debug/net9.0/compressed/mbjam71nn8-tjcz0u77k5.gz
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/obj/Debug/net9.0/compressed/bzxc2hd5fo-tptq2av103.gz
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/obj/Debug/net9.0/compressed/zlgtij78ip-lfu7j35m59.gz
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/obj/Debug/net9.0/compressed/q39kqc4jf6-8lt9c1q06w.gz
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/obj/Debug/net9.0/compressed/o2ywzoswxk-q9sde9sjzv.gz
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/obj/Debug/net9.0/compressed/nbkceg1ux9-yrjzboj4q2.gz
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/obj/Debug/net9.0/compressed/q39kqc4jf6-drstp2okbc.gz
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/obj/Debug/net9.0/compressed/o2ywzoswxk-3tyczy9dwk.gz
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/obj/Debug/net9.0/compressed/nbkceg1ux9-0ulpoljuxj.gz
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/obj/Debug/net9.0/staticwebassets.build.json
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/obj/Debug/net9.0/staticwebassets.build.json.cache
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/obj/Debug/net9.0/staticwebassets.development.json

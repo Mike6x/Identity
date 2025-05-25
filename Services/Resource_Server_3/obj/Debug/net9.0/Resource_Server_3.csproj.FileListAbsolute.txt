@@ -151,6 +151,8 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Resource_Server_3/obj/Debug/net9.0/ref/Resource_Server_3.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/appsettings.Development.json
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/appsettings.json
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/Data/Cities.Api.json
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/Data/Students.Api.Data.json
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/Resource_Server_3.staticwebassets.endpoints.json
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/Resource_Server_3
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/Resource_Server_3.deps.json
@@ -194,6 +196,7 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/Microsoft.OpenApi.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/Newtonsoft.Json.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/OpenIddict.Abstractions.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/OpenIddict.Validation.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/OpenIddict.Validation.AspNetCore.dll
@@ -208,6 +211,8 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/Swashbuckle.AspNetCore.SwaggerUI.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/System.IO.Pipelines.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/Identity.Shared.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/bin/Debug/net9.0/Identity.Shared.pdb
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/obj/Debug/net9.0/Resource_Server_3.csproj.AssemblyReference.cache
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/obj/Debug/net9.0/Resource_Server_3.GeneratedMSBuildEditorConfig.editorconfig
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/obj/Debug/net9.0/Resource_Server_3.AssemblyInfoInputs.cache

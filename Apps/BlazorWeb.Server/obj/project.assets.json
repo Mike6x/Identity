@@ -1032,11 +1032,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Volumes/DATA/Projects/OpenIdDict/BlazorServerOidc/BlazorWeb.Server/BlazorWeb.Server.csproj",
+      "projectUniqueName": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/BlazorWeb.Server.csproj",
       "projectName": "BlazorWeb.Server",
-      "projectPath": "/Volumes/DATA/Projects/OpenIdDict/BlazorServerOidc/BlazorWeb.Server/BlazorWeb.Server.csproj",
+      "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/BlazorWeb.Server.csproj",
       "packagesPath": "/Users/tuanpa/.nuget/packages/",
-      "outputPath": "/Volumes/DATA/Projects/OpenIdDict/BlazorServerOidc/BlazorWeb.Server/obj/",
+      "outputPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/tuanpa/.nuget/NuGet/NuGet.Config"

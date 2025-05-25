@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "y4fZibxUw2I=",
+  "dgSpecHash": "4qYIn33oFHI=",
   "success": true,
-  "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/BlazorServerOidc/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/BlazorWeb.Wasm.Client.csproj",
+  "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/BlazorWeb.Wasm.Client.csproj",
   "expectedPackageFiles": [
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.authorization/9.0.5/microsoft.aspnetcore.authorization.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components/9.0.5/microsoft.aspnetcore.components.9.0.5.nupkg.sha512",

@@ -22,4 +22,8 @@
         <PackageReference Include="OpenIddict.Validation.SystemNetHttp" Version="6.3.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\..\Identity.Shared\Identity.Shared.csproj" />
+    </ItemGroup>
+
 </Project>

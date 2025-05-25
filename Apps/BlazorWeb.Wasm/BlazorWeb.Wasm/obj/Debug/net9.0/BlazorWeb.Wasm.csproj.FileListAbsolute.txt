@@ -37,12 +37,16 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.Extensions.Configuration.Json.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.Extensions.DependencyInjection.Abstractions.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.Extensions.Diagnostics.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.Extensions.Diagnostics.Abstractions.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.Extensions.FileProviders.Abstractions.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.Extensions.FileProviders.Physical.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.Extensions.FileSystemGlobbing.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.Extensions.Http.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.Extensions.Logging.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.Extensions.Logging.Abstractions.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.Extensions.Options.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.Extensions.Options.ConfigurationExtensions.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.Extensions.Primitives.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.IdentityModel.Abstractions.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll

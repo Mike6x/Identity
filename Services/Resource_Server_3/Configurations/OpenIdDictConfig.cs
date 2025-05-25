@@ -1,3 +1,4 @@
+using Identity.Shared.Configurations;
 using Microsoft.IdentityModel.Tokens;
 
 namespace Resource_Server_3.Configurations;

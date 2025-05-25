@@ -143,6 +143,8 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_2/bin/Debug/net9.0/Serilog.Sinks.Debug.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_2/bin/Debug/net9.0/Serilog.Sinks.File.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_2/bin/Debug/net9.0/System.IO.Pipelines.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_2/bin/Debug/net9.0/Identity.Shared.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_2/bin/Debug/net9.0/Identity.Shared.pdb
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_2/obj/Debug/net9.0/Resource_Server_2.csproj.AssemblyReference.cache
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_2/obj/Debug/net9.0/Resource_Server_2.GeneratedMSBuildEditorConfig.editorconfig
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_2/obj/Debug/net9.0/Resource_Server_2.AssemblyInfoInputs.cache

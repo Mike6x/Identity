@@ -1,0 +1,52 @@
+[
+  {
+    "id": "nyc",
+    "name": "New York City",
+    "state": "New York",
+    "summerHighFahrenheit": 85,
+    "winterLowFahrenheit": 26,
+    "elevationFeet": 33,
+    "population": 8335897,
+    "timeZone": "America/New_York"
+  },
+  {
+    "id": "lax",
+    "name": "Los Angeles",
+    "state": "California",
+    "summerHighFahrenheit": 84,
+    "winterLowFahrenheit": 48,
+    "elevationFeet": 330,
+    "population": 3822238,
+    "timeZone": "America/Los_Angeles"
+  },
+  {
+    "id": "chi",
+    "name": "Chicago",
+    "state": "Illinois",
+    "summerHighFahrenheit": 84,
+    "winterLowFahrenheit": 19,
+    "elevationFeet": 594,
+    "population": 2696555,
+    "timeZone": "America/Chicago"
+  },
+  {
+    "id": "hou",
+    "name": "Houston",
+    "state": "Texas",
+    "summerHighFahrenheit": 94,
+    "winterLowFahrenheit": 43,
+    "elevationFeet": 80,
+    "population": 2288250,
+    "timeZone": "America/Chicago"
+  },
+  {
+    "id": "phx",
+    "name": "Phoenix",
+    "state": "Arizona",
+    "summerHighFahrenheit": 106,
+    "winterLowFahrenheit": 46,
+    "elevationFeet": 1086,
+    "population": 1644409,
+    "timeZone": "America/Phoenix"
+  }
+]

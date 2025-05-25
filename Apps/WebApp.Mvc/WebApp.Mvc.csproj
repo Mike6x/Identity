@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>aspnet-WebApp.Mvc-af4784ac-8d5f-45e2-a414-19b63b9e7fb2</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.5" NoWarn="NU1605" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.5" NoWarn="NU1605" />
+        <PackageReference Include="Microsoft.Identity.Web" Version="3.9.1" />
+        <PackageReference Include="Microsoft.Identity.Web.UI" Version="3.9.1" />
+        <PackageReference Include="Microsoft.Identity.Web.DownstreamApi" Version="3.9.1" />
+        <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" Version="1.0.0" />
+        <PackageReference Include="OpenIddict.Client.AspNetCore" Version="6.3.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
+</Project>

@@ -1,6 +1,7 @@
-using IdentityModel.AspNetCore.OAuth2Introspection;
+using Identity.Shared.Auth;
 using OpenIddict.Validation.AspNetCore;
 using Resource_Server_3.Configurations;
+using Resource_Server_3.Services;
 
 namespace Resource_Server_3;
 
@@ -43,12 +44,16 @@ internal static class HostingExtensions
        services.AddAuthorizationCore(options =>
         {
             //Add a policy to require read-weather claim
-            options.AddPolicy(Policies.ReadWeatherDataPolicy, policy =>
+            options.AddPolicy(PolicyConstants.ReadWeatherDataPolicy, policy =>
             {
                 policy.RequireAuthenticatedUser();
                 policy.RequireClaim("read-weather", "true");
             });
         });
+       
+        services.AddSingleton<ICityDataService, JsonCityDataService>();
+        
+        services.AddSingleton<IStudentService, StudentService>();
         
         return services;
     }

@@ -1,4 +1,4 @@
-using Resource_Server_2.Configurations;
+using Identity.Shared.Auth;
 
 namespace Resource_Server_2.Endpoints;
 
@@ -16,7 +16,7 @@ public static class ResourceEndpoints
         {
             var user = context.User.Identity?.Name ?? "Anonymous";
             return context.Response.WriteAsJsonAsync(new { user });
-        }).WithOpenApi().WithName("Must be editor endpoint").RequireAuthorization(Constants.AuthPolicy);
+        }).WithOpenApi().WithName("Must be editor endpoint").RequireAuthorization(PolicyConstants.AuthPolicy);
 
         app.MapGet("/unprotected", () => "Ladies and gentlemen, we got him").WithOpenApi()
             .WithName("Unprotected endpoint");

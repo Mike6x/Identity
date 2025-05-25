@@ -62,7 +62,7 @@ public class ApplicationCollection
             }
         });
 
-        // blazorweb-oidc-application
+        // blazorweb-oidc-client
         _applications.Add( new OpenIddictApplicationDescriptor
         {
             ClientId = "blazorweb.oidc.application",
@@ -103,7 +103,43 @@ public class ApplicationCollection
             }
 
         });
+        
+        // mvc-web and razor-web client
+        _applications.Add(new OpenIddictApplicationDescriptor
+        {
+            ClientId = "web.oidc.application",
+            ClientSecret = "49C1A7E1-0C79-4A89-A3D6-A37998FB86B0",
+            DisplayName = "MVC OIDC Client Application",
+            ConsentType = OpenIddictConstants.ConsentTypes.Explicit,
 
+            RedirectUris =
+            {
+                new Uri("https://localhost:7005/signin-oidc"),
+                new Uri("https://localhost:7007/signin-oidc") 
+            },
+            PostLogoutRedirectUris =
+            {
+                new Uri("https://localhost:7005/signout-callback-oidc"),
+                new Uri("https://localhost:7007/signout-callback-oidc")
+            },
+            Permissions =
+            {
+                OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
+                OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
+   
+                OpenIddictConstants.Permissions.Endpoints.Authorization,
+                OpenIddictConstants.Permissions.Endpoints.Token,
+                OpenIddictConstants.Permissions.Endpoints.EndSession,
+                
+                OpenIddictConstants.Permissions.ResponseTypes.Code,
+
+                OpenIddictConstants.Permissions.Scopes.Profile,
+                OpenIddictConstants.Permissions.Scopes.Email,
+                OpenIddictConstants.Permissions.Scopes.Roles,
+                OpenIddictConstants.Permissions.Prefixes.Scope + "api1",
+            },
+        });
+        
         #endregion
         
         #region Authorization Code Flow applications
@@ -215,44 +251,6 @@ public class ApplicationCollection
             //    Requirements.Features.ProofKeyForCodeExchange
             //}
 
-        });
-        
-
-        // mvc-client : authorization-oidc-application
-        _applications.Add(new OpenIddictApplicationDescriptor
-        {
-            ClientId = "mvc-client",
-            ClientSecret = "49C1A7E1-0C79-4A89-A3D6-A37998FB86B0",
-            DisplayName = "MVC Client Application",
-            ConsentType = OpenIddictConstants.ConsentTypes.Explicit,
-
-            RedirectUris = { new Uri("https://localhost:7002/signin-oidc") },
-            PostLogoutRedirectUris =
-            {
-                new Uri("https://localhost:7002/signout-callback-oidc"),
-                new Uri("http://localhost:5002/signout-callback-oidc")
-            },
-            Permissions =
-            {
-                OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
-                OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
-                OpenIddictConstants.Permissions.GrantTypes.Password,
-                
-                OpenIddictConstants.Permissions.Endpoints.Authorization,
-                OpenIddictConstants.Permissions.Endpoints.Token,
-                OpenIddictConstants.Permissions.Endpoints.Introspection,
-                OpenIddictConstants.Permissions.Endpoints.EndSession,
-                OpenIddictConstants.Permissions.ResponseTypes.Code,
-
-                OpenIddictConstants.Permissions.Scopes.Email,
-                OpenIddictConstants.Permissions.Scopes.Profile,
-                OpenIddictConstants.Permissions.Scopes.Roles, "offline_access",
-                OpenIddictConstants.Permissions.Prefixes.Scope + "api1",
-                
-                OpenIddictConstants.Permissions.Prefixes.ResponseType + "token",
-                OpenIddictConstants.Permissions.Prefixes.ResponseType + "id_token",
-                // OpenIddictConstants.Permissions.Prefixes.ResponseType + "code"
-            },
         });
         
         #endregion

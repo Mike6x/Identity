@@ -10,6 +10,8 @@ internal static class HostingExtensions
     
     public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddControllers();
+        
         services.AddOpenApi();
         services.AddSwaggerConfig(configuration);
 
@@ -27,16 +29,17 @@ internal static class HostingExtensions
         {
             app.MapOpenApi();
         }
-
         app.UseSwaggerService();
-
-        var resourceGroup = app.MapGroup("resources").WithTags("resources server 1");
-        resourceGroup.MapResourceEndpoints();
-
+        
         app.UseHttpsRedirection();
 
         app.UseAuthentication();
         app.UseAuthorization();
+        
+        var resourceGroup = app.MapGroup("resources").WithTags("resources server 1");
+        resourceGroup.MapResourceEndpoints();
+        
+        app.MapControllers();
         
         return app;
     }

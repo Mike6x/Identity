@@ -32,10 +32,7 @@ public static class LogInEndpoint
     private static async Task LoginHandler(HttpContext httpContext, string returnUrl = "/")
     {
         await httpContext.ChallengeAsync(OpenIdConnectDefaults.AuthenticationScheme,
-            new AuthenticationProperties
-            {
-                RedirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/"
-            });
+            AuthenticationPropertyHelper.GetAuthProperties(returnUrl));
     }
 
 }
@@ -53,14 +50,6 @@ public static class LogOutEndpoint
     
     private static async Task LogoutHandler(HttpContext httpContext, string? returnUrl= "/")
     {
-        var authenticationProperties = new AuthenticationProperties
-        {
-            // needs to be added to the Auth0 Allowed Logout URLs
-            // RedirectUri = "/SignedOut" 
-            // RedirectUri = "/"
-            RedirectUri = !string.IsNullOrEmpty(returnUrl) ? returnUrl : "/"
-        };
-        
         if (httpContext.Request.Cookies.Count > 0)
         {
             var siteCookies = httpContext
@@ -76,9 +65,34 @@ public static class LogOutEndpoint
         }
 
         await httpContext.SignOutAsync(OpenIdConnectDefaults.AuthenticationScheme,
-            authenticationProperties);
+            AuthenticationPropertyHelper.GetAuthProperties(returnUrl));
 
         await httpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
     }
     
+}
+
+public static class AuthenticationPropertyHelper
+{
+    public static AuthenticationProperties GetAuthProperties(string? returnUrl)
+    {
+        // TODO: Use HttpContext.Request.PathBase instead.
+        const string pathBase = "/";
+
+        // Prevent open redirects.
+        if (string.IsNullOrEmpty(returnUrl))
+        {
+            returnUrl = pathBase;
+        }
+        else if (!Uri.IsWellFormedUriString(returnUrl, UriKind.Relative))
+        {
+            returnUrl = new Uri(returnUrl, UriKind.Absolute).PathAndQuery;
+        }
+        else if (returnUrl[0] != '/')
+        {
+            returnUrl = $"{pathBase}{returnUrl}";
+        }
+
+        return new AuthenticationProperties { RedirectUri = returnUrl };
+    }
 }
