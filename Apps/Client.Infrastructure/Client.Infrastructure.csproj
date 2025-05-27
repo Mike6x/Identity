@@ -20,8 +20,13 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Models\" />
       <Folder Include="Services\Resource_1\" />
       <Folder Include="Services\Resource_2\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\Identity.Shared\Identity.Shared.csproj" />
     </ItemGroup>
     <Target Name="NSwag">
         <Exec WorkingDirectory="$(ProjectDir)\Api" EnvironmentVariables="ASPNETCORE_ENVIRONMENT=Development" Command="$(NSwagExe_Net80) run ./nswag.json /variables:Configuration=$(Configuration)" />

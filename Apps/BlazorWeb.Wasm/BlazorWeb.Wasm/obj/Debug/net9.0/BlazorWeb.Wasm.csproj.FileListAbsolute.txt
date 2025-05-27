@@ -20,6 +20,7 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/BlazorWeb.Wasm.runtimeconfig.json
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/BlazorWeb.Wasm.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/BlazorWeb.Wasm.pdb
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Blazored.LocalStorage.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.AspNetCore.Authorization.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.AspNetCore.Components.dll
@@ -60,7 +61,11 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/NetEscapades.AspNetCore.SecurityHeaders.TagHelpers.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/BlazorWeb.Wasm.Client.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Client.Infrastructure.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Identity.Shared.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/BlazorWeb.Wasm.Client.pdb
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Client.Infrastructure.pdb
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Identity.Shared.pdb
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/obj/Debug/net9.0/BlazorWeb.Wasm.csproj.AssemblyReference.cache
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/obj/Debug/net9.0/BlazorWeb.Wasm.GeneratedMSBuildEditorConfig.editorconfig
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/obj/Debug/net9.0/BlazorWeb.Wasm.AssemblyInfoInputs.cache

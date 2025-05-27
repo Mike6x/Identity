@@ -1,0 +1,72 @@
+@page "/EditStudent/{id:int}"
+
+@using Identity.Shared.Resource_Server_3.Dtos
+
+@inject IHttpClientFactory HttpClientFactory
+@inject NavigationManager Navigation
+
+<h3>Edit Student</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <EditForm Model="Item" OnValidSubmit="UpdateStudentMethod">
+                <div class="form-group">
+                    <label class="form-label">Id</label>
+                    <InputNumber class="form-control" @bind-Value=Item.Id></InputNumber>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Name</label>
+                    <InputText class="form-control" @bind-Value=Item.FirstName></InputText>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">LastName</label>
+                    <InputText class="form-control" @bind-Value=Item.LastName></InputText>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Sex</label>
+                    <InputText class="form-control" @bind-Value=Item.Sex></InputText>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Age</label>
+                    <InputNumber class="form-control" @bind-Value=Item.Age></InputNumber>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Major</label>
+                    <InputText class="form-control" @bind-Value=Item.Major></InputText>
+                </div>
+
+
+                <button class="btn btn-primary mt-3" type="submit">Update</button>
+                
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    StudentDto? Item;
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+        var http = HttpClientFactory.CreateClient("resource3Client");
+            
+        Item = await http.GetFromJsonAsync<StudentDto>($"api/students/{Id}");
+    }
+
+    private void UpdateStudentMethod()
+    {
+        var http = HttpClientFactory.CreateClient("resource3Client");
+
+        if (Item != null) http.PutAsJsonAsync<StudentDto>($"api/Student/{Item.Id}", Item);
+
+        Navigation.NavigateTo("/Students",true);
+    }
+}

@@ -20,4 +20,8 @@
       <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders.TagHelpers" Version="1.1.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\Client.Infrastructure\Client.Infrastructure.csproj" />
+    </ItemGroup>
+
 </Project>

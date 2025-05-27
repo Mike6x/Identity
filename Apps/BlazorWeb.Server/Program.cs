@@ -1,4 +1,5 @@
 using BlazorWeb.Server;
+using BlazorWeb.Server.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
 

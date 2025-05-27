@@ -1,7 +1,7 @@
 using System.Globalization;
+using Identity.Shared.Resource_Server_3.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Resource_Server_3.Dtos;
 using Resource_Server_3.Models;
 using Resource_Server_3.Services;
 
@@ -53,7 +53,8 @@ public class CitiesController(ICityDataService cityDataService, ILogger<CitiesCo
     {
         _logger.LogInformation("Attempting to retrieve all city names.");
         var cities = await _cityDataService.GetAllAsync();
-        var cityList = cities.Select(c => new { c.Id, c.Name, c.State }).ToList();
+        var cityList = cities.Select(MapToDto).ToList();
+        //  var cityList = cities.Select(c => new { c.Id, c.Name, c.State }).ToList();
         _logger.LogInformation("Retrieved {Count} Cities.Api.", cityList.Count);
         return Ok(cityList);
     }

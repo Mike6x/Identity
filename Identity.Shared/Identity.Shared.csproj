@@ -6,8 +6,4 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-      <Folder Include="Resource_Server_3\" />
-    </ItemGroup>
-
 </Project>

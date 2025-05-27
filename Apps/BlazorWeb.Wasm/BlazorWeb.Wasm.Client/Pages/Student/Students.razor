@@ -1,0 +1,89 @@
+@page "/Students"
+@using Identity.Shared.Resource_Server_3.Dtos
+
+@inject IHttpClientFactory HttpClientFactory
+@inject NavigationManager Navigation
+
+<h3>Student List</h3>
+
+<div class="container">
+    <div class="row">
+        <div class="col-10">
+            @if (_itemlist == null)
+            {
+                    <h2>Loading ...</h2>
+            }
+            else
+            {
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">FirstName</th>
+                                <th scope="col">LastName</th>
+                                <th scope="col">Sex</th>
+                                <th scope="col">Age</th>
+                                <th scope="col">Major</th>
+                                @* <th scope="col">MobileNo</th> *@
+                                @* <th scope="col">Semester</th> *@
+                                @* <th scope="col">Email</th> *@
+                                @* <th scope="col">RollNo</th> *@
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        @foreach (var item in _itemlist)
+                        {
+                                    <tr>
+                                        <th scope="row">@item.Id</th>
+                                        <td>@item.FirstName</td>
+                                        <td>@item.LastName</td>
+                                        <td>@item.Sex</td>
+                                        <td>@item.Age</td>
+                                        <td>@item.Major</td>
+                                        <td>
+                                            <button onclick="@(()=>DeleteRecordAsync(item.Id))" class="btn btn-danger">Delete</button>
+                                        </td>
+                                        <td>
+                                            <button onclick="@(()=>Navigation.NavigateTo($"EditStudent/{item.Id}"))" class="btn btn-primary">Edit</button>
+                                        </td>
+                                    </tr>
+                        }
+                        </tbody>
+                    </table>
+            }
+        </div>
+    </div>
+</div>
+
+@code {
+
+    private StudentDto[]? _itemlist;
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var http = HttpClientFactory.CreateClient("resource3Client");
+            
+            _itemlist = await http.GetFromJsonAsync<StudentDto[]>("api/students");
+            
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("The Error is :" + ex.ToString());
+        }
+    }
+
+    private async Task DeleteRecordAsync(int id)
+    {
+        var http = HttpClientFactory.CreateClient("resource3Client");
+        await http.DeleteFromJsonAsync<StudentDto>("api/Students/" + id);
+        
+        await http.DeleteAsync("api/Students/" + id);
+        
+        Navigation.NavigateTo("/Students", true);
+
+    }
+
+}

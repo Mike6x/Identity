@@ -16,8 +16,7 @@ internal static class HostingExtensions
 {
     public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
-        //replaced by built in  .AddAuthenticationStateSerialization()
-        //services.AddScoped<AuthenticationStateProvider, PersistingRevalidatingAuthenticationStateProvider>();
+        services.AddOidcConfig(configuration, environment);
         
         services.AddRazorComponents()
             .AddAuthenticationStateSerialization()
@@ -26,32 +25,13 @@ internal static class HostingExtensions
 
         services.AddCascadingAuthenticationState();
         
-        services.AddOidcConfig(configuration, environment);
-        
-        // ConfigureCookieOidcRefresh attaches a cookie OnValidatePrincipal callback to get
-        // a new access token when the current one expires, and reissue a cookie with the
-        // new access token saved inside. If the refresh fails, the user will be signed
-        // out. OIDC connect options are set for saving tokens and the offline access
-        // scope.
-        services.ConfigureCookieOidcRefresh(CookieAuthenticationDefaults.AuthenticationScheme, OpenIdConnectDefaults.AuthenticationScheme);
-
-
+        services.AddAuthorization();
+ 
         services.AddSingleton<IAuthorizationMiddlewareResultHandler, BlazorAuthorizationMiddlewareResultHandler>();
         services.AddScoped<HostingEnvironmentService>();
         services.AddSingleton<BaseUrlProvider>();
         
-        services.AddHttpContextAccessor();
-        services
-            .AddTransient<CookieHandler>()
-            .AddScoped(sp => sp
-                .GetRequiredService<IHttpClientFactory>()
-                .CreateClient("API"))
-            .AddHttpClient("API", (provider, client) =>
-            {
-                // Get base address
-                var uri = provider.GetRequiredService<BaseUrlProvider>().BaseUrl;
-                client.BaseAddress = new Uri(uri);
-            }).AddHttpMessageHandler<CookieHandler>();
+        services.RegisterHttpClient(configuration);
         
         return services;
     }

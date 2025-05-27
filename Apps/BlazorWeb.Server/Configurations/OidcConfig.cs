@@ -34,9 +34,11 @@ public static class OidcConfig
                 options.GetClaimsFromUserInfoEndpoint = true;
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
-                    NameClaimType = "name"
+                    NameClaimType = "name",
+                    RoleClaimType = "roles"
                 };
             });
+        
 
         return services;
     }

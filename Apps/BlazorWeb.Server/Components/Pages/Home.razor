@@ -1,33 +1,41 @@
 ﻿@page "/"
+@using System.Security.Claims
 @using Microsoft.AspNetCore.Components.Authorization
 
 <PageTitle>Home</PageTitle>
 
-<h1>Hello, world!</h1>
-
-Welcome to your new app.
-
-
+<h1>Weather Forecast - Blazor Web Server</h1>
+<br/>
+Welcome to Oidc Sample App with OpenIddict Auth Server.
+<br/>
+<br/>
 <AuthorizeView>
     <Authorized>
-        <h1>Hello, world!</h1>
+        <h4>Short description of auth demo app idea:</h4>
         <br/>
-        <h2>Hello @context.User.Identity?.Name, here's the list of your claims:</h2>
+        <p><a href="">Home</a> page uses basic authorization without roles/permissions</p>
+        <p><a href="profile">Current User profile</a> page uses roles as authorization (RBAC)</p>
+        <p><a href="SampleWeatherForecast">Mock Weather Forecast UI</a> Sample UI</p>
+        <p><a href="LocalWeatherForecast"> Local  Weather Forecast</a> Fetch data from local  simulation service</p>
+        <p><a href="PublicWeatherForecast">Public Weather Forecast</a> Fetch data from remove UNSECURE api service https://localhost:7202/ )</p>
+        <p><a href="SecureWeatherForecast">Public Weather Forecast</a> Fetch data from remote SECURE api service https://localhost:7202/</p>
+
+        <br/>
+        <h4>Hello, @context.User.Identity!.Name</h4>
+        <p>Your authorization roles:</p>
         <ul>
-            @foreach (var claimGroup in context.User.Claims.GroupBy(a => a.Type))
+            @foreach (Claim role in context.User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Role))
             {
-                foreach (var claimValue in claimGroup.Select(s => s.Value).Distinct())
-                {
-                    <li><b>@claimGroup.Key</b>: @claimValue</li>
-                }
+                <li>@role.Value</li>
             }
         </ul>
-        <br/>
-        <div class="alert alert-warning" role="alert">
-            Before authentication will function correctly, you must configure your provider details in <code>Program.cs</code>
-        </div>
+        
+        <p>Your authorization permissions:</p>
+        <ul>
+            @foreach (Claim permission in context.User.Claims.Where(c => c.Type == "permissions"))
+            {
+                <li>@permission.Value</li>
+            }
+        </ul>
     </Authorized>
-    <NotAuthorized>
-        <RedirectToLogin/>
-    </NotAuthorized>
 </AuthorizeView>

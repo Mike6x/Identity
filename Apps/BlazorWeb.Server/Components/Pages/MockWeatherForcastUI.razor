@@ -1,0 +1,95 @@
+﻿@page "/SampleWeatherForecast"
+@using Identity.Shared.Resource_Server_2
+@attribute [StreamRendering]
+
+@inject IHttpClientFactory HttpClientFactory
+
+<PageTitle>SampleWeatherForecast</PageTitle>
+
+<h1>Sample Weather Forecast Page</h1>
+
+<p>This component demonstrates sample of showing weather forecast data.</p>
+
+@if (_forecasts == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <button class="btn btn-primary" @onclick="PublicForecast">Public Forecast</button>
+    <button class="btn btn-primary" @onclick="SecureForecast">Secure Forecast</button>
+    <button class="btn btn-primary" @onclick="PaidForecast">Paid Forecast</button>
+    <button class="btn btn-primary" @onclick="ClearForecast">Clear</button>
+    
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th aria-label="Temperature in Celsius">Temp. (C)</th>
+            <th aria-label="Temperature in Farenheit">Temp. (F)</th>
+            <th>Summary</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var forecast in _forecasts)
+        {
+            <tr>
+                <td>@forecast.Date.ToShortDateString()</td>
+                <td>@forecast.TemperatureC</td>
+                <td>@forecast.TemperatureF</td>
+                <td>@forecast.Summary</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private WeatherForecast[]? _forecasts;
+    
+    private async Task PaidForecast()
+    {
+        _forecasts = [];
+    
+        var http = HttpClientFactory.CreateClient("resource2Client");
+        _forecasts = await http.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast/public-forecast") ?? [];
+
+    }
+    
+    private async Task SecureForecast()
+    {
+        var http = HttpClientFactory.CreateClient("resource2Client");
+        _forecasts = await http.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast/public-forecast") ?? [];
+
+    }
+    
+    private void ClearForecast()
+    {
+        _forecasts = [];
+    }
+    
+    private async Task PublicForecast()
+    {
+        var http = HttpClientFactory.CreateClient("resource2Client");
+        _forecasts = await http.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast/public-forecast") ?? [];
+    }
+    
+    protected override async Task OnInitializedAsync()
+    {
+        // Simulate asynchronous loading to demonstrate streaming rendering
+        await Task.Delay(500);
+
+        var startDate = DateTime.Now;
+        
+        var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
+        _forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        {
+            Id = 0,
+            Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
+            TemperatureC = Random.Shared.Next(-20, 55),
+            Summary = summaries[Random.Shared.Next(summaries.Length)]
+        }).ToArray();
+    }
+}

@@ -1,50 +1,26 @@
 ﻿using System.Net.Http.Json;
-using Client.Infrastructure.Models;
+using Identity.Shared.Resource_Server_3;
 using Microsoft.AspNetCore.Components.WebAssembly.Authentication;
 
 namespace Client.Infrastructure.Services.Resource_3
 {
     public interface IWeatherService
     {
-        Task<IEnumerable<WeatherForecast>> GetAllAsync();
+        Task<IEnumerable<WeatherForecast>> GetPublicForecastAsync();
         
-        Task<IEnumerable<WeatherForecast>> GetWeatherForcastAsync();
+        Task<IEnumerable<WeatherForecast>> GetSecureForecastAsync();
         
-        Task<IEnumerable<WeatherForecast>> GetSecureWeatherForcastAsync();
+        Task<IEnumerable<WeatherForecast>> GetPaidForecastAsync();
     }
 
-    public class WeatherService : IWeatherService
+
+    public class WeatherService(HttpClient httpClient) : IWeatherService
     {
-        private readonly HttpClient _httpClient;
-
-        /// <summary>
-        /// constructor
-        /// </summary>
-        /// <param name="httpClient"></param>
-        public WeatherService(HttpClient httpClient)
-        {
-            this._httpClient = httpClient;
-        }
-
-        public async Task<IEnumerable<WeatherForecast>> GetAllAsync()
+        public async Task<IEnumerable<WeatherForecast>> GetPublicForecastAsync()
         {
             try
             {
-                return await _httpClient.GetFromJsonAsync<IEnumerable<WeatherForecast>>("api/WeatherForecast")
-                      ?? [];
-            }
-            catch (AccessTokenNotAvailableException ex)
-            {
-                ex.Redirect();
-            }
-            return [];
-        }
-        
-        public async Task<IEnumerable<WeatherForecast>> GetWeatherForcastAsync()
-        {
-            try
-            {
-                return await _httpClient.GetFromJsonAsync<IEnumerable<WeatherForecast>>("resources/weather-forecast")
+                return await httpClient.GetFromJsonAsync<IEnumerable<WeatherForecast>>("api/WeatherForecast/public-forecast")
                        ?? [];
             }
             catch (AccessTokenNotAvailableException ex)
@@ -54,11 +30,25 @@ namespace Client.Infrastructure.Services.Resource_3
             return [];
         }
         
-        public async Task<IEnumerable<WeatherForecast>> GetSecureWeatherForcastAsync()
+        public async Task<IEnumerable<WeatherForecast>> GetSecureForecastAsync()
         {
             try
             {
-                return await _httpClient.GetFromJsonAsync<IEnumerable<WeatherForecast>>("resources/secure-weather-forecast")
+                return await httpClient.GetFromJsonAsync<IEnumerable<WeatherForecast>>("api/WeatherForecast/sercure-forecast")
+                       ?? [];
+            }
+            catch (AccessTokenNotAvailableException ex)
+            {
+                ex.Redirect();
+            }
+            return [];
+        }
+        
+        public async Task<IEnumerable<WeatherForecast>> GetPaidForecastAsync()
+        {
+            try
+            {
+                return await httpClient.GetFromJsonAsync<IEnumerable<WeatherForecast>>("api/WeatherForecast/paid-forecast")
                        ?? [];
             }
             catch (AccessTokenNotAvailableException ex)

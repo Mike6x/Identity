@@ -1,0 +1,57 @@
+@page "/SecureWeatherForecast"
+@using Identity.Shared.Resource_Server_2
+
+@inject IHttpClientFactory HttpClientFactory
+
+<PageTitle>Secure Weather forecast</PageTitle>
+
+<h1>Secure Weather Forecast: Singapore</h1>
+
+@if (_forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
+            <th>Summary</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var forecast in _forecasts)
+        {
+            <tr>
+                <td>@forecast.Date.ToShortDateString()</td>
+                <td>@forecast.TemperatureC</td>
+                <td>@forecast.TemperatureF</td>
+                <td>@forecast.Summary</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private WeatherForecast[]? _forecasts;
+    
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var http = HttpClientFactory.CreateClient("resource2Client");
+            _forecasts = await http.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast/secure-forecast")
+                         ;
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("The Error is :" + ex.ToString());
+        }
+        
+    }
+    
+}

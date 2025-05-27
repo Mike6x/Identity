@@ -1,6 +1,6 @@
-using Blazor.Server.MockData;
 using BlazorWeb.Server.Components;
 using BlazorWeb.Server.Configurations;
+using Client.Infrastructure.Services.MockData;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Server.Circuits;
 using Microsoft.AspNetCore.Mvc;
@@ -39,7 +39,9 @@ internal static class HostingExtensions
         services.AddControllersWithViews(options =>
             options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
         
-        services.AddSingleton<WeatherForecastService>();
+        services.AddSingleton<LocalWeatherForecastService>();
+        
+        services.RegisterHttpClient(configuration);
         
         return services;
     }

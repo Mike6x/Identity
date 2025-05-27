@@ -1,0 +1,50 @@
+@page "/PublicWeatherForecast"
+@using Identity.Shared.Resource_Server_2
+
+@inject IHttpClientFactory HttpClientFactory
+
+<PageTitle>Public Weather forecast</PageTitle>
+
+<h1>Public Weather Forecast: New York</h1>
+
+@if (_forecasts == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Date</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
+            <th>Summary</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var forecast in _forecasts)
+        {
+            <tr>
+                <td>@forecast.Date.ToShortDateString()</td>
+                <td>@forecast.TemperatureC</td>
+                <td>@forecast.TemperatureF</td>
+                <td>@forecast.Summary</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private WeatherForecast[]? _forecasts;
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        var http = HttpClientFactory.CreateClient("resource2Client");
+        _forecasts = await http.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast/public-forecast")
+                     ?? throw new IOException("Server Not Found!");
+    }
+    
+}

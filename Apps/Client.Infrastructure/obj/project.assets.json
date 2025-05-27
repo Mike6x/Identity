@@ -501,6 +501,16 @@
             "related": ".xml"
           }
         }
+      },
+      "Identity.Shared/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v9.0",
+        "compile": {
+          "bin/placeholder/Identity.Shared.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Identity.Shared.dll": {}
+        }
       }
     }
   },
@@ -1567,11 +1577,17 @@
         "system.identitymodel.tokens.jwt.8.10.0.nupkg.sha512",
         "system.identitymodel.tokens.jwt.nuspec"
       ]
+    },
+    "Identity.Shared/1.0.0": {
+      "type": "project",
+      "path": "../../Identity.Shared/Identity.Shared.csproj",
+      "msbuildProject": "../../Identity.Shared/Identity.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
       "Blazored.LocalStorage >= 4.5.0",
+      "Identity.Shared >= 1.0.0",
       "Microsoft.AspNetCore.Components.Authorization >= 9.0.5",
       "Microsoft.AspNetCore.Components.WebAssembly.Authentication >= 9.0.5",
       "Microsoft.Extensions.Configuration.Abstractions >= 9.0.5",
@@ -1605,7 +1621,11 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj": {
+              "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

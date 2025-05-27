@@ -36,7 +36,7 @@
     {        
         var client = HttpClientFactory.CreateClient("API");
         _say = await client.GetStringAsync("api/Counter");
-		_say = _say + " called from " + HostingEnvironmentService.EnvironmentName;
+		_say = _say + " called from " + HostingEnvironmentService.EnvironmentName + "- times: " + _currentCount;
     }
 
     private void IncrementCount()

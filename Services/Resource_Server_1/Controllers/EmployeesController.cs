@@ -2,6 +2,7 @@
 using Identity.Shared.Resource_Server_1;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Resource_Server_1.Models;
 
 namespace Resource_Server_1.Controllers;
 

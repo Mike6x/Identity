@@ -3338,6 +3338,7 @@
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "Blazored.LocalStorage": "4.5.0",
+          "Identity.Shared": "1.0.0",
           "Microsoft.AspNetCore.Components.Authorization": "9.0.5",
           "Microsoft.AspNetCore.Components.WebAssembly.Authentication": "9.0.5",
           "Microsoft.Extensions.Configuration.Abstractions": "9.0.5",

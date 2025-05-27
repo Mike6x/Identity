@@ -1,0 +1,50 @@
+@page "/Profile"
+@attribute [Authorize]
+@using System.Security.Claims
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Components.Authorization
+
+<h3>Profile</h3>
+
+<AuthorizeView>
+    <Authorized>
+        <h2>Hello @context.User.Identity?.Name</h2>
+        <h4>Here's the list of your claims:</h4>
+        <ul>
+            @foreach (var claimGroup in context.User.Claims.GroupBy(a => a.Type))
+            {
+                foreach (var claimValue in claimGroup.Select(s => s.Value).Distinct())
+                {
+                    <li><b>@claimGroup.Key</b>: @claimValue</li>
+                }
+            }
+        </ul>
+        <br/>
+        <div class="alert alert-warning" role="alert">
+            Before authentication will function correctly, you must configure your provider details in <code>Program.cs</code>
+        </div>
+    </Authorized>
+
+</AuthorizeView>
+
+<AuthorizeView>
+    <Authorized>
+        <p>Your authorization roles:</p>
+        <ul>
+            @foreach (Claim role in context.User.Claims.Where(c => c.Type == System.Security.Claims.ClaimTypes.Role))
+            {
+                <li>@role.Value</li>
+            }
+        </ul>
+        <p>Your authorization permissions:</p>
+        <ul>
+            @foreach (Claim permission in context.User.Claims.Where(c => c.Type == "permissions"))
+            {
+                <li>@permission.Value</li>
+            }
+        </ul>
+    </Authorized>
+</AuthorizeView>
+@code {
+    
+}
