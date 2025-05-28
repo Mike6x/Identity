@@ -1,9 +1,11 @@
-@page "/City"
-@using Identity.Shared.Resource_Server_3.Dtos
+@page "/Cities"
 
+@rendermode InteractiveAuto
+
+@using Identity.Shared.Resource_Server_3.Dtos
 @inject IHttpClientFactory HttpClientFactory
 
-<h3>City</h3>
+<h3>Cities</h3>
 
 @if (_itemlist == null)
 {

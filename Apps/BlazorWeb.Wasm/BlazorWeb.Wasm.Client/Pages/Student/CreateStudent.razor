@@ -1,45 +1,48 @@
-@page "/CreateStudent"
+@page "/Student/CreateStudent"
+@rendermode InteractiveServer
+@* @attribute [StreamRendering] *@
+
 @using Identity.Shared.Resource_Server_3.Dtos
 
 @inject IHttpClientFactory HttpClientFactory
 @inject NavigationManager Navigation
 
-<h3>Edit Student</h3>
+<h3>Create Student</h3>
 <div class="container">
     <div class="row">
         <div class="col-8">
-            <EditForm Model="Item" OnValidSubmit="CreateStudentMethod">
+            <EditForm Model="@_item" method="post" OnValidSubmit="CreateStudentMethod" FormName="CreateStudent">
                 <DataAnnotationsValidator/>
                 <div class="form-group">
                     <label class="form-label">Id</label>
-                    <InputNumber class="form-control" @bind-Value=Item.Id></InputNumber>
+                    <InputNumber class="form-control" @bind-Value=_item.Id></InputNumber>
                 </div>
                 <div class="form-group">
                     <label class="form-label">Name</label>
-                    <InputText class="form-control" @bind-Value=Item.FirstName></InputText>
+                    <InputText class="form-control" @bind-Value=_item.FirstName></InputText>
                 </div>
                 <div class="form-group">
                     <label class="form-label">LastName</label>
-                    <InputText class="form-control" @bind-Value=Item.LastName></InputText>
+                    <InputText class="form-control" @bind-Value=_item.LastName></InputText>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Sex</label>
-                    <InputText class="form-control" @bind-Value=Item.Sex></InputText>
+                    <InputText class="form-control" @bind-Value=_item.Sex></InputText>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Age</label>
-                    <InputNumber class="form-control" @bind-Value=Item.Age></InputNumber>
+                    <InputNumber class="form-control" @bind-Value=_item.Age></InputNumber>
                 </div>
 
                 <div class="form-group">
                     <label class="form-label">Major</label>
-                    <InputText class="form-control" @bind-Value=Item.Major></InputText>
+                    <InputText class="form-control" @bind-Value=_item.Major></InputText>
                 </div>
 
 
-                <button class="btn btn-primary mt-3" type="submit">Update</button>
+                <button class="btn btn-primary mt-3" type="submit">Create</button>
 
             </EditForm>
         </div>
@@ -48,15 +51,25 @@
 
 
 @code {
-    StudentDto Item;
 
-    private void CreateStudentMethod()
+    StudentDto _item = new ();
+
+    private async Task CreateStudentMethod()
     {
         var http = HttpClientFactory.CreateClient("resource3Client");
-
-        http.PostAsJsonAsync<StudentDto>("api/Student", Item);
-
-        Navigation.NavigateTo("/Students",true);
+        try
+        {
+            await  http.PostAsJsonAsync("api/Students", _item);
+            
+           // await http.PostAsync("api/Student");
+            
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("The Error is :" + ex.ToString());
+        }
+        
+        Navigation.NavigateTo("Student/Students",true);
         
     }
     

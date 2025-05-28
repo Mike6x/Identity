@@ -3,6 +3,7 @@ using System.Text.Json;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Resource_Server_3.Services;
+using Identity.Shared.Resource_Server_3.Dtos;
 
 namespace Resource_Server_3.Controllers;
 
@@ -27,7 +28,7 @@ public class StudentsController(IStudentService studentService) : ApiControllerB
     }
     
     [HttpPost("export")]
-    [AllowAnonymous]
+    [Authorize(Roles = "admin")]
     public async Task<IActionResult> ExportToJson()
     {
         var students = await studentService.GetAllAsync();
@@ -72,32 +73,47 @@ public class StudentsController(IStudentService studentService) : ApiControllerB
         
     }
     
+    [HttpPost]
+    [AllowAnonymous]
+    public async Task<IActionResult> CreateAsync(StudentDto item)
+    {
+        var students = await studentService.CreateAsync(
+            item.FirstName, 
+            item.LastName ?? string.Empty,
+            item.Age,
+            item.Major ?? "Art",
+            item.Sex ?? "Female");
+        
+        return Ok(students);
+    }
+    
+    [HttpPut("{id:int}")]
+    [AllowAnonymous]
+    public async Task<IActionResult> UpdateAsync(int id, StudentDto? item)
+    {
+        if (item == null || item.Id < 1 || id != item.Id)
+        {
+            return BadRequest("Invalid data.");
+        }
+        var students = await studentService.UpdateAsync(
+            item.Id,
+            item.FirstName, 
+            item.LastName ?? string.Empty,
+            item.Age,
+            item.Major ?? "Art",
+            item.Sex ?? "Female");
+        
+        return Ok(students);
+    }
     
     [HttpDelete("{id:int}")]
-    [Authorize(Roles = "admin")]
+    [AllowAnonymous]
+ 
     public async Task<IActionResult> DeleteAsync(int id)
     {
         var result = await  studentService.DeleteAsync(id);
         
         return Ok(result);
-    }
-    
-    [HttpPost]
-    [AllowAnonymous]
-    public async Task<IActionResult> CreateAsync(string firstName, string lastName, int age, string major, string sex)
-    {
-        var students = await studentService.CreateAsync(firstName,lastName,age,major,sex);
-        
-        return Ok(students);
-    }
-    
-    [HttpPut]
-    [AllowAnonymous]
-    public async Task<IActionResult> UpdateAsync(int id, string firstName, string lastName, int age, string major, string sex)
-    {
-        var students = await studentService.UpdateAsync(id,firstName,lastName,age,major,sex);
-        
-        return Ok(students);
     }
     
 }

@@ -30,8 +30,8 @@ build_property.EnableCodeStyleSeverity =
 build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQXV0aC5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/Pages/City/City.razor]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2l0eS9DaXR5LnJhem9y
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/Pages/City/Cities.razor]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXMvQ2l0eS9DaXRpZXMucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/Pages/Counter.razor]

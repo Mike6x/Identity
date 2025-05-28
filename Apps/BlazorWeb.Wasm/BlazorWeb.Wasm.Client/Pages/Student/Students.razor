@@ -1,4 +1,7 @@
-@page "/Students"
+@page "/Student/Students"
+@rendermode InteractiveServer
+@attribute [StreamRendering]
+
 @using Identity.Shared.Resource_Server_3.Dtos
 
 @inject IHttpClientFactory HttpClientFactory
@@ -15,42 +18,45 @@
             }
             else
             {
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">FirstName</th>
-                                <th scope="col">LastName</th>
-                                <th scope="col">Sex</th>
-                                <th scope="col">Age</th>
-                                <th scope="col">Major</th>
-                                @* <th scope="col">MobileNo</th> *@
-                                @* <th scope="col">Semester</th> *@
-                                @* <th scope="col">Email</th> *@
-                                @* <th scope="col">RollNo</th> *@
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @foreach (var item in _itemlist)
-                        {
-                                    <tr>
-                                        <th scope="row">@item.Id</th>
-                                        <td>@item.FirstName</td>
-                                        <td>@item.LastName</td>
-                                        <td>@item.Sex</td>
-                                        <td>@item.Age</td>
-                                        <td>@item.Major</td>
-                                        <td>
-                                            <button onclick="@(()=>DeleteRecordAsync(item.Id))" class="btn btn-danger">Delete</button>
-                                        </td>
-                                        <td>
-                                            <button onclick="@(()=>Navigation.NavigateTo($"EditStudent/{item.Id}"))" class="btn btn-primary">Edit</button>
-                                        </td>
-                                    </tr>
-                        }
-                        </tbody>
-                    </table>
+                <button class="btn btn-primary" @onclick="CreatRecordAsync">Create</button>
+                <button onclick="@(()=>Navigation.NavigateTo($"City/Cities"))" class="btn btn-primary">Cities</button>
+                
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">FirstName</th>
+                            <th scope="col">LastName</th>
+                            <th scope="col">Sex</th>
+                            <th scope="col">Age</th>
+                            <th scope="col">Major</th>
+                            @* <th scope="col">MobileNo</th> *@
+                            @* <th scope="col">Semester</th> *@
+                            @* <th scope="col">Email</th> *@
+                            @* <th scope="col">RollNo</th> *@
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var item in _itemlist)
+                    {
+                                <tr>
+                                    <th scope="row">@item.Id</th>
+                                    <td>@item.FirstName</td>
+                                    <td>@item.LastName</td>
+                                    <td>@item.Sex</td>
+                                    <td>@item.Age</td>
+                                    <td>@item.Major</td>
+                                    <td>
+                                        <button onclick="@(()=>DeleteRecordAsync(item.Id))" class="btn btn-danger">Delete</button>
+                                    </td>
+                                    <td>
+                                        <button onclick="@(()=>EditRecordAsync(item.Id))" class="btn btn-primary">Edit</button>
+                                    </td>
+                                </tr>
+                    }
+                    </tbody>
+                </table>
             }
         </div>
     </div>
@@ -75,14 +81,26 @@
         }
     }
 
+    private void EditRecordAsync(int id)
+    {
+        Navigation.NavigateTo($"Student/EditStudent/{id}");
+
+    }
+    
+    private void CreatRecordAsync()
+    {
+        Navigation.NavigateTo($"Student/CreateStudent");
+
+    }
+    
     private async Task DeleteRecordAsync(int id)
     {
         var http = HttpClientFactory.CreateClient("resource3Client");
-        await http.DeleteFromJsonAsync<StudentDto>("api/Students/" + id);
+        // await http.DeleteFromJsonAsync<StudentDto>("api/Students/" + id);
         
         await http.DeleteAsync("api/Students/" + id);
         
-        Navigation.NavigateTo("/Students", true);
+        Navigation.NavigateTo("student/Students", true);
 
     }
 

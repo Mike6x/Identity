@@ -76,24 +76,24 @@ public class StudentService(IWebHostEnvironment environment) : IStudentService
 
             _mockData = [];
             
-            try
-            {
-                LoadStudentsFromJson();
-            }
-            catch (JsonException jsonEx)
-            {
-                Console.WriteLine(" JSON file errors.");
-                
-            }
-            catch (Exception ex)
-            {
-
-                Console.WriteLine(" JSON file errors.");
-            }
-            finally
-            {
-                FileReadLock.Release(); // Release lock
-            }
+            // try
+            // {
+            //     LoadStudentsFromJson();
+            // }
+            // catch (JsonException jsonEx)
+            // {
+            //     Console.WriteLine(" JSON file errors.");
+            //     
+            // }
+            // catch (Exception ex)
+            // {
+            //
+            //     Console.WriteLine(" JSON file errors.");
+            // }
+            // finally
+            // {
+            //     FileReadLock.Release(); // Release lock
+            // }
             
             LoadInMemoryStudents();
         }
@@ -182,7 +182,7 @@ public class StudentService(IWebHostEnvironment environment) : IStudentService
             await EnsureDataLoadedAsync();
             
             var result = _mockData?.FirstOrDefault(c => c.FirstName.Equals(firstName, StringComparison.OrdinalIgnoreCase));
-            if (result == null) return null;
+            if (result != null) return null;
             
             var newId = _mockData?.Max(s => s.Id) + 1;
 
@@ -221,7 +221,7 @@ public class StudentService(IWebHostEnvironment environment) : IStudentService
             };
             
             _mockData?.Remove(result);
-
+            
             _mockData?.Add(newStudent);
             
             return newStudent;
