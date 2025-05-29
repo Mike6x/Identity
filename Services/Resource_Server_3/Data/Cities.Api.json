@@ -1,6 +1,7 @@
 [
   {
-    "id": "nyc",
+    "id": 1,
+    "code": "nyc",
     "name": "New York City",
     "state": "New York",
     "summerHighFahrenheit": 85,
@@ -10,7 +11,8 @@
     "timeZone": "America/New_York"
   },
   {
-    "id": "lax",
+    "id": 2,
+    "code": "lax",
     "name": "Los Angeles",
     "state": "California",
     "summerHighFahrenheit": 84,
@@ -20,7 +22,8 @@
     "timeZone": "America/Los_Angeles"
   },
   {
-    "id": "chi",
+    "id": 3,
+    "code": "chi",
     "name": "Chicago",
     "state": "Illinois",
     "summerHighFahrenheit": 84,
@@ -30,7 +33,8 @@
     "timeZone": "America/Chicago"
   },
   {
-    "id": "hou",
+    "id": 4,
+    "code": "hou",
     "name": "Houston",
     "state": "Texas",
     "summerHighFahrenheit": 94,
@@ -40,7 +44,8 @@
     "timeZone": "America/Chicago"
   },
   {
-    "id": "phx",
+    "id": 5,
+    "code": "phx",
     "name": "Phoenix",
     "state": "Arizona",
     "summerHighFahrenheit": 106,

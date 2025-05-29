@@ -1,9 +1,10 @@
 using System.Text.Json;
+using Identity.Shared.Resource_Server_3.Dtos;
 using Resource_Server_3.Models;
 
 namespace Resource_Server_3.Services;
 
-public class JsonCityDataService : ICityDataService
+public class JsonCityDataService : ICityService
 {
     private List<CityData>? _mockData;
     private readonly string _jsonFilePath;
@@ -18,6 +19,134 @@ public class JsonCityDataService : ICityDataService
         _logger = logger;
         _logger.LogInformation("JsonCityDataService initialized. Data path: {FilePath}", _jsonFilePath);
     }
+
+    public async Task<IEnumerable<CityData>> GetAllAsync()
+    {
+        await EnsureDataLoadedAsync();
+        return _mockData ?? Enumerable.Empty<CityData>();
+    }
+    
+    public async Task<IEnumerable<CityData>> GetListAsync()
+    {
+        await EnsureDataLoadedAsync();
+        return _mockData ?? Enumerable.Empty<CityData>();
+    }
+    
+    public async Task<CityData?> GetByCodeAsync(string code)
+    {
+        await EnsureDataLoadedAsync();
+        if (_mockData == null || _mockData.Count == 0)
+        {
+            _logger.LogWarning("City data is not loaded or is empty when searching for city: {Code}", code);
+            return null;
+        }
+
+        // Using LINQ's FirstOrDefault for efficient searching.
+        // StringComparison.OrdinalIgnoreCase is recommended for case-insensitive comparisons of identifiers.
+        var city = _mockData.FirstOrDefault(c => c.Code.Equals(code, StringComparison.OrdinalIgnoreCase));
+
+        if (city == null)
+        {
+            _logger.LogInformation("City not found: {Code}", code);
+        }
+        else
+        {
+            _logger.LogInformation("City found: {Code}", code);
+        }
+        return city;
+    }
+    
+    public async Task<CityData?> GetByIdAsync(int id)
+    {
+        await EnsureDataLoadedAsync();
+        if (_mockData == null || _mockData.Count == 0)
+        {
+            _logger.LogWarning("City data is not loaded or is empty when searching for city: {id}", id);
+            return null;
+        }
+
+        // Using LINQ's FirstOrDefault for efficient searching.
+        // StringComparison.OrdinalIgnoreCase is recommended for case-insensitive comparisons of identifiers.
+        var city = _mockData?.FirstOrDefault(c => c.Id.Equals(id));
+    
+        if (city == null)
+        {
+            _logger.LogInformation("City not found: {id}", id);
+        }
+        else
+        {
+            _logger.LogInformation("City found: {id}", id);
+        }
+        return city;
+    }
+
+    public async Task<int?> DeleteAsync(int id)
+    {
+        await EnsureDataLoadedAsync();
+            
+        var result = _mockData?.FirstOrDefault(c => c.Id.Equals(id));
+            
+        if (result == null) return null;
+            
+        _mockData?.Remove(result);
+            
+        return result.Id;
+    }
+    
+    public async Task<CityData?> CreateAsync(CityInfoDto cityInfoDto)
+    {
+        await EnsureDataLoadedAsync();
+            
+        var result = _mockData?.FirstOrDefault(c => c.Name.Equals(cityInfoDto.Name, StringComparison.OrdinalIgnoreCase));
+        if (result != null) return null;
+            
+        int newId = _mockData?.Max(s => s.Id) + 1 ?? 0;
+
+        var item = new CityData()
+        {
+            Id = newId,
+            Code = cityInfoDto.Code,
+            Name = cityInfoDto.Name,
+            State = cityInfoDto.State,
+            ElevationFeet = cityInfoDto.ElevationFeet,
+            Population = cityInfoDto.Population,
+            TimeZone = cityInfoDto.TimeZone,
+            SummerHighFahrenheit = cityInfoDto.Temperatures.SummerHighFahrenheit,
+            WinterLowFahrenheit = cityInfoDto.Temperatures.WinterLowFahrenheit,
+        };
+
+        _mockData?.Add(item);
+            
+        return item;
+    }
+
+    public async Task<CityData?> UpdateAsync(CityInfoDto cityInfoDto)
+    {
+        await EnsureDataLoadedAsync();
+            
+        var result = _mockData?.FirstOrDefault(c => c.Id.Equals(cityInfoDto.Id));
+        if (result == null) return null;
+            
+        var newItem = new CityData()
+        {
+            Id = cityInfoDto.Id,
+            Code = cityInfoDto.Code,
+            Name = cityInfoDto.Name,
+            State = cityInfoDto.State,
+            ElevationFeet = cityInfoDto.ElevationFeet,
+            Population = cityInfoDto.Population,
+            TimeZone = cityInfoDto.TimeZone,
+            SummerHighFahrenheit = cityInfoDto.Temperatures.SummerHighFahrenheit,
+            WinterLowFahrenheit = cityInfoDto.Temperatures.WinterLowFahrenheit,
+        };
+            
+        _mockData?.Remove(result);
+            
+        _mockData?.Add(newItem);
+            
+        return newItem;
+    }
+    
 
     /// <summary>
     /// Loads city data from the JSON file.
@@ -62,36 +191,5 @@ public class JsonCityDataService : ICityDataService
         {
             FileReadLock.Release(); // Release lock
         }
-    }
-
-
-    public async Task<CityData?> GetByNameAsync(string name)
-    {
-        await EnsureDataLoadedAsync();
-        if (_mockData == null || _mockData.Count == 0)
-        {
-            _logger.LogWarning("City data is not loaded or is empty when searching for city: {CityName}", name);
-            return null;
-        }
-
-        // Using LINQ's FirstOrDefault for efficient searching.
-        // StringComparison.OrdinalIgnoreCase is recommended for case-insensitive comparisons of identifiers.
-        var city = _mockData.FirstOrDefault(c => c.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
-
-        if (city == null)
-        {
-            _logger.LogInformation("City not found: {CityName}", name);
-        }
-        else
-        {
-            _logger.LogInformation("City found: {CityName}", name);
-        }
-        return city;
-    }
-
-    public async Task<IEnumerable<CityData>> GetAllAsync()
-    {
-        await EnsureDataLoadedAsync();
-        return _mockData ?? Enumerable.Empty<CityData>();
     }
 }

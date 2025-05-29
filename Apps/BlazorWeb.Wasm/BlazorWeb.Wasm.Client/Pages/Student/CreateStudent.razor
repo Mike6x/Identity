@@ -1,6 +1,5 @@
 @page "/Student/CreateStudent"
 @rendermode InteractiveServer
-@* @attribute [StreamRendering] *@
 
 @using Identity.Shared.Resource_Server_3.Dtos
 
@@ -61,7 +60,6 @@
         {
             await  http.PostAsJsonAsync("api/Students", _item);
             
-           // await http.PostAsync("api/Student");
             
         }
         catch (Exception ex)

@@ -1,23 +1,26 @@
 namespace Identity.Shared.Resource_Server_3.Dtos;
 
-/// <summary>
-/// Data Transfer Object representing city information returned by the API.
-/// </summary>
 public record CityInfoDto
 {
-    public required string Name { get; init; }
-    public required string State { get; init; }
-    public required TemperatureInfo Temperatures { get; init; }
-    public required string Elevation { get; init; }
-    public long Population { get; init; }
-    public required string CurrentTimeLocal { get; init; } // Added feature
+    public int Id { get; set; }
+    public string Code { get; set; }
+    public string Name { get; set; }
+    public string State { get; set; }
+    public int ElevationFeet { get; set; }
+    public long Population { get; set; }
+    
+    public string TimeZone { get; set; } 
+
+    public TemperatureInfo Temperatures { get; set; } = new TemperatureInfo
+    {
+        SummerHighFahrenheit = 0,
+        WinterLowFahrenheit = 0
+    };
 }
 
-/// <summary>
-/// Temperature information for a city.
-/// </summary>
-public record TemperatureInfo
+
+public class TemperatureInfo
 {
-    public required string SummerHighFahrenheit { get; init; }
-    public required string WinterLowFahrenheit { get; init; }
+    public int SummerHighFahrenheit { get; set; } 
+    public int WinterLowFahrenheit { get; set; }
 }

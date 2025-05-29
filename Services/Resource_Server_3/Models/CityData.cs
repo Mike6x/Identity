@@ -5,7 +5,9 @@ namespace Resource_Server_3.Models;
 /// </summary>
 public record CityData
 {
-    public required string Id { get; init; }
+    public required int Id { get; init; }
+    
+    public required string Code { get; init; }
     public required string Name { get; init; }
     public required string State { get; init; }
     public int SummerHighFahrenheit { get; init; }

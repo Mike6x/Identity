@@ -7,65 +7,121 @@ using Resource_Server_3.Services;
 
 namespace Resource_Server_3.Controllers;
 
-public class CitiesController(ICityDataService cityDataService, ILogger<CitiesController> logger)
+public class CitiesController(ICityService cityService, ILogger<CitiesController> logger)
     : ApiControllerBase
 {
-    private readonly ICityDataService _cityDataService = cityDataService ?? throw new ArgumentNullException(nameof(cityDataService));
+    private readonly ICityService _cityService = cityService ?? throw new ArgumentNullException(nameof(cityService));
     private readonly ILogger<CitiesController> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    
+    [HttpPost("GetList")]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetList()
+    {
+        var cities = await _cityService.GetAllAsync();
+        var cityList = cities.Select(MapToDto).ToList();
 
+        return Ok(cityList);
+    }
+    
+    [HttpGet("code/{code}")]
+    [AllowAnonymous]
 
-    [HttpGet("{cityName}")]
+    public async Task<IActionResult> GetByCodeAsync(string code)
+    {
+        var result = await cityService.GetByCodeAsync(code);
+        
+        if (result == null) return NotFound();
+        
+        return Ok(MapToDto(result));
+        
+    }
+    
+    [HttpGet("{id:int}")]
+    [AllowAnonymous]
+    public async Task<IActionResult> GetByIdAsync(int id)
+    {
+        var result = await cityService.GetByIdAsync(id);
+        
+        if (result == null) return NotFound();
+        
+        return Ok(MapToDto(result));
+    }
+    
+    [HttpPost]
+    [AllowAnonymous]
+    public async Task<IActionResult> CreateAsync(CityInfoDto itemDto)
+    {
+        var result = await cityService.CreateAsync(itemDto);
+        
+        return Ok(result);
+    }
+    
+    [HttpPut("{id:int}")]
+    [AllowAnonymous]
+    public async Task<IActionResult> UpdateAsync(int id, CityInfoDto? itemDto)
+    {
+        if (itemDto == null || itemDto.Id < 1 || id != itemDto.Id)
+        {
+            return BadRequest("Invalid data.");
+        }
+        var result = await cityService.UpdateAsync(itemDto);
+        
+        return Ok(result);
+    }
+    
+    [HttpDelete("{id:int}")]
+    [AllowAnonymous]
+    public async Task<IActionResult> DeleteAsync(int id)
+    {
+        var result = await  cityService.DeleteAsync(id);
+        
+        return Ok(result);
+    }
+    
+    
+    [HttpGet]
+    [AllowAnonymous]
+    public async Task<ActionResult<IEnumerable<object>>> GetAll()
+    {
+        _logger.LogInformation("Attempting to retrieve all city names.");
+        var cities = await _cityService.GetAllAsync();
+        var cityList = cities.Select(MapToDto).ToList();
+
+        _logger.LogInformation("Retrieved {Count} Cities.Api.", cityList.Count);
+        return Ok(cityList);
+    }
+
+    
+    [HttpGet("name/{name}")]
     [ProducesResponseType(typeof(CityInfoDto), StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     
-    public async Task<ActionResult<CityInfoDto>> GetCityInfo(string cityName)
+    public async Task<ActionResult<CityInfoDto>> GetByName(string name)
     {
-        if (string.IsNullOrWhiteSpace(cityName))
+        if (string.IsNullOrWhiteSpace(name))
         {
             _logger.LogWarning("City name parameter was null or whitespace.");
             return BadRequest("City name cannot be empty.");
         }
 
-        _logger.LogInformation("Attempting to retrieve information for city: {CityName}", cityName);
+        _logger.LogInformation("Attempting to retrieve information for city: {name}", name);
 
-        var cityData = await _cityDataService.GetByNameAsync(cityName);
+        var cityData = await _cityService.GetByCodeAsync(name);
 
         if (cityData == null)
         {
-            _logger.LogWarning("City not found: {CityName}", cityName);
-            return NotFound($"Information for city '{cityName}' not found.");
+            _logger.LogWarning("City not found: {name}", name);
+            return NotFound($"Information for city '{name}' not found.");
         }
 
         // Map CityData to CityInfoDto (Manual mapping for clarity, AutoMapper could be used in larger projects)
         var cityInfoDto = MapToDto(cityData);
 
-        _logger.LogInformation("Successfully retrieved information for city: {CityName}", cityName);
+        _logger.LogInformation("Successfully retrieved information for city: {CityName}", name);
         return Ok(cityInfoDto);
     }
-
-
-    [HttpGet]
-    [AllowAnonymous]
-    // [ProducesResponseType(typeof(IEnumerable<object>), StatusCodes.Status200OK)]
     
-    public async Task<ActionResult<IEnumerable<object>>> GetAllCityNames()
-    {
-        _logger.LogInformation("Attempting to retrieve all city names.");
-        var cities = await _cityDataService.GetAllAsync();
-        var cityList = cities.Select(MapToDto).ToList();
-        //  var cityList = cities.Select(c => new { c.Id, c.Name, c.State }).ToList();
-        _logger.LogInformation("Retrieved {Count} Cities.Api.", cityList.Count);
-        return Ok(cityList);
-    }
-
-
-    /// <summary>
-    /// Maps a <see cref="CityData"/> object to a <see cref="CityInfoDto"/> object.
-    /// This includes formatting and calculating derived data like current local time.
-    /// </summary>
-    /// <param name="cityData">The source <see cref="CityData"/> object.</param>
-    /// <returns>The mapped <see cref="CityInfoDto"/> object.</returns>
     private CityInfoDto MapToDto(CityData cityData)
     {
         string currentTimeLocal = "N/A";
@@ -89,16 +145,22 @@ public class CitiesController(ICityDataService cityDataService, ILogger<CitiesCo
 
         return new CityInfoDto
         {
+            Id = cityData.Id,
+            Code = cityData.Code,
             Name = cityData.Name,
             State = cityData.State,
             Temperatures = new TemperatureInfo
             {
-                SummerHighFahrenheit = $"{cityData.SummerHighFahrenheit} °F",
-                WinterLowFahrenheit = $"{cityData.WinterLowFahrenheit} °F"
+                SummerHighFahrenheit = cityData.SummerHighFahrenheit,
+                WinterLowFahrenheit = cityData.WinterLowFahrenheit
+                // SummerHighFahrenheit = $"{cityData.SummerHighFahrenheit} °F",
+                // WinterLowFahrenheit = $"{cityData.WinterLowFahrenheit} °F"
             },
-            Elevation = $"{cityData.ElevationFeet} ft",
+            // ElevationFeet = $"{cityData.ElevationFeet} ft",
+            
+            ElevationFeet =  cityData.ElevationFeet,
             Population = cityData.Population,
-            CurrentTimeLocal = currentTimeLocal
+            TimeZone = currentTimeLocal
         };
     }
 }

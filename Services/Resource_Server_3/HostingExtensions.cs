@@ -51,9 +51,9 @@ internal static class HostingExtensions
             });
         });
        
-        services.AddSingleton<ICityDataService, JsonCityDataService>();
+        services.AddSingleton<ICityService, JsonCityDataService>();
         
-        services.AddSingleton<IStudentService, StudentService>();
+        services.AddSingleton<IStudentService, JsonStudentDataService>();
         
         return services;
     }
