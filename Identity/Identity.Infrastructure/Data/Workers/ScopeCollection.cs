@@ -50,7 +50,14 @@ public class ScopeCollection
         _scopes.Add( new OpenIddictScopeDescriptor
         {
             Name = "api",
-            Resources = { "resource_server" }
+            DisplayName = "Apis scope",
+            Description = "Access to resource servers",
+            Resources =
+            {
+                "resource_server_1" ,
+                "resource_server_2" ,
+                "resource_server_3" 
+            }
         });
         
         _scopes.Add( new OpenIddictScopeDescriptor
@@ -60,7 +67,20 @@ public class ScopeCollection
             Description = "Access to resource server 1",
             Resources = { "resource_server_1" }
         }); 
-        
+        _scopes.Add( new OpenIddictScopeDescriptor
+        {
+            Name = "api2",
+            DisplayName = "Api2 scope",
+            Description = "Access to resource server 2",
+            Resources = { "resource_server_2" }
+        }); 
+        _scopes.Add( new OpenIddictScopeDescriptor
+        {
+            Name = "api3",
+            DisplayName = "Api3 scope",
+            Description = "Access to resource server 3",
+            Resources = { "resource_server_3" }
+        }); 
         _scopes.Add( new OpenIddictScopeDescriptor
         {
             Name = "dataEventRecords",

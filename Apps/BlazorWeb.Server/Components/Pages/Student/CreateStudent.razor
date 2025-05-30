@@ -1,0 +1,74 @@
+@page "/Student/CreateStudent"
+@rendermode InteractiveServer
+
+@using Identity.Shared.Resource_Server_3.Dtos
+
+@inject IHttpClientFactory HttpClientFactory
+@inject NavigationManager Navigation
+
+<h3>Create Student</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <EditForm Model="@_item" method="post" OnValidSubmit="CreateStudentMethod" FormName="CreateStudent">
+                <DataAnnotationsValidator/>
+                <div class="form-group">
+                    <label class="form-label">Id</label>
+                    <InputNumber class="form-control" @bind-Value=_item.Id></InputNumber>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Name</label>
+                    <InputText class="form-control" @bind-Value=_item.FirstName></InputText>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">LastName</label>
+                    <InputText class="form-control" @bind-Value=_item.LastName></InputText>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Sex</label>
+                    <InputText class="form-control" @bind-Value=_item.Sex></InputText>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Age</label>
+                    <InputNumber class="form-control" @bind-Value=_item.Age></InputNumber>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Major</label>
+                    <InputText class="form-control" @bind-Value=_item.Major></InputText>
+                </div>
+
+
+                <button class="btn btn-primary mt-3" type="submit">Create</button>
+
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+
+@code {
+
+    StudentDto _item = new ();
+
+    private async Task CreateStudentMethod()
+    {
+        var http = HttpClientFactory.CreateClient("resource3Client");
+        try
+        {
+            await  http.PostAsJsonAsync("api/Students", _item);
+            
+            
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("The Error is :" + ex.ToString());
+        }
+        
+        Navigation.NavigateTo("Student/Students",true);
+        
+    }
+    
+}

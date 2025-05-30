@@ -1,9 +1,6 @@
 @using Microsoft.AspNetCore.Components.Authorization
 <AuthorizeView>
     <Authorized>
-        @* <div class="nav-item px-3" style="color: white"> *@
-        @*     <span class="bi bi-lock" aria-hidden="true"></span> @context.User.Identity?.Name *@
-        @* </div> *@
         <div class="nav-item px-3">
             <form action="/Account/Logout" method="post">
                 <AntiforgeryToken />

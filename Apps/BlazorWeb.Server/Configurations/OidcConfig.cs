@@ -37,7 +37,8 @@ public static class OidcConfig
                     NameClaimType = "name",
                     RoleClaimType = "roles"
                 };
-                options.Scope.Add("api1");
+                options.Scope.Add("api2");
+                options.Scope.Add("api3");
             });
         
             services.AddAntiforgery(options =>

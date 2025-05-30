@@ -94,8 +94,11 @@ public class ApplicationCollection
                 OpenIddictConstants.Permissions.Scopes.Email,
                 OpenIddictConstants.Permissions.Scopes.Profile,
                 OpenIddictConstants.Permissions.Scopes.Roles,
-                OpenIddictConstants.Permissions.Prefixes.Scope + "dataEventRecords",
-                $"{OpenIddictConstants.Permissions.Prefixes.Scope}api1"
+              
+                $"{OpenIddictConstants.Permissions.Prefixes.Scope}api1",
+                $"{OpenIddictConstants.Permissions.Prefixes.Scope}api2",
+                $"{OpenIddictConstants.Permissions.Prefixes.Scope}api3",
+                OpenIddictConstants.Permissions.Prefixes.Scope + "dataEventRecords"
             },
             Requirements =
             {

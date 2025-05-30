@@ -34,4 +34,10 @@
       <AdditionalFiles Include="Components\Pages\City\EditCity.razor" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Components\Student\CreateStudent.razor" />
+      <_ContentIncludedByDefault Remove="Components\Student\EditStudent.razor" />
+      <_ContentIncludedByDefault Remove="Components\Student\Students.razor" />
+    </ItemGroup>
+
 </Project>

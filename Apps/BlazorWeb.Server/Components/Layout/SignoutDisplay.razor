@@ -1,7 +1,7 @@
 <AuthorizeView>
     <Authorized>
         <div class="nav-item px-3">
-            <form action="api/Account/Logout" method="post">
+            <form action="Account/Logout" method="post">
                 <AntiforgeryToken />
                 <button type="submit" class="btn btn-link">
                     Logout
@@ -11,7 +11,7 @@
     </Authorized>
     <NotAuthorized>
         <div class="nav-item px-3">
-            <NavLink class="nav-link" href="api/Account/Login" data-enhance-nav="false">
+            <NavLink class="nav-link" href="Account/Login" data-enhance-nav="false">
                 <span class="bi bi-person-badge" aria-hidden="false"></span> Login
             </NavLink>
         </div>

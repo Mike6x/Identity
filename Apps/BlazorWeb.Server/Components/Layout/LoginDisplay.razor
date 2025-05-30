@@ -6,7 +6,7 @@
             @context.User.Identity?.Name
         </div>
         <div class="nav-item px-3">
-            <form action="logout" method="post">
+            <form action="Account/Logout" method="post">
                 <AntiforgeryToken />
                 <input type="hidden" name="ReturnUrl" value="@_currentUrl" />
                 <button type="submit" class="nav-link">

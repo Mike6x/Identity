@@ -65,7 +65,8 @@ internal static class HostingExtensions
             .RequireAuthorization()
             ;
         
-        app.MapLoginLogoutEndpoints();
+        // app.MapLoginLogoutEndpoints();
+        app.MapAuthEndpoints();
         
         return app;
     }

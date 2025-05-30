@@ -61,8 +61,6 @@ public static class HttpClientRegistration
             services.AddTransient(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("default"));
         }
         
-        // services.AddTransient<IAntiforgeryHttpClientFactory, AntiforgeryHttpClientFactory>();
-        
         return services;
     }
 }
