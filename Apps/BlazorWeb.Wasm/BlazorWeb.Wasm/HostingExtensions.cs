@@ -23,10 +23,12 @@ internal static class HostingExtensions
             .AddInteractiveServerComponents()
             .AddInteractiveWebAssemblyComponents();
 
+        services.AddHttpContextAccessor();
+        
+        services.AddAuthenticationCore(); //?
+        services.AddAuthorization();
         services.AddCascadingAuthenticationState();
         
-        services.AddAuthorization();
- 
         services.AddSingleton<IAuthorizationMiddlewareResultHandler, BlazorAuthorizationMiddlewareResultHandler>();
         services.AddScoped<HostingEnvironmentService>();
         services.AddSingleton<BaseUrlProvider>();
@@ -49,14 +51,12 @@ internal static class HostingExtensions
         }
 
         app.UseHttpsRedirection();
-
+        app.UseAntiforgery();
         app.UseAuthentication();
         app.UseAuthorization();
-
-        app.UseStaticFiles();
-        app.UseAntiforgery();
-
+        
         app.MapStaticAssets();
+        
         app.MapRazorComponents<App>()
             .AddInteractiveServerRenderMode()
             .AddInteractiveWebAssemblyRenderMode()

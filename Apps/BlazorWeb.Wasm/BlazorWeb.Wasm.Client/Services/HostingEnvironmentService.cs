@@ -4,7 +4,7 @@ namespace BlazorWeb.Wasm.Client.Services;
 
 public class HostingEnvironmentService
 {
-    public bool IsWebAssembly { get; private set; }
+    private bool IsWebAssembly { get; set; }
 
     public HostingEnvironmentService(IJSRuntime jsRuntime)
     {
