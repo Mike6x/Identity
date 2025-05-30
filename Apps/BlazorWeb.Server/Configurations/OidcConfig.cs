@@ -10,19 +10,19 @@ public static class OidcConfig
 {
     public static IServiceCollection AddOidcConfig(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
-        services.AddSecurityHeaderPolicies()
-            .SetPolicySelector((PolicySelectorContext ctx) =>
-            {
-                return SecurityHeadersDefinitions.GetHeaderPolicyCollection(environment.IsDevelopment(),
-                    configuration["OIDCSettings:Authority"]);
-            });
-        
         services.AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
                 options.DefaultChallengeScheme = OpenIdConnectDefaults.AuthenticationScheme;
+                options.DefaultSignOutScheme = OpenIdConnectDefaults.AuthenticationScheme;
             })
-            .AddCookie()
+            .AddCookie(options =>
+            {
+                options.Cookie.Name = "__Host-blazorweb.server";
+                options.Cookie.SameSite = SameSiteMode.Lax;
+                // can be strict if same-site
+                //options.Cookie.SameSite = SameSiteMode.Strict;
+            })
             .AddOpenIdConnect(options =>
             {
                 configuration.GetSection("OIDCSettings").Bind(options);
@@ -37,8 +37,21 @@ public static class OidcConfig
                     NameClaimType = "name",
                     RoleClaimType = "roles"
                 };
+                options.Scope.Add("api1");
             });
         
+            services.AddAntiforgery(options =>
+            {
+                options.HeaderName = "X-XSRF-TOKEN";
+                options.Cookie.Name = "__Host-core-X-XSRF-TOKEN";
+                options.Cookie.SameSite = SameSiteMode.Strict;
+                options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+            });
+            
+            services.AddSecurityHeaderPolicies()
+                .SetDefaultPolicy(SecurityHeadersDefinitions
+                    .GetHeaderPolicyCollection(configuration["OIDCSettings:Authority"],
+                        environment.IsDevelopment()));
 
         return services;
     }

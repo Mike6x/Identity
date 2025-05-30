@@ -24,4 +24,14 @@
       <ProjectReference Include="..\Client.Infrastructure\Client.Infrastructure.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Services\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <AdditionalFiles Include="Components\Pages\City\Cities.razor" />
+      <AdditionalFiles Include="Components\Pages\City\CreateCity.razor" />
+      <AdditionalFiles Include="Components\Pages\City\EditCity.razor" />
+    </ItemGroup>
+
 </Project>

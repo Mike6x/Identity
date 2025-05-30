@@ -1,0 +1,101 @@
+@page "/City/Cities"
+@rendermode InteractiveServer
+
+@using Identity.Shared.Resource_Server_3.Dtos
+
+@inject IHttpClientFactory HttpClientFactory
+@inject NavigationManager Navigation
+
+<h3>Cities</h3>
+
+@if (_itemlist == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <button class="btn btn-primary" @onclick="CreatRecordAsync">Create</button>
+    
+    <table class="table">
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Code</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Population</th>
+            <th>ElevationFeet</th>
+            <th>CurrentTimeLocal</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
+            
+            <th scope="col">Action</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in _itemlist)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Code</td>
+                <td>@item.Name</td>
+                <td>@item.State</td>
+                <td>@item.Population</td>
+                <td>@item.ElevationFeet</td>
+                <td>@item.TimeZone</td>
+
+                <td>@item.Temperatures.SummerHighFahrenheit</td>
+                <td>@item.Temperatures.WinterLowFahrenheit</td>
+                <td>
+                    <button onclick="@(()=>DeleteRecordAsync(item.Id))" class="btn btn-danger">Delete</button>
+                </td>
+                <td>
+                    <button onclick="@(()=>EditRecordAsync(item.Id))" class="btn btn-primary">Edit</button>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private CityInfoDto[]? _itemlist;
+    
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            var http = HttpClientFactory.CreateClient("resource3Client");
+            _itemlist = await http.GetFromJsonAsync<CityInfoDto[]>("api/cities");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("The Error is :" + ex.ToString());
+        }
+    }
+    
+    private void EditRecordAsync(int id)
+    {
+        Navigation.NavigateTo($"City/EditCity/{id}");
+
+    }
+    
+    private void CreatRecordAsync()
+    {
+        Navigation.NavigateTo($"City/CreateCity");
+
+    }
+    
+    private async Task DeleteRecordAsync(int id)
+    {
+        var http = HttpClientFactory.CreateClient("resource3Client");
+        // await http.DeleteFromJsonAsync<StudentDto>("api/Students/" + id);
+        
+        await http.DeleteAsync("api/cities/" + id);
+        
+        Navigation.NavigateTo("city/cities", true);
+
+    }
+}

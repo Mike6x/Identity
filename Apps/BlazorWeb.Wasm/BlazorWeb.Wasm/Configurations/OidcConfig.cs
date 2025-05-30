@@ -37,6 +37,7 @@ public static class OidcConfig
                     NameClaimType = "name",
                     RoleClaimType = "roles"
                 };
+                options.Scope.Add("api1");
             });
         
         // ConfigureCookieOidcRefresh attaches a cookie OnValidatePrincipal callback to get

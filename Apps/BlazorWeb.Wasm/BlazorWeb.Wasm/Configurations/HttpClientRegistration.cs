@@ -26,7 +26,13 @@ public static class HttpClientRegistration
             {
                 client.BaseAddress = new Uri(resource2Url);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            });
+            })
+                // AddHttpMessageHandler<CookieHandler>()
+                ;
+
+            // services.AddScoped(sp => sp
+            //         .GetRequiredService<IHttpClientFactory>()
+            //         .CreateClient("resource2Url"));
         }
 
         var resource3Url = configuration["ApiSettings:Resource_Server_3"];
@@ -36,7 +42,13 @@ public static class HttpClientRegistration
             {
                 client.BaseAddress = new Uri(resource3Url);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            });
+            })
+                // .AddHttpMessageHandler<CookieHandler>()
+                ;
+            
+            // services.AddScoped(sp => sp
+            //     .GetRequiredService<IHttpClientFactory>()
+            //     .CreateClient("resource3Url"));
         }
 
         var authorityUrl = configuration["OIDCSettings:Authority"];
@@ -46,9 +58,13 @@ public static class HttpClientRegistration
                 client => { client.BaseAddress = new Uri(authorityUrl!);
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 });
+        }
         
+        var gatewayUrl = configuration["OIDCSettings:ApiGateway"];
+        if (!string.IsNullOrEmpty(authorityUrl))
+        {
             services.AddHttpClient("default",
-                client => { client.BaseAddress = new Uri(authorityUrl!);
+                client => { client.BaseAddress = new Uri(gatewayUrl!);
                     client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 });
         
@@ -62,7 +78,6 @@ public static class HttpClientRegistration
                 .CreateClient("API"))
             .AddHttpClient("API", (provider, client) =>
             {
-                // Get base address
                 var uri = provider.GetRequiredService<BaseUrlProvider>().BaseUrl;
                 client.BaseAddress = new Uri(uri);
             }).AddHttpMessageHandler<CookieHandler>();

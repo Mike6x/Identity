@@ -1,0 +1,92 @@
+@page "/City/EditCity/{id:int}"
+@rendermode InteractiveServer
+
+@using Identity.Shared.Resource_Server_3.Dtos
+
+@inject IHttpClientFactory HttpClientFactory
+@inject NavigationManager Navigation
+
+<h3>Edit City</h3>
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <EditForm Model="@_item" method="post" OnValidSubmit="UpdateCityMethod" FormName="EditCity">
+                <DataAnnotationsValidator/>
+                <div class="form-group">
+                    <label class="form-label">Id</label>
+                    <InputNumber class="form-control" @bind-Value=_item.Id></InputNumber>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Code</label>
+                    <InputText class="form-control" @bind-Value=_item.Code></InputText>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Name</label>
+                    <InputText class="form-control" @bind-Value=_item.Name></InputText>
+                </div>
+        
+                <div class="form-group">
+                    <label class="form-label">State</label>
+                    <InputText class="form-control" @bind-Value=_item.State></InputText>
+                </div>
+        
+                <div class="form-group">
+                    <label class="form-label">Population</label>
+                    <InputNumber class="form-control" @bind-Value=_item.Population></InputNumber>
+                </div>
+        
+                <div class="form-group">
+                    <label class="form-label">ElevationFeet</label>
+                    <InputNumber class="form-control" @bind-Value=_item.ElevationFeet></InputNumber>
+                </div>
+        
+                <div class="form-group">
+                    <label class="form-label">TimeZone</label>
+                    <InputText class="form-control" @bind-Value=_item.TimeZone></InputText>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">SummerHighFahrenheit</label>
+                    <InputNumber class="form-control" @bind-Value=_item.Temperatures.SummerHighFahrenheit></InputNumber>
+                </div>
+                
+                <div class="form-group">
+                    <label class="form-label">WinterLowFahrenheit</label>
+                    <InputNumber class="form-control" @bind-Value=_item.Temperatures.WinterLowFahrenheit></InputNumber>
+                </div>
+                
+                <button class="btn btn-primary mt-3" type="submit">Update</button>
+        
+            </EditForm>
+        </div>
+    </div>
+</div>
+
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    CityInfoDto? _item = new ();
+
+    protected override async Task OnInitializedAsync()
+    {
+        
+        var http = HttpClientFactory.CreateClient("resource3Client");
+            
+        _item = await http.GetFromJsonAsync<CityInfoDto>($"api/cities/{Id}");
+    }
+
+    private async Task UpdateCityMethod()
+    {
+        var http = HttpClientFactory.CreateClient("resource3Client");
+        
+
+        if (_item == null) return;
+        
+       
+        await http.PutAsJsonAsync($"api/Cities/{_item.Id}", _item);
+
+        Navigation.NavigateTo("city/cities",true);
+    }
+}

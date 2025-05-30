@@ -23,8 +23,9 @@ internal static class HostingExtensions
             .AddOAuth2Introspection(options =>
             {
                 options.Authority = "http://localhost:7000";
-                options.ClientId = "catalog.resource.server";
-                options.ClientSecret = "846B62D0-DEF9-4215-A99D-86E6B8DAB342";
+                options.ClientId = "api.resource.server";
+                options.ClientSecret = "api.resource.secret";
+
                 // options.ClientId = "service-worker";
                 // options.ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C207";
             });

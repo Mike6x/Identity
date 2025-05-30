@@ -1,5 +1,6 @@
 using BlazorWeb.Server.Components;
 using BlazorWeb.Server.Configurations;
+using BlazorWeb.Server.Endpoints;
 using Client.Infrastructure.Services.MockData;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Server.Circuits;
@@ -7,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using Microsoft.IdentityModel.JsonWebTokens;
+using Microsoft.IdentityModel.Logging;
 
 namespace BlazorWeb.Server;
 
@@ -14,30 +16,18 @@ internal static class HostingExtensions
 {
     public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
-        services.AddOidcConfig(configuration , environment);
-
-        services.TryAddEnumerable(ServiceDescriptor.Scoped<CircuitHandler, BlazorNonceService>(sp =>
-            sp.GetRequiredService<BlazorNonceService>()));
-
-        services.AddScoped<BlazorNonceService>();
-        
-        services.AddCascadingAuthenticationState();
-        
         services.AddRazorComponents()
             .AddInteractiveServerComponents();
         
-        services.AddRazorPages().AddMvcOptions(options =>
-        {
-            var policy = new AuthorizationPolicyBuilder()
-                .RequireAuthenticatedUser()
-                .Build();
-            options.Filters.Add(new AuthorizeFilter(policy));
-        });
+        services.AddHttpContextAccessor();
         
-        services.AddRazorPages().WithRazorPagesRoot("/Components/Pages");
+        services.AddOidcConfig(configuration , environment);
         
-        services.AddControllersWithViews(options =>
-            options.Filters.Add(new AutoValidateAntiforgeryTokenAttribute()));
+        services.AddAuthenticationCore();
+        services.AddAuthorization();
+        services.AddCascadingAuthenticationState();
+        
+        // services.AddRazorPages().WithRazorPagesRoot("/Components/Pages");
         
         services.AddSingleton<LocalWeatherForecastService>();
         
@@ -52,29 +42,30 @@ internal static class HostingExtensions
 
         if (!app.Environment.IsDevelopment())
         {
-            app.UseExceptionHandler("/Error");
+            app.UseExceptionHandler("/Error", createScopeForErrors: true);
             app.UseHsts();
         }
+        else
+        {
+            IdentityModelEventSource.ShowPII = true;
+            IdentityModelEventSource.LogCompleteSecurityArtifact = true;
+        }
 
-        // Using an unsecure CSP as CSP nonce is not supported in Blazor Web ...
         app.UseSecurityHeaders();
 
-        app.UseMiddleware<NonceMiddleware>();
-
         app.UseHttpsRedirection();
-        app.UseStaticFiles();
-        app.UseRouting();
-
+        app.UseAntiforgery();
         app.UseAuthentication();
         app.UseAuthorization();
 
-        app.UseAntiforgery();
-
-        app.MapRazorPages();
-        app.MapControllers();
+        app.MapStaticAssets();
 
         app.MapRazorComponents<App>()
-            .AddInteractiveServerRenderMode().RequireAuthorization();
+            .AddInteractiveServerRenderMode()
+            .RequireAuthorization()
+            ;
+        
+        app.MapLoginLogoutEndpoints();
         
         return app;
     }

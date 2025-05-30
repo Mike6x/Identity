@@ -1,30 +1,21 @@
-﻿@* <Router AppAssembly="typeof(Program).Assembly"> *@
-@*     <Found Context="routeData"> *@
-@*         <RouteView RouteData="routeData" DefaultLayout="typeof(Layout.MainLayout)"/> *@
-@*         <FocusOnNavigate RouteData="routeData" Selector="h1"/> *@
-@*     </Found> *@
-@* </Router> *@
-
-@using Microsoft.AspNetCore.Components.Authorization
-@inject NavigationManager NavigationManager
-
-<Router AppAssembly="@typeof(Program).Assembly">
+﻿@using BlazorWeb.Server.Components.Layout
+<Router AppAssembly="typeof(Program).Assembly">
     <Found Context="routeData">
-        <AuthorizeRouteView RouteData="@routeData" DefaultLayout="@typeof(Layout.MainLayout)">
+        <AuthorizeRouteView RouteData="routeData" DefaultLayout="@typeof(Layout.MainLayout)">
+            <Authorizing>
+                Loading
+            </Authorizing>
             <NotAuthorized>
-                @{
-                    var returnUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
-                    NavigationManager.NavigateTo($"api/account/login?redirectUri={returnUrl}", forceLoad: true);
+                @if (!context.User.Identity!.IsAuthenticated)
+                {
+                    <RedirectToLogin/>
+                }
+                else
+                {
+                    <p>You are not authorized to access this resource.</p>
                 }
             </NotAuthorized>
-            <Authorizing>
-                Wait...
-            </Authorizing>
         </AuthorizeRouteView>
+        <FocusOnNavigate RouteData="routeData" Selector="h1" />
     </Found>
-    <NotFound>
-        <LayoutView Layout="@typeof(Layout.MainLayout)">
-            <p>Sorry, there's nothing at this address.</p>
-        </LayoutView>
-    </NotFound>
 </Router>

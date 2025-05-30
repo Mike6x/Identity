@@ -22,6 +22,24 @@ build_property._RazorSourceGeneratorDebug =
 build_property.EffectiveAnalysisLevelStyle = 9.0
 build_property.EnableCodeStyleSeverity = 
 
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Pages/City/Cities.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9DaXR5L0NpdGllcy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Pages/City/CreateCity.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9DaXR5L0NyZWF0ZUNpdHkucmF6b3I=
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Pages/City/EditCity.razor]
+build_metadata.AdditionalFiles.TargetPath = 
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9DaXR5L0VkaXRDaXR5LnJhem9y
+build_metadata.AdditionalFiles.CssScope = 
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/App.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9BcHAucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
@@ -30,12 +48,12 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTG9naW5EaXNwbGF5LnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Layout/SignoutDisplay.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvU2lnbm91dERpc3BsYXkucmF6b3I=
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Layout/RedirectToLogin.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvUmVkaXJlY3RUb0xvZ2luLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Pages/City.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9DaXR5LnJhem9y
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Layout/SignoutDisplay.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvU2lnbm91dERpc3BsYXkucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Pages/Counter.razor]
@@ -46,28 +64,20 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9FcnJvci5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = 
 
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Pages/FetchDataFromServer2.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9GZXRjaERhdGFGcm9tU2VydmVyMi5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Pages/FetchDataFromServer3.razor]
+build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9GZXRjaERhdGFGcm9tU2VydmVyMy5yYXpvcg==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Pages/Home.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Ib21lLnJhem9y
 build_metadata.AdditionalFiles.CssScope = 
 
-[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Pages/LocalWeatherForcast.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Mb2NhbFdlYXRoZXJGb3JjYXN0LnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Pages/MockWeatherForcastUI.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Nb2NrV2VhdGhlckZvcmNhc3RVSS5yYXpvcg==
-build_metadata.AdditionalFiles.CssScope = 
-
 [/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Pages/Profile.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9Qcm9maWxlLnJhem9y
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Pages/PublicWeatherForecast.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9QdWJsaWNXZWF0aGVyRm9yZWNhc3QucmF6b3I=
-build_metadata.AdditionalFiles.CssScope = 
-
-[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Pages/SecureWeatherForecast.razor]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TZWN1cmVXZWF0aGVyRm9yZWNhc3QucmF6b3I=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Routes.razor]
@@ -85,7 +95,3 @@ build_metadata.AdditionalFiles.CssScope = b-x2ak6fc9c0
 [/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Layout/NavMenu.razor]
 build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9MYXlvdXQvTmF2TWVudS5yYXpvcg==
 build_metadata.AdditionalFiles.CssScope = b-33g70jtlqr
-
-[/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/Components/Pages/SignedOut.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Q29tcG9uZW50cy9QYWdlcy9TaWduZWRPdXQuY3NodG1s
-build_metadata.AdditionalFiles.CssScope = 

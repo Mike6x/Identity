@@ -43,7 +43,7 @@ else
     {
         try
         {
-            var http = HttpClientFactory.CreateClient("resource2Client");
+            var http = HttpClientFactory.CreateClient("resource3Client");
             _forecasts = await http.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast/secure-forecast")
                          ;
         }

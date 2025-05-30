@@ -2,7 +2,7 @@
 
 public static class SecurityHeadersDefinitions
 {
-    public static HeaderPolicyCollection GetHeaderPolicyCollection(bool isDev, string? idpHost)
+    public static HeaderPolicyCollection GetHeaderPolicyCollection(string? idpHost, bool isDev)
     {
         ArgumentNullException.ThrowIfNull(idpHost);
 
@@ -12,7 +12,9 @@ public static class SecurityHeadersDefinitions
             .AddReferrerPolicyStrictOriginWhenCrossOrigin()
             .AddCrossOriginOpenerPolicy(builder => builder.SameOrigin())
             .AddCrossOriginResourcePolicy(builder => builder.SameOrigin())
-            .AddCrossOriginEmbedderPolicy(builder => builder.RequireCorp()) // remove for dev if using hot reload
+            // #if !DEBUG // remove for dev if using Visual studio development hot reload 
+            .AddCrossOriginEmbedderPolicy(builder => builder.RequireCorp())
+            // #endif
             .AddContentSecurityPolicy(builder =>
             {
                 builder.AddObjectSrc().None();
@@ -20,20 +22,13 @@ public static class SecurityHeadersDefinitions
                 builder.AddImgSrc().Self().From("data:");
                 builder.AddFormAction().Self().From(idpHost);
                 builder.AddFontSrc().Self();
+                builder.AddStyleSrc().Self().UnsafeInline();
                 builder.AddBaseUri().Self();
                 builder.AddFrameAncestors().None();
 
-                builder.AddStyleSrc()
-                    .UnsafeInline()
-                    .Self();
-
-                // due to Blazor
-                builder.AddScriptSrc()
-                      .WithNonce()
-                      .UnsafeEval() // due to Blazor WASM
-                      .StrictDynamic()
-                      .OverHttps()
-                      .UnsafeInline(); // only a fallback for older browsers when the nonce is used 
+                // #if !DEBUG // remove for Visual studio development
+                builder.AddScriptSrc().WithNonce().UnsafeInline();
+                // #endif
             })
             .RemoveServerHeader()
             .AddPermissionsPolicyWithDefaultSecureDirectives();

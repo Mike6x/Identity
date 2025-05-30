@@ -1,14 +1,14 @@
-﻿@page "/SampleWeatherForecast"
-@using Identity.Shared.Resource_Server_2
+﻿@page "/WeatherForecastFromServer3"
+@using Identity.Shared.Resource_Server_3
 @attribute [StreamRendering]
 
 @inject IHttpClientFactory HttpClientFactory
 
 <PageTitle>SampleWeatherForecast</PageTitle>
 
-<h1>Sample Weather Forecast Page</h1>
+<h1>Weather Forecast - Resource Server 3</h1>
 
-<p>This component demonstrates sample of showing weather forecast data.</p>
+<p>This component demonstrates the fetch data from remote api: Rerource_Server_3.</p>
 
 @if (_forecasts == null)
 {
@@ -49,22 +49,6 @@ else
 @code {
     private WeatherForecast[]? _forecasts;
     
-    private async Task PaidForecast()
-    {
-        _forecasts = [];
-    
-        var http = HttpClientFactory.CreateClient("resource2Client");
-        _forecasts = await http.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast/public-forecast") ?? [];
-
-    }
-    
-    private async Task SecureForecast()
-    {
-        var http = HttpClientFactory.CreateClient("resource2Client");
-        _forecasts = await http.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast/public-forecast") ?? [];
-
-    }
-    
     private void ClearForecast()
     {
         _forecasts = [];
@@ -72,10 +56,26 @@ else
     
     private async Task PublicForecast()
     {
-        var http = HttpClientFactory.CreateClient("resource2Client");
-        _forecasts = await http.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast/public-forecast") ?? [];
+        _forecasts = [];
+        var httpClient = HttpClientFactory.CreateClient("resource3Client");
+        _forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast/public-forecast") ?? [];
     }
     
+    private async Task SecureForecast()
+    {
+        _forecasts = [];
+        var httpClient = HttpClientFactory.CreateClient("resource3Client");
+        _forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast/secure-forecast") ?? [];
+    }
+    
+    private async Task PaidForecast()
+    {
+        _forecasts = [];
+        var httpClient = HttpClientFactory.CreateClient("resource3Client");
+        _forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast/paid-forecast") ?? [];
+
+    }
+
     protected override async Task OnInitializedAsync()
     {
         // Simulate asynchronous loading to demonstrate streaming rendering
