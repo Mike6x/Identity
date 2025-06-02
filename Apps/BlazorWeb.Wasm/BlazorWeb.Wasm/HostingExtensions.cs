@@ -6,6 +6,7 @@ using BlazorWeb.Wasm.Components;
 using BlazorWeb.Wasm.Configurations;
 using BlazorWeb.Wasm.EndPoints;
 using BlazorWeb.Wasm.Services;
+using Identity.Shared.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Authorization;
@@ -25,8 +26,19 @@ internal static class HostingExtensions
 
         services.AddHttpContextAccessor();
         
-        services.AddAuthenticationCore(); //?
-        services.AddAuthorization();
+        services.AddAuthenticationCore();
+        services.AddAuthorizationCore(config =>
+        {
+            config.AddPolicy(AppScopes.UserReadScope, policy => 
+                policy.RequireClaim(ClaimConstants.Permissions, AppScopes.UserReadScope));
+            
+            // config.AddPolicy(AppScopes.WeatherReadScope, policy => 
+            //      policy.RequireClaim(ClaimConstants.Permissions, AppScopes.WeatherReadScope));
+            
+            config.AddPolicy(AppScopes.WeatherReadScope, policy => 
+                policy.RequireRole("Admin"));
+        });
+
         services.AddCascadingAuthenticationState();
         
         services.AddSingleton<IAuthorizationMiddlewareResultHandler, BlazorAuthorizationMiddlewareResultHandler>();

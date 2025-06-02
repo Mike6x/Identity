@@ -1,4 +1,4 @@
-using Identity.Shared.Auth;
+using Identity.Shared.Authorization;
 using Identity.Shared.Resource_Server_2;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,13 +16,12 @@ public class WeatherForecastController : ApiControllerBase
     public IActionResult GetSecureForecast() => Ok(WeatherForecasts);
     
     [HttpGet("paid-forecast")]
-    [Authorize(Policy = PolicyConstants.GetWeather)]
+    [Authorize(Policy = AppScopes.WeatherReadScope)]
     public IActionResult GetPaidForecast() => Ok(WeatherForecasts);
 
     //Anonymous on purpose to test api gateway also for anonymous endpoints
     [HttpGet("predictions/{id}")]
     [AllowAnonymous]
-
     public IActionResult GetById([FromRoute] int id) => Ok(WeatherForecasts.First(x => x.Id == id));
     
     

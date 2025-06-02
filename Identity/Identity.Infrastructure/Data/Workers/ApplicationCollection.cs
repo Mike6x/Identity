@@ -107,6 +107,53 @@ public class ApplicationCollection
 
         });
         
+        _applications.Add( new OpenIddictApplicationDescriptor
+        {
+            ClientId = "blazor.oidc.application",
+            ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C206",
+            ConsentType = OpenIddictConstants.ConsentTypes.Explicit,
+            DisplayName = "BlazorWeb server and wasm Code PKCE Client",
+            RedirectUris =
+            {
+                new Uri("https://localhost:7006/signin-oidc"),
+                new Uri("https://localhost:7008/signin-oidc"),
+            },
+            PostLogoutRedirectUris =
+            {
+                new Uri("https://localhost:7006/signout-callback-oidc"),
+                new Uri("https://localhost:7008/signout-callback-oidc"),
+            },
+            Permissions =
+            {
+                OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode,
+                OpenIddictConstants.Permissions.GrantTypes.RefreshToken,
+                
+                OpenIddictConstants.Permissions.Endpoints.Authorization,
+                OpenIddictConstants.Permissions.Endpoints.EndSession,
+                OpenIddictConstants.Permissions.Endpoints.Token,
+                OpenIddictConstants.Permissions.Endpoints.Revocation,
+
+                OpenIddictConstants.Permissions.ResponseTypes.Code,
+
+                OpenIddictConstants.Permissions.Scopes.Email,
+                OpenIddictConstants.Permissions.Scopes.Profile,
+                OpenIddictConstants.Permissions.Scopes.Roles,
+              
+                $"{OpenIddictConstants.Permissions.Prefixes.Scope}api",
+                $"{OpenIddictConstants.Permissions.Prefixes.Scope}{AppScopes.WeatherReadScope}",
+                $"{OpenIddictConstants.Permissions.Prefixes.Scope}{AppScopes.CityReadScope}",
+                $"{OpenIddictConstants.Permissions.Prefixes.Scope}{AppScopes.CityWriteScope}",
+                $"{OpenIddictConstants.Permissions.Prefixes.Scope}{AppScopes.StudentReadScope}",
+                $"{OpenIddictConstants.Permissions.Prefixes.Scope}{AppScopes.StudentWriteScope}",
+              
+            },
+            Requirements =
+            {
+                OpenIddictConstants.Requirements.Features.ProofKeyForCodeExchange
+            }
+
+        });
+        
         // mvc-web and razor-web client
         _applications.Add(new OpenIddictApplicationDescriptor
         {
@@ -246,7 +293,6 @@ public class ApplicationCollection
                 OpenIddictConstants.Permissions.Scopes.Email,
                 OpenIddictConstants.Permissions.Scopes.Profile,
                 OpenIddictConstants.Permissions.Scopes.Roles,
-                $"{OpenIddictConstants.Permissions.Prefixes.Scope}api1",
                 $"{OpenIddictConstants.Permissions.Prefixes.Scope}api",
             },
             //Requirements =
@@ -277,9 +323,9 @@ public class ApplicationCollection
         // console client
         _applications.Add( new OpenIddictApplicationDescriptor
         {
-            ClientId = ClientConstants.Client,
-            ClientSecret = ClientConstants.ClientSecret,
-            DisplayName = ClientConstants.ClientDisplayName,
+            ClientId = ClientConstants.Console,
+            ClientSecret = ClientConstants.ConsoleSecret,
+            DisplayName = ClientConstants.ConsoleDisplayName,
             Permissions =
             {
                 OpenIddictConstants.Permissions.GrantTypes.ClientCredentials,
@@ -513,11 +559,11 @@ public class ApplicationCollection
             
         });
         
-        // CatalogResourceServer
+        // CatalogResource
         _applications.Add(new OpenIddictApplicationDescriptor
         {
-            ClientId = ClientConstants.CatalogResourceServer,
-            ClientSecret = ClientConstants.CatalogResourceServerSecret,
+            ClientId = ClientConstants.CatalogResource,
+            ClientSecret = ClientConstants.CatalogResourceSecret,
             Permissions =
             {
                 OpenIddictConstants.Permissions.Endpoints.Introspection
@@ -527,8 +573,8 @@ public class ApplicationCollection
         // gateway resource server
         _applications.Add( new OpenIddictApplicationDescriptor
         {
-            ClientId = ClientConstants.GatewayResourceServer,
-            ClientSecret = ClientConstants.GatewayResourceServerSecret,
+            ClientId = ClientConstants.GatewayResource,
+            ClientSecret = ClientConstants.GatewayResourceSecret,
             Permissions =
             {
                 OpenIddictConstants.Permissions.Endpoints.Introspection

@@ -2,6 +2,7 @@ using BlazorWeb.Server.Components;
 using BlazorWeb.Server.Configurations;
 using BlazorWeb.Server.Endpoints;
 using Client.Infrastructure.Services.MockData;
+using Identity.Shared.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components.Server.Circuits;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,19 @@ internal static class HostingExtensions
         services.AddOidcConfig(configuration , environment);
         
         services.AddAuthenticationCore();
-        services.AddAuthorization();
+        
+        services.AddAuthorizationCore(config =>
+        {
+            config.AddPolicy(AppScopes.UserReadScope, policy => 
+                policy.RequireClaim(ClaimConstants.Permissions, AppScopes.UserReadScope));
+            
+            // config.AddPolicy(AppScopes.WeatherReadScope, policy => 
+            //      policy.RequireClaim(ClaimConstants.Permissions, AppScopes.WeatherReadScope));
+            
+            config.AddPolicy(AppScopes.WeatherReadScope, policy => 
+               policy.RequireRole("Admin"));
+        });
+        
         services.AddCascadingAuthenticationState();
         
         // services.AddRazorPages().WithRazorPagesRoot("/Components/Pages");

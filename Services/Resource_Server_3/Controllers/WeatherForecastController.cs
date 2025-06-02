@@ -1,4 +1,4 @@
-using Identity.Shared.Auth;
+using Identity.Shared.Authorization;
 using Identity.Shared.Resource_Server_3;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -17,7 +17,7 @@ public class WeatherForecastController(ILogger<WeatherForecastController> logger
     public IActionResult GetSecureForecast() => Ok(WeatherForecasts);
 
     [HttpGet("paid-forecast")]
-    [Authorize(PolicyConstants.ReadWeatherDataPolicy)]
+    [Authorize(AppScopes.WeatherReadScope)]
     public IActionResult GetPaidForecast()
     {
         var forecast = WeatherForecasts;

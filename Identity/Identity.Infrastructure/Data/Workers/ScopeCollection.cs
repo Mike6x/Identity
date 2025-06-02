@@ -50,13 +50,13 @@ public class ScopeCollection
         _scopes.Add( new OpenIddictScopeDescriptor
         {
             Name = "api",
-            DisplayName = "Apis scope",
-            Description = "Access to resource servers",
+            DisplayName = "Apis scope for swagger clients",
+            Description = "Access to all resource servers",
             Resources =
             {
-                "resource_server_1" ,
-                "resource_server_2" ,
-                "resource_server_3" 
+                ClientConstants.ResourceServer01,
+                ClientConstants.ResourceServer02,
+                ClientConstants.ResourceServer03
             }
         });
         
@@ -65,21 +65,21 @@ public class ScopeCollection
             Name = "api1",
             DisplayName = "Api1 scope",
             Description = "Access to resource server 1",
-            Resources = { "resource_server_1" }
+            Resources = { ClientConstants.ResourceServer01 }
         }); 
         _scopes.Add( new OpenIddictScopeDescriptor
         {
             Name = "api2",
             DisplayName = "Api2 scope",
             Description = "Access to resource server 2",
-            Resources = { "resource_server_2" }
+            Resources = { ClientConstants.ResourceServer02 }
         }); 
         _scopes.Add( new OpenIddictScopeDescriptor
         {
             Name = "api3",
             DisplayName = "Api3 scope",
             Description = "Access to resource server 3",
-            Resources = { "resource_server_3" }
+            Resources = { ClientConstants.ResourceServer03 }
         }); 
         _scopes.Add( new OpenIddictScopeDescriptor
         {
@@ -94,8 +94,8 @@ public class ScopeCollection
             Name = AppScopes.CatalogWriteScope,
             Resources =
             {
-                ClientConstants.CatalogResourceServer,
-                ClientConstants.GatewayResourceServer
+                ClientConstants.CatalogResource,
+                ClientConstants.GatewayResource
             }
         }); 
         
@@ -104,8 +104,8 @@ public class ScopeCollection
             Name = AppScopes.CatalogReadScope,
             Resources =
             {
-                ClientConstants.CatalogResourceServer,
-                ClientConstants.GatewayResourceServer
+                ClientConstants.CatalogResource,
+                ClientConstants.GatewayResource
             }
         }); 
         
@@ -114,8 +114,8 @@ public class ScopeCollection
             Name = AppScopes.CartWriteScope,
             Resources =
             {
-                ClientConstants.CartResourceServer,
-                ClientConstants.GatewayResourceServer
+                ClientConstants.CartResource,
+                ClientConstants.GatewayResource
             }
         }); 
         
@@ -124,8 +124,79 @@ public class ScopeCollection
             Name = AppScopes.CartReadScope,
             Resources =
             {
-                ClientConstants.CartResourceServer,
-                ClientConstants.GatewayResourceServer
+                ClientConstants.CartResource,
+                ClientConstants.GatewayResource
+            }
+        }); 
+        
+        _scopes.Add( new OpenIddictScopeDescriptor
+        {
+            Name = AppScopes.WeatherReadScope,
+            Resources =
+            {
+                ClientConstants.ResourceServer02,
+                ClientConstants.ResourceServer03,
+                ClientConstants.GatewayResource
+            }
+        }); 
+        
+        _scopes.Add( new OpenIddictScopeDescriptor
+        {
+            Name = AppScopes.EmployeeWriteScope,
+            Resources =
+            {
+                ClientConstants.ResourceServer01,
+                ClientConstants.GatewayResource
+            }
+        }); 
+        
+        _scopes.Add( new OpenIddictScopeDescriptor
+        {
+            Name = AppScopes.EmployeeReadScope,
+            Resources =
+            {
+                ClientConstants.ResourceServer01,
+                ClientConstants.GatewayResource
+            }
+        }); 
+        
+        _scopes.Add( new OpenIddictScopeDescriptor
+        {
+            Name = AppScopes.StudentWriteScope,
+            Resources =
+            {
+                ClientConstants.ResourceServer03,
+                ClientConstants.GatewayResource
+            }
+        }); 
+        
+        _scopes.Add( new OpenIddictScopeDescriptor
+        {
+            Name = AppScopes.StudentReadScope,
+            Resources =
+            {
+                ClientConstants.ResourceServer03,
+                ClientConstants.GatewayResource
+            }
+        }); 
+        
+        _scopes.Add( new OpenIddictScopeDescriptor
+        {
+            Name = AppScopes.CityWriteScope,
+            Resources =
+            {
+                ClientConstants.ResourceServer03,
+                ClientConstants.GatewayResource
+            }
+        }); 
+        
+        _scopes.Add( new OpenIddictScopeDescriptor
+        {
+            Name = AppScopes.CityReadScope,
+            Resources =
+            {
+                ClientConstants.ResourceServer03,
+                ClientConstants.GatewayResource
             }
         }); 
         

@@ -119,6 +119,14 @@ public class OpenIdDictWorker(
         foreach (var application in seedingList)
         {
             var existApplication = await applicationManager.FindByClientIdAsync(application.ClientId ?? string.Empty, cancellationToken);
+            
+           #if DEBUG 
+            if(existApplication != null)
+            {
+                await applicationManager.DeleteAsync(existApplication, cancellationToken);
+                existApplication = null;
+            }
+            #endif
 
             if (existApplication == null) await applicationManager.CreateAsync(application, cancellationToken);
 
@@ -156,13 +164,15 @@ public class OpenIdDictWorker(
         
         foreach (var roleName in AppRoles.DefaultRoles)
         {
-            var role = new AppRole(roleName, $"{roleName} Role for Identity Server");
+            // var role = new AppRole(roleName, $"{roleName} Role for Identity Server");
             if (!await roleManager.RoleExistsAsync(roleName))
             {
-                await roleManager.CreateAsync(role);
+                await roleManager.CreateAsync(new AppRole(roleName, $"{roleName} Role for Identity Server"));
             }
+            
+            var role = await roleManager.FindByNameAsync(roleName);
 
-            switch (roleName)
+            switch (role?.Name)
             {
                 case AppRoles.Basic:
                     await AssignPermissionsToRoleAsync(roleManager, role, AppPermissions.Basic);

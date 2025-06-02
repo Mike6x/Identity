@@ -9,6 +9,7 @@
 
   <ItemGroup>
 	    <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" Version="6.2.0" />
+	    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.5" />
 	    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.5" />
 	    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	    <PackageReference Include="OpenIddict.Validation.AspNetCore" Version="6.3.0" />

@@ -1,4 +1,4 @@
-using Identity.Shared.Auth;
+using Identity.Shared.Authorization;
 using Microsoft.AspNetCore.Authentication;
 
 namespace Resource_Server_1.Endpoints;
@@ -44,7 +44,7 @@ public static class ResourceEndpoints
             })
             .WithOpenApi()
             .WithName("Must be editor endpoint")
-            .RequireAuthorization(PolicyConstants.AuthPolicy);
+            .RequireAuthorization(AppScopes.AuthPolicy);
         
         var summaries = new[]
         {

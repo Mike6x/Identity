@@ -1,5 +1,5 @@
 namespace Identity.Shared.Configurations;
-
+// authOptions 
 public class SecurityConfig
 {
     public string Key { get; init; } = string.Empty;

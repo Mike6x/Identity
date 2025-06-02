@@ -1,4 +1,4 @@
-﻿namespace Identity.Shared.Auth;
+﻿namespace Identity.Shared.Authorization;
 
 /// <summary>
 /// Constants for CORS policy.

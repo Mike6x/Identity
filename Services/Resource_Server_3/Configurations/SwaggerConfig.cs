@@ -28,7 +28,7 @@ public static class SwaggerConfig
                         TokenUrl = new Uri($"{identityServerUrl}/connect/token"),
                         Scopes = new Dictionary<string, string>
                         {
-                            { "api1", "resource server scope" }
+                            { "api", "resource server scope" }
                         }
                     },
                 }

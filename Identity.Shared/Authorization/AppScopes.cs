@@ -1,7 +1,27 @@
-namespace Identity.Shared.Authorization;
+﻿namespace Identity.Shared.Authorization;
 
 public static class AppScopes
 {
+        
+    public const string AuthPolicy = nameof(AuthPolicy);
+    
+   // public const string ReadWeatherDataPolicy = nameof(ReadWeatherDataPolicy);
+       
+    public const string WeatherReadScope = "weather:read";
+    
+    public const string EmployeeReadScope = "employee:read";
+    public const string EmployeeWriteScope = "employee:write";
+    
+    public const string StudentReadScope = "student:read";
+    public const string StudentWriteScope = "student:write";
+    
+    public const string UserReadScope = "user:read";
+    public const string UserWriteScope = "user:write";
+    
+    public const string CityReadScope = "city:read";
+    public const string CityWriteScope = "city:write";
+ 
+    
     public const string CartReadScope = "cart:read";
     public const string CartWriteScope = "cart:write";
     

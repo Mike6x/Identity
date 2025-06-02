@@ -1,4 +1,4 @@
-﻿using Identity.Shared.Auth;
+﻿using Identity.Shared.Authorization;
 using Identity.Shared.Resource_Server_1;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -16,7 +16,7 @@ public class EmployeesController : ApiControllerBase
     ];
 
     [HttpGet("GetList")]
-    [Authorize(Policy = PolicyConstants.GetEmployee)]
+    [Authorize(Policy = AppScopes.EmployeeReadScope)]
     public IActionResult GetList() => Ok(EmployeeList);
     
     [HttpGet("Search")]

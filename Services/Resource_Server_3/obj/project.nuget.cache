@@ -1,11 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "eIvtHWI+clA=",
+  "dgSpecHash": "hwmGM7t57cs=",
   "success": true,
   "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Services/Resource_Server_3/Resource_Server_3.csproj",
   "expectedPackageFiles": [
     "/Users/tuanpa/.nuget/packages/identitymodel/6.0.0/identitymodel.6.0.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/identitymodel.aspnetcore.oauth2introspection/6.2.0/identitymodel.aspnetcore.oauth2introspection.6.2.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/9.0.5/microsoft.aspnetcore.authentication.jwtbearer.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.authentication.openidconnect/9.0.5/microsoft.aspnetcore.authentication.openidconnect.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.extensions.ambientmetadata.application/9.2.0/microsoft.extensions.ambientmetadata.application.9.2.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",

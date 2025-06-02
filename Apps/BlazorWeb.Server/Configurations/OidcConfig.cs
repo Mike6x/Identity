@@ -1,8 +1,8 @@
+using Identity.Shared.Authorization;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.IdentityModel.Protocols.OpenIdConnect;
 using Microsoft.IdentityModel.Tokens;
-using NetEscapades.AspNetCore.SecurityHeaders.Infrastructure;
 
 namespace BlazorWeb.Server.Configurations;
 
@@ -37,8 +37,8 @@ public static class OidcConfig
                     NameClaimType = "name",
                     RoleClaimType = "roles"
                 };
-                options.Scope.Add("api2");
-                options.Scope.Add("api3");
+                options.Scope.Add("api");
+                options.Scope.Add(AppScopes.WeatherReadScope);
             });
         
             services.AddAntiforgery(options =>

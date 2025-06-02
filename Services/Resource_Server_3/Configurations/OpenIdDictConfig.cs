@@ -11,7 +11,7 @@ public static class OpenIdDictConfig
         var securityConfig = configuration.GetSection("SecurityConfig").Get<SecurityConfig>() ??
                              throw new NullReferenceException("SecurityConfig is null");
         
-        // Add OpenIddict validation
+        // Add OpenIddict validation 
         services.AddOpenIddict()
             .AddValidation(options =>
             {

@@ -1,4 +1,4 @@
-using Identity.Shared.Auth;
+using Identity.Shared.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Validation.AspNetCore;
 using Resource_Server_2.Configurations;
@@ -19,9 +19,14 @@ internal static class HostingExtensions
         services.AddOpenIdDictConfig(configuration);
         
         services.AddAuthentication(OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme);
-        services.AddAuthorizationBuilder()
-            .AddPolicy(PolicyConstants.AuthPolicy,
-                policy => policy.RequireRole("Editor"));
+        
+        services.AddAuthorizationBuilder().AddPolicy(AppScopes.AuthPolicy,
+            policy => policy.RequireRole(AppRoles.Editor));
+        services.AddAuthorizationBuilder().AddPolicy(AppScopes.WeatherReadScope,
+            policy => policy.RequireRole(AppRoles.Admin));
+        
+        // services.AddAuthorizationBuilder().AddPolicy(AppScopes.WeatherReadScope, 
+        //     policy => policy.RequireClaim(ClaimConstants.Permissions, AppScopes.WeatherReadScope));
         
         return services;
     }
@@ -34,7 +39,7 @@ internal static class HostingExtensions
             
             // app.MapScalarApiReference()
             app.MapScalarApiReference(options => options
-                .WithPreferredScheme("OAuth2")
+                .AddPreferredSecuritySchemes("OAuth2")
                 .AddAuthorizationCodeFlow("OAuth2", flow =>
                 {
                     flow.ClientId = "mvc-client";

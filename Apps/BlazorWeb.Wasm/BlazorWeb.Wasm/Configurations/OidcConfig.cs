@@ -8,7 +8,7 @@ namespace BlazorWeb.Wasm.Configurations;
 
 public static class OidcConfig
 {
-        public static IServiceCollection AddOidcConfig(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
+    public static IServiceCollection AddOidcConfig(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
         services.AddAuthentication(options =>
             {
