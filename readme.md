@@ -1,22 +1,33 @@
 ## Project Structure:
 
 ### Apps: sample clients
-     1. BlazorWeb.Server: a Blazor Web (Server) Client using OIDC authentication
-     2. BlazorWeb.Server: a Blazor Web (Wasm) Client using OIDC authentication
-     3. WebApp.Mvc:  a Mvc Web App Client using OIDC authentication
-     4. WebApp.Razor:  a Razor Web App Client using OIDC authentication
-     5. Client.Infrastructure:  a shared lib between clients
-     6. OpenIdDict MudBlazor Admin UI: -- Commming
+
+####     1. BlazorWeb.Server: 
+            * a Blazor Web (Server) Client using OIDC authentication.
+            * Using Data from Resource Server 2
+####     2. BlazorWeb.Server: 
+            * a Blazor Web (Wasm) Client using OIDC authentication
+            * Using Data from Resource Server 2 adnd Resource Server 3
+####     3. WebApp.Mvc:  
+            * a Mvc Web App Client using OIDC authentication
+####     4. WebApp.Razor:  
+            * a Razor Web App Client using OIDC authentication
+            * Using Data from Resource Server 1
+
+####     5. Client.Infrastructure:  a shared lib between clients
+
+####     6. OpenIdDict MudBlazor Admin UI: -- Commming
     
-### Identity: an OIDC auth-server project using OpenIdDict
-#### Identity.Core
-#### Identity.Infrastructure
-#### Identity.Provider
+### Identity: an OIDC auth-server project using OpenIdDict includes:
+
+* Identity.Core
+* Identity.Infrastructure
+* Identity.Provider
    
 ### Services: API resource servers
-#### Resource_Server_1: test resoure server with NSwagger (OIDC Auth)
-#### Resource_Server_2: test resoure server with Scalar (OIDC Auth)
-#### Resource_Server_3: test resoure server with Swaggebuckle (OIDC Auth)
+    1. Resource_Server_1: test resoure server with NSwagger (OIDC Auth)
+    2. Resource_Server_2: test resoure server with Scalar (OIDC Auth)
+    3. Resource_Server_3: test resoure server with Swaggebuckle (OIDC Auth)
 
 ### Identity.Shared:    a class library project containing the model shared by the server and clients
 
