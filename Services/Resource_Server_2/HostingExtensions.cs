@@ -20,7 +20,7 @@ internal static class HostingExtensions
         
         services.AddAuthentication(OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme);
         
-        services.AddAuthorizationBuilder().AddPolicy(AppScopes.AuthPolicy,
+        services.AddAuthorizationBuilder().AddPolicy(AppPolicies.AuthPolicy,
             policy => policy.RequireRole(AppRoles.Editor));
         services.AddAuthorizationBuilder().AddPolicy(AppScopes.WeatherReadScope,
             policy => policy.RequireRole(AppRoles.Admin));

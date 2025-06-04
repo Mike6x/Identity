@@ -1,5 +1,4 @@
 ﻿@inherits LayoutComponentBase
-@inject NavigationManager NavigationManager
 
 <div class="page">
     <div class="sidebar">
@@ -46,25 +45,3 @@
     <a href="." class="reload">Reload</a>
     <span class="dismiss">🗙</span>
 </div>
-
-@* *@
-@* @code { *@
-@*     private string? _currentUrl; *@
-@* *@
-@*     protected override void OnInitialized() *@
-@*     { *@
-@*         _currentUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri); *@
-@*         NavigationManager.LocationChanged += OnLocationChanged; *@
-@*     } *@
-@* *@
-@*     private void OnLocationChanged(object? sender, LocationChangedEventArgs e) *@
-@*     { *@
-@*         _currentUrl = NavigationManager.ToBaseRelativePath(e.Location); *@
-@*         StateHasChanged(); *@
-@*     } *@
-@* *@
-@*     public void Dispose() *@
-@*     { *@
-@*         NavigationManager.LocationChanged -= OnLocationChanged; *@
-@*     } *@
-@* } *@

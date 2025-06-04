@@ -11,3 +11,15 @@
       context: .
       dockerfile: Provider/Dockerfile
 
+  identity.admin:
+    image: identity.admin
+    build:
+      context: .
+      dockerfile: Apps/Identity.Admin/Dockerfile
+
+  identity.admin-1:
+    image: identity.admin-1
+    build:
+      context: .
+      dockerfile: Apps/Identity.Admin/Dockerfile
+

@@ -1,24 +1,23 @@
 ## Project Structure:
 
 ### Apps: sample clients
-
-#### 1. BlazorWeb.Server: 
-    * a Blazor Web (Server) Client using OIDC authentication.
-    * Using Data from Resource Server 2
-#### 2. BlazorWeb.Server: 
-    * a Blazor Web (Wasm) Client using OIDC authentication
-    * Using Data from Resource Server 2 adnd Resource Server 3
-#### 3. WebApp.Mvc:  
-    * a Mvc Web App Client using OIDC authentication
-#### 4. WebApp.Razor:  
-    * a Razor Web App Client using OIDC authentication
-    * Using Data from Resource Server 1
-
-#### 5. Client.Infrastructure:  
+1. BlazorWeb.Server: 
+   * a Blazor Web (Server) Client using OIDC authentication.
+   * Using Data from Resource Server 2
+2. BlazorWeb.Server: 
+   * a Blazor Web (Wasm) Client using OIDC authentication
+   * Using Data from Resource Server 2 adnd Resource Server 3
+3. WebApp.Mvc:  
+   * a Mvc Web App Client using OIDC authentication
+4. WebApp.Razor:  
+   * a Razor Web App Client using OIDC authentication
+   * Using Data from Resource Server 1
+   
+5. Client.Infrastructure:  
     * a shared libs between clients
     * Using OpenApi to auto generate codde
 
-#### 6. OpenIdDict MudBlazor Admin UI: -- Coming soon
+6. OpenIdDict MudBlazor Admin UI: -- Coming soon
     
 ### Identity: an OIDC auth-server project using OpenIdDict includes:
 

@@ -22,7 +22,7 @@ public static class ResourceEndpoints
         })
             .WithOpenApi()
             .WithName("Must be editor endpoint")
-            .RequireAuthorization(AppScopes.AuthPolicy);
+            .RequireAuthorization(AppPolicies.AuthPolicy);
 
         app.MapGet("/unprotected", () => "Ladies and gentlemen, we got him")
             .WithOpenApi()

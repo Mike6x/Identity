@@ -36,7 +36,7 @@ internal static class HostingExtensions
        
         services.AddAuthorizationCore(options =>
         {
-            options.AddPolicy(AppScopes.AuthPolicy, policy =>
+            options.AddPolicy(AppPolicies.AuthPolicy, policy =>
             {
                 policy.RequireAuthenticatedUser();
                 policy.RequireRole(AppRoles.Editor);

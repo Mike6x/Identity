@@ -2,11 +2,6 @@
 
 public static class AppScopes
 {
-        
-    public const string AuthPolicy = nameof(AuthPolicy);
-    
-   // public const string ReadWeatherDataPolicy = nameof(ReadWeatherDataPolicy);
-       
     public const string WeatherReadScope = "weather:read";
     
     public const string EmployeeReadScope = "employee:read";

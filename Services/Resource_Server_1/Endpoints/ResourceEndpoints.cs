@@ -44,7 +44,7 @@ public static class ResourceEndpoints
             })
             .WithOpenApi()
             .WithName("Must be editor endpoint")
-            .RequireAuthorization(AppScopes.AuthPolicy);
+            .RequireAuthorization(AppPolicies.AuthPolicy);
         
         var summaries = new[]
         {
