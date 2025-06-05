@@ -1,19 +1,24 @@
 ﻿@page "/weather"
 
-
+@inject IHttpClientFactory HttpClientFactory
 
 <PageTitle>Weather</PageTitle>
 
 <MudText Typo="Typo.h3" GutterBottom="true">Weather forecast</MudText>
 <MudText Typo="Typo.body1" Class="mb-8">This component demonstrates fetching data from the server.</MudText>
 
-@if (forecasts == null)
+@if (_forecasts == null)
 {
     <MudProgressCircular Color="Color.Default" Indeterminate="true" />
 }
 else
 {
-  <MudTable Items="forecasts" Hover="true" SortLabel="Sort By" Elevation="0" AllowUnsorted="false">
+    <MudButton Color="Color.Primary" Variant="Variant.Filled" @onclick="ClearForecast">Clear</MudButton>
+    <MudButton Color="Color.Primary" Variant="Variant.Filled" @onclick="PublicForecast">Public Forecast</MudButton>
+    <MudButton Color="Color.Primary" Variant="Variant.Filled" @onclick="SecureForecast">Secure Forecast</MudButton>
+    <MudButton Color="Color.Primary" Variant="Variant.Filled" @onclick="PaidForecast">Paid Forecast</MudButton>
+    
+  <MudTable Items="_forecasts" Hover="true" SortLabel="Sort By" Elevation="0" AllowUnsorted="false">
         <HeaderContent>
             <MudTh><MudTableSortLabel InitialDirection="SortDirection.Ascending" SortBy="new Func<WeatherForecast, object>(x=>x.Date)">Date</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<WeatherForecast, object>(x=>x.TemperatureC)">Temp. (C)</MudTableSortLabel></MudTh>
@@ -33,16 +38,71 @@ else
 }
 
 @code {
-    private WeatherForecast[]? forecasts;
+    private WeatherForecast[]? _forecasts;
+        
+    private void ClearForecast()
+    {
+        _forecasts = [];
+    }
+    
+    private async Task PublicForecast()
+    {
+        _forecasts = null;
+        await Task.Delay(500);
+        try
+        {
+            var httpClient = HttpClientFactory.CreateClient("resource3Client");
+            _forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast/public-forecast") ?? [];
+        }
+        catch (Exception ex)
+        {
+            _forecasts = [];
+            Console.WriteLine("The Error is :" + ex.ToString());
+        }
+ 
+    }
+    
+    private async Task SecureForecast()
+    {
+        _forecasts = null;
+        await Task.Delay(500);
+        try
+        {
+            var httpClient = HttpClientFactory.CreateClient("resource3Client");
+            _forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast/secure-forecast") ?? [];
+        }
+        catch (Exception ex)
+        {
+            _forecasts = [];
+            Console.WriteLine("The Error is :" + ex.ToString());
+        }
+      
+    }
+    
+    private async Task PaidForecast()
+    {
+        _forecasts = null;
+        await Task.Delay(500);
+        try
+        {
+            var httpClient = HttpClientFactory.CreateClient("resource3Client");
+            _forecasts = await httpClient.GetFromJsonAsync<WeatherForecast[]>("api/WeatherForecast/paid-forecast") ?? [];
+        }
+        catch (Exception ex)
+        {
+            _forecasts = [];
+            Console.WriteLine("The Error is :" + ex.ToString());
+        }
+    }
+
 
     protected override async Task OnInitializedAsync()
     {
-        // Simulate asynchronous loading to demonstrate a loading indicator
         await Task.Delay(500);
 
         var startDate = DateOnly.FromDateTime(DateTime.Now);
         var summaries = new[] { "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching" };
-        forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
+        _forecasts = Enumerable.Range(1, 5).Select(index => new WeatherForecast
         {
             Date = startDate.AddDays(index),
             TemperatureC = Random.Shared.Next(-20, 55),
