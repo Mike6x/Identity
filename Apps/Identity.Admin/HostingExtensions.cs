@@ -1,9 +1,12 @@
+using Blazored.LocalStorage;
 using Identity.Admin.Components;
 using Identity.Admin.Configurations;
 using Identity.Admin.Endpoints;
-using Identity.Shared.Authorization;
+
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Logging;
+using MudBlazor;
+using MudBlazor.Services;
 
 namespace Identity.Admin;
 
@@ -11,6 +14,17 @@ internal static class HostingExtensions
 {
     public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
+        services.AddMudServices(config =>
+        {
+            config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.TopRight;
+            config.SnackbarConfiguration.PreventDuplicates = false;
+            config.SnackbarConfiguration.NewestOnTop = false;
+            config.SnackbarConfiguration.ShowCloseIcon = true;
+            config.SnackbarConfiguration.VisibleStateDuration = 4000;
+            config.SnackbarConfiguration.HideTransitionDuration = 500;
+            config.SnackbarConfiguration.ShowTransitionDuration = 500;
+        });
+        
         services.AddRazorComponents()
             .AddInteractiveServerComponents();
         
@@ -20,52 +34,53 @@ internal static class HostingExtensions
         
         services.AddAuthenticationCore();
         
-        services.AddAuthorizationCore(options =>
-        {
-            // options.AddPolicy(AppScopes.UserReadScope, policy => 
-            //     policy.RequireClaim(ClaimConstants.Permissions, AppScopes.UserReadScope));
-            //
-            // options.AddPolicy(AppScopes.WeatherReadScope, policy => 
-            //     policy.RequireRole("Admin"));
-            
-            options.AddPolicy(AppPolicies.CanManageApplications, policy =>
-            {
-                policy.RequireAuthenticatedUser();
-                policy.RequireClaim(ClaimConstants.ReadWriteClaim, "applications");
-            });
-            options.AddPolicy(AppPolicies.CanManageScopes, policy =>
-            {
-                policy.RequireAuthenticatedUser();
-                policy.RequireClaim(ClaimConstants.ReadWriteClaim, "scopes");
-            });
-            options.AddPolicy(AppPolicies.CanManageUsers, policy =>
-            {
-                policy.RequireAuthenticatedUser();
-                policy.RequireClaim(ClaimConstants.ReadWriteClaim, "users");
-            });
-            options.AddPolicy(AppPolicies.CanManageRoles, policy =>
-            {
-                policy.RequireAuthenticatedUser();
-                policy.RequireClaim(ClaimConstants.ReadWriteClaim, "roles");
-            });
-        });
-
+        services.AddAuthorizationCore();
+        
+        //         
+        // services.AddAuthorizationCore(options =>
+        // {
+        //     // options.AddPolicy(AppScopes.UserReadScope, policy => 
+        //     //     policy.RequireClaim(ClaimConstants.Permissions, AppScopes.UserReadScope));
+        //     //
+        //     // options.AddPolicy(AppScopes.WeatherReadScope, policy => 
+        //     //     policy.RequireRole("Admin"));
+        //     
+        //     options.AddPolicy(AppPolicies.CanManageApplications, policy =>
+        //     {
+        //         policy.RequireAuthenticatedUser();
+        //         policy.RequireClaim(ClaimConstants.ReadWriteClaim, "applications");
+        //     });
+        //     options.AddPolicy(AppPolicies.CanManageScopes, policy =>
+        //     {
+        //         policy.RequireAuthenticatedUser();
+        //         policy.RequireClaim(ClaimConstants.ReadWriteClaim, "scopes");
+        //     });
+        //     options.AddPolicy(AppPolicies.CanManageUsers, policy =>
+        //     {
+        //         policy.RequireAuthenticatedUser();
+        //         policy.RequireClaim(ClaimConstants.ReadWriteClaim, "users");
+        //     });
+        //     options.AddPolicy(AppPolicies.CanManageRoles, policy =>
+        //     {
+        //         policy.RequireAuthenticatedUser();
+        //         policy.RequireClaim(ClaimConstants.ReadWriteClaim, "roles");
+        //     });
+        // });
         
         services.AddCascadingAuthenticationState();
         
         // services.AddRazorPages().WithRazorPagesRoot("/Components/Pages");
-        
         // services.AddSingleton<LocalWeatherForecastService>();
         
         services.RegisterHttpClient(configuration);
+        
+        services.AddBlazoredLocalStorage();
         
         return services;
     }
 
     public static WebApplication UsePipeline(this WebApplication app)
     {
-        JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
-
         if (!app.Environment.IsDevelopment())
         {
             app.UseExceptionHandler("/Error", createScopeForErrors: true);
@@ -76,24 +91,23 @@ internal static class HostingExtensions
             IdentityModelEventSource.ShowPII = true;
             IdentityModelEventSource.LogCompleteSecurityArtifact = true;
         }
-
-        app.UseSecurityHeaders();
-
+        
+        JsonWebTokenHandler.DefaultInboundClaimTypeMap.Clear();
+        // app.UseSecurityHeaders();
+        
         app.UseHttpsRedirection();
         app.UseAntiforgery();
         app.UseAuthentication();
         app.UseAuthorization();
 
         app.MapStaticAssets();
-
+        
         app.MapRazorComponents<App>()
             .AddInteractiveServerRenderMode()
-            .RequireAuthorization()
-            ;
-        
+            .RequireAuthorization();
+
         app.MapAuthEndpoints();
         
         return app;
     }
-    
 }

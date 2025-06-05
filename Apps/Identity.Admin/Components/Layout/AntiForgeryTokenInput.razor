@@ -1,0 +1,20 @@
+@* @inject IJSRuntime JsRuntime *@
+@* *@
+@* <input type="hidden" id="__RequestVerificationToken" *@
+@*        name="__RequestVerificationToken" value="@GetToken()"> *@
+@* *@
+@* @code { *@
+@* *@
+@*     private string _token = ""; *@
+@* *@
+@*     protected override async Task OnInitializedAsync() *@
+@*     { *@
+@*         _token = await JsRuntime.InvokeAsync<string>("getAntiForgeryToken"); *@
+@*     } *@
+@* *@
+@*     private string GetToken() *@
+@*     { *@
+@*         return _token; *@
+@*     } *@
+@* *@
+@* } *@
