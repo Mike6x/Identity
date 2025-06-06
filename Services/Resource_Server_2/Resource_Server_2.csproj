@@ -10,12 +10,12 @@
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="9.0.5" />
         <PackageReference Include="OpenIddict.Validation.AspNetCore" Version="6.3.0" />
         <PackageReference Include="OpenIddict.Validation.SystemNetHttp" Version="6.3.0" />
-        <PackageReference Include="Scalar.AspNetCore" Version="2.3.1" />
+        <PackageReference Include="Scalar.AspNetCore" Version="2.4.11" />
         <PackageReference Include="Serilog.AspNetCore" Version="9.0.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Identity.Shared\Identity.Shared.csproj" />
+      <ProjectReference Include="..\..\Framework\Identity.Shared\Identity.Shared.csproj" />
     </ItemGroup>
 
 </Project>

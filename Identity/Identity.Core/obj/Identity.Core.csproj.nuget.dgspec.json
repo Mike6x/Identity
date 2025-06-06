@@ -48,6 +48,10 @@
             "Microsoft.Extensions.Identity.Stores": {
               "target": "Package",
               "version": "[9.0.5, )"
+            },
+            "Microsoft.Identity.Web": {
+              "target": "Package",
+              "version": "[3.9.3, )"
             }
           },
           "imports": [

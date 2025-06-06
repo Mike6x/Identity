@@ -1,5 +1,6 @@
 using Identity.Infrastructure.Data.Repository;
 using Identity.Infrastructure.Services;
+using Identity.Infrastructure.Services.Email;
 using Identity.Infrastructure.Services.Logging;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity.UI.Services;

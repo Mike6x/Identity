@@ -7,7 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Identity.Shared\Identity.Shared.csproj" />
+      <ProjectReference Include="..\..\Framework\BuildingBlocks\BuildingBlocks.csproj" />
+      <ProjectReference Include="..\..\Framework\Identity.Shared\Identity.Shared.csproj" />
       <ProjectReference Include="..\Identity.Core\Identity.Core.csproj" />
     </ItemGroup>
 
@@ -19,9 +20,18 @@
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.5" />
       <PackageReference Include="OpenIddict.AspNetCore" Version="6.3.0" />
       <PackageReference Include="OpenIddict.EntityFrameworkCore" Version="6.3.0" />
-      <PackageReference Include="Serilog" Version="4.2.0" />
+      <PackageReference Include="Serilog" Version="4.3.0" />
       <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
       <PackageReference Include="Serilog.Sinks.File" Version="7.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Services\Authenticator\" />
+      <Folder Include="Services\Clients\" />
+      <Folder Include="Services\CorePolicy\" />
+      <Folder Include="Services\Roles\" />
+      <Folder Include="Services\Scopes\" />
+      <Folder Include="Services\Users\" />
     </ItemGroup>
 
 </Project>

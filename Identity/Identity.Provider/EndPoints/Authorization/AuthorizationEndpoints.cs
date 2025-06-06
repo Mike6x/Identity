@@ -10,7 +10,7 @@ using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
 using static OpenIddict.Abstractions.OpenIddictConstants;
-using static Identity.Infrastructure.Services.AuthorizationService;
+using static Identity.Infrastructure.Services.Authorization.AuthorizationService;
 
 namespace Identity.Provider.EndPoints.Authorization;
 

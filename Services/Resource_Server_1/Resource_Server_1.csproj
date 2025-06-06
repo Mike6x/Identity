@@ -20,10 +20,11 @@
         <PackageReference Include="NSwag.Generation.AspNetCore" Version="14.4.0" />
         <PackageReference Include="OpenIddict.Validation.AspNetCore" Version="6.3.0" />
         <PackageReference Include="OpenIddict.Validation.SystemNetHttp" Version="6.3.0" />
+        <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.12.0" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\Identity.Shared\Identity.Shared.csproj" />
+      <ProjectReference Include="..\..\Framework\Identity.Shared\Identity.Shared.csproj" />
     </ItemGroup>
 
 </Project>

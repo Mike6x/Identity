@@ -18,9 +18,9 @@
           <PrivateAssets>all</PrivateAssets>
           <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="Microsoft.Identity.Web" Version="3.9.0" />
-        <PackageReference Include="Microsoft.Identity.Web.UI" Version="3.9.0" />
-        <PackageReference Include="Microsoft.Identity.Web.DownstreamApi" Version="3.9.0" />
+        <PackageReference Include="Microsoft.Identity.Web" Version="3.9.3" />
+        <PackageReference Include="Microsoft.Identity.Web.UI" Version="3.9.3" />
+        <PackageReference Include="Microsoft.Identity.Web.DownstreamApi" Version="3.9.3" />
         <PackageReference Include="NSwag.AspNetCore" Version="14.4.0" />
         <PackageReference Include="NSwag.CodeGeneration.CSharp" Version="14.4.0" />
         <PackageReference Include="NSwag.CodeGeneration.TypeScript" Version="14.4.0" />
@@ -41,7 +41,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\Apps\Client.Infrastructure\Client.Infrastructure.csproj" />
-      <ProjectReference Include="..\..\Identity.Shared\Identity.Shared.csproj" />
+      <ProjectReference Include="..\..\Framework\Identity.Shared\Identity.Shared.csproj" />
       <ProjectReference Include="..\Identity.Core\Identity.Core.csproj" />
       <ProjectReference Include="..\Identity.Infrastructure\Identity.Infrastructure.csproj" />
     </ItemGroup>

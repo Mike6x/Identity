@@ -822,7 +822,7 @@
           }
         }
       },
-      "Scalar.AspNetCore/2.3.1": {
+      "Scalar.AspNetCore/2.4.11": {
         "type": "package",
         "compile": {
           "lib/net9.0/Scalar.AspNetCore.dll": {
@@ -2181,10 +2181,10 @@
         "polly.ratelimiting.nuspec"
       ]
     },
-    "Scalar.AspNetCore/2.3.1": {
-      "sha512": "x1j9LafJP7kdQnPh31RubohQvE3DTln/+YOVnoPu2LJ9cV9nWiSDyTAyKXUAHvITbYOd8aWSj4WbgcjrJcEsrA==",
+    "Scalar.AspNetCore/2.4.11": {
+      "sha512": "HLl7PuE0SJEftDKFHVUlB6yLvbDHubR1+HwbYJocK6H7DtyGbyo+HDYGOabP43ZB/WfRY+SMxce46MyfUznjoQ==",
       "type": "package",
-      "path": "scalar.aspnetcore/2.3.1",
+      "path": "scalar.aspnetcore/2.4.11",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2194,7 +2194,7 @@
         "lib/net8.0/Scalar.AspNetCore.xml",
         "lib/net9.0/Scalar.AspNetCore.dll",
         "lib/net9.0/Scalar.AspNetCore.xml",
-        "scalar.aspnetcore.2.3.1.nupkg.sha512",
+        "scalar.aspnetcore.2.4.11.nupkg.sha512",
         "scalar.aspnetcore.nuspec"
       ]
     },
@@ -2435,8 +2435,8 @@
     },
     "Identity.Shared/1.0.0": {
       "type": "project",
-      "path": "../../Identity.Shared/Identity.Shared.csproj",
-      "msbuildProject": "../../Identity.Shared/Identity.Shared.csproj"
+      "path": "../../Framework/Identity.Shared/Identity.Shared.csproj",
+      "msbuildProject": "../../Framework/Identity.Shared/Identity.Shared.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -2445,7 +2445,7 @@
       "Microsoft.AspNetCore.OpenApi >= 9.0.5",
       "OpenIddict.Validation.AspNetCore >= 6.3.0",
       "OpenIddict.Validation.SystemNetHttp >= 6.3.0",
-      "Scalar.AspNetCore >= 2.3.1",
+      "Scalar.AspNetCore >= 2.4.11",
       "Serilog.AspNetCore >= 9.0.0"
     ]
   },
@@ -2475,8 +2475,8 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "projectReferences": {
-            "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj": {
-              "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Shared/Identity.Shared.csproj"
+            "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/Identity.Shared/Identity.Shared.csproj": {
+              "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/Identity.Shared/Identity.Shared.csproj"
             }
           }
         }
@@ -2511,7 +2511,7 @@
           },
           "Scalar.AspNetCore": {
             "target": "Package",
-            "version": "[2.3.1, )"
+            "version": "[2.4.11, )"
           },
           "Serilog.AspNetCore": {
             "target": "Package",

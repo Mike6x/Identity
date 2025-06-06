@@ -10,7 +10,7 @@ using OpenIddict.Server.AspNetCore;
 
 using Identity.Core.Entities;
 using Identity.Infrastructure.Extensions;
-using static Identity.Infrastructure.Services.AuthorizationService;
+using static Identity.Infrastructure.Services.Authorization.AuthorizationService;
 
 namespace Identity.Provider.Endpoints.Authorization.Handlers;
 

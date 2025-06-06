@@ -8,8 +8,8 @@ public static class AuthEndpoints
 {
     public static IEndpointRouteBuilder MapIdentityEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapLogInEndpoint();
-        app.MapLogOutEndpoint();
+        app.MapLogInEndpoint1();
+        app.MapLogOutEndpoint1();
 
         return app;
     }
@@ -17,13 +17,13 @@ public static class AuthEndpoints
 
 }
 
-public static class LogInEndpoint
+public static class LogInEndpoint1
 {
-    public static RouteHandlerBuilder MapLogInEndpoint(this IEndpointRouteBuilder endpoints)
+    public static RouteHandlerBuilder MapLogInEndpoint1(this IEndpointRouteBuilder endpoints)
     {
         return endpoints.MapPost("/login",
                 LoginHandler)
-            .WithName(nameof(LogInEndpoint))
+            .WithName(nameof(LogInEndpoint1))
             .WithSummary("Login User")
             .WithDescription("Login User")
             .AllowAnonymous();
@@ -73,12 +73,12 @@ public static class LogInEndpoint
 
 }
 
-public static class LogOutEndpoint
+public static class LogOutEndpoint1
 {
-    public static RouteHandlerBuilder MapLogOutEndpoint(this IEndpointRouteBuilder endpoints)
+    public static RouteHandlerBuilder MapLogOutEndpoint1(this IEndpointRouteBuilder endpoints)
     {
         return endpoints.MapPost("/logout", LogoutHandler)
-            .WithName(nameof(LogOutEndpoint))
+            .WithName(nameof(LogOutEndpoint1))
             .WithSummary("Log Out")
             .WithDescription("Log Out.")
             .RequireAuthorization();
