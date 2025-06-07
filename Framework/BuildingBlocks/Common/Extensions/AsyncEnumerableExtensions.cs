@@ -1,20 +1,17 @@
 namespace BuildingBlocks.Common.Extensions;
 
+/// <summary>
+/// https://stackoverflow.com/questions/59380470/convert-iasyncenumerable-to-list
+/// </summary>
 public static class AsyncEnumerableExtensions
 {
-    public static Task<List<T>> ToListAsync<T>(this IAsyncEnumerable<T> source)
+    public static async Task<List<T>> ToListAsync<T>(this IAsyncEnumerable<T> source,
+        CancellationToken cancellationToken = default)
     {
-        ArgumentNullException.ThrowIfNull(source);
-        return ExecuteAsync();
-        
-        async Task<List<T>> ExecuteAsync()
-        {
-            var list = new List<T>();
-            await foreach (var element in source)
-            {
-                list.Add(element);
-            }
-            return list;
-        }
+        var list = new List<T>();
+        await foreach (var item in source.WithCancellation(cancellationToken)
+                           .ConfigureAwait(false))
+            list.Add(item);
+        return list;
     }
 }

@@ -439,6 +439,20 @@
       "frameworks": {
         "net9.0": {
           "targetAlias": "net9.0",
+          "dependencies": {
+            "Ardalis.Specification": {
+              "target": "Package",
+              "version": "[9.1.0, )"
+            },
+            "FluentValidation.DependencyInjectionExtensions": {
+              "target": "Package",
+              "version": "[12.0.0, )"
+            },
+            "Mapster": {
+              "target": "Package",
+              "version": "[7.4.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -1139,7 +1153,11 @@
         "frameworks": {
           "net9.0": {
             "targetAlias": "net9.0",
-            "projectReferences": {}
+            "projectReferences": {
+              "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/BuildingBlocks/BuildingBlocks.csproj": {
+                "projectPath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/BuildingBlocks/BuildingBlocks.csproj"
+              }
+            }
           }
         },
         "warningProperties": {
@@ -1165,6 +1183,10 @@
             "Microsoft.Identity.Web": {
               "target": "Package",
               "version": "[3.9.3, )"
+            },
+            "OpenIddict.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[6.3.0, )"
             }
           },
           "imports": [
@@ -1537,6 +1559,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Ardalis.Specification.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.1.0, )"
+            },
             "Microsoft.AspNetCore.Http.Extensions": {
               "target": "Package",
               "version": "[2.3.0, )"
@@ -1556,6 +1582,10 @@
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
               "version": "[9.0.5, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
             },
             "OpenIddict.AspNetCore": {
               "target": "Package",

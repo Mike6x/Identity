@@ -49,7 +49,7 @@
             @foreach (var provider in Model.ExternalLoginProviders)
             {
                 <a class="btn btn-primary"
-                   asp-page="./ExternalLogin"
+                   asp-page="./ExternalCallbackLoggin"
                    asp-route-provider="@provider.Name"
                    asp-route-returnUrl="@Model.ReturnUrl">
 

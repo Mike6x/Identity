@@ -1,6 +1,7 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/BuildingBlocks/bin/Debug/net9.0/BuildingBlocks.deps.json
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/BuildingBlocks/bin/Debug/net9.0/BuildingBlocks.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/BuildingBlocks/bin/Debug/net9.0/BuildingBlocks.pdb
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/BuildingBlocks/obj/Debug/net9.0/BuildingBlocks.csproj.AssemblyReference.cache
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/BuildingBlocks/obj/Debug/net9.0/BuildingBlocks.GeneratedMSBuildEditorConfig.editorconfig
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/BuildingBlocks/obj/Debug/net9.0/BuildingBlocks.AssemblyInfoInputs.cache
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/BuildingBlocks/obj/Debug/net9.0/BuildingBlocks.AssemblyInfo.cs

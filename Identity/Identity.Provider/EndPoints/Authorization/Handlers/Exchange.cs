@@ -1,6 +1,7 @@
 using System.Security.Claims;
+using BuildingBlocks.Common.Extensions;
 using Identity.Core.Entities;
-using Identity.Infrastructure.Extensions;
+
 using Identity.Provider.Extensions;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication;

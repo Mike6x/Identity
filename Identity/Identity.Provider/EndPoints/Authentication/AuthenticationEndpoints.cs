@@ -1,4 +1,6 @@
-using Identity.Core.Authentication;
+using Identity.Core.Entities;
+using Identity.Core.Features.Authentication;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
 
 namespace Identity.Provider.EndPoints.Authentication;
@@ -10,6 +12,7 @@ public static class AuthenticationEndpoints
 
         app.MapLogInEndpoint();
         app.MapLogOutEndpoint();
+        app.MapSignOutEndpoint();
         
         app.MapGetLogInCallBackEndpoint();
         app.MapLogInCallBackEndpoint();
@@ -23,7 +26,7 @@ public static class LogInEndpoint
     public static RouteHandlerBuilder MapLogInEndpoint(this IEndpointRouteBuilder endpoints)
     {
         return endpoints.MapPost("/login",
-                (LoginRequest request, IAuthenticationService service, CancellationToken cancellationToken)
+                (LoginRequest request, IAuthService service, CancellationToken cancellationToken)
                     => service.LogInAsync(request))
             .WithName(nameof(LogInEndpoint))
             .WithSummary("Login User")
@@ -32,18 +35,39 @@ public static class LogInEndpoint
     }
 }
 
+/// <summary>
+/// Need to check.
+/// </summary>
 public static class LogOutEndpoint
 {
     public static RouteHandlerBuilder MapLogOutEndpoint(this IEndpointRouteBuilder endpoints)
     {
         return endpoints.MapPost("/logout",
-                (string? returnUrl, IAuthenticationService service, CancellationToken cancellationToken)
+                (string? returnUrl, IAuthService service, CancellationToken cancellationToken)
                     => service.LogOutAsync(returnUrl))
             .WithName(nameof(LogOutEndpoint))
             .WithSummary("Log Out")
             .WithDescription("Log Out.")
             .RequireAuthorization();
     }
+}
+
+public static class SigOutEndpoint
+{
+    public static RouteHandlerBuilder MapSignOutEndpoint(this IEndpointRouteBuilder endpoints)
+    {
+        return endpoints.MapPost("/signout", LogoutHandler)
+            .WithName(nameof(SigOutEndpoint))
+            .WithSummary("Log Out")
+            .WithDescription("Log Out.")
+            .RequireAuthorization();
+    }
+    
+    private static async Task LogoutHandler(SignInManager<AppUser> signInManager)
+    {
+        await signInManager.SignOutAsync();
+    }
+
 }
 
 
@@ -55,7 +79,7 @@ public static class GetLogInCallBackEndpoint
     public static RouteHandlerBuilder MapGetLogInCallBackEndpoint(this IEndpointRouteBuilder endpoints)
     {
         return endpoints.MapGet("/callback/{provider}",
-                (HttpContext httpContext, IAuthenticationService service, CancellationToken cancellationToken)
+                (HttpContext httpContext, IAuthService service, CancellationToken cancellationToken)
                     => service.LogInCallBackAsync(httpContext))
             .WithName(nameof(GetLogInCallBackEndpoint))
             .WithSummary("Login Callback")
@@ -69,7 +93,7 @@ public static class LogInCallBackEndpoint
     public static RouteHandlerBuilder MapLogInCallBackEndpoint(this IEndpointRouteBuilder endpoints)
     {
         return endpoints.MapPost("/callback{provider}",
-                (HttpContext httpContext, IAuthenticationService service, CancellationToken cancellationToken)
+                (HttpContext httpContext, IAuthService service, CancellationToken cancellationToken)
                     => service.LogInCallBackAsync(httpContext))
             .WithName(nameof(LogInCallBackEndpoint))
             .WithSummary("Login Callback")

@@ -1,5 +1,5 @@
-using Identity.Core.Dtos.Clients;
-using Identity.Core.Dtos.Scopes;
+using Identity.Core.Features.Client;
+using Identity.Core.Features.Scope;
 using Identity.Infrastructure.Data.Repository;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;

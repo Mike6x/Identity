@@ -1,5 +1,5 @@
 using System.Text.Json;
-using Identity.Core.Dtos.Scopes;
+using Identity.Core.Features.Scope;
 using Microsoft.Extensions.Logging;
 using OpenIddict.Abstractions;
 using OpenIddict.EntityFrameworkCore.Models;

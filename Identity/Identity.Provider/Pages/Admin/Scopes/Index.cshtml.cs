@@ -1,4 +1,4 @@
-using Identity.Core.Dtos.Scopes;
+using Identity.Core.Features.Scope;
 using Identity.Infrastructure.Data.Repository;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 

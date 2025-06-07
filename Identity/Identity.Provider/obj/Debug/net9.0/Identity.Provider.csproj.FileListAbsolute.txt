@@ -346,6 +346,8 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Identity.Provider.runtimeconfig.json
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Identity.Provider.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Identity.Provider.pdb
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Ardalis.Specification.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Ardalis.Specification.EntityFrameworkCore.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Azure.Core.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Azure.Identity.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Azure.Security.KeyVault.Certificates.dll
@@ -353,6 +355,8 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Blazored.LocalStorage.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Fluid.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Humanizer.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Mapster.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Mapster.Core.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.AspNetCore.Authorization.dll

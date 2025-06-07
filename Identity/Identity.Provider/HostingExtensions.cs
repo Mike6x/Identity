@@ -1,5 +1,5 @@
 using Identity.Infrastructure.Data.Workers;
-using Identity.Infrastructure.Extensions;
+using Identity.Infrastructure.Services;
 using Identity.Provider.Configurations;
 using Identity.Provider.EndPoints;
 

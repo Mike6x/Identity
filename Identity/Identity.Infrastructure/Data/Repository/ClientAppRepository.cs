@@ -1,4 +1,4 @@
-using Identity.Core.Dtos.Clients;
+using Identity.Core.Features.Client;
 using Microsoft.Extensions.Logging;
 using OpenIddict.Abstractions;
 using OpenIddict.EntityFrameworkCore.Models;
