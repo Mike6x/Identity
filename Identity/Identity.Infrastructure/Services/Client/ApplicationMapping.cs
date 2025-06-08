@@ -5,7 +5,7 @@ using Newtonsoft.Json;
 using OpenIddict.Abstractions;
 using OpenIddict.EntityFrameworkCore.Models;
 
-namespace Identity.Infrastructure.Services.Clients;
+namespace Identity.Infrastructure.Services.Client;
 
 
 public static class ApplicationMapping

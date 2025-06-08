@@ -4,7 +4,6 @@ using BuildingBlocks.Paging;
 using BuildingBlocks.Specifications;
 using Identity.Core.Features.Client;
 using Identity.Core.Features.Client.Search;
-using Identity.Infrastructure.Services.Clients;
 using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

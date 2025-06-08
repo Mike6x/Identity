@@ -3,6 +3,7 @@ using Identity.Core.Features.Authentication;
 using Identity.Core.Features.Client;
 using Identity.Core.Features.Role;
 using Identity.Core.Features.Scope;
+using Identity.Core.Features.User;
 using Identity.Infrastructure.Data.Repository;
 using Identity.Infrastructure.Services.Authentication;
 using Identity.Infrastructure.Services.Client;
@@ -23,7 +24,7 @@ public static class InfraServicesRegister
                 
         services.AddScoped<ICurrentUser, CurrentUser>();
         services.AddScoped(sp => (ICurrentUserInitializer)sp.GetRequiredService<ICurrentUser>());
-        // services.AddTransient<IUserService, UserService>();
+        services.AddTransient<IUserService, UserService>();
         
         services.AddTransient<IRoleService, RoleService>();
         services.AddTransient<IScopeService, ScopeService>();
@@ -37,9 +38,9 @@ public static class InfraServicesRegister
         // services.AddTransient<IPermissionService, PermissionService>()
         //builder.Services.AddSingleton<IEmailSender<AppUser>, IdentityNoOpEmailSender>();
         // builder.Services.AddTransient<AuthorizationService>();
+        
         // services.AddTransient<ClientSeeder>();
         // services.AddScoped<IEmailService, EmailService>()
-        
         // services.AddSingleton<IEmailSender, EmailSenderService>();
         
         services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
