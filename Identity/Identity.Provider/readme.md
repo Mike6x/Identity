@@ -5,9 +5,12 @@ dotnet ef database update
 
 dotnet dev-certs https --trust  
 
- dotnet ef migrations add "Add Identity Schema" --project ../Identity.Infrastructure/ --context ApplicationDbContext --output-dir Data/Migrations
+dotnet ef migrations add "Add Identity Schema" --project ../Identity.Infrastructure/ --context ApplicationDbContext --output-dir Data/Migrations
 
-
+    cd ./Identity/Identity.Provider/
+    dotnet ef migrations add "Add Identity claim" --project ../Identity.Infrastructure/ --context ApplicationDbContext --output-dir Data/Migrations
+    dotnet ef database update
+ 
 1. SETUP
 
 Npgsql

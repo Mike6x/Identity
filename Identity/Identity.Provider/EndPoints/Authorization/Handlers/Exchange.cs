@@ -1,8 +1,8 @@
-using System.Security.Claims;
 using BuildingBlocks.Common.Extensions;
 using Identity.Core.Entities;
-
 using Identity.Provider.Extensions;
+
+using System.Security.Claims;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
@@ -112,8 +112,8 @@ public static class Exchange
             identity.SetClaim(Claims.Subject, await applicationManager.GetClientIdAsync(application));
             identity.SetClaim(Claims.Name, await applicationManager.GetDisplayNameAsync(application));
             
-            identity.AddClaim(new Claim(Claims.Audience, "Resourse"));
-            identity.AddClaim(new Claim("some-claim", "some-value"));
+            identity.AddClaim(new System.Security.Claims.Claim(Claims.Audience, "Resource"));
+            identity.AddClaim(new System.Security.Claims.Claim("some-claim", "some-value"));
             identity.SetDestinations(static claim => claim.Type switch
             {
                 // Allow the "name" claim to be stored in both the access and identity tokens
@@ -212,10 +212,10 @@ public static class Exchange
             identity.SetResources(await scopeManager.ListResourcesAsync(identity.GetScopes()).ToListAsync());
 
             // Add Custom claims => sub claims are mandatory
-            identity.AddClaim(new Claim(Claims.Subject, user.Id.ToString()));
-            identity.AddClaim(new Claim(Claims.PreferredUsername, (user.Email ?? user.UserName) ?? throw new InvalidOperationException()));
-            identity.AddClaim(new Claim(Claims.Audience, "Resource"));
-            identity.AddClaim(new Claim("some-claim", "some-value"));
+            identity.AddClaim(new System.Security.Claims.Claim(Claims.Subject, user.Id.ToString()));
+            identity.AddClaim(new System.Security.Claims.Claim(Claims.PreferredUsername, (user.Email ?? user.UserName) ?? throw new InvalidOperationException()));
+            identity.AddClaim(new System.Security.Claims.Claim(Claims.Audience, "Resource"));
+            identity.AddClaim(new System.Security.Claims.Claim("some-claim", "some-value"));
 
             // Setting destinations of claims i.e., identity token or access token
 

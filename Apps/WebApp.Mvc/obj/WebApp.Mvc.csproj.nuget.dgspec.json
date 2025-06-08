@@ -59,17 +59,21 @@
                 "NU1605"
               ]
             },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[9.0.5, )"
+            },
             "Microsoft.Identity.Web": {
               "target": "Package",
-              "version": "[3.9.1, )"
+              "version": "[3.9.3, )"
             },
             "Microsoft.Identity.Web.DownstreamApi": {
               "target": "Package",
-              "version": "[3.9.1, )"
+              "version": "[3.9.3, )"
             },
             "Microsoft.Identity.Web.UI": {
               "target": "Package",
-              "version": "[3.9.1, )"
+              "version": "[3.9.3, )"
             },
             "NetEscapades.AspNetCore.SecurityHeaders": {
               "target": "Package",

@@ -61,15 +61,15 @@
             },
             "Microsoft.Identity.Web": {
               "target": "Package",
-              "version": "[3.9.1, )"
+              "version": "[3.9.3, )"
             },
             "Microsoft.Identity.Web.DownstreamApi": {
               "target": "Package",
-              "version": "[3.9.1, )"
+              "version": "[3.9.3, )"
             },
             "Microsoft.Identity.Web.UI": {
               "target": "Package",
-              "version": "[3.9.1, )"
+              "version": "[3.9.3, )"
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",

@@ -52,7 +52,7 @@ public class RefreshService(
                 return new AuthRefreshResult(result.access_token, result.refresh_token, result.expires_in);
             }
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             if (logoutService != null) await logoutService.LogoutAsync();
             return new AuthRefreshResult(ExceptionThrown);

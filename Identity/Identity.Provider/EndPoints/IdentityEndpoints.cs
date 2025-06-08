@@ -1,10 +1,13 @@
 using Identity.Provider.EndPoints.Authentication;
 using Identity.Provider.EndPoints.Authenticator;
 using Identity.Provider.EndPoints.Authorization;
+using Identity.Provider.EndPoints.Claim;
 using Identity.Provider.EndPoints.Client;
 using Identity.Provider.EndPoints.CorsPolicy;
 using Identity.Provider.EndPoints.ExternalCallback;
 using Identity.Provider.EndPoints.ExternalLogin;
+using Identity.Provider.EndPoints.permission;
+using Identity.Provider.EndPoints.Role;
 using Identity.Provider.EndPoints.Scope;
 using Identity.Provider.EndPoints.Status;
 using Identity.Provider.EndPoints.Users;
@@ -45,15 +48,15 @@ public static class IdentityEndpoints
         //
         // var currentUserGroup = app.MapGroup("users/Current").WithTags("Current Users").WithOpenApi();
         // currentUserGroup.MapCurrentUserEndpoints();
-        //
-        // var roleGroup = app.MapGroup("roles").WithTags("Roles").WithOpenApi();
-        // roleGroup.MapRoleEndpoints();
-        //
-        // var roleClaimGroup = app.MapGroup("roles").WithTags("Role Claims").WithOpenApi();
-        // roleClaimGroup.MapRoleClaimEndpoints();
-        //
-        // var rolePermissionGroup = app.MapGroup("roles").WithTags("Roles Permissions").WithOpenApi();
-        // rolePermissionGroup.MapRolePermissionEndpoints();
+        
+        var roleGroup = app.MapGroup("roles").WithTags("Roles").WithOpenApi();
+        roleGroup.MapRoleEndpoints();
+        
+        var roleClaimGroup = app.MapGroup("roles").WithTags("Role Claims").WithOpenApi();
+        roleClaimGroup.MapRoleClaimEndpoints();
+        
+        var rolePermissionGroup = app.MapGroup("roles").WithTags("Roles Permissions").WithOpenApi();
+        rolePermissionGroup.MapRolePermissionEndpoints();
         
         
         var clientGroup = app.MapGroup("applications").WithTags("Client").WithOpenApi();

@@ -8,7 +8,7 @@ public static class AuthenticatorHelper
 {
     private const string AuthenticatorUriFormat = "otpauth://totp/{0}:{1}?secret={2}&issuer={0}&digits=6";
     
-    private  static UrlEncoder urlEncoder;
+    private  static UrlEncoder _urlEncoder = UrlEncoder.Default;
     
     public static string FormatKey(string unformattedKey)
     {
@@ -32,8 +32,8 @@ public static class AuthenticatorHelper
         return string.Format(
             CultureInfo.InvariantCulture,
             AuthenticatorUriFormat,
-            urlEncoder.Encode("OpenIdDict-Identity"), // "Pixel-Identity""
-            urlEncoder.Encode(email),
+            _urlEncoder.Encode("OpenIdDict-Identity"), // "Pixel-Identity""
+            _urlEncoder.Encode(email),
             unformattedKey);
     }
 }

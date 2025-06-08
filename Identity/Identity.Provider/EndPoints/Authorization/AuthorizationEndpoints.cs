@@ -1,7 +1,6 @@
 using System.Security.Claims;
 using BuildingBlocks.Common.Extensions;
 using Identity.Core.Entities;
-
 using Identity.Provider.Endpoints.Authorization.Handlers;
 using Identity.Provider.EndPoints.Authorization.Handlers;
 using Microsoft.AspNetCore;

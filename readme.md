@@ -15,7 +15,7 @@
    
 5. Client.Infrastructure:  
     * a shared libs between clients
-    * Using OpenApi to auto generate codde
+    * Using OpenApi to auto generate code
 
 6. OpenIdDict MudBlazor Admin UI: -- Coming soon
     
@@ -40,7 +40,7 @@ dotnet ef database update
 
 dotnet dev-certs https --trust  
 
- dotnet ef migrations add "Add Identity Schema" --project ../Identity.Infrastructure/ --context ApplicationDbContext --output-dir Data/Migrations
+dotnet ef migrations add "Add Identity Schema" --project ../Identity.Infrastructure/ --context ApplicationDbContext --output-dir Data/Migrations
 
 
 1. SETUP

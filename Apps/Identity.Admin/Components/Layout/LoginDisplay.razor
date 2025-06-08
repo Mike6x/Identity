@@ -10,7 +10,7 @@
             <ChildContent>
                 <MudMenuItem id="profileMenuItem" Href="./account/profile"  IconColor="Color.Tertiary" Icon="@Icons.Material.Filled.PeopleAlt">Profile</MudMenuItem>
                 <MudMenuItem id="signOutMenuItem" IconColor="Color.Tertiary" Icon="@Icons.Material.Filled.Logout">
-                    <form action="Account/Logout" method="post">
+                    <form action="/account/logout" method="post">
                         <AntiforgeryToken />
                         <MudTextField InputType="InputType.Hidden" @bind-Value="_currentUrl" For="@(() => _currentUrl)"/>
                         <MudButton 

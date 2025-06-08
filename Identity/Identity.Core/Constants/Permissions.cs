@@ -24,7 +24,7 @@ public static class Permissions
         return typeof(Permissions)
             .GetFields(System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static | System.Reflection.BindingFlags.FlattenHierarchy)
             .Where(fi => fi.IsLiteral && !fi.IsInitOnly && fi.FieldType == typeof(string))
-            .Select(x => (string)x.GetValue(null))
+            .Select(x => (string)x.GetValue(null)!)
             .ToList()
             .AsReadOnly();
     }

@@ -19,7 +19,7 @@ public class IdentityRoleClaim : IdentityRoleClaim<Guid>
 
     public IdentityRoleClaim()
     {
-
+        
     }
 
     /// <inheritdoc/>  

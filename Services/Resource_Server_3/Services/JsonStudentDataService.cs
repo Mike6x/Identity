@@ -6,7 +6,7 @@ namespace Resource_Server_3.Services;
 public class JsonStudentDataService(IWebHostEnvironment environment) : IStudentService
 {
         
-        private List<Student>? _mockData;
+        private List<Student>? _mockData = [];
         private readonly string _jsonFilePath = Path.Combine(environment.ContentRootPath, "Data", "Students.api.Data.json");
         private static readonly SemaphoreSlim FileReadLock = new(1, 1);
 
@@ -109,36 +109,37 @@ public class JsonStudentDataService(IWebHostEnvironment environment) : IStudentS
         {
             await EnsureDataLoadedAsync();
             
+            
             var filteredStudents = _mockData?.AsQueryable();
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                filteredStudents = filteredStudents.Where(s => s.FirstName.ToLower().Contains(searchTerm.ToLower()) || s.Major.ToLower().Contains(searchTerm.ToLower()));
+                filteredStudents = filteredStudents?.Where(s => s.Major != null && (s.FirstName.ToLower().Contains(searchTerm.ToLower()) || s.Major.ToLower().Contains(searchTerm.ToLower())));
             }
 
             if (minAge.HasValue)
             {
-                filteredStudents = filteredStudents.Where(s => s.Age >= minAge.Value);
+                filteredStudents = filteredStudents?.Where(s => s.Age >= minAge.Value);
             }
 
             if (maxAge.HasValue)
             {
-                filteredStudents = filteredStudents.Where(s => s.Age <= maxAge.Value);
+                filteredStudents = filteredStudents?.Where(s => s.Age <= maxAge.Value);
             }
 
             if (!string.IsNullOrEmpty(sortBy))
             {
                 if (sortBy == "name")
                 {
-                    filteredStudents = sortOrder == "desc" ? filteredStudents.OrderByDescending(s => s.FirstName) : filteredStudents.OrderBy(s => s.FirstName);
+                    filteredStudents = sortOrder == "desc" ? filteredStudents?.OrderByDescending(s => s.FirstName) : filteredStudents?.OrderBy(s => s.FirstName);
                 }
                 else if (sortBy == "age")
                 {
-                    filteredStudents = sortOrder == "desc" ? filteredStudents.OrderByDescending(s => s.Age) : filteredStudents.OrderBy(s => s.Age);
+                    filteredStudents = sortOrder == "desc" ? filteredStudents?.OrderByDescending(s => s.Age) : filteredStudents?.OrderBy(s => s.Age);
                 }
             }
 
-            return filteredStudents.ToList();
+            return filteredStudents != null ? filteredStudents.ToList() : [];
         }
         
         public async Task<IEnumerable<Student>> GetAllAsync()

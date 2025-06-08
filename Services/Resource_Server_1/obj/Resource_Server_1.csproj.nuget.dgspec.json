@@ -426,13 +426,17 @@
               "target": "Package",
               "version": "[9.0.5, )"
             },
-            "Microsoft.Identity.Web": {
+            "Microsoft.Extensions.Configuration.Abstractions": {
               "target": "Package",
-              "version": "[3.9.0, )"
+              "version": "[9.0.5, )"
             },
-            "Microsoft.Identity.Web.DownstreamApi": {
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
-              "version": "[3.9.0, )"
+              "version": "[9.0.5, )"
+            },
+            "Microsoft.Extensions.Http": {
+              "target": "Package",
+              "version": "[9.0.5, )"
             },
             "NSwag.AspNetCore": {
               "target": "Package",

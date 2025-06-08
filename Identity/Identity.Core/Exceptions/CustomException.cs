@@ -2,7 +2,7 @@
 
 public class CustomException : BaseException
 {
-    public CustomException(string message, string errorCode = null, object[] parameters = null)
+    public CustomException(string message, string errorCode, object[] parameters )
         : base(message, errorCode, parameters)
     {
     }

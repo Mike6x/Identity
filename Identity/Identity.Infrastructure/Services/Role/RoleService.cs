@@ -95,7 +95,7 @@ public sealed partial class RoleService(RoleManager<AppRole> roleManager,
         if (role != null)
         {
             role.Name = request.Name;
-            role.Description = request.Description;
+            role.Description = request.Description ?? string.Empty;
             await roleManager.UpdateAsync(role);
         }
         else
@@ -142,7 +142,7 @@ public sealed partial class RoleService(RoleManager<AppRole> roleManager,
         if(exists != null) throw new ConflictException($"Role: {request.Name} already existed.");
         
         role.Name = request.Name;
-        role.Description = request.Description;
+        role.Description = request.Description ?? string.Empty;
         var result = await roleManager.UpdateAsync(role);
        
         if (!result.Succeeded) throw new InternalServerException("CreateRoleAsync failed. ");

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "VC4moU5exW4=",
+  "dgSpecHash": "2Eiap0OUfhY=",
   "success": true,
   "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/Identity.Admin/Identity.Admin.csproj",
   "expectedPackageFiles": [
@@ -13,7 +13,7 @@
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components.web/9.0.1/microsoft.aspnetcore.components.web.9.0.1.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.metadata/9.0.1/microsoft.aspnetcore.metadata.9.0.1.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.extensions.dependencyinjection/9.0.1/microsoft.extensions.dependencyinjection.9.0.1.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.1/microsoft.extensions.dependencyinjection.abstractions.9.0.1.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.5/microsoft.extensions.dependencyinjection.abstractions.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.extensions.localization/9.0.1/microsoft.extensions.localization.9.0.1.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.extensions.localization.abstractions/9.0.1/microsoft.extensions.localization.abstractions.9.0.1.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.extensions.logging.abstractions/9.0.1/microsoft.extensions.logging.abstractions.9.0.1.nupkg.sha512",

@@ -4,7 +4,7 @@ public class ValidationException : BaseException
 {
     public IDictionary<string, string[]> Errors { get; }
 
-    public ValidationException(string message, IDictionary<string, string[]> errors = null)
+    public ValidationException(string message, IDictionary<string, string[]> errors)
         : base(message, "ValidationError")
     {
         Errors = errors;

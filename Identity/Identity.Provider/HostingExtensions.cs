@@ -1,3 +1,4 @@
+using BuildingBlocks;
 using Identity.Infrastructure.Data.Workers;
 using Identity.Infrastructure.Services;
 using Identity.Provider.Configurations;
@@ -11,6 +12,8 @@ internal static class HostingExtensions
     
     public static IServiceCollection AddAuthServices(this IServiceCollection services, IConfiguration configuration)
     {
+        services.AddBlockServices(configuration);
+        
         services.AddDatabaseConfig(configuration);
         
         services.AddIdentityConfig(configuration);
@@ -43,6 +46,8 @@ internal static class HostingExtensions
             app.UseExceptionHandler("/Error");
             app.UseHsts();
         }
+
+        app.UseBlockServices();
         
         app.UseSwagger();
         

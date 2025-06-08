@@ -18,10 +18,10 @@ public class ResourcesController : Controller
     
     [Authorize]
     [HttpGet]
-    public async Task<IActionResult> GetCurrentUserName()
+    public Task<IActionResult> GetCurrentUserName()
     {
         var user = HttpContext.User?.Identity?.Name;
-        return Ok($"user: {user}");
+        return Task.FromResult<IActionResult>(Ok($"user: {user}"));
     }
     
 }
