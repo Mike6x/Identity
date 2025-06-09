@@ -6,6 +6,7 @@ public static class CorsPolicyEndpoints
 {
     public static IEndpointRouteBuilder MapCorsPolicyEndpoints(this IEndpointRouteBuilder app)
     {
+        app.MapLoadOriginsEndpoint();
         app.MapGetOriginsEndpoint();
         app.MapRefreshOriginsEndpoint();
         app.MapAddOriginsEndpoint();
@@ -28,6 +29,17 @@ public static class AddOriginsEndpoint
     }
 }
 
+public static class LoadOriginsEndpoint
+{
+    public static RouteHandlerBuilder MapLoadOriginsEndpoint(this IEndpointRouteBuilder endpoints)
+    {
+        return endpoints.MapGet("/load", LoadOrigins.Handler )
+            .WithName(nameof(LoadOriginsEndpoint))
+            .WithSummary("Get a list of origines in AppSettings.json")
+            // .RequirePermission("Permissions.Handlers.View")
+            .WithDescription("Retrieve a list of initial origins.");
+    }
+}
 public static class GetOriginsEndpoint
 {
     public static RouteHandlerBuilder MapGetOriginsEndpoint(this IEndpointRouteBuilder endpoints)

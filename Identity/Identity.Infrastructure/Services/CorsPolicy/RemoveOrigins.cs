@@ -1,6 +1,6 @@
 using Identity.Core.Features.CorsPolicy;
 using Microsoft.AspNetCore.Cors.Infrastructure;
-using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Http;
 
 namespace Identity.Infrastructure.Services.CorsPolicy;
 
@@ -10,11 +10,14 @@ namespace Identity.Infrastructure.Services.CorsPolicy;
 /// <returns></returns>
 public static class RemoveOrigins
 {
-    public static Task<List<string>> Handler( 
+    public static async Task<List<string>> Handler( 
+                HttpContext httpContext,
+                ICorsPolicyProvider corsPolicyProvider,
                 AddOrRemoveOriginsCommand request,
-                IOptions<CorsOptions> corsOptions)
+                CancellationToken cancellationToken)
             {
-                var defaultCorsPolicy = corsOptions.Value.GetPolicy(corsOptions.Value.DefaultPolicyName)
+                
+                var defaultCorsPolicy = await corsPolicyProvider.GetPolicyAsync(httpContext, null) 
                                         ?? new Microsoft.AspNetCore.Cors.Infrastructure.CorsPolicy();
                 
                 foreach (var uri in request.Origins.Select(s => new Uri(s)))
@@ -26,7 +29,6 @@ public static class RemoveOrigins
                     }
                 }
 
-                return Task.FromResult(defaultCorsPolicy.Origins.ToList());
+                return defaultCorsPolicy.Origins.ToList();
             }
-    
 }

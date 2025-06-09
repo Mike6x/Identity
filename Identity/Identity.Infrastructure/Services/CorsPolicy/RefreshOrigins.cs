@@ -19,7 +19,7 @@ public static class RefreshOrigins
    
                 defaultCorsPolicy.Origins.Clear();
                 
-                var allowedOrigins = configuration.GetSection("CorsOptions:Origins").Get<string[]>() ?? [];
+                var allowedOrigins = configuration.GetSection("CorsOptions:AllowedOrigins").Get<string[]>() ?? [];
                 foreach (var origin in allowedOrigins)
                 {
                     defaultCorsPolicy.Origins.Add(origin);
