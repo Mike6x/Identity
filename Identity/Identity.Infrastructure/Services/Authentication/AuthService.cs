@@ -4,6 +4,7 @@ using BuildingBlocks.Exceptions;
 using Identity.Core.Entities;
 using Identity.Core.Features.Authentication;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
@@ -69,18 +70,17 @@ public class AuthService(
 
         return !result.Succeeded ? Results.Unauthorized() : Results.Ok($"{user.UserName} Logged In");
     }
-    
-    public async Task<IResult> LogOutAsync(string? returnUrl)
+
+    public async Task LogOutAsync()
     {
         await signInManager.SignOutAsync();
+        // return Results.SignOut();
         
-        if(string.IsNullOrWhiteSpace(returnUrl)) returnUrl ="/";
-        
-        return Results.SignOut(
-            authenticationSchemes: [OpenIddictServerAspNetCoreDefaults.AuthenticationScheme],
-            properties: new AuthenticationProperties { RedirectUri = returnUrl });
-
+        // return Results.SignOut(
+        //     authenticationSchemes: [OpenIddictServerAspNetCoreDefaults.AuthenticationScheme],
+        //     properties: new AuthenticationProperties { RedirectUri = returnUrl });
     }
+    
     
     //https://github.com/RockSolidKnowledge/Samples.OpenIddict.AdminUI/blob/main/Rsk.Samples.OpenIddict.AdminUI/Controllers/AuthenticationController.cs
     public async Task<IResult> LogInCallBackAsync(HttpContext httpContext)

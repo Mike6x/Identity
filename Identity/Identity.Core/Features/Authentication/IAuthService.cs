@@ -6,7 +6,7 @@ namespace Identity.Core.Features.Authentication;
 public interface IAuthService
 {
     Task<IResult> LogInAsync(LoginRequest request);
-    Task <IResult> LogOutAsync(string? returnUrl);
+    Task LogOutAsync();
     
     Task<IResult> LogInCallBackAsync(HttpContext httpContext);
     

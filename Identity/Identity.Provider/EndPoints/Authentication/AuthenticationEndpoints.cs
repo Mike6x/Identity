@@ -9,10 +9,8 @@ public static class AuthenticationEndpoints
 {
     public static IEndpointRouteBuilder MapAuthenticationEndpoints(this IEndpointRouteBuilder app)
     {
-
         app.MapLogInEndpoint();
         app.MapLogOutEndpoint();
-        app.MapSignOutEndpoint();
         
         app.MapGetLogInCallBackEndpoint();
         app.MapLogInCallBackEndpoint();
@@ -42,32 +40,13 @@ public static class LogOutEndpoint
 {
     public static RouteHandlerBuilder MapLogOutEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        return endpoints.MapPost("/logout",
-                (string? returnUrl, IAuthService service, CancellationToken cancellationToken)
-                    => service.LogOutAsync(returnUrl))
+        return endpoints.MapPost("/logout", (IAuthService service, CancellationToken cancellationToken)
+                    => service.LogOutAsync())
             .WithName(nameof(LogOutEndpoint))
             .WithSummary("Log Out")
             .WithDescription("Log Out.")
             .RequireAuthorization();
     }
-}
-
-public static class SigOutEndpoint
-{
-    public static RouteHandlerBuilder MapSignOutEndpoint(this IEndpointRouteBuilder endpoints)
-    {
-        return endpoints.MapPost("/signout", LogoutHandler)
-            .WithName(nameof(SigOutEndpoint))
-            .WithSummary("Log Out")
-            .WithDescription("Log Out.")
-            .RequireAuthorization();
-    }
-    
-    private static async Task LogoutHandler(SignInManager<AppUser> signInManager)
-    {
-        await signInManager.SignOutAsync();
-    }
-
 }
 
 
