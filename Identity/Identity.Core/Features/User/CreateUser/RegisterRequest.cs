@@ -1,4 +1,4 @@
-﻿namespace Identity.Core.Dtos.Accounts;
+﻿namespace Identity.Core.Features.User.CreateUser;
 
 public class RegisterRequest
 {

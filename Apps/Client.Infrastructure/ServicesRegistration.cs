@@ -1,7 +1,4 @@
 ﻿using Client.Infrastructure.Api;
-using Client.Infrastructure.Infra;
-using Client.Infrastructure.Services;
-using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Client.Infrastructure;

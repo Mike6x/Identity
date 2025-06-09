@@ -1,4 +1,4 @@
-namespace Identity.Core.Dtos.Authentications;
+namespace Identity.Core.Features.Authentication;
 
 public class AuthorizationServiceResult
 {

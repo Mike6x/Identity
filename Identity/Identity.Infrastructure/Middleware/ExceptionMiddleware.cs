@@ -1,6 +1,5 @@
 ﻿using System.Net;
 using System.Text.Json;
-using Identity.Core.Dtos;
 using Identity.Core.Exceptions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;

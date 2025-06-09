@@ -4,9 +4,9 @@ $currentDirectory = Get-Location
 Write-Host "Current Directory is $currentDirectory `n"
 $rootDirectory = git rev-parse --show-toplevel
 Write-Host "Root Directory is $rootDirectory `n"
-$hostDirectory = Join-Path -Path $rootDirectory -ChildPath 'Identity.UI.Client'
+$hostDirectory = Join-Path -Path $rootDirectory -ChildPath 'Apps\Identity.Admin'
 Write-Host "Host Directory is $hostDirectory `n"
-$infrastructurePrj = Join-Path -Path $rootDirectory -ChildPath 'Identity.UI.Infrastructure/Identity.UI.Infrastructure.csproj'
+$infrastructurePrj = Join-Path -Path $rootDirectory -ChildPath 'Apps/Client.Infrastructure/Client.Infrastructure.csproj'
 Write-Host "infrastructurePrj Directory is $infrastructurePrj `n"
 
 Write-Host "Make sure you have run the WebAPI project. `n"

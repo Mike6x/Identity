@@ -1,4 +1,4 @@
-﻿namespace Identity.Core.Dtos;
+﻿namespace Identity.Core.Exceptions;
 
 public class ErrorResponse
 {

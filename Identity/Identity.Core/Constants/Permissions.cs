@@ -1,4 +1,4 @@
-﻿namespace IdentityServer.Core.Constants;
+﻿namespace Identity.Core.Constants;
 
 public static class Permissions
 {
