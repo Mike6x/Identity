@@ -20,7 +20,6 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/BlazorWeb.Wasm.runtimeconfig.json
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/BlazorWeb.Wasm.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/BlazorWeb.Wasm.pdb
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Blazored.LocalStorage.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.AspNetCore.Authorization.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/bin/Debug/net9.0/Microsoft.AspNetCore.Components.dll

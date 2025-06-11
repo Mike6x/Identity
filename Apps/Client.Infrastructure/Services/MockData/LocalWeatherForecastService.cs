@@ -25,7 +25,4 @@ namespace Client.Infrastructure.Services.MockData
         
     }
     
-
-    
-    
 }

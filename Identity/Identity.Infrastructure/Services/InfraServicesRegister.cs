@@ -1,3 +1,4 @@
+using BuildingBlocks.Auth;
 using BuildingBlocks.Identity.Users.Abstractions;
 using Identity.Core.Features.Authentication;
 using Identity.Core.Features.Client;
@@ -21,13 +22,14 @@ public static class InfraServicesRegister
 {
     public static IServiceCollection AddInfraServices(this IServiceCollection services, IConfiguration configuration)
     {
-                
+        services.AddScoped<CurrentUserMiddleware>();        
         services.AddScoped<ICurrentUser, CurrentUser>();
         services.AddScoped(sp => (ICurrentUserInitializer)sp.GetRequiredService<ICurrentUser>());
-        services.AddTransient<IUserService, UserService>();
         
+        services.AddTransient<IUserService, UserService>();
         services.AddTransient<IRoleService, RoleService>();
         services.AddTransient<IScopeService, ScopeService>();
+        
         services.AddTransient<IApplicationService, ApplicationService>();
         
         services.AddTransient<IAuthService, AuthService>();

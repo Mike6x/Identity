@@ -1,3 +1,4 @@
+using System.Globalization;
 using System.Net.Http.Headers;
 
 namespace Identity.Admin.Configurations;
@@ -13,9 +14,14 @@ public static class HttpClientRegistration
         {
             services.AddHttpClient("authorityClient", client => 
             { 
-                client.BaseAddress = new Uri(authorityUrl);
+                client.DefaultRequestHeaders.AcceptLanguage.Clear();
+                client.DefaultRequestHeaders.AcceptLanguage.ParseAdd(CultureInfo.DefaultThreadCurrentCulture?.TwoLetterISOLanguageName);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+                client.BaseAddress = new Uri(authorityUrl);
+        
             }).AddHttpMessageHandler<TokenHandler>();
+            
+            services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("authorityClient"));
         }
         
         var gatewayUrl = configuration["OIDCSettings:ApiGateway"];

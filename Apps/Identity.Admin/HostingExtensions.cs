@@ -1,4 +1,5 @@
 using Blazored.LocalStorage;
+using Client.Infrastructure;
 using Identity.Admin.Components;
 using Identity.Admin.Configurations;
 using Identity.Admin.Endpoints;
@@ -14,6 +15,8 @@ internal static class HostingExtensions
 {
     public static IServiceCollection AddServices(this IServiceCollection services, IConfiguration configuration, IWebHostEnvironment environment)
     {
+        services.AddBlazoredLocalStorage();
+        
         services.AddMudServices(config =>
         {
             config.SnackbarConfiguration.PositionClass = Defaults.Classes.Position.TopRight;
@@ -71,7 +74,7 @@ internal static class HostingExtensions
         
         services.RegisterHttpClient(configuration);
         
-        services.AddBlazoredLocalStorage();
+        services.AddInfraServices(configuration);
         
         return services;
     }

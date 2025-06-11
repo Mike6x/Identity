@@ -28,7 +28,7 @@ public interface IUserService
 
     Task<CreateUserResponse> CreateAsync(CreateUserCommand request, string origin, CancellationToken cancellationToken);
     Task<UserDetail> GetAsync(string userId, CancellationToken cancellationToken);
-    Task<UserDto?> GetMeAsync(HttpContext httpContext, CancellationToken cancellationToken);
+    Task<UserDto?> GetMeAsync(ClaimsPrincipal principal, CancellationToken cancellationToken);
     Task<List<UserDetail>> GetAllAsync(CancellationToken cancellationToken);
     Task<PagedList<UserDetail>> SearchAsync(SearchUsersRequest request, CancellationToken cancellationToken);
     Task UpdateAsync(UpdateUserCommand request, string userId, CancellationToken cancellationToken);

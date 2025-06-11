@@ -354,7 +354,6 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Azure.Identity.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Azure.Security.KeyVault.Certificates.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Azure.Security.KeyVault.Secrets.dll
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Blazored.LocalStorage.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/BouncyCastle.Cryptography.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/ClosedXML.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/ClosedXML.Parser.dll
@@ -380,9 +379,6 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.AspNetCore.Authorization.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.AspNetCore.Components.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.AspNetCore.Components.Authorization.dll
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.AspNetCore.Components.Forms.dll
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.AspNetCore.Components.Web.dll
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.AspNetCore.Cryptography.Internal.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
@@ -456,7 +452,6 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.IdentityModel.Validators.dll
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.JSInterop.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.Net.Http.Headers.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.OpenApi.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/bin/Debug/net9.0/Microsoft.SqlServer.Server.dll
@@ -663,7 +658,6 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/obj/Debug/net9.0/scopedcss/Pages/Shared/_Layout.cshtml.rz.scp.css
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/obj/Debug/net9.0/scopedcss/bundle/Identity.Provider.styles.css
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/obj/Debug/net9.0/scopedcss/projectbundle/Identity.Provider.bundle.scp.css
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/obj/Debug/net9.0/compressed/f32kn295nz-gcvjxldlff.gz
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/obj/Debug/net9.0/compressed/u0ixatoqbu-lugek5hnai.gz
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/obj/Debug/net9.0/compressed/bm7nqr4z8f-61n19gt1b8.gz
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/obj/Debug/net9.0/compressed/1fpollxdc1-fr7q2aak1r.gz

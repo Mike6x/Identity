@@ -9,11 +9,11 @@ public static class GetMeEndpoint
     {
         return endpoints.MapGet("/me", async (HttpContext httpContext, IUserService service, CancellationToken cancellationToken) =>
             {
-                if (httpContext.User?.Identity?.IsAuthenticated != true)
+                if (httpContext.User.Identity?.IsAuthenticated != true)
                 {
                     throw new UnauthorizedException();
                 }
-                return await service.GetMeAsync(httpContext, cancellationToken);
+                return await service.GetMeAsync(httpContext.User, cancellationToken);
             })
             .WithName(nameof(GetMeEndpoint))
             .WithSummary("Get current user information based on token")

@@ -49,15 +49,7 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
-            "Blazored.LocalStorage": {
-              "target": "Package",
-              "version": "[4.5.0, )"
-            },
             "Microsoft.AspNetCore.Components.Authorization": {
-              "target": "Package",
-              "version": "[9.0.5, )"
-            },
-            "Microsoft.AspNetCore.Components.WebAssembly.Authentication": {
               "target": "Package",
               "version": "[9.0.5, )"
             },

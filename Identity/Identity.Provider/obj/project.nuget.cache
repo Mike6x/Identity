@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "PeWHifHMPoU=",
+  "dgSpecHash": "gcMS9vhpZGA=",
   "success": true,
   "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/Identity.Provider.csproj",
   "expectedPackageFiles": [
@@ -12,7 +12,6 @@
     "/Users/tuanpa/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/azure.security.keyvault.certificates/4.6.0/azure.security.keyvault.certificates.4.6.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/azure.security.keyvault.secrets/4.6.0/azure.security.keyvault.secrets.4.6.0.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/blazored.localstorage/4.5.0/blazored.localstorage.4.5.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/bouncycastle.cryptography/2.5.1/bouncycastle.cryptography.2.5.1.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/closedxml/0.105.0/closedxml.0.105.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/closedxml.parser/2.0.0/closedxml.parser.2.0.0.nupkg.sha512",
@@ -40,9 +39,6 @@
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components/9.0.5/microsoft.aspnetcore.components.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components.analyzers/9.0.5/microsoft.aspnetcore.components.analyzers.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components.authorization/9.0.5/microsoft.aspnetcore.components.authorization.9.0.5.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components.forms/9.0.5/microsoft.aspnetcore.components.forms.9.0.5.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components.web/9.0.5/microsoft.aspnetcore.components.web.9.0.5.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components.webassembly.authentication/9.0.5/microsoft.aspnetcore.components.webassembly.authentication.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.cryptography.internal/9.0.5/microsoft.aspnetcore.cryptography.internal.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/9.0.5/microsoft.aspnetcore.cryptography.keyderivation.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.diagnostics.entityframeworkcore/9.0.5/microsoft.aspnetcore.diagnostics.entityframeworkcore.9.0.5.nupkg.sha512",
@@ -121,7 +117,6 @@
     "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/8.12.0/microsoft.identitymodel.protocols.openidconnect.8.12.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.tokens/8.12.0/microsoft.identitymodel.tokens.8.12.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.validators/8.12.0/microsoft.identitymodel.validators.8.12.0.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/microsoft.jsinterop/9.0.5/microsoft.jsinterop.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.net.http.headers/9.0.2/microsoft.net.http.headers.9.0.2.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.openapi/1.6.17/microsoft.openapi.1.6.17.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.sqlserver.server/1.0.0/microsoft.sqlserver.server.1.0.0.nupkg.sha512",

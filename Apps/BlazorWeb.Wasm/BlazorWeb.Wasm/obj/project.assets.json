@@ -2,15 +2,6 @@
   "version": 3,
   "targets": {
     "net9.0": {
-      "Blazored.LocalStorage/4.5.0": {
-        "type": "package",
-        "compile": {
-          "lib/net8.0/Blazored.LocalStorage.dll": {}
-        },
-        "runtime": {
-          "lib/net8.0/Blazored.LocalStorage.dll": {}
-        }
-      },
       "Microsoft.AspNetCore.Authentication.OpenIdConnect/9.0.5": {
         "type": "package",
         "dependencies": {
@@ -740,6 +731,7 @@
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
           "Client.Infrastructure": "1.0.0",
+          "Microsoft.AspNetCore.Components.Authorization": "9.0.5",
           "Microsoft.AspNetCore.Components.WebAssembly": "9.0.5",
           "Microsoft.AspNetCore.Components.WebAssembly.Authentication": "9.0.5",
           "Microsoft.Extensions.Http": "9.0.5"
@@ -755,10 +747,8 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
-          "Blazored.LocalStorage": "4.5.0",
           "Identity.Shared": "1.0.0",
           "Microsoft.AspNetCore.Components.Authorization": "9.0.5",
-          "Microsoft.AspNetCore.Components.WebAssembly.Authentication": "9.0.5",
           "Microsoft.Extensions.Configuration.Abstractions": "9.0.5",
           "Microsoft.Extensions.Http": "9.0.5",
           "System.IdentityModel.Tokens.Jwt": "8.12.0"
@@ -783,22 +773,6 @@
     }
   },
   "libraries": {
-    "Blazored.LocalStorage/4.5.0": {
-      "sha512": "6nZuJwA7zNIKx83IsObiHXZb09ponJOpCClU3en+hI8ZFvrOKXeOw+H7TegQZQrvdR1n9fkrVkEBQZg8vx6ZTw==",
-      "type": "package",
-      "path": "blazored.localstorage/4.5.0",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "README.md",
-        "blazored.localstorage.4.5.0.nupkg.sha512",
-        "blazored.localstorage.nuspec",
-        "icon.png",
-        "lib/net6.0/Blazored.LocalStorage.dll",
-        "lib/net7.0/Blazored.LocalStorage.dll",
-        "lib/net8.0/Blazored.LocalStorage.dll"
-      ]
-    },
     "Microsoft.AspNetCore.Authentication.OpenIdConnect/9.0.5": {
       "sha512": "bTZm2vTbJGTTtuW41E7sBP1p2tMgKQBbKULBuE6YvtwOK4/gzjXcD2n9pfWfloayfOvxCRwJYJ5deJhuQiIOeg==",
       "type": "package",

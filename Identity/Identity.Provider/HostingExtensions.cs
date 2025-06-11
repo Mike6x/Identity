@@ -1,4 +1,5 @@
 using BuildingBlocks;
+using BuildingBlocks.Auth;
 using Identity.Infrastructure.Data.Workers;
 using Identity.Infrastructure.Services;
 using Identity.Provider.Configurations;
@@ -62,6 +63,9 @@ internal static class HostingExtensions
         app.UseAuthentication();
         app.UseAuthorization();
 
+        // Current user middleware
+        app.UseMiddleware<CurrentUserMiddleware>();
+        
         app.MapIdentityEndpoints();
         
         app.MapStaticAssets();

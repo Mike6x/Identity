@@ -8,18 +8,39 @@
                 <MudAvatar>@context.User.Identity?.Name?.ToUpper().First()</MudAvatar>
             </ActivatorContent>
             <ChildContent>
-                <MudMenuItem id="profileMenuItem" Href="./account/profile"  IconColor="Color.Tertiary" Icon="@Icons.Material.Filled.PeopleAlt">Profile</MudMenuItem>
-                <MudMenuItem id="signOutMenuItem" IconColor="Color.Tertiary" Icon="@Icons.Material.Filled.Logout">
-                    <form action="/account/logout" method="post">
-                        <AntiforgeryToken />
-                        <MudTextField InputType="InputType.Hidden" @bind-Value="_currentUrl" For="@(() => _currentUrl)"/>
-                        <MudButton 
-                            ButtonType="ButtonType.Submit" 
-                            Variant="Variant.Text" 
-                            Color="Color.Inherit">Sign out
+                <div class="py-2" style="min-width: 220px">
+                    <MudMenuItem id="profileMenuItem" Href="./account/profile" IconColor="Color.Tertiary" Icon="@Icons.Material.Filled.PeopleAlt">Profile</MudMenuItem>
+                    
+                    <MudMenuItem OnClick="Profile">
+                        <div class="d-flex">
+                            <MudIcon Class="mx-2" Icon="@Icons.Material.Filled.Person" />
+                            <MudText>Account</MudText>
+                        </div>
+                    </MudMenuItem>
+                    
+                    <div class="mt-4 mx-4">
+                        <MudButton Color="Color.Error" FullWidth="true" StartIcon="@Icons.Material.Filled.Logout" DropShadow="false"
+                                   Variant="Variant.Filled" OnClick="Logout">
+                            Logout
                         </MudButton>
-                    </form>
-                </MudMenuItem>
+                    </div>
+                    <div class="mt-4 mx-4">
+                        <form action="/account/logout" method="post">
+                            <AntiforgeryToken/>
+                            <MudTextField InputType="InputType.Hidden" @bind-Value="_currentUrl" For="@(() => _currentUrl)"/>
+                            <MudButton
+                                ButtonType="ButtonType.Submit"
+                                Color="Color.Inherit"
+                                FullWidth="true"
+                                StartIcon="@Icons.Material.Filled.Logout"
+                                IconColor="Color.Tertiary"
+                                DropShadow="false"
+                                Variant="Variant.Filled">
+                                Sign out
+                            </MudButton>
+                        </form>
+                    </div>
+                </div>
             </ChildContent>
         </MudMenu>
     </Authorized>
@@ -54,5 +75,23 @@
     {
         Navigation.LocationChanged -= OnLocationChanged;
     }
+    
+    private void Profile()
+    {
+        Navigation.NavigateTo("/identity/account");
+    }
+    
+    private void Logout()
+    {
+        var parameters = new DialogParameters
+        {
+            { nameof(Components.Dialogs.Logout.ContentText), "Do you want to logout from the system?"},
+            { nameof(Components.Dialogs.Logout.ButtonText), "Logout"},
+            { nameof(Components.Dialogs.Logout.Color), Color.Error}
+        };
 
+        var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true };
+        DialogService.Show<Logout>("Logout", parameters, options);
+    }
+    
 }

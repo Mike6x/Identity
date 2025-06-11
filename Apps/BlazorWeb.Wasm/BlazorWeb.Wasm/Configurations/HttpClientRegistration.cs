@@ -75,7 +75,9 @@ public static class HttpClientRegistration
             {
                 var uri = provider.GetRequiredService<BaseUrlProvider>().BaseUrl;
                 client.BaseAddress = new Uri(uri);
-            }).AddHttpMessageHandler<CookieHandler>();
+            })
+            //.AddHttpMessageHandler<CookieHandler>()
+            ;
         
         return services;
     }

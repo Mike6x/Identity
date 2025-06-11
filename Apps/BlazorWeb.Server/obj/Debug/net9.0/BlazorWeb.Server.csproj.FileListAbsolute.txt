@@ -110,14 +110,10 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/BlazorWeb.Server.runtimeconfig.json
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/BlazorWeb.Server.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/BlazorWeb.Server.pdb
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/Blazored.LocalStorage.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/Microsoft.AspNetCore.Authorization.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/Microsoft.AspNetCore.Components.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/Microsoft.AspNetCore.Components.Authorization.dll
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/Microsoft.AspNetCore.Components.Forms.dll
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/Microsoft.AspNetCore.Components.Web.dll
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/Microsoft.AspNetCore.Components.WebAssembly.Authentication.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/Microsoft.AspNetCore.Metadata.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/Microsoft.EntityFrameworkCore.dll
@@ -144,7 +140,6 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/Microsoft.IdentityModel.Tokens.dll
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/Microsoft.JSInterop.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/NetEscapades.AspNetCore.SecurityHeaders.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/NetEscapades.AspNetCore.SecurityHeaders.TagHelpers.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/bin/Debug/net9.0/System.IdentityModel.Tokens.Jwt.dll
@@ -164,7 +159,6 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/obj/Debug/net9.0/scopedcss/Components/Layout/NavMenu.razor.rz.scp.css
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/obj/Debug/net9.0/scopedcss/bundle/BlazorWeb.Server.styles.css
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/obj/Debug/net9.0/scopedcss/projectbundle/BlazorWeb.Server.bundle.scp.css
-/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/obj/Debug/net9.0/compressed/f32kn295nz-gcvjxldlff.gz
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/obj/Debug/net9.0/compressed/rh5e1fgemg-w7mf952350.gz
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/obj/Debug/net9.0/compressed/b30n1fype9-bqjiyaj88i.gz
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Server/obj/Debug/net9.0/compressed/h5298csxwn-c2jlpeoesf.gz

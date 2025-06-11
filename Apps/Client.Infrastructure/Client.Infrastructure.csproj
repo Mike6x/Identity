@@ -7,9 +7,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
       <PackageReference Include="Microsoft.AspNetCore.Components.Authorization" Version="9.0.5" />
-      <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Authentication" Version="9.0.5" />
       <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.5" />
       <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.5" />
       <PackageReference Include="NSwag.MSBuild" Version="14.4.0">
@@ -20,9 +18,11 @@
     </ItemGroup>
 
     <ItemGroup>
+      <Folder Include="Configurations\" />
       <Folder Include="Models\" />
       <Folder Include="Services\Resource_1\" />
       <Folder Include="Services\Resource_2\" />
+      <Folder Include="Services\Resource_3\" />
     </ItemGroup>
 
     <ItemGroup>

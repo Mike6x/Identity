@@ -1,3 +1,4 @@
+using System.Security.Claims;
 using Ardalis.Specification.EntityFrameworkCore;
 using BuildingBlocks.Caching;
 using BuildingBlocks.DataIO;
@@ -101,9 +102,9 @@ public sealed partial class UserService(
         return user.Adapt<UserDetail>();
     }
     
-    public async Task<UserDto?> GetMeAsync(HttpContext httpContext, CancellationToken cancellationToken)
+    public async Task<UserDto?> GetMeAsync(ClaimsPrincipal principal, CancellationToken cancellationToken)
     {
-        var user = await userManager.GetUserAsync(httpContext.User);
+        var user = await userManager.GetUserAsync(principal);
         
         return user == null 
             ? null 

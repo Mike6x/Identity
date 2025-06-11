@@ -1,12 +1,32 @@
 ﻿@using System.Net.Http
 @using System.Net.Http.Json
+
+@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Components.Forms
 @using Microsoft.AspNetCore.Components.Routing
 @using Microsoft.AspNetCore.Components.Web
-@using static Microsoft.AspNetCore.Components.Web.RenderMode
 @using Microsoft.AspNetCore.Components.Web.Virtualization
+@using static Microsoft.AspNetCore.Components.Web.RenderMode
 @using Microsoft.JSInterop
+
+@using Blazored.LocalStorage
 @using MudBlazor
 @using MudBlazor.Services
+
 @using Identity.Admin
 @using Identity.Admin.Components
+@using Identity.Admin.Components.Layout
+@using Identity.Admin.Components.Dialogs
+@using Identity.Admin.Components.General
+@using Identity.Admin.Components.Common
+@using Identity.Admin.Components.Pages
+
+@using Client.Infrastructure.Api
+
+@attribute [Authorize]
+
+@inject NavigationManager Navigation
+@inject ISnackbar Toast
+@inject IDialogService DialogService
+@inject IConfiguration Config
+@* @inject IClientPreferenceManager ClientPreferences *@

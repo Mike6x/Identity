@@ -1,10 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "3X59+aQYiWc=",
+  "dgSpecHash": "H6OQXGdgEKw=",
   "success": true,
   "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm/BlazorWeb.Wasm.csproj",
   "expectedPackageFiles": [
-    "/Users/tuanpa/.nuget/packages/blazored.localstorage/4.5.0/blazored.localstorage.4.5.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.authentication.openidconnect/9.0.5/microsoft.aspnetcore.authentication.openidconnect.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.authorization/9.0.5/microsoft.aspnetcore.authorization.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components/9.0.5/microsoft.aspnetcore.components.9.0.5.nupkg.sha512",
