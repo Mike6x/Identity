@@ -20,7 +20,7 @@
             <MudCardActions Class="d-flex justify-center">
                 <InputFile id="fileInput" OnChange="UploadFiles" hidden accept=".jpg,.jpeg,.png" />
                 <div style="padding-bottom:20px">
-                    <MudButton DropShadow="false" HtmlTag="label" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small"
+                <MudButton DropShadow="false" HtmlTag="label" Variant="Variant.Filled" Color="Color.Primary" Size="Size.Small"
                                StartIcon="@Icons.Material.Filled.CloudUpload" for="fileInput">
                     Upload Picture
                 </MudButton>
@@ -37,7 +37,7 @@
                     </MudButton>
                 }
 
-                    </div>
+                </div>
 
             </MudCardActions>
         </MudCard>
@@ -79,8 +79,11 @@
                     </MudGrid>
                 </MudCardContent>
                 <MudCardActions Class="pb-4 pl-4">
+                    <MudButton DropShadow="false" Variant="Variant.Filled" Color="Color.Error" Class="ml-auto" StartIcon="@Icons.Material.Filled.PeopleAlt" 
+                               OnClick="ViewProfile">View Profile Detail</MudButton>
+                    
                     <MudButton DropShadow="false" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" StartIcon="@Icons.Material.Filled.Save"
-                        ButtonType="ButtonType.Submit">Save Changes</MudButton>
+                               ButtonType="ButtonType.Submit">Save Changes</MudButton>
                 </MudCardActions>
             </MudCard>
         </EditForm>

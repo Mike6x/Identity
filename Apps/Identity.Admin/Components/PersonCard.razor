@@ -1,0 +1,34 @@
+﻿<MudCard Elevation="0" Square="true" Class="@Class" Style="@Style">
+    <MudCardHeader style="padding:10px!important">
+        <CardHeaderAvatar>
+            @if (!string.IsNullOrEmpty(this.ImageUri))
+            {
+                <MudAvatar>
+                    <MudImage Src="@ImageUri.ToString()"></MudImage>
+                </MudAvatar>
+
+            }
+            else if(string.IsNullOrEmpty(this.FullName))
+            {
+                <MudAvatar Size="Size.Medium" Color="Color.Primary">A
+                </MudAvatar>
+            }
+            else
+            {
+                <MudAvatar Size="Size.Medium" Color="Color.Primary">@FullName?.ToUpper().FirstOrDefault()
+                </MudAvatar>
+            }
+        </CardHeaderAvatar>
+        <CardHeaderContent>
+            @if(string.IsNullOrEmpty(this.FullName))
+            {
+                <MudText Typo="Typo.body1">Anonymous</MudText>
+            }
+            else
+            {
+                <MudText Typo="Typo.body1">@FullName</MudText>
+                <MudText Typo="Typo.body2">@Email</MudText>
+            }
+        </CardHeaderContent>
+    </MudCardHeader>
+</MudCard>

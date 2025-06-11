@@ -1,7 +1,6 @@
 ﻿using Client.Infrastructure.Api;
 using Identity.Admin.Components.Dialogs;
 using Identity.Shared.Authorization;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
@@ -21,7 +20,7 @@ public partial class Profile
     private readonly UpdateUserCommand _profileModel = new();
 
     private string? _imageUrl = string.Empty;
-    private string? _userId = string.Empty;
+    private Guid _userId = Guid.Empty;
     
     private char _firstLetterOfName;
 
@@ -32,14 +31,15 @@ public partial class Profile
         if (AuthState != null && (await AuthState).User is { } user)
         {
             var userProfile = await PersonalClient.GetUserByNameEndpointAsync(user.Identity!.Name);
-            _profileModel.Id = userProfile.Id.ToString();
+            _userId  = userProfile.Id;
+            
             _profileModel.Email = userProfile.Email;
             _profileModel.FirstName = userProfile.FirstName;
             _profileModel.LastName = userProfile.LastName;
             _profileModel.PhoneNumber = userProfile.PhoneNumber;
             _profileModel.UserName = userProfile.UserName;
             
-            if (_userId is not null) _profileModel.Id = _userId;
+            _profileModel.Id = _userId.ToString();
         }
 
         if (_profileModel.FirstName?.Length > 0)
@@ -119,4 +119,7 @@ public partial class Profile
             await UpdateProfileAsync();
         }
     }
+    
+    private void ViewProfile() =>
+        Navigation.NavigateTo($"/identity/users/{_userId}/profile");
 }
