@@ -8,7 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+    <PackageReference Include="Mapster" Version="7.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.5" />
+<!--    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.5" />-->
     <PackageReference Include="MudBlazor" Version="8.*" />
     <PackageReference Include="NetEscapades.AspNetCore.SecurityHeaders" Version="1.1.0" />
     <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.12.0" />

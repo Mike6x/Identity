@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 
-namespace Identity.Admin.Components;
+namespace Identity.Admin.Components.General;
 
 public partial class PersonCard
 {

@@ -53,7 +53,7 @@
                 <MudCardContent>
                     <MudGrid>
                         <DataAnnotationsValidator />
-                        <FshValidation @ref="_customValidation" />
+                        <AppValidation @ref="_customValidation" />
                         <MudItem xs="12" md="6">
                             <MudTextField @bind-Value="@_profileModel.FirstName" For="@(() => _profileModel.FirstName)"
                                 Label="First Name" Variant="Variant.Outlined" />

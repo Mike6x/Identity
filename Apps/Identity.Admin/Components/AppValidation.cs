@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components.Forms;
 namespace Identity.Admin.Components;
 
 // See https://docs.microsoft.com/en-us/aspnet/core/blazor/forms-validation?view=aspnetcore-6.0#server-validation-with-a-validator-component
-public class FshValidation : ComponentBase
+public class AppValidation : ComponentBase
 {
     private ValidationMessageStore? _messageStore;
 
@@ -16,9 +16,9 @@ public class FshValidation : ComponentBase
         if (CurrentEditContext is null)
         {
             throw new InvalidOperationException(
-                $"{nameof(FshValidation)} requires a cascading " +
+                $"{nameof(AppValidation)} requires a cascading " +
                 $"parameter of type {nameof(EditContext)}. " +
-                $"For example, you can use {nameof(FshValidation)} " +
+                $"For example, you can use {nameof(AppValidation)} " +
                 $"inside an {nameof(EditForm)}.");
         }
 

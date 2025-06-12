@@ -1,6 +1,8 @@
 using BuildingBlocks.Exceptions;
+using Identity.Core.Entities;
 using Identity.Core.Features.User.ToggleUserStatus;
 using Identity.Shared.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Infrastructure.Services.User;
@@ -39,7 +41,7 @@ public partial class UserService
         var isAdmin = await userManager.IsInRoleAsync(user, AppRoles.Admin);
         if (isAdmin)
         {
-            throw new GeneralException("Administrators Profile's Status cannot be toggled");
+            throw new GeneralException("Administrators Profile's Status cannot be changed");
         }
 
         user.IsActive = request.IsActive;
@@ -61,4 +63,19 @@ public partial class UserService
         await userManager.UpdateAsync(user);
     }
 
+    public async Task DisableAsync(string userId)
+    {
+        AppUser? user = await userManager.FindByIdAsync(userId);
+
+        _ = user ?? throw new NotFoundException("User Not Found.");
+
+        user.IsActive = false;
+        IdentityResult? result = await userManager.UpdateAsync(user);
+
+        if (!result.Succeeded)
+        {
+            List<string> errors = result.Errors.Select(error => error.Description).ToList();
+            throw new GeneralException("Delete profile failed", errors);
+        }
+    }
 }

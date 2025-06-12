@@ -1,0 +1,87 @@
+﻿@page "/identity/users"
+
+<PageHeader Title="Users" Header="Users" SubHeader="Manage Users." />
+
+<EntityTable TEntity="UserDetail" TId="Guid" TRequest="UserViewModel" Context="@Context">
+    <ExtraActions>
+        <MudMenuItem OnClick="(() => ViewProfile(context.Id))">View Profile</MudMenuItem>
+        @if (_canRemoveUsers)
+        {
+            <MudMenuItem OnClick="(() => RemoveUserAsync(context.Id))" Style="color:red!important">Hard Delete User</MudMenuItem>
+        }
+        @if (_canViewRoles)
+        {
+            <MudMenuItem OnClick="(() => ManageRoles(context.Id))" >Manage Roles</MudMenuItem>
+        }
+        @if (_canViewAuditTrails)
+        {
+            <MudMenuItem OnClick="(() => ViewAuditTrails(context.Id))" >View Audit Trails</MudMenuItem>
+        }
+
+    </ExtraActions>
+
+    <EditFormContent>
+        @if (!Context.AddEditModal.IsCreate)
+        {
+        <MudItem xs="12" md="12">
+            <MudTextField Value="context.Id" Underline=false ReadOnly Label="User Id" />
+        </MudItem>
+        }
+
+        <MudItem xs="12" md="6">
+            <MudTextField For="@(() => context.UserName)" @bind-Value="context.UserName" Label="User Name" />
+        </MudItem>
+
+        @if (Context.AddEditModal.IsCreate)
+        {
+            <MudItem xs="12" md="6">
+                <MudTextField For="@(() => context.Email)" InputType="InputType.Email" @bind-Value="context.Email" Label="Email" Required/>
+            </MudItem>
+        }
+        else
+        {
+            <MudItem xs="12" md="6">
+                <MudTextField For="@(() => context.Email)" InputType="InputType.Email" @bind-Value="context.Email" Label="Email" Disabled/>
+            </MudItem>
+        }
+
+        <MudItem xs="12" md="6">
+            <MudTextField For="@(() => context.FirstName)" @bind-Value="context.FirstName" Label="First Name" Required/>
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudTextField For="@(() => context.LastName)" @bind-Value="context.LastName" Label="Last Name" />
+        </MudItem>
+
+       <MudItem xs="12" md="12">
+            <MudTextField For="@(() => context.PhoneNumber)" @bind-Value="context.PhoneNumber" Label="Phone Number" Required/>
+        </MudItem>
+        @if (!Context.AddEditModal.IsCreate)
+        {
+            <MudItem xs="12" md="3">
+                <MudCheckBox @bind-Value="context.IsOnline" For="@(() => context.IsOnline)" Label="Online" Disabled></MudCheckBox>
+            </MudItem>
+            <MudItem xs="12" md="3">
+            </MudItem>
+            <MudItem xs="12" md="3">
+                <MudCheckBox @bind-Value="context.EmailConfirmed" For="@(() => context.EmailConfirmed)" Label="EmailConfirm"></MudCheckBox>
+            </MudItem>
+            <MudItem xs="12" md="3">
+                <MudCheckBox @bind-Value="context.IsActive" For="@(() => context.IsActive)" Label="Active"></MudCheckBox>
+            </MudItem>
+
+        }
+        @if (Context.AddEditModal.IsCreate)
+        {
+            <MudItem xs="12" md="6">
+                <MudTextField For="@(() => context.Password)" @bind-Value="context.Password" Label="Password"
+                    InputType="@_passwordInput" Adornment="Adornment.End" AdornmentIcon="@_passwordInputIcon"
+                    OnAdornmentClick="TogglePasswordVisibility" />
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudTextField For="@(() => context.ConfirmPassword)" @bind-Value="context.ConfirmPassword"
+                    Label="Confirm Password" InputType="InputType.Password" />
+            </MudItem>
+        }
+    </EditFormContent>
+
+</EntityTable>

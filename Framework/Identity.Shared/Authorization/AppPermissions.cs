@@ -6,19 +6,22 @@ public static class AppPermissions
 {
     private static readonly AppPermission[] AllPermissions =
     [
+        //audit
+        new("View Audit Trails", AppActions.View, AppResources.AuditTrails),
+        
         //tenants
-        // new("View Tenants", AppActions.View, AppResources.Tenants, IsRoot: true),
-        // new("Search Tenants", AppActions.Search, AppResources.Tenants, IsRoot: true),
-        // new("Create Tenants", AppActions.Create, AppResources.Tenants, IsRoot: true),
-        // new("Update Tenants", AppActions.Update, AppResources.Tenants, IsRoot: true),
-        // new("Remove Tenants", AppActions.Remove, AppResources.Tenants, IsRoot: true),
-        // new("Export Tenants", AppActions.Export, AppResources.Tenants, IsRoot: true),
-        // new("Import Tenants", AppActions.Import, AppResources.Tenants, IsRoot: true),
-        //
-        // new("Upgrade Tenant Subscription", AppActions.UpgradeSubscription, AppResources.Tenants, IsRoot: true),
+         new("View Tenants", AppActions.View, AppResources.Tenants, IsRoot: true),
+         new("Search Tenants", AppActions.Search, AppResources.Tenants, IsRoot: true),
+         new("Create Tenants", AppActions.Create, AppResources.Tenants, IsRoot: true),
+         new("Update Tenants", AppActions.Update, AppResources.Tenants, IsRoot: true),
+         new("Remove Tenants", AppActions.Delete, AppResources.Tenants, IsRoot: true),
+         new("Export Tenants", AppActions.Export, AppResources.Tenants, IsRoot: true),
+         new("Import Tenants", AppActions.Import, AppResources.Tenants, IsRoot: true),
+        
+         new("Upgrade Tenant Subscription", AppActions.UpgradeSubscription, AppResources.Tenants, IsRoot: true),
 
         //identity
-        new("View Users", AppActions.View, AppResources.Users),
+        new("View Users", AppActions.View, AppResources.Users, IsBasic: true),
         new("Search Users", AppActions.Search, AppResources.Users),
         new("Create Users", AppActions.Create, AppResources.Users),
         new("Update Users", AppActions.Update, AppResources.Users),
@@ -29,7 +32,7 @@ public static class AppPermissions
         new("View UserRoles", AppActions.View, AppResources.UserRoles),
         new("Update UserRoles", AppActions.Update, AppResources.UserRoles),
 
-        new("View Roles", AppActions.View, AppResources.Roles),
+        new("View Roles", AppActions.View, AppResources.Roles, IsBasic: true),
         new("Search Roles", AppActions.Search, AppResources.Roles),
         new("Create Roles", AppActions.Create, AppResources.Roles),
         new("Update Roles", AppActions.Update, AppResources.Roles),
@@ -38,7 +41,15 @@ public static class AppPermissions
         new("Import Roles", AppActions.Import, AppResources.Roles),
 
         new("View RoleClaims", AppActions.View, AppResources.RoleClaims),
-        new("Update RoleClaims", AppActions.Update, AppResources.RoleClaims)
+        new("Update RoleClaims", AppActions.Update, AppResources.RoleClaims),
+        
+        new("View Clients", AppActions.View, AppResources.Clients),
+        new("Search Clients", AppActions.Search, AppResources.Clients),
+        new("Create Clients", AppActions.Create, AppResources.Clients),
+        new("Update Clients", AppActions.Update, AppResources.Clients),
+        new("Remove Clients", AppActions.Delete, AppResources.Clients),
+        new("Export Clients", AppActions.Export, AppResources.Clients),
+        new("Import Clients", AppActions.Import, AppResources.Clients),
     ];
 
     public static IReadOnlyList<AppPermission> All { get; } = new ReadOnlyCollection<AppPermission>(AllPermissions);
@@ -52,7 +63,7 @@ public record AppPermission(string Description, string Action, string Resource, 
 {
     public string Name => NameFor(Action, Resource);
 
-    private static string NameFor(string action, string resource)
+    public static string NameFor(string action, string resource)
     {
         return $"Permissions.{resource}.{action}";
     }

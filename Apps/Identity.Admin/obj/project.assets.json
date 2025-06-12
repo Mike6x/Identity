@@ -11,6 +11,27 @@
           "lib/net8.0/Blazored.LocalStorage.dll": {}
         }
       },
+      "Mapster/7.4.0": {
+        "type": "package",
+        "dependencies": {
+          "Mapster.Core": "1.2.1"
+        },
+        "compile": {
+          "lib/net7.0/Mapster.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/Mapster.dll": {}
+        }
+      },
+      "Mapster.Core/1.2.1": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/Mapster.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/Mapster.Core.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Authentication.OpenIdConnect/9.0.5": {
         "type": "package",
         "dependencies": {
@@ -635,6 +656,34 @@
         "lib/net6.0/Blazored.LocalStorage.dll",
         "lib/net7.0/Blazored.LocalStorage.dll",
         "lib/net8.0/Blazored.LocalStorage.dll"
+      ]
+    },
+    "Mapster/7.4.0": {
+      "sha512": "RYGoDqvS4WTKIq0HDyPBBVIj6N0mluOCXQ1Vk95JKseMHEsbCXSEGKSlP95oL+s42IXAXbqvHj7p0YaRBUcfqg==",
+      "type": "package",
+      "path": "mapster/7.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net6.0/Mapster.dll",
+        "lib/net7.0/Mapster.dll",
+        "mapster.7.4.0.nupkg.sha512",
+        "mapster.nuspec"
+      ]
+    },
+    "Mapster.Core/1.2.1": {
+      "sha512": "11lokmfliBEMMmjeqxFGNpqGXq6tN96zFqpBmfYeahr4Ybk63oDmeJmOflsATjobYkX248g5Y62oQ2NNnZaeww==",
+      "type": "package",
+      "path": "mapster.core/1.2.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "icon.png",
+        "lib/net6.0/Mapster.Core.dll",
+        "lib/net7.0/Mapster.Core.dll",
+        "mapster.core.1.2.1.nupkg.sha512",
+        "mapster.core.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Authentication.OpenIdConnect/9.0.5": {
@@ -1482,6 +1531,7 @@
       "Blazored.LocalStorage >= 4.5.0",
       "Client.Infrastructure >= 1.0.0",
       "Identity.Shared >= 1.0.0",
+      "Mapster >= 7.4.0",
       "Microsoft.AspNetCore.Authentication.OpenIdConnect >= 9.0.5",
       "MudBlazor >= 8.*",
       "NetEscapades.AspNetCore.SecurityHeaders >= 1.1.0",
@@ -1542,6 +1592,10 @@
           "Blazored.LocalStorage": {
             "target": "Package",
             "version": "[4.5.0, )"
+          },
+          "Mapster": {
+            "target": "Package",
+            "version": "[7.4.0, )"
           },
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
             "target": "Package",

@@ -24,7 +24,7 @@ public partial class Profile
     
     private char _firstLetterOfName;
 
-    private FshValidation? _customValidation;
+    private AppValidation? _customValidation;
 
     protected override async Task OnInitializedAsync()
     {

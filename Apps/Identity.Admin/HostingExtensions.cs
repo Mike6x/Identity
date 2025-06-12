@@ -3,6 +3,7 @@ using Client.Infrastructure;
 using Identity.Admin.Components;
 using Identity.Admin.Configurations;
 using Identity.Admin.Endpoints;
+using Identity.Admin.Preferences;
 using Identity.Shared.Authorization;
 using Microsoft.IdentityModel.JsonWebTokens;
 using Microsoft.IdentityModel.Logging;
@@ -75,6 +76,10 @@ internal static class HostingExtensions
         services.RegisterHttpClient(configuration);
         
         services.AddInfraServices(configuration);
+        
+        services.AddTransient<IClientPreferenceManager, ClientPreferenceManager>();
+        services.AddTransient<IPreference, ClientPreference>();
+        // services.AddNotifications();
         
         return services;
     }

@@ -443,6 +443,10 @@
               "target": "Package",
               "version": "[4.5.0, )"
             },
+            "Mapster": {
+              "target": "Package",
+              "version": "[7.4.0, )"
+            },
             "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
               "target": "Package",
               "version": "[9.0.5, )"

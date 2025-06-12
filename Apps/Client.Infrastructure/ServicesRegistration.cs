@@ -1,4 +1,7 @@
 ﻿using Client.Infrastructure.Api;
+using Client.Infrastructure.Auth;
+using Identity.Shared.Authorization;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -16,7 +19,9 @@ public static class ServicesRegistration
         // services.AddScoped<ILogoutService, LogoutService>();
         
         services.AddTransient<IApiClient, ApiClient>();
+        services.AddAuthentication(configuration);
         
         return services;
     }
+    
 }

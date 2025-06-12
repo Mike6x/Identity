@@ -2,6 +2,8 @@ namespace Identity.Shared.Authorization;
 
 public static class AppResources
 {
+    public const string AuditTrails = nameof(AuditTrails);
+    
     public const string Tenants = nameof(Tenants);
     public const string Dashboard = nameof(Dashboard);
     public const string Hangfire = nameof(Hangfire);
@@ -9,8 +11,10 @@ public static class AppResources
     public const string UserRoles = nameof(UserRoles);
     public const string Roles = nameof(Roles);
     public const string RoleClaims = nameof(RoleClaims);
+    
+    public const string Clients = nameof(Clients);
 
-    public const string AuditTrails = nameof(AuditTrails);
+  
 
 
 }

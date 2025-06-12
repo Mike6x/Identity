@@ -1,10 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "nqr1owt6GY8=",
+  "dgSpecHash": "HJOWXHr6nHk=",
   "success": true,
   "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/Identity.Admin/Identity.Admin.csproj",
   "expectedPackageFiles": [
     "/Users/tuanpa/.nuget/packages/blazored.localstorage/4.5.0/blazored.localstorage.4.5.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/mapster/7.4.0/mapster.7.4.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/mapster.core/1.2.1/mapster.core.1.2.1.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.authentication.openidconnect/9.0.5/microsoft.aspnetcore.authentication.openidconnect.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.authorization/9.0.5/microsoft.aspnetcore.authorization.9.0.5.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.components/9.0.5/microsoft.aspnetcore.components.9.0.5.nupkg.sha512",

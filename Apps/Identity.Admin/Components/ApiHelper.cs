@@ -10,7 +10,7 @@ public static class ApiHelper
         Func<Task<T>> call,
         ISnackbar snackbar,
         NavigationManager navigationManager,
-        FshValidation? customValidation = null,
+        AppValidation? customValidation = null,
         string? successMessage = null)
     {
         customValidation?.ClearErrors();
@@ -45,7 +45,7 @@ public static class ApiHelper
     public static async Task<bool> ExecuteCallGuardedAsync(
         Func<Task> call,
         ISnackbar snackbar,
-        FshValidation? customValidation = null,
+        AppValidation? customValidation = null,
         string? successMessage = null)
     {
         customValidation?.ClearErrors();

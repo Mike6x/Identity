@@ -15,7 +15,7 @@ public partial class Security
 
     private readonly ChangePasswordCommand _passwordModel = new();
 
-    private FshValidation? _customValidation;
+    private AppValidation? _customValidation;
 
     private async Task ChangePasswordAsync()
     {
