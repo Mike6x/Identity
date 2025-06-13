@@ -25,17 +25,21 @@ internal static class HostingExtensions
         services.AddOidcConfig(configuration , environment);
         
         services.AddAuthenticationCore();
-        
-        services.AddAuthorizationCore(config =>
+
+        services.AddAuthorizationCore(options =>
         {
-            config.AddPolicy(AppScopes.UserReadScope, policy => 
-                policy.RequireClaim(ClaimConstants.Permissions, AppScopes.UserReadScope));
+            options.AddPolicy(AppPolicies.CanManageStudents, policy =>
+            {
+                policy.RequireAuthenticatedUser();
+                policy.RequireRole(AppRoles.Manager);
+            });
             
-            // config.AddPolicy(AppScopes.WeatherReadScope, policy => 
-            //      policy.RequireClaim(ClaimConstants.Permissions, AppScopes.WeatherReadScope));
+            options.AddPolicy(AppPolicies.PaidForecast, policy =>
+            {
+                policy.RequireAuthenticatedUser();
+                policy.RequireRole(AppRoles.Admin);
+            });
             
-            config.AddPolicy(AppScopes.WeatherReadScope, policy => 
-               policy.RequireRole("Admin"));
         });
         
         services.AddCascadingAuthenticationState();

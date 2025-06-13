@@ -36,13 +36,18 @@ internal static class HostingExtensions
        
         services.AddAuthorizationCore(options =>
         {
-            options.AddPolicy(AppPolicies.AuthPolicy, policy =>
+            options.AddPolicy(AppPolicies.CanManageStudents, policy =>
             {
                 policy.RequireAuthenticatedUser();
-                policy.RequireRole(AppRoles.Editor);
+                policy.RequireRole(AppRoles.Manager);
+            });
+            options.AddPolicy(AppPolicies.CanManageCities, policy =>
+            {
+                policy.RequireAuthenticatedUser();
+                policy.RequireRole(AppRoles.Manager);
             });
             
-            options.AddPolicy(AppScopes.WeatherReadScope, policy =>
+            options.AddPolicy(AppPolicies.PaidForecast, policy =>
             {
                 policy.RequireAuthenticatedUser();
                 policy.RequireRole(AppRoles.Admin);

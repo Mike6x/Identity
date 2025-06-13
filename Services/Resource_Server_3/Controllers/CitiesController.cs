@@ -1,4 +1,5 @@
 using System.Globalization;
+using Identity.Shared.Authorization;
 using Identity.Shared.Resource_Server_3.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -70,7 +71,7 @@ public class CitiesController(ICityService cityService, ILogger<CitiesController
     }
     
     [HttpDelete("{id:int}")]
-    [AllowAnonymous]
+    [Authorize(AppPolicies.CanManageCities)]
     public async Task<IActionResult> DeleteAsync(int id)
     {
         var result = await  cityService.DeleteAsync(id);

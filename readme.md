@@ -17,7 +17,7 @@
     * a shared libs between clients
     * Using OpenApi to auto generate code
 
-6. OpenIdDict MudBlazor Admin UI: -- Coming soon
+6. OpenIdDict MudBlazor Admin UI: -- in develop
     
 ### Identity: an OIDC auth-server project using OpenIdDict includes:
 

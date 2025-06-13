@@ -17,7 +17,7 @@ public class WeatherForecastController(ILogger<WeatherForecastController> logger
     public IActionResult GetSecureForecast() => Ok(WeatherForecasts);
 
     [HttpGet("paid-forecast")]
-    [Authorize(AppScopes.WeatherReadScope)]
+    [Authorize(AppPolicies.PaidForecast)]
     public IActionResult GetPaidForecast()
     {
         var forecast = WeatherForecasts;
