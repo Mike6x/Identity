@@ -4,6 +4,8 @@ namespace Identity.Shared.Authorization;
 
 public static class AppRoles
 {
+    public const string Superuser = nameof(Superuser);
+    public const string Root = nameof(Root);
     public const string Admin = nameof(Admin);
     public const string Manager = nameof(Manager);
     public const string Editor = nameof(Editor);
@@ -12,6 +14,8 @@ public static class AppRoles
     public const string Basic = nameof(Basic);
 
     public static IReadOnlyList<string> DefaultRoles { get; } = new ReadOnlyCollection<string>([
+        Superuser,
+        Root,
         Admin,
         Manager,
         Editor,

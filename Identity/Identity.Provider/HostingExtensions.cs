@@ -4,6 +4,7 @@ using Identity.Infrastructure.Data.Workers;
 using Identity.Infrastructure.Services;
 using Identity.Provider.Configurations;
 using Identity.Provider.EndPoints;
+using Identity.Provider.EndPoints.HealthCheck;
 
 namespace Identity.Provider;
 
@@ -47,6 +48,7 @@ internal static class HostingExtensions
             app.UseExceptionHandler("/Error");
             app.UseHsts();
         }
+        app.RegisterHealthCheckEndpoints();
 
         app.UseBlockServices();
         

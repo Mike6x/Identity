@@ -12,7 +12,7 @@ public static class GetRoleClaimsEndpoint
                 CancellationToken cancellationToken) 
                 => await roleService.GetRoleClaimsAsync(roleId, cancellationToken))
                                         .WithName(nameof(GetRoleClaimsEndpoint))
-                                        .WithSummary("Get Role claims")
+                                        .WithSummary("Get all claims of the role.")
                                         // .RequirePermission("Permissions.Handlers.View")
                                         .WithDescription("Retrieve all claim of a role.");
     }

@@ -12,7 +12,6 @@ using Identity.Infrastructure.Services.Logging;
 using Identity.Infrastructure.Services.Role;
 using Identity.Infrastructure.Services.Scope;
 using Identity.Infrastructure.Services.User;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -35,23 +34,14 @@ public static class InfraServicesRegister
         services.AddTransient<IAuthService, AuthService>();
         
         // services.AddTransient<IAuthorizationService, OpenIdDictService>();
-
-        
+        // services.AddTransient<AuthorizationService>();
         // services.AddTransient<IPermissionService, PermissionService>()
-        //builder.Services.AddSingleton<IEmailSender<AppUser>, IdentityNoOpEmailSender>();
-        // builder.Services.AddTransient<AuthorizationService>();
         
-        // services.AddTransient<ClientSeeder>();
-        // services.AddScoped<IEmailService, EmailService>()
-        // services.AddSingleton<IEmailSender, EmailSenderService>();
-        
-        services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie(c => c.LoginPath = "/Account/Login");
-
         services.AddScoped<ClientAppRepository>();
         services.AddScoped<ScopesRepository>();
         
         services.AddSingleton<LoggerService>();
+        
         return services;
     }
 }

@@ -6,7 +6,7 @@ namespace Identity.Provider.EndPoints.User.Others
     {
         internal static RouteHandlerBuilder MapGetOtherUsersEndpoint(this IEndpointRouteBuilder endpoints)
         {
-            return endpoints.MapGet("{userId}/otherusers", async (string userId,IUserService service, CancellationToken cancellationToken) =>
+            return endpoints.MapGet("{userId}/others", async (string userId,IUserService service, CancellationToken cancellationToken) =>
             {
                 var list = await service.GetAllAsync(cancellationToken);
 

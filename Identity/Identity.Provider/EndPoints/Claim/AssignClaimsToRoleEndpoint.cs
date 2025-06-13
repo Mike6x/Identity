@@ -21,8 +21,8 @@ public static class AssignClaimsToRoleEndpoint
                 return Results.Ok(response);
             })
             .WithName(nameof(AssignClaimsToRoleEndpoint))
-            .WithSummary("Assign role Claims")
+            .WithSummary("Assign Claims to the role.")
             // .RequirePermission("Claims.Handlers.Create")
-            .WithDescription("Assign/remove a list of Claims");
+            .WithDescription("Assign/remove a list of Claims to/from the role");
     }
 }

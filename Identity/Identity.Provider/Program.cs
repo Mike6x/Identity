@@ -17,9 +17,3 @@ app.UseSerilogRequestLogging();
 app.UseAuthPipeline();
 
 app.Run();
-
-// await app.StartAsync();
-//
-// await app.GenerateClients();
-//
-// await app.WaitForShutdownAsync();

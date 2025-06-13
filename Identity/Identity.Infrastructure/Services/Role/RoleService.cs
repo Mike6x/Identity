@@ -16,7 +16,8 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Infrastructure.Services.Role;
 
-public sealed partial class RoleService(RoleManager<AppRole> roleManager,
+public sealed partial class RoleService(
+    RoleManager<AppRole> roleManager,
     UserManager<AppUser> userManager,
     ApplicationDbContext context,
     ICurrentUser currentUser) : IRoleService
@@ -24,12 +25,16 @@ public sealed partial class RoleService(RoleManager<AppRole> roleManager,
     public async Task<List<RoleDto>> GetAllAsync(CancellationToken cancellationToken)
     {
         return await roleManager.Roles.AsNoTracking()
-            .Select(role => new RoleDto
-                { 
-                    Id = role.Id, 
-                    Name = role.Name ?? string.Empty, 
-                    Description = role.Description })
+            .Select(role => role.ToDto())
             .ToListAsync(cancellationToken);
+        
+        // return await roleManager.Roles.AsNoTracking()
+        //     .Select(role => new RoleDto
+        //         { 
+        //             Id = role.Id, 
+        //             Name = role.Name ?? string.Empty, 
+        //             Description = role.Description })
+        //     .ToListAsync(cancellationToken);
     }
     public async Task<PagedList<RoleDto>> SearchAsync(SearchRolesRequest request, CancellationToken cancellationToken)
     {
@@ -48,13 +53,8 @@ public sealed partial class RoleService(RoleManager<AppRole> roleManager,
     {
         var role = await roleManager.FindByIdAsync(roleId) 
                    ?? throw new NotFoundException($"Role with Id: {roleId} could not be located");
-        
-        var roleDto = new RoleDto
-        {
-            Id = role.Id, 
-            Name = role.Name?? string.Empty, 
-            Description = role.Description
-        };
+
+        var roleDto = role.ToDto();
        
         var claims = await roleManager.GetClaimsAsync(role);
         foreach (var claim in claims)
@@ -70,12 +70,8 @@ public sealed partial class RoleService(RoleManager<AppRole> roleManager,
     {
         var role = await roleManager.FindByNameAsync(name) 
                    ?? throw new NotFoundException($"Role with Id: {name} not found");
-        var roleDto = new RoleDto
-        {
-            Id = role.Id, 
-            Name = role.Name?? string.Empty, 
-            Description = role.Description
-        };
+        
+        var roleDto = role.ToDto();
        
         var claims = await roleManager.GetClaimsAsync(role);
         foreach (var claim in claims)
@@ -146,13 +142,8 @@ public sealed partial class RoleService(RoleManager<AppRole> roleManager,
         var result = await roleManager.UpdateAsync(role);
        
         if (!result.Succeeded) throw new InternalServerException("CreateRoleAsync failed. ");
-        
-        return  new RoleDto
-        {
-            Id = role.Id, 
-            Name = role.Name?? string.Empty, 
-            Description = role.Description
-        };
+
+        return role.ToDto();
     }
     
     public async Task DeleteAsync(string roleId)

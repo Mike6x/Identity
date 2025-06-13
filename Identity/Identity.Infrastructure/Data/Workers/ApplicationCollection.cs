@@ -9,7 +9,7 @@ public class ApplicationCollection
     
     private readonly List<OpenIddictApplicationDescriptor> _applications = [];
     
-    public IEnumerable<OpenIddictApplicationDescriptor> GetAllApplications() => _applications;
+    public IEnumerable<OpenIddictApplicationDescriptor> GetAll() => _applications;
 
     public ApplicationCollection(string? identityHost)
     {

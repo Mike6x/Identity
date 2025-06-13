@@ -50,6 +50,14 @@ public static class AppPermissions
         new("Remove Clients", AppActions.Delete, AppResources.Clients),
         new("Export Clients", AppActions.Export, AppResources.Clients),
         new("Import Clients", AppActions.Import, AppResources.Clients),
+        
+        new("View Scopes", AppActions.View, AppResources.Scopes),
+        new("Search Scopes", AppActions.Search, AppResources.Scopes),
+        new("Create Scopes", AppActions.Create, AppResources.Scopes),
+        new("Update Scopes", AppActions.Update, AppResources.Scopes),
+        new("Remove Scopes", AppActions.Delete, AppResources.Scopes),
+        new("Export Scopes", AppActions.Export, AppResources.Scopes),
+        new("Import Scopes", AppActions.Import, AppResources.Scopes),
     ];
 
     public static IReadOnlyList<AppPermission> All { get; } = new ReadOnlyCollection<AppPermission>(AllPermissions);

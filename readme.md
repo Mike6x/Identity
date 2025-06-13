@@ -34,30 +34,36 @@
 
 ## Run The Project
 
-``` bash
-dotnet ef migrations add [Nem] --output-dir Data/Migrations
-dotnet ef database update
+
+###1.init https
 
 dotnet dev-certs https --trust  
 
-dotnet ef migrations add "Add Identity Schema" --project ../Identity.Infrastructure/ --context ApplicationDbContext --output-dir Data/Migrations
-
-
-1. SETUP
-
-Npgsql
-
-Npgsql.EntityFrameworkCore.PostgreSQL
-
-OpenIddict.AspNetCore
-
-OpenIddict.EntityFrameworkCore
-
-System.Linq.Async
-
-Microsoft.EntityFrameworkCore.Design
-
-2.
+###2. Init Database
+* Change ConnectionStrings, example:
   "ConnectionStrings": {
     "DefaultConnection": "Server=localhost,Port=5432;Database=AuthServer_DB;User Id=pgadmin;Password=123DBP@ssw0rd;Include Error Detail=true"
   },
+  
+* pwsh
+* Delete Data/Migrations directory
+* cd .\ Identity.Provider
+* dotnet ef migrations add "Add Identity Schema" --project ../Identity.Infrastructure/ --context ApplicationDbContext --output-dir Data/Migrations
+  * dotnet ef database update
+
+                             ``` bash
+                             dotnet ef migrations add [Nem] --output-dir Data/Migrations
+                             dotnet ef database update
+
+###3. Nuget packages for Identity.Provider
+
+Npgsql
+Npgsql.EntityFrameworkCore.PostgreSQL
+
+OpenIddict.AspNetCore
+OpenIddict.EntityFrameworkCore
+
+System.Linq.Async
+Microsoft.EntityFrameworkCore.Design
+
+

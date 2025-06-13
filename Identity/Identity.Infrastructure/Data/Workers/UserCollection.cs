@@ -1,30 +1,64 @@
-﻿using System.Security.Claims;
+﻿using Identity.Core.Settings;
+using Identity.Shared.Authorization;
 
 namespace Identity.Infrastructure.Data.Workers;
 
 public class UserCollection
 {
-    private readonly List<User> _users = [];
+    private readonly List<UserConfig> _users = [];
    
-    public IEnumerable<User> GetAllUsers() => _users;
+    public IEnumerable<UserConfig> GetAll() => _users;
 
     public UserCollection()
     {
-        _users.Add(new User("test_user_1@pixel.com", "tesT-useR-secreT-1"));
-        _users.Add(new User("test_user_2@pixel.com", "tesT-useR-secreT-2"));
-
+        _users.Add(new UserConfig
+        {
+            Username = TenantConstants.Root.Name, 
+            Email = TenantConstants.Root.EmailAddress , 
+            Password = TenantConstants.DefaultPassword,
+            Role = AppRoles.Superuser
+        });
+        
+        _users.Add(new UserConfig
+        {
+            Username = "TenantAdmin", 
+            Email = "tadmin@root.com" , 
+            Password = "P@ssw0rd",
+            Role = AppRoles.Root
+        });
+        
+        _users.Add(new UserConfig
+        {
+            Username = "ManagerTest", 
+            Email = "managerTest@example.com" , 
+            Password = "P@ssw0rd",
+            Role = AppRoles.Manager
+        });
+        
+        _users.Add(new UserConfig
+        {
+            Username = "EditorTest", 
+            Email ="editorTest@example.com" , 
+            Password = "P@ssw0rd",
+            Role = AppRoles.Editor
+        });
+        
+        _users.Add(new UserConfig
+        {
+            Username = "CustomerTest", 
+            Email ="customerTest@example.com" , 
+            Password = "P@ssw0rd",
+            Role = AppRoles.Customer
+        });
+        
+        _users.Add(new UserConfig
+        {
+            Username = "ViewerTest", 
+            Email ="ViewerTest@example.com" , 
+            Password = "P@ssw0rd",
+            Role = AppRoles.Viewer
+        });
+        
     }
-   
-}
-
-public class User(string email, string password)
-{
-    public string Email { get; set; } = email;
-
-    public string Password { get; set; } = password;
-
-    public List<string> Roles { get; private set; } = [];
-
-    public List<Claim> Claims { get; private set; } = [];
 }
 

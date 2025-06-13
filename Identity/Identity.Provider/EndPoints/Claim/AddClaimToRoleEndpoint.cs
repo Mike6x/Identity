@@ -19,8 +19,8 @@ public static class AddClaimToRoleEndpoint
                 return Results.Ok(message);
             })
             .WithName(nameof(AddClaimToRoleEndpoint))
-            .WithSummary("Add a claim to Role")
-            .WithDescription("Add a claim to Role");
+            .WithSummary("Add a claim to the Role")
+            .WithDescription("Add a claim to the Role");
     }
 
 }

@@ -13,6 +13,7 @@ public static class AppResources
     public const string RoleClaims = nameof(RoleClaims);
     
     public const string Clients = nameof(Clients);
+    public const string Scopes = nameof(Scopes);
 
   
 

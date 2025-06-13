@@ -32,24 +32,28 @@ public static class OpenIdDictConfig
             {
                 options
                     .SetAuthorizationEndpointUris("/connect/authorize")
-                    //.SetDeviceEndpointUris("connect/device")
                     .SetIntrospectionEndpointUris("/connect/introspect")
                     .SetEndSessionEndpointUris("/connect/logout")
                     .SetTokenEndpointUris("/connect/token")
                     .SetUserInfoEndpointUris("/connect/userinfo")
                     .SetEndUserVerificationEndpointUris("connect/verify");
+
+                    // .SetDeviceAuthorizationEndpointUris("/connect/deviceauthorization")
+                    // .SetRevocationEndpointUris("/connect/revoke")
+                    // .SetJsonWebKeySetEndpointUris("/well-known/jwks.json")
+                    // .SetEndUserVerificationEndpointUris("/connect/enduserverification");
                 
                 //allowed grant types
-               
                 options.AllowAuthorizationCodeFlow();
                 options.AllowHybridFlow();
-                options.AllowClientCredentialsFlow();
+                options.AllowClientCredentialsFlow(); // For Machine-to-Machine Authentication
                 options.AllowRefreshTokenFlow();
-                options.AllowPasswordFlow().AllowRefreshTokenFlow();
+                options.AllowPasswordFlow();
+                
+                //options.AllowPasswordFlow().AllowRefreshTokenFlow();
                 // options.AllowAuthorizationCodeFlow().RequireProofKeyForCodeExchange();
                 // options.AllowClientCredentialsFlow().AllowRefreshTokenFlow();
                 
-                //PKCE
                 options.RequireProofKeyForCodeExchange();
 
                 // var scopes = new List<string>
@@ -62,19 +66,20 @@ public static class OpenIdDictConfig
                 // options.RegisterScopes(scopes.ToArray());
                 
                 options.RegisterScopes(
+                    Scopes.OpenId,
                     Scopes.Email,
                     Scopes.Profile,
                     Scopes.Roles,
                     Scopes.OfflineAccess,
-                    Scopes.OpenId,
-                    "api", "api1", "dataEventRecords"
+                    "api"
                 );
 
                 // RegisterUser the signing and encryption credentials.
                 // todo only dev
                 options.AddDevelopmentEncryptionCertificate()
                        .AddDevelopmentSigningCertificate();
-
+                
+                # region Check PKCE key
                 if(!string.IsNullOrEmpty(openIddictSettings?.Encryption.Key))
                 {
                     options.AddEncryptionKey(
@@ -117,11 +122,14 @@ public static class OpenIdDictConfig
                     options.AddSigningCertificate(cert);
                 }
                 
+                #endregion
+                
                 var aspBuilder = options.UseAspNetCore()
-                        .EnableTokenEndpointPassthrough()
                         .EnableAuthorizationEndpointPassthrough()
                         .EnableEndSessionEndpointPassthrough()
-                        .EnableUserInfoEndpointPassthrough();
+                        .EnableTokenEndpointPassthrough()
+                        .EnableUserInfoEndpointPassthrough()
+                        .EnableStatusCodePagesIntegration();
 
                 if(openIddictSettings?.OnlyAllowHttps != true)
                 {
@@ -132,6 +140,8 @@ public static class OpenIdDictConfig
                     .SetRefreshTokenLifetime(TimeSpan.FromDays(7));
 
             })
+            
+            // Check this session
             .AddClient(options =>
             {
                 options.AllowAuthorizationCodeFlow().AllowRefreshTokenFlow();

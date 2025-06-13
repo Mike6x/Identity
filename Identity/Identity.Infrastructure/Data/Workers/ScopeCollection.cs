@@ -7,7 +7,7 @@ public class ScopeCollection
 {
     private readonly List<OpenIddictScopeDescriptor> _scopes = [];
 
-    public IEnumerable<OpenIddictScopeDescriptor> GetAllScopes() => _scopes;
+    public IEnumerable<OpenIddictScopeDescriptor> GetAll() => _scopes;
 
     public ScopeCollection()
     {

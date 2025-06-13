@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "gcMS9vhpZGA=",
+  "dgSpecHash": "NVmLhIWgyjY=",
   "success": true,
   "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Provider/Identity.Provider.csproj",
   "expectedPackageFiles": [
@@ -8,6 +8,8 @@
     "/Users/tuanpa/.nuget/packages/ardalis.specification.entityframeworkcore/9.1.0/ardalis.specification.entityframeworkcore.9.1.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/aspnetcore.healthchecks.npgsql/9.0.0/aspnetcore.healthchecks.npgsql.9.0.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/aspnetcore.healthchecks.sqlserver/9.0.0/aspnetcore.healthchecks.sqlserver.9.0.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/aspnetcore.healthchecks.ui.client/9.0.0/aspnetcore.healthchecks.ui.client.9.0.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/aspnetcore.healthchecks.ui.core/9.0.0/aspnetcore.healthchecks.ui.core.9.0.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/azure.core/1.38.0/azure.core.1.38.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/azure.identity/1.11.4/azure.identity.1.11.4.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/azure.security.keyvault.certificates/4.6.0/azure.security.keyvault.certificates.4.6.0.nupkg.sha512",
