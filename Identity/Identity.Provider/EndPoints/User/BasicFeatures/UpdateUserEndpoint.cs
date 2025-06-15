@@ -1,4 +1,5 @@
-﻿using Identity.Core.Features.User;
+﻿using BuildingBlocks.Identity.Users.Abstractions;
+using Identity.Core.Features.User;
 using Identity.Core.Features.User.UpdateUser;
 
 namespace Identity.Provider.EndPoints.User.BasicFeatures;
@@ -19,7 +20,8 @@ public static class UpdateUserEndpoint
         })
         .WithName(nameof(UpdateUserEndpoint))
         .WithSummary("update user profile")
+        .WithDescription("update user profile")
         // .RequirePermission("Permissions.Handlers.Update")
-        .WithDescription("update user profile");
+        ;
     }
 }

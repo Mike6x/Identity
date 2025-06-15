@@ -1,5 +1,6 @@
 ﻿using System.Security.Claims;
 using BuildingBlocks.Exceptions;
+using BuildingBlocks.Identity.Users.Abstractions;
 using Identity.Core.Features.User;
 using Identity.Core.Features.User.UpdateUser;
 using Identity.Shared.Authorization;

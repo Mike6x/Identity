@@ -1,4 +1,5 @@
-﻿using Identity.Core.Features.User;
+﻿using BuildingBlocks.Identity.Users.Abstractions;
+using Identity.Core.Features.User;
 using Identity.Core.Features.User.AssignUserRole;
 
 namespace Identity.Provider.EndPoints.UserRole;

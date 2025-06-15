@@ -1,4 +1,5 @@
-﻿using Identity.Core.Features.User;
+﻿using BuildingBlocks.Identity.Users.Abstractions;
+using Identity.Core.Features.User;
 
 namespace Identity.Provider.EndPoints.User.BasicFeatures;
 public static class GetUsersEndpoint
@@ -11,7 +12,8 @@ public static class GetUsersEndpoint
         })
         .WithName(nameof(GetUsersEndpoint))
         .WithSummary("get all users ")
+        .WithDescription("get all users ")
         // .RequirePermission("Permissions.Users.Search")
-        .WithDescription("get all users ");
+        ;
     }
 }

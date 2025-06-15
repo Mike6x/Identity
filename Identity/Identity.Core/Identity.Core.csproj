@@ -19,4 +19,8 @@
       <ProjectReference Include="..\..\Framework\BuildingBlocks\BuildingBlocks.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Features\User\" />
+    </ItemGroup>
+
 </Project>

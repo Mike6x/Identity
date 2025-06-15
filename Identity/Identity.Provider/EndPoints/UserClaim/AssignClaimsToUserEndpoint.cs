@@ -1,3 +1,4 @@
+using BuildingBlocks.Identity.Users.Abstractions;
 using Identity.Core.Features.Claim.Update;
 using Identity.Core.Features.User;
 

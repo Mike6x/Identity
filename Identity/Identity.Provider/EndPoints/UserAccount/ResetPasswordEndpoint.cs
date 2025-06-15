@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using BuildingBlocks.Identity.Users.Abstractions;
+using FluentValidation;
 using Identity.Core.Features.User;
 using Identity.Core.Features.User.ResetPassword;
 using Identity.Shared.Authorization;

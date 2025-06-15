@@ -1,3 +1,4 @@
+using BuildingBlocks.Identity.Users.Abstractions;
 using Identity.Core.Features.User;
 
 namespace Identity.Provider.EndPoints.UserClaim;

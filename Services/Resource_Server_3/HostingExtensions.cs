@@ -33,38 +33,7 @@ internal static class HostingExtensions
         // var policyNames = new List<string> { AppScopes.CityReadScope, AppScopes.CityWriteScope, AppScopes.WeatherReadScope};
         // services.AddOpenIdAuth(configuration, policyNames);
         
-       
-        services.AddAuthorizationCore(options =>
-        {
-            options.AddPolicy(AppPolicies.CanManageStudents, policy =>
-            {
-                policy.RequireAuthenticatedUser();
-                policy.RequireRole(AppRoles.Manager);
-            });
-            options.AddPolicy(AppPolicies.CanManageCities, policy =>
-            {
-                policy.RequireAuthenticatedUser();
-                policy.RequireRole(AppRoles.Manager);
-            });
-            
-            options.AddPolicy(AppPolicies.PaidForecast, policy =>
-            {
-                policy.RequireAuthenticatedUser();
-                policy.RequireRole(AppRoles.Admin);
-            });
-            
-            // options.AddPolicy(AppScopes.WeatherReadScope, policy =>
-            // {
-            //     policy.RequireAuthenticatedUser();
-            //     policy.RequireClaim(ClaimConstants.Permissions, AppScopes.WeatherReadScope);
-            // });
-            
-            // options.AddPolicy(AppScopes.WeatherReadScope, policy =>
-            // {
-            //     policy.RequireAuthenticatedUser();
-            //     policy.RequireClaim("read-weather", "true");
-            // });
-        });
+        services.AddAuthorizationPolicy();
            
         services.AddSingleton<ICityService, JsonCityDataService>();
         

@@ -96,125 +96,125 @@ public static class SwaggerConfig
     }
     
 
-    public static async Task GenerateClients(this WebApplication app)
-    {
-        await app.GenerateDotNetClient();
-        await app.GenerateTypescriptClient();
-    }
-
-    private static async Task GenerateDotNetClient(this WebApplication app)
-    {
-        var options = app.Configuration.GetSection("ClientGeneration:DotNet")?.Get<ClientGenerationOptions>();
-        if (options?.Enabled != true)
-            return;
-
-        var server = app.Services.GetService<IServer>();
-        var addF = server?.Features.Get<IServerAddressesFeature>();
-        var baseUrl = addF?.Addresses.FirstOrDefault();
-
-        if (baseUrl == null)
-        {
-            throw new InvalidOperationException("Failed to get base url");
-        }
-
-        var uri = new Uri(new Uri(baseUrl), SwaggerSpecUrl);
-        var document = await OpenApiDocument.FromUrlAsync(uri.AbsoluteUri);
-
-
-        var settings = new CSharpClientGeneratorSettings
-        {
-            ClassName = "{controller}Client",
-            ClientBaseClass = "ClientBase",
-            GenerateClientClasses = true,
-            GenerateClientInterfaces = false,
-            GenerateOptionalParameters = true,
-        };
-
-        var outputFolder = Environment.CurrentDirectory;
-        if (options.ClientPath != null)
-            outputFolder = Path.Combine(outputFolder, options.ClientPath);
-
-      
-        var filePath = Path.Combine(outputFolder, $"{options.ClientName}.cs");
-
-        var generator = new CSharpClientGenerator(document, settings);
-        var code = generator.GenerateFile();
-
-        Directory.CreateDirectory(outputFolder);
-        File.WriteAllText(filePath, code);
-    }
-
-    private static async Task GenerateTypescriptClient(this WebApplication app)
-    {
-        var options = app.Configuration.GetSection("ClientGeneration:TypeScript")?.Get<ClientGenerationOptions>();
-        if (options?.Enabled != true)
-            return;
-
-
-        var server = app.Services.GetService<IServer>();
-        var addF = server?.Features.Get<IServerAddressesFeature>();
-        var baseUrl = addF?.Addresses.FirstOrDefault();
-
-        if (baseUrl == null)
-        {
-            throw new InvalidOperationException("Failed to get base url");
-        }
-
-        var uri = new Uri(new Uri(baseUrl), SwaggerSpecUrl);
-        var document = await OpenApiDocument.FromUrlAsync(uri.AbsoluteUri);
-
-        var settings = new TypeScriptClientGeneratorSettings
-        {
-            ClassName = "{controller}Client",
-            OperationNameGenerator = new MultipleClientsFromFirstTagAndPathSegmentsOperationNameGenerator(),
-            Template = TypeScriptTemplate.Fetch,
-            TypeScriptGeneratorSettings =
-            {
-                TypeScriptVersion = 5.0m,
-                //ExtensionCode = @"",
-            },
-            HttpClass = HttpClass.HttpClient,
-            BaseUrlTokenName = baseUrl,
-            InjectionTokenType = InjectionTokenType.OpaqueToken,
-            ClientBaseClass = "ClientBase",
-            GenerateClientClasses = true,
-            GenerateClientInterfaces = false,
-            GenerateOptionalParameters = true,
-            UseGetBaseUrlMethod = true,
-            UseTransformOptionsMethod = true,
-            UseTransformResultMethod = true,
-        };
-
-        var outputFolder = Environment.CurrentDirectory;
-        if (options.ClientPath != null)
-            outputFolder = Path.Combine(outputFolder, options.ClientPath);
-
-        if (options.Extend == true)
-        {
-            var extensionFilePath = Path.Combine(outputFolder, $"{options.ClientName}-extension.ts");
-            if (File.Exists(extensionFilePath))
-                settings.TypeScriptGeneratorSettings.ExtensionCode = await File.ReadAllTextAsync(extensionFilePath);
-            else
-                settings.TypeScriptGeneratorSettings.ExtensionCode = $"//Extension Not Found at {extensionFilePath}";
-        }
-        var filePath = Path.Combine(outputFolder, $"{options.ClientName}.ts");
-
-        var generator = new TypeScriptClientGenerator(document, settings);
-        var code = generator.GenerateFile();
-
-        Directory.CreateDirectory(outputFolder);
-        File.WriteAllText(filePath, code);
-    }
-
-    private class ClientGenerationOptions
-    {
-        public bool Enabled { get; set; } = false;
-        public string? ClientPath { get; set; }
-
-        public string? ClientName { get; set; } = "client";
-        public bool? Extend { get; set; } = false;
-
-    }
+    // public static async Task GenerateClients(this WebApplication app)
+    // {
+    //     await app.GenerateDotNetClient();
+    //     await app.GenerateTypescriptClient();
+    // }
+    //
+    // private static async Task GenerateDotNetClient(this WebApplication app)
+    // {
+    //     var options = app.Configuration.GetSection("ClientGeneration:DotNet")?.Get<ClientGenerationOptions>();
+    //     if (options?.Enabled != true)
+    //         return;
+    //
+    //     var server = app.Services.GetService<IServer>();
+    //     var addF = server?.Features.Get<IServerAddressesFeature>();
+    //     var baseUrl = addF?.Addresses.FirstOrDefault();
+    //
+    //     if (baseUrl == null)
+    //     {
+    //         throw new InvalidOperationException("Failed to get base url");
+    //     }
+    //
+    //     var uri = new Uri(new Uri(baseUrl), SwaggerSpecUrl);
+    //     var document = await OpenApiDocument.FromUrlAsync(uri.AbsoluteUri);
+    //
+    //
+    //     var settings = new CSharpClientGeneratorSettings
+    //     {
+    //         ClassName = "{controller}Client",
+    //         ClientBaseClass = "ClientBase",
+    //         GenerateClientClasses = true,
+    //         GenerateClientInterfaces = false,
+    //         GenerateOptionalParameters = true,
+    //     };
+    //
+    //     var outputFolder = Environment.CurrentDirectory;
+    //     if (options.ClientPath != null)
+    //         outputFolder = Path.Combine(outputFolder, options.ClientPath);
+    //
+    //   
+    //     var filePath = Path.Combine(outputFolder, $"{options.ClientName}.cs");
+    //
+    //     var generator = new CSharpClientGenerator(document, settings);
+    //     var code = generator.GenerateFile();
+    //
+    //     Directory.CreateDirectory(outputFolder);
+    //     File.WriteAllText(filePath, code);
+    // }
+    //
+    // private static async Task GenerateTypescriptClient(this WebApplication app)
+    // {
+    //     var options = app.Configuration.GetSection("ClientGeneration:TypeScript")?.Get<ClientGenerationOptions>();
+    //     if (options?.Enabled != true)
+    //         return;
+    //
+    //
+    //     var server = app.Services.GetService<IServer>();
+    //     var addF = server?.Features.Get<IServerAddressesFeature>();
+    //     var baseUrl = addF?.Addresses.FirstOrDefault();
+    //
+    //     if (baseUrl == null)
+    //     {
+    //         throw new InvalidOperationException("Failed to get base url");
+    //     }
+    //
+    //     var uri = new Uri(new Uri(baseUrl), SwaggerSpecUrl);
+    //     var document = await OpenApiDocument.FromUrlAsync(uri.AbsoluteUri);
+    //
+    //     var settings = new TypeScriptClientGeneratorSettings
+    //     {
+    //         ClassName = "{controller}Client",
+    //         OperationNameGenerator = new MultipleClientsFromFirstTagAndPathSegmentsOperationNameGenerator(),
+    //         Template = TypeScriptTemplate.Fetch,
+    //         TypeScriptGeneratorSettings =
+    //         {
+    //             TypeScriptVersion = 5.0m,
+    //             //ExtensionCode = @"",
+    //         },
+    //         HttpClass = HttpClass.HttpClient,
+    //         BaseUrlTokenName = baseUrl,
+    //         InjectionTokenType = InjectionTokenType.OpaqueToken,
+    //         ClientBaseClass = "ClientBase",
+    //         GenerateClientClasses = true,
+    //         GenerateClientInterfaces = false,
+    //         GenerateOptionalParameters = true,
+    //         UseGetBaseUrlMethod = true,
+    //         UseTransformOptionsMethod = true,
+    //         UseTransformResultMethod = true,
+    //     };
+    //
+    //     var outputFolder = Environment.CurrentDirectory;
+    //     if (options.ClientPath != null)
+    //         outputFolder = Path.Combine(outputFolder, options.ClientPath);
+    //
+    //     if (options.Extend == true)
+    //     {
+    //         var extensionFilePath = Path.Combine(outputFolder, $"{options.ClientName}-extension.ts");
+    //         if (File.Exists(extensionFilePath))
+    //             settings.TypeScriptGeneratorSettings.ExtensionCode = await File.ReadAllTextAsync(extensionFilePath);
+    //         else
+    //             settings.TypeScriptGeneratorSettings.ExtensionCode = $"//Extension Not Found at {extensionFilePath}";
+    //     }
+    //     var filePath = Path.Combine(outputFolder, $"{options.ClientName}.ts");
+    //
+    //     var generator = new TypeScriptClientGenerator(document, settings);
+    //     var code = generator.GenerateFile();
+    //
+    //     Directory.CreateDirectory(outputFolder);
+    //     File.WriteAllText(filePath, code);
+    // }
+    //
+    // private class ClientGenerationOptions
+    // {
+    //     public bool Enabled { get; set; } = false;
+    //     public string? ClientPath { get; set; }
+    //
+    //     public string? ClientName { get; set; } = "client";
+    //     public bool? Extend { get; set; } = false;
+    //
+    // }
 
     //class MinimalNameGenerator : IOperationNameGenerator
     //{

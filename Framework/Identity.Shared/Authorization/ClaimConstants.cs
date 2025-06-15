@@ -1,9 +1,6 @@
 ﻿namespace Identity.Shared.Authorization;
 
-/// <summary>
-/// Constants for authorization claims.
-/// </summary>
-public class ClaimConstants
+public static class ClaimConstants
 {
     /// <summary>
     /// Permissions from Auth0 as claim.

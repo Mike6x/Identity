@@ -32,6 +32,8 @@ internal static class HostingExtensions
         
         services.AddOpenApi();
         
+        services.AddAuthorizationPolicy();
+        
         services.AddHostedService<OpenIdDictWorker>();
         
         return services;

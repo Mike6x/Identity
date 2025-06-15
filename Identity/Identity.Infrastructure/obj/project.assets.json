@@ -2845,6 +2845,7 @@
           "Identity.Shared": "1.0.0",
           "MailKit": "4.12.1",
           "Mapster": "7.4.0",
+          "Microsoft.AspNetCore.Authentication.JwtBearer": "9.0.5",
           "Microsoft.EntityFrameworkCore": "9.0.5",
           "Microsoft.EntityFrameworkCore.Relational": "9.0.5",
           "Microsoft.EntityFrameworkCore.SqlServer": "9.0.5",

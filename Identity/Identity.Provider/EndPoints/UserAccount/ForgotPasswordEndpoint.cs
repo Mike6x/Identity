@@ -1,4 +1,5 @@
-﻿using BuildingBlocks.Origin;
+﻿using BuildingBlocks.Identity.Users.Abstractions;
+using BuildingBlocks.Origin;
 using FluentValidation;
 using FluentValidation.Results;
 using Identity.Core.Features.User;

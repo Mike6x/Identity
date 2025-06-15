@@ -36,8 +36,9 @@ public static class OpenIdDictConfig
                     .SetEndSessionEndpointUris("/connect/logout")
                     .SetTokenEndpointUris("/connect/token")
                     .SetUserInfoEndpointUris("/connect/userinfo")
+                    // .SetDeviceAuthorizationEndpointUris("connect/device")
                     .SetEndUserVerificationEndpointUris("connect/verify");
-
+                    
                     // .SetDeviceAuthorizationEndpointUris("/connect/deviceauthorization")
                     // .SetRevocationEndpointUris("/connect/revoke")
                     // .SetJsonWebKeySetEndpointUris("/well-known/jwks.json")
@@ -49,6 +50,7 @@ public static class OpenIdDictConfig
                 options.AllowClientCredentialsFlow(); // For Machine-to-Machine Authentication
                 options.AllowRefreshTokenFlow();
                 options.AllowPasswordFlow();
+                // options.AllowDeviceAuthorizationFlow();
                 
                 //options.AllowPasswordFlow().AllowRefreshTokenFlow();
                 // options.AllowAuthorizationCodeFlow().RequireProofKeyForCodeExchange();

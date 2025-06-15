@@ -8,15 +8,15 @@ namespace Resource_Server_2.Controllers;
 public class WeatherForecastController : ApiControllerBase
 {
     [HttpGet("public-forecast")]
-    [AllowAnonymous]
+    [Authorize(AppPolicies.WeatherRead)]
     public IActionResult GetPublicForecast() => Ok(WeatherForecasts);
     
     [HttpGet("secure-forecast")]
-    [Authorize]
+    [Authorize(AppPolicies.SecureForecast)]
     public IActionResult GetSecureForecast() => Ok(WeatherForecasts);
     
     [HttpGet("paid-forecast")]
-    [Authorize(Policy = AppScopes.WeatherReadScope)]
+    [Authorize(AppPolicies.PaidForecast)]
     public IActionResult GetPaidForecast() => Ok(WeatherForecasts);
 
     //Anonymous on purpose to test api gateway also for anonymous endpoints

@@ -1,4 +1,6 @@
-﻿using Identity.Core.Features.User;
+﻿using BuildingBlocks.Identity.Users.Abstractions;
+using Identity.Core.Features.User;
+using Identity.Shared.Authorization;
 
 namespace Identity.Provider.EndPoints.User.Others;
 public static class GetUserByNameEndpoint
@@ -11,6 +13,7 @@ public static class GetUserByNameEndpoint
         })
         .WithName(nameof(GetUserByNameEndpoint))
         .WithSummary("Get user profile by Name")
+        .RequireAuthorization(AppPolicies.CanManageUsers)
         // .RequirePermission("Permissions.Handlers.View")
         .WithDescription("Get another user's profile details by userName.");
     }

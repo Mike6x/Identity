@@ -1,4 +1,5 @@
-﻿using Identity.Core.Features.User;
+﻿using BuildingBlocks.Identity.Users.Abstractions;
+using Identity.Core.Features.User;
 
 namespace Identity.Provider.EndPoints.UserRole;
 public static class GetUserRolesEndpoint

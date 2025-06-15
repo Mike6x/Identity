@@ -21,8 +21,8 @@ public class UserCollection
         
         _users.Add(new UserConfig
         {
-            Username = "TenantAdmin", 
-            Email = "tadmin@root.com" , 
+            Username = "RootAdmin", 
+            Email = "radmin@root.com" , 
             Password = "P@ssw0rd",
             Role = AppRoles.Root
         });

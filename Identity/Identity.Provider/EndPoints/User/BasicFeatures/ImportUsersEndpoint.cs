@@ -1,4 +1,5 @@
 using BuildingBlocks.DataIO;
+using BuildingBlocks.Identity.Users.Abstractions;
 using BuildingBlocks.Storage.File.Features;
 using Identity.Core.Features.User;
 

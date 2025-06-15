@@ -27,8 +27,9 @@ public partial class OpenIdDictWorker
             if (role == null) continue;
             switch (role.Name)
             {
-                case AppRoles.Basic:
-                    await AssignPermissionsToRoleAsync(roleManager, role, AppPermissions.Basic);
+                case AppRoles.Superuser:
+                    await AssignAdminDefaultPermissionsToRoleAsync(roleManager, role);
+                    await AssignPermissionsToRoleAsync(roleManager, role, AppPermissions.All);
                     break;
                 
                 case AppRoles.Root:
@@ -38,11 +39,10 @@ public partial class OpenIdDictWorker
                 case AppRoles.Admin:
                     
                     await AssignPermissionsToRoleAsync(roleManager, role, AppPermissions.Admin);
-                break;
+                    break;
                 
-                case AppRoles.Superuser:
-                    await AssignAdminDefaultPermissionsToRoleAsync(roleManager, role);
-                    await AssignPermissionsToRoleAsync(roleManager, role, AppPermissions.All);
+                case AppRoles.Basic:
+                    await AssignPermissionsToRoleAsync(roleManager, role, AppPermissions.Basic);
                     break;
             }
         }
@@ -65,6 +65,14 @@ public partial class OpenIdDictWorker
         }
     }
     
+    private static async Task AddClaimAsync(RoleManager<AppRole> roleManager, AppRole role, string type, string value)
+    {
+        var claim = new Claim(type, value);
+        claim.Properties.Add("IncludeInAccessToken", "true");
+        claim.Properties.Add("IncludeInIdentityToken", "true");
+        await roleManager.AddClaimAsync(role, claim);
+    }
+    
     private static async Task AssignAdminDefaultPermissionsToRoleAsync(
         RoleManager<AppRole> roleManager,
         AppRole role)
@@ -78,12 +86,5 @@ public partial class OpenIdDictWorker
             await AddClaimAsync(roleManager, role,"identity_read_write", "scopes");
         }
     }
-    private static async Task AddClaimAsync(RoleManager<AppRole> roleManager, AppRole role, string type, string value)
-    {
-        var claim = new Claim(type, value);
-        claim.Properties.Add("IncludeInAccessToken", "true");
-        claim.Properties.Add("IncludeInIdentityToken", "true");
-        await roleManager.AddClaimAsync(role, claim);
-    }
-    
+  
 }

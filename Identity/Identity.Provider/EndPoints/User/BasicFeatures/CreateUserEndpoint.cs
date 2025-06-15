@@ -1,4 +1,5 @@
-using Identity.Core.Features.User;
+using BuildingBlocks.Auth.Policy;
+using BuildingBlocks.Identity.Users.Abstractions;
 using Identity.Core.Features.User.CreateUser;
 
 namespace Identity.Provider.EndPoints.User.BasicFeatures;
@@ -18,8 +19,9 @@ public static class CreateUserEndpoint
             })
             .WithName(nameof(CreateUserEndpoint))
             .WithSummary("Create user")
-            // .RequirePermission("Permissions.Users.Create")
+            .WithDescription("Create new user")
+            .RequirePermission("Permissions.Users.Create")
             //.MapToApiVersion(1)
-            .WithDescription("Create new user");
+            ;
     }
 }

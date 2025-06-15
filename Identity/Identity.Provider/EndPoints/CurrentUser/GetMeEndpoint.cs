@@ -1,4 +1,5 @@
 using BuildingBlocks.Exceptions;
+using BuildingBlocks.Identity.Users.Abstractions;
 using Identity.Core.Features.User;
 
 namespace Identity.Provider.EndPoints.CurrentUser;

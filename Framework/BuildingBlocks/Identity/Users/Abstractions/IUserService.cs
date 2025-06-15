@@ -20,7 +20,7 @@ using Identity.Core.Features.User.ToggleUserStatus;
 using Identity.Core.Features.User.UpdateUser;
 using Microsoft.AspNetCore.Http;
 
-namespace Identity.Core.Features.User;
+namespace BuildingBlocks.Identity.Users.Abstractions;
 
 public interface IUserService
 {

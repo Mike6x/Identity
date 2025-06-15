@@ -27,24 +27,8 @@ internal static class HostingExtensions
         services.AddHttpContextAccessor();
         
         services.AddAuthenticationCore();
-        services.AddAuthorizationCore(options =>
-        {
-            options.AddPolicy(AppPolicies.CanManageStudents, policy =>
-            {
-                policy.RequireAuthenticatedUser();
-                policy.RequireRole(AppRoles.Manager);
-            });
-            
-            options.AddPolicy(AppPolicies.PaidForecast, policy =>
-            {
-                policy.RequireAuthenticatedUser();
-                policy.RequireRole(AppRoles.Admin);
-            });
-            
-            options.AddPolicy(AppPolicies.CanManageUsers, policy => 
-                policy.RequireClaim(ClaimConstants.Permissions, AppScopes.UserReadScope));
 
-        });
+        services.AddAuthorizationPolicy();
 
         services.AddCascadingAuthenticationState();
         

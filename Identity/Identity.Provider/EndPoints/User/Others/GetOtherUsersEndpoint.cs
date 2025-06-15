@@ -1,4 +1,4 @@
-using Identity.Core.Features.User;
+using BuildingBlocks.Identity.Users.Abstractions;
 
 namespace Identity.Provider.EndPoints.User.Others
 {
@@ -14,8 +14,9 @@ namespace Identity.Provider.EndPoints.User.Others
             })
             .WithName(nameof(GetOtherUsersEndpoint))
             .WithSummary("get others")
-            // .RequirePermission("Permissions.Handlers.Search")
-            .WithDescription("Get list of other users");
+            .WithDescription("Get list of other users"
+            // .RequirePermission("Permissions.Users.Search")
+            );
         }
         
     }

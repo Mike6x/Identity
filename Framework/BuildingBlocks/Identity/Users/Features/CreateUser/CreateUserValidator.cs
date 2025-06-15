@@ -1,3 +1,4 @@
+using BuildingBlocks.Identity.Users.Abstractions;
 using FluentValidation;
 
 namespace Identity.Core.Features.User.CreateUser;

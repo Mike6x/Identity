@@ -1,4 +1,5 @@
-﻿using Identity.Core.Features.User;
+﻿using BuildingBlocks.Auth.Policy;
+using BuildingBlocks.Identity.Users.Abstractions;
 
 namespace Identity.Provider.EndPoints.User.BasicFeatures;
 public static class DeleteUserEndpoint
@@ -9,7 +10,7 @@ public static class DeleteUserEndpoint
                 => service.DeleteAsync(userId))
         .WithName(nameof(DeleteUserEndpoint))
         .WithSummary("delete a user")
-        // .RequirePermission("Permissions.Users.Remove")
-        .WithDescription("delete a user");
+        .WithDescription("delete a user")
+        .RequirePermission("Permissions.Users.Remove");
     }
 }
