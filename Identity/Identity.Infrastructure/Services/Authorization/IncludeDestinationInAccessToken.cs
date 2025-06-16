@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using OpenIddict.Abstractions;
 
-namespace Identity.Infrastructure.Helpers;
+namespace Identity.Infrastructure.Services.Authorization;
 
 public static class IncludeDestinationInAccessToken
 {

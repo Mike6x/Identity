@@ -6,7 +6,7 @@ using OpenIddict.Abstractions;
 
 namespace Identity.Infrastructure.Services.Authorization;
 
-public static class AuthorizationService
+public static class AuthorizationServiceHelpers
 {
     public static IDictionary<string, StringValues> ParseOAuthParameters(HttpContext context, List<string>? excluding = null)
     {

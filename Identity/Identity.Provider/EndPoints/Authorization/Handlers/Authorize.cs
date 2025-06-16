@@ -10,14 +10,13 @@ using OpenIddict.Server.AspNetCore;
 
 using Identity.Core.Entities;
 using BuildingBlocks.Common.Extensions;
-using static Identity.Infrastructure.Services.Authorization.AuthorizationService;
+using static Identity.Infrastructure.Services.Authorization.AuthorizationServiceHelpers;
 
 namespace Identity.Provider.Endpoints.Authorization.Handlers;
 
 public static class Authorize
 {
     public static async Task<IResult> Handler(
-
         HttpContext context,
         UserManager<AppUser> userManager,
         IOpenIddictApplicationManager applicationManager,

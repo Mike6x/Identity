@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 
 namespace Identity.Provider.Configurations;
 
-public static class HostingConfig
+public static class ReverseProxyConfig
 {
     public static IApplicationBuilder UseUrlsFromConfig(this WebApplication app)
     {

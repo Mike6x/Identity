@@ -20,6 +20,8 @@ internal static class HostingExtensions
         
         services.AddIdentityConfig(configuration);
         
+        services.AddAuthenticationConfig(configuration);
+        
         services.AddOpenIdDictConfig(configuration);
         
         services.AddCorsPolicy(configuration);

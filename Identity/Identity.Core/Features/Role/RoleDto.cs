@@ -1,9 +1,7 @@
 ﻿using Identity.Core.Features.Claim;
 
 namespace Identity.Core.Features.Role;
-/// <summary>
-/// UserRoleViewModel
-/// </summary>
+
 public class RoleDto
 {
     public Guid Id { get; set; }

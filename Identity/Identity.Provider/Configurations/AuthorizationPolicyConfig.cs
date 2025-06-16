@@ -9,6 +9,8 @@ public static class AuthorizationPolicyConfig
     public static IServiceCollection AddAuthorizationPolicy( this IServiceCollection services)
     {
         services.AddAuthorizationBuilder()
+            // .AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"))
+            // .AddPolicy("UserOnly", policy => policy.RequireRole("Basic"));
             .AddPolicy(AppPolicies.CanManageApplications, policy =>
             {
                 policy.RequireAuthenticatedUser();
@@ -29,6 +31,7 @@ public static class AuthorizationPolicyConfig
                 policy.RequireAuthenticatedUser();
                 policy.RequireClaim(ClaimConstants.ReadWriteClaim, "roles");
             });
+    
         
         // services.AddScoped<IAuthorizationHandler, RequiredPermissionAuthorizationHandler>();
         services.AddAuthorizationBuilder().AddRequiredPermissionPolicy();

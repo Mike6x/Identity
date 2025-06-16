@@ -2,7 +2,7 @@ using Identity.Core.Settings;
 
 namespace Identity.Provider.Configurations;
 
-public static class CorsConfig
+public static class CorsPolicyConfig
 {
     public static IServiceCollection AddCorsPolicy(this IServiceCollection services, IConfiguration configuration)
     {

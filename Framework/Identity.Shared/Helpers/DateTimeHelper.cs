@@ -1,4 +1,4 @@
-namespace Identity.Infrastructure.Helpers;
+namespace Identity.Shared.Helpers;
 
 public static class DateTimeHelper
 {

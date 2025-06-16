@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using OpenIddict.Abstractions;
 
-namespace Identity.Provider.Extensions;
+namespace Identity.Infrastructure.Extensions;
 
 public static class ClaimExtensions
 {

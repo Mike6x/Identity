@@ -1,17 +1,17 @@
+using System.Security.Claims;
 using BuildingBlocks.Common.Extensions;
 using Identity.Core.Entities;
-using Identity.Provider.Extensions;
-
-using System.Security.Claims;
+using Identity.Infrastructure.Extensions;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
 using static OpenIddict.Abstractions.OpenIddictConstants;
 
-namespace Identity.Provider.EndPoints.Authorization.Handlers;
+namespace Identity.Infrastructure.Services.Authorization.Handlers;
 
 public static class Exchange
 {
@@ -90,6 +90,7 @@ public static class Exchange
             new ClaimsPrincipal(identity), 
             authenticationScheme: OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
     }
+    
     private static async Task<IResult> HandleExchangeClientCredentialsGrantType(
         OpenIddictRequest request, 
         IOpenIddictApplicationManager applicationManager
