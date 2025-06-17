@@ -1,18 +1,19 @@
 using System.Collections.Immutable;
 using System.Security.Claims;
+using BuildingBlocks.Common.Extensions;
+using Identity.Core.Entities;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
-
-using Identity.Core.Entities;
-using BuildingBlocks.Common.Extensions;
+using static OpenIddict.Abstractions.OpenIddictConstants;
 using static Identity.Infrastructure.Services.Authorization.AuthorizationServiceHelpers;
 
-namespace Identity.Provider.Endpoints.Authorization.Handlers;
+namespace Identity.Infrastructure.Services.Authorization.Handlers;
 
 public static class Authorize
 {
@@ -29,11 +30,11 @@ public static class Authorize
         if (request is null)
             return Results.BadRequest(new OpenIddictResponse
             {
-                Error = OpenIddictConstants.Errors.InvalidRequest,
+                Error = Errors.InvalidRequest,
                 ErrorDescription = "The OpenID Connect request cannot be retrieved.",
             });
 
-        var parameters = ParseOAuthParameters(context, [OpenIddictConstants.Parameters.Prompt]);
+        var parameters = ParseOAuthParameters(context, [Parameters.Prompt]);
 
         var result = await context.AuthenticateAsync(CookieAuthenticationDefaults.AuthenticationScheme);
 
@@ -47,11 +48,10 @@ public static class Authorize
             );
 
         var app = await applicationManager.FindByClientIdAsync(request.ClientId ?? "");
-
         if (app is null)
             return Results.NotFound(new OpenIddictResponse
             {
-                Error = OpenIddictConstants.Errors.InvalidClient,
+                Error = Errors.InvalidClient,
                 ErrorDescription = "The specified client was not found.",
             });
 
@@ -69,27 +69,35 @@ public static class Authorize
         if (user is null)
             return Results.NotFound(new OpenIddictResponse
             {
-                Error = OpenIddictConstants.Errors.LoginRequired,
+                Error = Errors.LoginRequired,
                 ErrorDescription = "We couldn't find the requested user.",
             });
 
         //  Retrieve the permanent authorizations associated with the user and the calling client application.
-        var authorizations = await authorizationManager.FindAsync(
+        var authorizationsList = await authorizationManager.FindAsync(
             await userManager.GetUserIdAsync(user),
             await applicationManager.GetIdAsync(app),
-            OpenIddictConstants.Statuses.Valid,
-            OpenIddictConstants.AuthorizationTypes.Permanent,
+            Statuses.Valid,
+            AuthorizationTypes.Permanent,
             request.GetScopes()).ToListAsync();
+        
+        var authorizations = await authorizationManager.FindAsync(
+            subject: await userManager.GetUserIdAsync(user),
+            client : await applicationManager.GetIdAsync(app),
+            status: Statuses.Valid,
+            type: AuthorizationTypes.Permanent,
+            scopes : request.GetScopes()
+        ).ToListAsync();
 
         // Note: the same check is already made in the other action but is repeated
         // here to ensure a malicious user can't abuse this POST-only endpoint and
         // force it to return a valid response without the external authorization.
-        if (authorizations.Count is 0 && await applicationManager.HasConsentTypeAsync(app, OpenIddictConstants.ConsentTypes.External))
+        if (authorizations.Count is 0 && await applicationManager.HasConsentTypeAsync(app, ConsentTypes.External))
             return Results.Forbid(
                 authenticationSchemes: [OpenIddictServerAspNetCoreDefaults.AuthenticationScheme],
-                properties: new(new Dictionary<string, string?>
+                properties: new AuthenticationProperties(new Dictionary<string, string?>
                 {
-                    [OpenIddictServerAspNetCoreConstants.Properties.Error] = OpenIddictConstants.Errors.ConsentRequired,
+                    [OpenIddictServerAspNetCoreConstants.Properties.Error] = Errors.ConsentRequired,
                     [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] =
                         "The logged in user is not allowed to access this client application.",
                 }));
@@ -100,15 +108,15 @@ public static class Authorize
             ClaimTypes.Role
         );
 
-        identity.SetClaim(OpenIddictConstants.Claims.Subject, user.Id.ToString())
-            .SetClaim(OpenIddictConstants.Claims.Email, user.Email)
-            .SetClaim(OpenIddictConstants.Claims.Username, user.UserName)
-            .SetClaim(OpenIddictConstants.Claims.Name, $"{user.FirstName} {user.LastName}")
-            .SetClaims(OpenIddictConstants.Claims.Audience, audiences)
-            .SetClaims(OpenIddictConstants.Claims.Role, [..await userManager.GetRolesAsync(user)]);
+        identity
+            .SetClaim(Claims.Subject, user.Id.ToString())
+            .SetClaim(Claims.Email, user.Email)
+            .SetClaim(Claims.Username, user.UserName)
+            .SetClaim(Claims.Name, $"{user.FirstName} {user.LastName}")
+            .SetClaims(Claims.Audience, audiences)
+            .SetClaims(Claims.Role, [..await userManager.GetRolesAsync(user)]);
 
         identity.SetScopes(request.GetScopes());
-
         identity.SetResources(await scopeManager.ListResourcesAsync(identity.GetScopes()).ToListAsync());
 
         // Automatically create a permanent authorization to avoid requiring explicit consent
@@ -118,11 +126,11 @@ public static class Authorize
             identity,
             user.Id.ToString(),
             (await applicationManager.GetIdAsync(app))!,
-            OpenIddictConstants.AuthorizationTypes.Permanent,
+            AuthorizationTypes.Permanent,
             identity.GetScopes());
 
         identity.SetAuthorizationId(await authorizationManager.GetIdAsync(authorization));
-        identity.SetDestinations(c => GetDestinations(identity, c));
+        identity.SetDestinations(c => GetDestinations(identity, c)); //?
 
         return Results.SignIn(
             new(identity),

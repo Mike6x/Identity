@@ -40,8 +40,8 @@ public static class GetStatusEndpoint
 
     private class StatusDto
     {
-        public string Api { get; set; }
-        public string Db { get; set; }
+        public string Api { get; set; } =  string.Empty;
+        public string Db { get; set; } = string.Empty;
         public DateTime TimeStamp { get; set; }
     }
 }

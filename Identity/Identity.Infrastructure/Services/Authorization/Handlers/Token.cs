@@ -18,7 +18,6 @@ public static class Token
         
     public static async Task<IResult> Handler(
         HttpContext httpContext,
-        IOpenIddictApplicationManager applicationManager,
         SignInManager<AppUser> signInManager,
         UserManager<AppUser> userManager,
         IOpenIddictScopeManager scopeManager)

@@ -11,13 +11,13 @@ public static class AuthorizationPolicyConfig
             .AddPolicy(AppPolicies.CanManageCities, policy =>
             {
                 policy.RequireAuthenticatedUser();
-                policy.RequireRole(AppRoles.Manager);
+                policy.RequireRole(AppRoles.Superuser);
             });
         services.AddAuthorizationBuilder()
             .AddPolicy(AppPolicies.CanManageStudents, policy =>
             {
                 policy.RequireAuthenticatedUser();
-                policy.RequireRole(AppRoles.Manager);
+                policy.RequireRole(AppRoles.Admin);
             });
         
         

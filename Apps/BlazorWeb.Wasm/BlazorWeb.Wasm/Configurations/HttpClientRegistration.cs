@@ -73,7 +73,7 @@ public static class HttpClientRegistration
                 .CreateClient("API"))
             .AddHttpClient("API", (provider, client) =>
             {
-                var uri = provider.GetRequiredService<BaseUrlProvider>().BaseUrl;
+                var uri = provider.GetRequiredService<BaseUrlProvider>().BaseUrl?? "https://localhost";
                 client.BaseAddress = new Uri(uri);
             })
             //.AddHttpMessageHandler<CookieHandler>()

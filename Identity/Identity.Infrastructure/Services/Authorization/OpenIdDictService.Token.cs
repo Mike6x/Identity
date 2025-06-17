@@ -1,13 +1,13 @@
 using System.Security.Claims;
 using BuildingBlocks.Common.Extensions;
 using BuildingBlocks.Exceptions;
-
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
+using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Identity.Infrastructure.Services.Authorization;
 
@@ -40,13 +40,13 @@ public partial class OpenIdDictService
         var result = await httpContext.AuthenticateAsync(OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
         
         // Retrieve the user profile corresponding to the authorization code/refresh token.
-        var user = await userManager.FindByIdAsync(result.Principal?.GetClaim(OpenIddictConstants.Claims.Subject)?? string.Empty);
+        var user = await userManager.FindByIdAsync(result.Principal?.GetClaim(Claims.Subject)?? string.Empty);
         if (user is null)
         {
             return Results.Forbid(
                 properties: new AuthenticationProperties(new Dictionary<string, string>
                 {
-                    [OpenIddictServerAspNetCoreConstants.Properties.Error] = OpenIddictConstants.Errors.InvalidGrant,
+                    [OpenIddictServerAspNetCoreConstants.Properties.Error] = Errors.InvalidGrant,
                     [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] = "The token is no longer valid."
                 }!),
                 authenticationSchemes: [OpenIddictServerAspNetCoreDefaults.AuthenticationScheme]);
@@ -58,7 +58,7 @@ public partial class OpenIdDictService
             return Results.Forbid( 
                 properties: new AuthenticationProperties(new Dictionary<string, string>
                 {
-                    [OpenIddictServerAspNetCoreConstants.Properties.Error] = OpenIddictConstants.Errors.InvalidGrant,
+                    [OpenIddictServerAspNetCoreConstants.Properties.Error] = Errors.InvalidGrant,
                     [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] = "The user is no longer allowed to sign in."
                 }!),
                 authenticationSchemes: [OpenIddictServerAspNetCoreDefaults.AuthenticationScheme]);
@@ -67,16 +67,16 @@ public partial class OpenIdDictService
         // Create a new ClaimsPrincipal
         var identity = new ClaimsIdentity(result.Principal?.Claims,
             authenticationType: TokenValidationParameters.DefaultAuthenticationType,
-            nameType: OpenIddictConstants.Claims.Name,
-            roleType: OpenIddictConstants.Claims.Role);
+            nameType: Claims.Name,
+            roleType: Claims.Role);
 
         // Override the user claims present in the principal in case they
         // changed since the authorization code/refresh token was issued.
-        identity.SetClaim(OpenIddictConstants.Claims.Subject, await userManager.GetUserIdAsync(user))
-            .SetClaim(OpenIddictConstants.Claims.Email, await userManager.GetEmailAsync(user))
-            .SetClaim(OpenIddictConstants.Claims.Name, await userManager.GetUserNameAsync(user))
-            .SetClaim(OpenIddictConstants.Claims.PreferredUsername, await userManager.GetUserNameAsync(user))
-            .SetClaims(OpenIddictConstants.Claims.Role, [..(await userManager.GetRolesAsync(user))]);
+        identity.SetClaim(Claims.Subject, await userManager.GetUserIdAsync(user))
+            .SetClaim(Claims.Email, await userManager.GetEmailAsync(user))
+            .SetClaim(Claims.Name, await userManager.GetUserNameAsync(user))
+            .SetClaim(Claims.PreferredUsername, await userManager.GetUserNameAsync(user))
+            .SetClaims(Claims.Role, [..(await userManager.GetRolesAsync(user))]);
        
         await AddUserClaimsAsync(identity, user);
         
@@ -99,7 +99,7 @@ public partial class OpenIdDictService
         {
             var properties = new AuthenticationProperties(new Dictionary<string, string>
             {
-                [OpenIddictServerAspNetCoreConstants.Properties.Error] = OpenIddictConstants.Errors.InvalidGrant,
+                [OpenIddictServerAspNetCoreConstants.Properties.Error] = Errors.InvalidGrant,
                 [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] = "User does not exist."
             }!);
 
@@ -122,7 +122,7 @@ public partial class OpenIdDictService
             
             var properties = new AuthenticationProperties(new Dictionary<string, string>
             {
-                [OpenIddictServerAspNetCoreConstants.Properties.Error] = OpenIddictConstants.Errors.InvalidGrant,
+                [OpenIddictServerAspNetCoreConstants.Properties.Error] = Errors.InvalidGrant,
                 [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] = errorString
             }!);
             
@@ -133,25 +133,25 @@ public partial class OpenIdDictService
 
         // Create the claims-based identity that will be used by Authorization to generate tokens.
         var identity = new ClaimsIdentity(
-            authenticationType: TokenValidationParameters.DefaultAuthenticationType,
-            nameType: OpenIddictConstants.Claims.Name,
-            roleType: OpenIddictConstants.Claims.Role);
+            authenticationType: OpenIddictServerAspNetCoreDefaults.AuthenticationScheme, 
+            nameType: Claims.Name,
+            roleType: Claims.Role);
 
         // Add the claims that will be persisted in the tokens.
-        identity.SetClaim(OpenIddictConstants.Claims.Subject, await userManager.GetUserIdAsync(user))
-                .SetClaim(OpenIddictConstants.Claims.Email, await userManager.GetEmailAsync(user))
-                .SetClaim(OpenIddictConstants.Claims.Name, await userManager.GetUserNameAsync(user))
-                .SetClaims(OpenIddictConstants.Claims.Role, [..(await userManager.GetRolesAsync(user))]);
+        identity.SetClaim(Claims.Subject, await userManager.GetUserIdAsync(user))
+                .SetClaim(Claims.Email, await userManager.GetEmailAsync(user))
+                .SetClaim(Claims.Name, await userManager.GetUserNameAsync(user))
+                .SetClaims(Claims.Role, [..(await userManager.GetRolesAsync(user))]);
 
         await AddUserClaimsAsync(identity, user);
 
         // Set the list of scopes granted to the client application.
         identity.SetScopes(new[]
         {
-            OpenIddictConstants.Scopes.OpenId,
-            OpenIddictConstants.Scopes.Email,
-            OpenIddictConstants.Scopes.Profile,
-            OpenIddictConstants.Scopes.Roles
+            Scopes.OpenId,
+            Scopes.Email,
+            Scopes.Profile,
+            Scopes.Roles
         }.Intersect(request.GetScopes()));
 
         identity.SetDestinations(GetDestinations);
@@ -170,12 +170,12 @@ public partial class OpenIdDictService
         // Create the claims-based identity that will be used by Authorization to generate tokens.
         var identity = new ClaimsIdentity(
             authenticationType: TokenValidationParameters.DefaultAuthenticationType,
-            nameType: OpenIddictConstants.Claims.Name,
-            roleType: OpenIddictConstants.Claims.Role);
+            nameType: Claims.Name,
+            roleType: Claims.Role);
 
         // Add the claims that will be persisted in the tokens (use the client_id as the subject identifier).
-        identity.SetClaim(OpenIddictConstants.Claims.Subject, await applicationManager.GetClientIdAsync(application));
-        identity.SetClaim(OpenIddictConstants.Claims.Name, await applicationManager.GetDisplayNameAsync(application));
+        identity.SetClaim(Claims.Subject, await applicationManager.GetClientIdAsync(application));
+        identity.SetClaim(Claims.Name, await applicationManager.GetDisplayNameAsync(application));
 
         // Note: In the original OAuth 2.0 specification, the client credentials grant
         // doesn't return an identity token, which is an OpenID Connect concept.
@@ -188,6 +188,7 @@ public partial class OpenIdDictService
         // Set the list of scopes granted to the client application in access_token.
         identity.SetScopes(request.GetScopes());
         identity.SetResources(await scopeManager.ListResourcesAsync(identity.GetScopes()).ToListAsync());
+        
         identity.SetDestinations(GetDestinations);
         
         return Results.SignIn(new ClaimsPrincipal(identity), authenticationScheme: OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);

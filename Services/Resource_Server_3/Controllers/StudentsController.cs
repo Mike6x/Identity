@@ -1,5 +1,6 @@
 using System.Text;
 using System.Text.Json;
+using Identity.Shared.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Resource_Server_3.Services;
@@ -28,7 +29,6 @@ public class StudentsController(IStudentService studentService) : ApiControllerB
     }
     
     [HttpPost("export")]
-    [Authorize(Roles = "admin")]
     public async Task<IActionResult> ExportToJson()
     {
         var students = await studentService.GetAllAsync();
@@ -107,7 +107,7 @@ public class StudentsController(IStudentService studentService) : ApiControllerB
     }
     
     [HttpDelete("{id:int}")]
-    [AllowAnonymous]
+    [Authorize(AppPolicies.CanManageStudents)]
  
     public async Task<IActionResult> DeleteAsync(int id)
     {

@@ -1,7 +1,6 @@
 using Identity.Core.Entities;
 using Identity.Core.Features.Authorization;
 using Identity.Infrastructure.Services.Authorization.Handlers;
-using Identity.Provider.Endpoints.Authorization.Handlers;
 using Microsoft.AspNetCore.Identity;
 using OpenIddict.Server.AspNetCore;
 
@@ -13,6 +12,9 @@ public static class AuthorizationEndpoints
     {
         app.MapGetAuthorizeEndpoint();
         app.MapAuthorizeEndpoint();
+        
+        app.MapAcceptAuthorizationGrantEndpoint();
+        app.MapDenyAuthorizationGrantEndpoint();
         
         app.MapGetTokenEndpoint();
         app.MapTokenEndpoint();
@@ -33,10 +35,18 @@ public static class AuthorizationEndpoints
     }
 }
 
+#region Authorization code, implicit and hybrid flows
+// Note: to support interactive flows like the code flow,
+// you must provide your own authorization endpoint action:
+
 public static class GetAuthorizeEndpoint
 {
     public static RouteHandlerBuilder MapGetAuthorizeEndpoint(this IEndpointRouteBuilder endpoints)
     {
+        // return endpoints.MapGet("/authorize", 
+        //         (HttpContext httpContext, 
+        //         IAuthorizationService service, 
+        //         CancellationToken cancellationToken) => service.AuthorizeAsync(httpContext))
         return endpoints.MapGet("/authorize", Authorize.Handler)
             .WithName(nameof(GetAuthorizeEndpoint))
             .WithSummary("Get Authorize Information")
@@ -50,7 +60,10 @@ public static class AuthorizeEndpoint
 {
     public static RouteHandlerBuilder MapAuthorizeEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        return endpoints.MapPost("/authorize", Authorize.Handler)
+        return endpoints.MapPost("/authorize", 
+                (HttpContext httpContext, 
+                IAuthorizationService service, 
+                CancellationToken cancellationToken) => service.AuthorizeAsync(httpContext))
             .WithName(nameof(AuthorizeEndpoint))
             .WithSummary("Get Authorize Information")
             .WithDescription("Retrieve Authorize Information.")
@@ -58,6 +71,36 @@ public static class AuthorizeEndpoint
             .DisableAntiforgery();
     }
 }
+
+public static class AcceptAuthorizationGrantEndpoint
+{
+    public static RouteHandlerBuilder MapAcceptAuthorizationGrantEndpoint(this IEndpointRouteBuilder endpoints)
+    {
+        return endpoints.MapPost("/authorize/accept", (HttpContext httpContext, IAuthorizationService service, CancellationToken cancellationToken) 
+                => service.AcceptAsync(httpContext))
+            .WithName(nameof(AcceptAuthorizationGrantEndpoint))
+            .WithSummary("Deny authorization grant")
+            .WithDescription("Deny authorization grant")
+            .RequireAuthorization();
+    }
+}
+
+// Notify Authorization that the authorization grant has been denied by the resource owner
+// to redirect the user agent to the client application using the appropriate response_mode.
+public static class DenyAuthorizationGrantEndpoint
+{
+    public static RouteHandlerBuilder MapDenyAuthorizationGrantEndpoint(this IEndpointRouteBuilder endpoints)
+    {
+        return endpoints.MapPost("/authorize/deny", (IAuthorizationService service, CancellationToken cancellationToken) 
+                => service.Deny())
+            .WithName(nameof(DenyAuthorizationGrantEndpoint))
+            .WithSummary("Deny authorization grant")
+            .WithDescription("Deny authorization grant")
+            .RequireAuthorization();
+    }
+}
+
+#endregion
 
 #region Password, authorization code, device and refresh token flows.
 // Note: to support non-interactive flows like password,
@@ -67,7 +110,10 @@ public static class GetTokenEndpoint
 {
     public static RouteHandlerBuilder MapGetTokenEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        return endpoints.MapGet("/token", (Delegate)Exchange.Handler)
+        // return endpoints.MapGet("/token", Exchange.Handler)
+        return endpoints.MapGet("/token", ( HttpContext httpContext, 
+                IAuthorizationService service, 
+                CancellationToken cancellationToken) => service.ExchangeAsync(httpContext))
             .WithName(nameof(GetTokenEndpoint))
             .WithSummary("Retrieve Access Token.")
             .WithDescription("Retrieve Access Token.")

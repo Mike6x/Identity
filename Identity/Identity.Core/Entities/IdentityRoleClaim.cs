@@ -11,9 +11,6 @@ public class IdentityRoleClaim : IdentityRoleClaim<Guid>
     /// </summary>
     public virtual string Properties { get; set; }
     
-    /// <summary>
-    /// These from FSH
-    /// </summary>
     public Guid? CreatedBy { get; init; }
     public DateTimeOffset CreatedAt { get; init; }
 

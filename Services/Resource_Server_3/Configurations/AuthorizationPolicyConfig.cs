@@ -9,15 +9,15 @@ public static class AuthorizationPolicyConfig
                
         services.AddAuthorizationCore(options =>
         {
-            options.AddPolicy(AppPolicies.CanManageStudents, policy =>
-            {
-                policy.RequireAuthenticatedUser();
-                policy.RequireRole(AppRoles.Manager);
-            });
             options.AddPolicy(AppPolicies.CanManageCities, policy =>
             {
                 policy.RequireAuthenticatedUser();
-                policy.RequireRole(AppRoles.Manager);
+                policy.RequireRole(AppRoles.Superuser);
+            });
+            options.AddPolicy(AppPolicies.CanManageStudents, policy =>
+            {
+                policy.RequireAuthenticatedUser();
+                policy.RequireRole(AppRoles.Admin);
             });
             
             options.AddPolicy(AppPolicies.PaidForecast, policy =>
@@ -29,7 +29,8 @@ public static class AuthorizationPolicyConfig
             options.AddPolicy(AppPolicies.WeatherRead, policy =>
             {
                 policy.RequireAuthenticatedUser();
-                policy.RequireClaim(ClaimConstants.Permissions, AppScopes.WeatherReadScope);
+                policy.RequireClaim("permission", "weather:read");
+                // policy.RequireClaim(ClaimConstants.Permissions, AppScopes.WeatherReadScope);
             });
             
             options.AddPolicy(AppPolicies.SecureForecast, policy =>

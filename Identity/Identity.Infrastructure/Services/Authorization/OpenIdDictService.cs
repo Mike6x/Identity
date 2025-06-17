@@ -10,7 +10,6 @@ using OpenIddict.Server.AspNetCore;
 namespace Identity.Infrastructure.Services.Authorization;
 
 public sealed partial class OpenIdDictService(
-    // HttpContext httpContext,
     IOpenIddictApplicationManager applicationManager,
     IOpenIddictAuthorizationManager authorizationManager,
     IOpenIddictScopeManager scopeManager,
@@ -27,7 +26,7 @@ public sealed partial class OpenIdDictService(
         foreach(var assignedRole in await userManager.GetRolesAsync(user))
         {
             var role = await roleManager.FindByNameAsync(assignedRole);
-            claimsIdentity.AddClaims(await roleManager.GetClaimsAsync(role));
+            if(role != null) claimsIdentity.AddClaims(await roleManager.GetClaimsAsync(role));
         }
     }
 
