@@ -47,14 +47,14 @@
           "dependencies": {
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
-              "version": "[9.0.5, )",
+              "version": "[9.0.6, )",
               "noWarn": [
                 "NU1605"
               ]
             },
             "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
               "target": "Package",
-              "version": "[9.0.5, )",
+              "version": "[9.0.6, )",
               "noWarn": [
                 "NU1605"
               ]

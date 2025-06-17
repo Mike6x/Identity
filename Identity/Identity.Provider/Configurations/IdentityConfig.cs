@@ -1,7 +1,6 @@
 using Identity.Core.Entities;
 using Identity.Infrastructure.Data;
 using Identity.Infrastructure.Data.Store;
-using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using OpenIddict.Abstractions;
 

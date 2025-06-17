@@ -43,11 +43,11 @@ public static class GetAuthorizeEndpoint
 {
     public static RouteHandlerBuilder MapGetAuthorizeEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        // return endpoints.MapGet("/authorize", 
-        //         (HttpContext httpContext, 
-        //         IAuthorizationService service, 
-        //         CancellationToken cancellationToken) => service.AuthorizeAsync(httpContext))
-        return endpoints.MapGet("/authorize", Authorize.Handler)
+        return endpoints.MapGet("/authorize", 
+                (HttpContext httpContext, 
+                IAuthorizationService service, 
+                CancellationToken cancellationToken) => service.AuthorizeAsync(httpContext))
+        // return endpoints.MapGet("/authorize", Authorize.Handler)
             .WithName(nameof(GetAuthorizeEndpoint))
             .WithSummary("Get Authorize Information")
             .WithDescription("Retrieve Authorize Information.")

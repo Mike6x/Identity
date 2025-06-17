@@ -106,7 +106,7 @@ public class AuthService(
             .SetClaim(OpenIddictConstants.Claims.Private.RegistrationId, result.Principal.GetClaim(OpenIddictConstants.Claims.Private.RegistrationId))
             .SetClaim(OpenIddictConstants.Claims.Private.ProviderName, result.Principal.GetClaim(OpenIddictConstants.Claims.Private.ProviderName));
         
-        var properties = new AuthenticationProperties(result.Properties.Items)
+        var properties = new AuthenticationProperties(result.Properties!.Items)
         {
             RedirectUri = result.Properties.RedirectUri ?? "/"
         };

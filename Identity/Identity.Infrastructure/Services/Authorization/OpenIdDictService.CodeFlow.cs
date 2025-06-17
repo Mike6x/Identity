@@ -26,21 +26,38 @@ public partial class OpenIdDictService
         var request = httpContext.GetOpenIddictServerRequest() ?? 
                       throw new InvalidOperationException( "The OpenID Connect request cannot be retrieved.");
         
+        // If prompt=login was specified by the client application,
+        // immediately return the user agent to the login page.
+        if (request.HasPromptValue(PromptValues.Login))
+        {
+            var prompt = string.Join(" ", request.GetPromptValues().Remove(PromptValues.Login));
+
+            var parameters = httpContext.Request.HasFormContentType
+                ? httpContext.Request.Form.Where(parameter => parameter.Key != Parameters.Prompt).ToList()
+                : httpContext.Request.Query.Where(parameter => parameter.Key != Parameters.Prompt).ToList();
+
+            parameters.Add(KeyValuePair.Create(Parameters.Prompt, new StringValues(prompt)));
+            return Results.Challenge(
+                authenticationSchemes: [IdentityConstants.ApplicationScheme],
+                properties: new AuthenticationProperties
+                {
+                    RedirectUri = httpContext.Request.PathBase + httpContext.Request.Path + QueryString.Create(parameters),
+                });
+        }
+        
         // Try to retrieve the user principal stored in the authentication cookie and redirect
         // the user agent to the login page (or to an external provider) in the following cases:
-        //
         //  - If the user principal can't be extracted or the cookie is too old.
-        //  - If prompt=login was specified by the client application.
         //  - If a max_age parameter was provided and the authentication cookie is not considered "fresh" enough.
         //
         // For scenarios where the default authentication handler configured in the ASP.NET Core
         // authentication options shouldn't be used, a specific scheme can be specified here.
+        
         var result = await httpContext.AuthenticateAsync(IdentityConstants.ApplicationScheme);
         if (!result.Succeeded
-            || request.HasPromptValue(PromptValues.Login)
-            || (request.MaxAge != null
-                && result.Properties?.IssuedUtc != null
-                && DateTimeOffset.UtcNow - result.Properties.IssuedUtc > TimeSpan.FromSeconds(request.MaxAge.Value)))
+                || (request.MaxAge != null
+                    && result.Properties?.IssuedUtc != null
+                    && DateTimeOffset.UtcNow - result.Properties.IssuedUtc > TimeSpan.FromSeconds(request.MaxAge.Value)))
         {
             // If the client application requested promptless authentication,
             // return an error indicating that the user is not logged in.
@@ -55,23 +72,16 @@ public partial class OpenIdDictService
                             [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] = "The user is not logged in.",
                         }));
             }
-            // To avoid endless login -> authorization redirects, the prompt=login flag
-            // is removed from the authorization request payload before redirecting the user.
-            var prompt = string.Join(" ", request.GetPromptValues().Remove(PromptValues.Login));
-            
-            var parameters = httpContext.Request.HasFormContentType
-                ? httpContext.Request.Form.Where(parameter => parameter.Key != Parameters.Prompt).ToList()
-                : httpContext.Request.Query.Where(parameter => parameter.Key != Parameters.Prompt).ToList();
-    
-            parameters.Add( KeyValuePair.Create(Parameters.Prompt, new StringValues(prompt)));
-    
-            // For scenarios where the default challenge handler configured in the ASP.NET Core
-            // authentication options shouldn't be used, a specific scheme can be specified here.
+
             return Results.Challenge(
                 authenticationSchemes: [IdentityConstants.ApplicationScheme],
                 properties: new AuthenticationProperties
                 {
-                    RedirectUri = httpContext.Request.PathBase + httpContext.Request.Path + QueryString.Create(parameters),
+                   RedirectUri = httpContext.Request.PathBase 
+                                 + httpContext.Request.Path 
+                                 + QueryString.Create(httpContext.Request.HasFormContentType 
+                                                           ? httpContext.Request.Form.ToList() 
+                                                           : httpContext.Request.Query.ToList())
                 });
         }
         
@@ -111,8 +121,7 @@ public partial class OpenIdDictService
             // return an authorization response without displaying the consent form.
             case ConsentTypes.Implicit:
             case ConsentTypes.External when authorizations.Count is not 0:
-            case ConsentTypes.Explicit when authorizations.Count is not 0
-                    && !request.HasPromptValue(PromptValues.Consent):
+            case ConsentTypes.Explicit when authorizations.Count is not 0 && !request.HasPromptValue(PromptValues.Consent):
                 
                 // Create the claims-based identity that will be used by Authorization to generate tokens.
                 var permissions = await applicationManager.GetPermissionsAsync(application);

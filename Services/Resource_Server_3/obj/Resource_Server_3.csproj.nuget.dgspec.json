@@ -422,15 +422,15 @@
             },
             "Microsoft.Extensions.Configuration.Abstractions": {
               "target": "Package",
-              "version": "[9.0.5, )"
+              "version": "[9.0.6, )"
             },
             "Microsoft.Extensions.DependencyInjection.Abstractions": {
               "target": "Package",
-              "version": "[9.0.5, )"
+              "version": "[9.0.6, )"
             },
             "Microsoft.Extensions.Http": {
               "target": "Package",
-              "version": "[9.0.5, )"
+              "version": "[9.0.6, )"
             },
             "Newtonsoft.Json": {
               "target": "Package",
@@ -438,11 +438,11 @@
             },
             "OpenIddict.Validation.AspNetCore": {
               "target": "Package",
-              "version": "[6.3.0, )"
+              "version": "[6.4.0, )"
             },
             "OpenIddict.Validation.SystemNetHttp": {
               "target": "Package",
-              "version": "[6.3.0, )"
+              "version": "[6.4.0, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

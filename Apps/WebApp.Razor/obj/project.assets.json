@@ -71,7 +71,7 @@
           }
         }
       },
-      "Microsoft.AspNetCore.Authentication.JwtBearer/9.0.5": {
+      "Microsoft.AspNetCore.Authentication.JwtBearer/9.0.6": {
         "type": "package",
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "8.0.1"
@@ -90,7 +90,7 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "Microsoft.AspNetCore.Authentication.OpenIdConnect/9.0.5": {
+      "Microsoft.AspNetCore.Authentication.OpenIdConnect/9.0.6": {
         "type": "package",
         "dependencies": {
           "Microsoft.IdentityModel.Protocols.OpenIdConnect": "8.0.1"
@@ -606,10 +606,10 @@
         "lib/netstandard2.0/Azure.Security.KeyVault.Secrets.xml"
       ]
     },
-    "Microsoft.AspNetCore.Authentication.JwtBearer/9.0.5": {
-      "sha512": "8J04KPX5NCo6j5AjY/rgeLTceMBJ8Sq4k+YNxN/7hCrbCH1iwHVw7VGGvlCscj615ewMX3jYDmxxLdutbSPOcA==",
+    "Microsoft.AspNetCore.Authentication.JwtBearer/9.0.6": {
+      "sha512": "nH1mrzr77pk+n1E5+A/0KlzkNhqy3LS3gUGEjJf0PQE6PZAc3pr8rLwUATcaJMr/12qsxHT+kcvRZMxc4bxFpA==",
       "type": "package",
-      "path": "microsoft.aspnetcore.authentication.jwtbearer/9.0.5",
+      "path": "microsoft.aspnetcore.authentication.jwtbearer/9.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -618,14 +618,14 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll",
         "lib/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
-        "microsoft.aspnetcore.authentication.jwtbearer.9.0.5.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.jwtbearer.9.0.6.nupkg.sha512",
         "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
       ]
     },
-    "Microsoft.AspNetCore.Authentication.OpenIdConnect/9.0.5": {
-      "sha512": "bTZm2vTbJGTTtuW41E7sBP1p2tMgKQBbKULBuE6YvtwOK4/gzjXcD2n9pfWfloayfOvxCRwJYJ5deJhuQiIOeg==",
+    "Microsoft.AspNetCore.Authentication.OpenIdConnect/9.0.6": {
+      "sha512": "cRsREllwLWFEl83me6iC5LO6sHy/X0tw1X2bXmfGBulrmM5BvoVuUkJegfpEV1R2Q89gdv8ckS5ZaPxdocUVPw==",
       "type": "package",
-      "path": "microsoft.aspnetcore.authentication.openidconnect/9.0.5",
+      "path": "microsoft.aspnetcore.authentication.openidconnect/9.0.6",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -633,7 +633,7 @@
         "THIRD-PARTY-NOTICES.TXT",
         "lib/net9.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.dll",
         "lib/net9.0/Microsoft.AspNetCore.Authentication.OpenIdConnect.xml",
-        "microsoft.aspnetcore.authentication.openidconnect.9.0.5.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.openidconnect.9.0.6.nupkg.sha512",
         "microsoft.aspnetcore.authentication.openidconnect.nuspec"
       ]
     },
@@ -1247,8 +1247,8 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "Microsoft.AspNetCore.Authentication.JwtBearer >= 9.0.5",
-      "Microsoft.AspNetCore.Authentication.OpenIdConnect >= 9.0.5",
+      "Microsoft.AspNetCore.Authentication.JwtBearer >= 9.0.6",
+      "Microsoft.AspNetCore.Authentication.OpenIdConnect >= 9.0.6",
       "Microsoft.Identity.Web >= 3.9.3",
       "Microsoft.Identity.Web.DownstreamApi >= 3.9.3",
       "Microsoft.Identity.Web.UI >= 3.9.3",
@@ -1301,14 +1301,14 @@
         "dependencies": {
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
-            "version": "[9.0.5, )",
+            "version": "[9.0.6, )",
             "noWarn": [
               "NU1605"
             ]
           },
           "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
             "target": "Package",
-            "version": "[9.0.5, )",
+            "version": "[9.0.6, )",
             "noWarn": [
               "NU1605"
             ]

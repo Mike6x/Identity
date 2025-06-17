@@ -36,7 +36,7 @@ public static class OidcConfig
                     NameClaimType = "name",
                     RoleClaimType = "roles"
                 };
-                options.Scope.Add("api");
+                options.Scope.Add("api3");
 
             });
         

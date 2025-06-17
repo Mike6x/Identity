@@ -57,15 +57,6 @@ public static class OpenIdDictConfig
                 // options.AllowClientCredentialsFlow().AllowRefreshTokenFlow();
                 
                 options.RequireProofKeyForCodeExchange();
-
-                // var scopes = new List<string>
-                // {
-                //     Permissions.Scopes.Email,
-                //     Permissions.Scopes.Profile,
-                //     Permissions.Scopes.Roles,
-                // }.Select(s => s.Replace(Permissions.Prefixes.Scope, ""));
-                //
-                // options.RegisterScopes(scopes.ToArray());
                 
                 options.RegisterScopes(
                     Scopes.OpenId,
@@ -144,16 +135,17 @@ public static class OpenIdDictConfig
             })
             
             // Check this session
+            
             .AddClient(options =>
             {
                 options.AllowAuthorizationCodeFlow().AllowRefreshTokenFlow();
-
+            
                 options.AddDevelopmentEncryptionCertificate().AddDevelopmentSigningCertificate();
-
+            
                 options.UseAspNetCore().EnableRedirectionEndpointPassthrough();
-
+            
                 options.UseSystemNetHttp();
-
+            
                 // Register the Google integration.
                 options.UseWebProviders().AddGoogle(opt =>
                 {
@@ -170,7 +162,7 @@ public static class OpenIdDictConfig
                 options.UseAspNetCore();
                 options.UseSystemNetHttp();
             });
-        
+   
         return services;
     }
 

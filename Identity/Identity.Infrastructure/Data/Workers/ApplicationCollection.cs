@@ -19,6 +19,48 @@ public class ApplicationCollection
         const string adminUiUrl = "https://localhost:7002";
 
         #region Sample Clients
+        
+        // Mud BlazorWeb Admin UI
+        _applications.Add( new OpenIddictApplicationDescriptor
+        {
+            ClientId = "identityAdmin.oidc.application",
+            ClientSecret = "admin-ui-secret",
+            ConsentType = ConsentTypes.Explicit,
+            DisplayName = "OpenIddict Admin UI using MudBlazor",
+            RedirectUris =
+            {
+                new Uri("https://localhost:7002/signin-oidc"),
+  },
+            PostLogoutRedirectUris =
+            {
+                new Uri("https://localhost:7002/signout-callback-oidc"),
+            },
+            Permissions =
+            {
+                Permissions.GrantTypes.AuthorizationCode,
+                Permissions.GrantTypes.RefreshToken,
+                
+                Permissions.Endpoints.Authorization,
+                Permissions.Endpoints.EndSession,
+                Permissions.Endpoints.Token,
+                Permissions.Endpoints.Revocation,
+
+                Permissions.ResponseTypes.Code,
+
+                Permissions.Scopes.Email,
+                Permissions.Scopes.Profile,
+                Permissions.Scopes.Roles,
+                
+                $"{Permissions.Prefixes.Scope}api2",
+                $"{Permissions.Prefixes.Scope}api3",
+  
+            },
+            Requirements =
+            {
+                Requirements.Features.ProofKeyForCodeExchange
+            }
+
+        });
 
         // blazorwasm-oidc-client
         _applications.Add(new OpenIddictApplicationDescriptor

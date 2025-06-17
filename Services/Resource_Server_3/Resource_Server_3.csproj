@@ -11,12 +11,12 @@
 	    <PackageReference Include="IdentityModel.AspNetCore.OAuth2Introspection" Version="6.2.0" />
 	    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.6" />
 	    <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.6" />
-	    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.5" />
-	    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.5" />
-	    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.5" />
+	    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.6" />
+	    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.6" />
+	    <PackageReference Include="Microsoft.Extensions.Http" Version="9.0.6" />
 	    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-	    <PackageReference Include="OpenIddict.Validation.AspNetCore" Version="6.3.0" />
-	    <PackageReference Include="OpenIddict.Validation.SystemNetHttp" Version="6.3.0" />
+	    <PackageReference Include="OpenIddict.Validation.AspNetCore" Version="6.4.0" />
+	    <PackageReference Include="OpenIddict.Validation.SystemNetHttp" Version="6.4.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="9.0.1" />
         <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="8.12.0" />
   </ItemGroup>
