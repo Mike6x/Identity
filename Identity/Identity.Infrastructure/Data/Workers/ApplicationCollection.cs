@@ -62,7 +62,7 @@ public class ApplicationCollection
 
         });
 
-        // blazorwasm-oidc-client
+        // blazorwasm-standalone-oidc-client
         _applications.Add(new OpenIddictApplicationDescriptor
         {
             ClientId = "blazorwasm.oidc.application",
@@ -105,21 +105,19 @@ public class ApplicationCollection
             }
         });
 
-        // blazorweb-oidc-client
+        // blazorweb.wasm-oidc-client
         _applications.Add( new OpenIddictApplicationDescriptor
         {
             ClientId = "blazorweb.oidc.application",
             ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C206",
             ConsentType = ConsentTypes.Explicit,
-            DisplayName = "BlazorWeb Code PKCE Client",
+            DisplayName = "BlazorWeb.wasm - Code PKCE Client",
             RedirectUris =
             {
-                new Uri("https://localhost:7006/signin-oidc"),
                 new Uri("https://localhost:7008/signin-oidc"),
-       },
+            },
             PostLogoutRedirectUris =
             {
-                new Uri("https://localhost:7006/signout-callback-oidc"),
                 new Uri("https://localhost:7008/signout-callback-oidc"),
             },
             Permissions =
@@ -150,12 +148,13 @@ public class ApplicationCollection
 
         });
         
+        // blazorweb.server-oidc-client
         _applications.Add( new OpenIddictApplicationDescriptor
         {
             ClientId = "blazor.oidc.application",
             ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C206",
             ConsentType = ConsentTypes.Explicit,
-            DisplayName = "BlazorWeb server and wasm Code PKCE Client",
+            DisplayName = "BlazorWeb.Server - Code PKCE Client",
             RedirectUris =
             {
                 new Uri("https://localhost:7006/signin-oidc"),

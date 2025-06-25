@@ -3,14 +3,18 @@
  * See https://github.com/openiddict/openiddict-core for more information concerning
  * the license and the contributors participating to this project.
  */
+
+using System.Collections.Immutable;
 using System.Security.Claims;
 using Identity.Core.Entities;
 using Identity.Core.Features.Authorization;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Primitives;
+using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
-using OpenIddict.Server.AspNetCore;
+using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Identity.Infrastructure.Services.Authorization;
 
@@ -22,20 +26,7 @@ public sealed partial class OpenIdDictService(
     UserManager<AppUser> userManager,
     RoleManager<AppRole> roleManager) : IAuthorizationService
 {
-    private async Task AddUserClaimsAsync(ClaimsIdentity claimsIdentity, AppUser user)
-    {
-        foreach(var claim in await userManager.GetClaimsAsync(user))
-        {
-            claimsIdentity.AddClaim(claim);
-        }
-        foreach(var assignedRole in await userManager.GetRolesAsync(user))
-        {
-            var role = await roleManager.FindByNameAsync(assignedRole);
-            if(role != null) claimsIdentity.AddClaims(await roleManager.GetClaimsAsync(role));
-        }
-    }
-
-    private static IEnumerable<string> GetDestinations(Claim claim)
+        private static IEnumerable<string> GetDestinations(Claim claim)
     {
         // Note: by default, claims are NOT automatically included in the access and identity tokens.
         // To allow Authorization to serialize them, you must attach them a destination, that specifies
@@ -43,27 +34,27 @@ public sealed partial class OpenIdDictService(
        
         switch (claim.Type)
         {
-            case OpenIddictConstants.Claims.Name or OpenIddictConstants.Claims.PreferredUsername:
-                yield return OpenIddictConstants.Destinations.AccessToken;
+            case Claims.Name or Claims.PreferredUsername:
+                yield return Destinations.AccessToken;
 
-                if (claim.Subject != null && claim.Subject.HasScope(OpenIddictConstants.Permissions.Scopes.Profile))
-                    yield return OpenIddictConstants.Destinations.IdentityToken;
-
-                yield break;
-
-            case OpenIddictConstants.Claims.Email:
-                yield return OpenIddictConstants.Destinations.AccessToken;
-
-                if (claim.Subject != null && claim.Subject.HasScope(OpenIddictConstants.Permissions.Scopes.Email))
-                    yield return OpenIddictConstants.Destinations.IdentityToken;
+                if (claim.Subject != null && claim.Subject.HasScope(Permissions.Scopes.Profile))
+                    yield return Destinations.IdentityToken;
 
                 yield break;
 
-            case OpenIddictConstants.Claims.Role:
-                yield return OpenIddictConstants.Destinations.AccessToken;
+            case Claims.Email:
+                yield return Destinations.AccessToken;
 
-                if (claim.Subject != null && claim.Subject.HasScope(OpenIddictConstants.Permissions.Scopes.Roles))
-                    yield return OpenIddictConstants.Destinations.IdentityToken;
+                if (claim.Subject != null && claim.Subject.HasScope(Permissions.Scopes.Email))
+                    yield return Destinations.IdentityToken;
+
+                yield break;
+
+            case Claims.Role:
+                yield return Destinations.AccessToken;
+
+                if (claim.Subject != null && claim.Subject.HasScope(Permissions.Scopes.Roles))
+                    yield return Destinations.IdentityToken;
 
                 yield break;
 
@@ -78,7 +69,7 @@ public sealed partial class OpenIdDictService(
                     if (bool.TryParse(claim.Properties["IncludeInAccessToken"], out bool includeInAccessToken)
                         && includeInAccessToken)
                     {
-                        yield return OpenIddictConstants.Destinations.AccessToken;
+                        yield return Destinations.AccessToken;
                     }                        
                 }
                 
@@ -87,26 +78,106 @@ public sealed partial class OpenIdDictService(
                     if (bool.TryParse(claim.Properties["IncludeInIdentityToken"], out bool includeInIdentityToken)
                         && includeInIdentityToken)
                     {
-                        yield return OpenIddictConstants.Destinations.IdentityToken;
+                        yield return Destinations.IdentityToken;
                     }
                 }                  
                 yield break;
         }
     }
     
-    public async Task<IResult> EndSessionAsync()
+    private async Task AddUserClaimsAsync(ClaimsIdentity claimsIdentity, AppUser user)
     {
-        // Ask ASP.NET Core Identity to delete the local and external cookies created
-        // when the user agent is redirected from the external identity provider
-        // after a successful authentication flow (e.g Google or Facebook).
-        await signInManager.SignOutAsync();
-        
-        // Returning a SignOutResult will ask Authorization to redirect the user agent
-        // to the post_logout_redirect_uri specified by the client application or to
-        // the RedirectUri specified in the authentication properties if none was set.
-        return Results.SignOut(
-            authenticationSchemes: [OpenIddictServerAspNetCoreDefaults.AuthenticationScheme],
-            properties: new AuthenticationProperties { RedirectUri = "/" });
+        foreach(var claim in await userManager.GetClaimsAsync(user))
+        {
+            claimsIdentity.AddClaim(claim);
+        }
+        foreach(var assignedRole in await userManager.GetRolesAsync(user))
+        {
+            var role = await roleManager.FindByNameAsync(assignedRole);
+            if(role != null) claimsIdentity.AddClaims(await roleManager.GetClaimsAsync(role));
+        }
     }
+    
+    private async Task<ClaimsIdentity> CreateClaimsBasedIdentity(AppUser user, object? application)
+    {
+        var identity = new ClaimsIdentity(
+            authenticationType: TokenValidationParameters.DefaultAuthenticationType,
+            nameType: Claims.Name,
+            roleType: Claims.Role
+        );
+        
+        // Override the user claims present in the principal in case they
+        // changed since the authorization code/refresh token was issued.
+        identity.SetClaim(Claims.Subject, user.Id.ToString())
+            .SetClaim(Claims.Email, user.Email)
+            .SetClaim(Claims.Username, user.UserName)
+            .SetClaim(Claims.PreferredUsername, user.UserName)
+            .SetClaim(Claims.Name, $"{user.FirstName} {user.LastName}")
+            .SetClaims(Claims.Role, [..await userManager.GetRolesAsync(user)]);
+        
+        // Create the claims-based identity that will be used by Authorization to generate tokens.
+        if (application is not null)
+        {
+            var permissions = await applicationManager.GetPermissionsAsync(application);
+
+            var audiences = permissions.Where(x =>
+                    x.StartsWith("scp") && !x.EndsWith("email") && !x.EndsWith("profile") && !x.EndsWith("roles"))
+                .Select(x => x["scp:".Length..])
+                .ToImmutableArray();
+            
+            identity
+                .SetClaims(Claims.Audience, audiences);
+        }
+        
+        // Add the claims that will be persisted in the tokens.
+        // identity
+        //     .SetClaim(Claims.Subject, await userManager.GetUserIdAsync(user))
+        //     .SetClaim(Claims.Email, await userManager.GetEmailAsync(user))
+        //     .SetClaim(Claims.Name, await userManager.GetUserNameAsync(user))
+        //     .SetClaim(Claims.PreferredUsername, await userManager.GetUserNameAsync(user))
+        //     .SetClaims(Claims.Role, [..(await userManager.GetRolesAsync(user))]);
+        
+        return identity;
+    }
+            
+    // Try to retrieve the user principal stored in the authentication cookie and redirect
+    // the user agent to the login page (or to an external provider) in the following cases:
+    //  - If the user principal can't be extracted or the cookie is too old.
+    //  - If a max_age parameter was provided and the authentication cookie is not considered "fresh" enough.
+    //
+    // For scenarios where the default authentication handler configured in the ASP.NET Core
+    // authentication options shouldn't be used, a specific scheme can be specified here.
+    private static bool IsAuthenticated(AuthenticateResult? result, OpenIddictRequest request)
+    {
+        if (result is { Succeeded: false }) { return false; }
+
+        if (!request.MaxAge.HasValue || result?.Properties == null) return true;
+        
+        var maxAgeSeconds = TimeSpan.FromSeconds(request.MaxAge.Value);
+        var expired = !result.Properties.IssuedUtc.HasValue 
+                      || DateTimeOffset.UtcNow - result.Properties.IssuedUtc > maxAgeSeconds;
+        return !expired;
+    }
+
+    private static string BuildRedirectUrl(HttpContext httpContext, List<KeyValuePair<string,StringValues>> parameters)
+    {
+        var url = $"{httpContext.Request.PathBase}{httpContext.Request.Path}{QueryString.Create(parameters)}";
+        return url;
+    }
+    
+    public static IDictionary<string, StringValues> ParseOAuthParameters(HttpContext context, List<string>? excluding = null)
+    {
+        excluding ??= [];
+        var parameters = context.Request.HasFormContentType
+            ? context.Request.Form
+                .Where(parameter => !excluding.Contains(parameter.Key))
+                .ToDictionary()
+            : context.Request.Query
+                .Where(parameter => !excluding.Contains(parameter.Key))
+                .ToDictionary();
+        
+        return parameters;
+    }
+
     
 }

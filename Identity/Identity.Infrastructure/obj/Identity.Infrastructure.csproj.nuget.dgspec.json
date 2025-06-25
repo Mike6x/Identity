@@ -1264,6 +1264,14 @@
               "target": "Package",
               "version": "[9.2.0, )"
             },
+            "AspNetCore.HealthChecks.UI.Client": {
+              "target": "Package",
+              "version": "[9.0.0, )"
+            },
+            "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.6, )"
+            },
             "Microsoft.AspNetCore.Http.Extensions": {
               "target": "Package",
               "version": "[2.3.0, )"
@@ -1272,7 +1280,21 @@
               "target": "Package",
               "version": "[9.0.6, )"
             },
+            "Microsoft.AspNetCore.Identity.UI": {
+              "target": "Package",
+              "version": "[9.0.6, )"
+            },
+            "Microsoft.AspNetCore.OpenApi": {
+              "target": "Package",
+              "version": "[9.0.6, )"
+            },
             "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[9.0.6, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
               "target": "Package",
               "version": "[9.0.6, )"
             },
@@ -1284,9 +1306,33 @@
               "target": "Package",
               "version": "[9.0.6, )"
             },
+            "NSwag.AspNetCore": {
+              "target": "Package",
+              "version": "[14.4.0, )"
+            },
+            "NSwag.CodeGeneration": {
+              "target": "Package",
+              "version": "[14.4.0, )"
+            },
+            "NSwag.CodeGeneration.CSharp": {
+              "target": "Package",
+              "version": "[14.4.0, )"
+            },
+            "NSwag.CodeGeneration.TypeScript": {
+              "target": "Package",
+              "version": "[14.4.0, )"
+            },
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.3, )"
+            },
+            "OpenIddict.Quartz": {
+              "target": "Package",
+              "version": "[6.4.0, )"
+            },
+            "Proggmatic.SpaServices.Vite": {
+              "target": "Package",
+              "version": "[9.0.1, )"
             },
             "Serilog": {
               "target": "Package",

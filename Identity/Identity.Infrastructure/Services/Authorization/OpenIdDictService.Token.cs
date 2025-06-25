@@ -1,3 +1,9 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+ * See https://github.com/openiddict/openiddict-core for more information concerning
+ * the license and the contributors participating to this project.
+ */
+
 using System.Security.Claims;
 using BuildingBlocks.Common.Extensions;
 using BuildingBlocks.Exceptions;
@@ -44,11 +50,11 @@ public partial class OpenIdDictService
         if (user is null)
         {
             return Results.Forbid(
-                properties: new AuthenticationProperties(new Dictionary<string, string>
+                properties: new AuthenticationProperties(new Dictionary<string, string?>
                 {
                     [OpenIddictServerAspNetCoreConstants.Properties.Error] = Errors.InvalidGrant,
                     [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] = "The token is no longer valid."
-                }!),
+                }),
                 authenticationSchemes: [OpenIddictServerAspNetCoreDefaults.AuthenticationScheme]);
         }
 
@@ -56,27 +62,29 @@ public partial class OpenIdDictService
         if (!await signInManager.CanSignInAsync(user))
         {
             return Results.Forbid( 
-                properties: new AuthenticationProperties(new Dictionary<string, string>
+                properties: new AuthenticationProperties(new Dictionary<string, string?>
                 {
                     [OpenIddictServerAspNetCoreConstants.Properties.Error] = Errors.InvalidGrant,
                     [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] = "The user is no longer allowed to sign in."
-                }!),
+                }),
                 authenticationSchemes: [OpenIddictServerAspNetCoreDefaults.AuthenticationScheme]);
         }
         
-        // Create a new ClaimsPrincipal
-        var identity = new ClaimsIdentity(result.Principal?.Claims,
-            authenticationType: TokenValidationParameters.DefaultAuthenticationType,
-            nameType: Claims.Name,
-            roleType: Claims.Role);
+        // // Create a new ClaimsPrincipal
+        // var identity = new ClaimsIdentity(result.Principal?.Claims,
+        //     authenticationType: TokenValidationParameters.DefaultAuthenticationType,
+        //     nameType: Claims.Name,
+        //     roleType: Claims.Role);
+        //
+        // // Override the user claims present in the principal in case they
+        // // changed since the authorization code/refresh token was issued.
+        // identity.SetClaim(Claims.Subject, await userManager.GetUserIdAsync(user))
+        //     .SetClaim(Claims.Email, await userManager.GetEmailAsync(user))
+        //     .SetClaim(Claims.Name, await userManager.GetUserNameAsync(user))
+        //     .SetClaim(Claims.PreferredUsername, await userManager.GetUserNameAsync(user))
+        //     .SetClaims(Claims.Role, [..(await userManager.GetRolesAsync(user))]);
 
-        // Override the user claims present in the principal in case they
-        // changed since the authorization code/refresh token was issued.
-        identity.SetClaim(Claims.Subject, await userManager.GetUserIdAsync(user))
-            .SetClaim(Claims.Email, await userManager.GetEmailAsync(user))
-            .SetClaim(Claims.Name, await userManager.GetUserNameAsync(user))
-            .SetClaim(Claims.PreferredUsername, await userManager.GetUserNameAsync(user))
-            .SetClaims(Claims.Role, [..(await userManager.GetRolesAsync(user))]);
+        var identity =  await CreateClaimsBasedIdentity(user, null);
        
         await AddUserClaimsAsync(identity, user);
         
@@ -97,11 +105,11 @@ public partial class OpenIdDictService
         
         if (user is null)
         {
-            var properties = new AuthenticationProperties(new Dictionary<string, string>
+            var properties = new AuthenticationProperties(new Dictionary<string, string?>
             {
                 [OpenIddictServerAspNetCoreConstants.Properties.Error] = Errors.InvalidGrant,
                 [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] = "User does not exist."
-            }!);
+            });
 
             return Results.Forbid( 
                 properties: properties, 
@@ -120,11 +128,11 @@ public partial class OpenIdDictService
                 _ => "The username/password couple is invalid."
             };
             
-            var properties = new AuthenticationProperties(new Dictionary<string, string>
+            var properties = new AuthenticationProperties(new Dictionary<string, string?>
             {
                 [OpenIddictServerAspNetCoreConstants.Properties.Error] = Errors.InvalidGrant,
                 [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] = errorString
-            }!);
+            });
             
             return Results.Forbid( 
                 properties: properties, 
@@ -132,16 +140,19 @@ public partial class OpenIdDictService
         }
 
         // Create the claims-based identity that will be used by Authorization to generate tokens.
-        var identity = new ClaimsIdentity(
-            authenticationType: OpenIddictServerAspNetCoreDefaults.AuthenticationScheme, 
-            nameType: Claims.Name,
-            roleType: Claims.Role);
-
-        // Add the claims that will be persisted in the tokens.
-        identity.SetClaim(Claims.Subject, await userManager.GetUserIdAsync(user))
-                .SetClaim(Claims.Email, await userManager.GetEmailAsync(user))
-                .SetClaim(Claims.Name, await userManager.GetUserNameAsync(user))
-                .SetClaims(Claims.Role, [..(await userManager.GetRolesAsync(user))]);
+        
+        // var identity = new ClaimsIdentity(
+        //     authenticationType: OpenIddictServerAspNetCoreDefaults.AuthenticationScheme, 
+        //     nameType: Claims.Name,
+        //     roleType: Claims.Role);
+        //
+        // // Add the claims that will be persisted in the tokens.
+        // identity.SetClaim(Claims.Subject, await userManager.GetUserIdAsync(user))
+        //         .SetClaim(Claims.Email, await userManager.GetEmailAsync(user))
+        //         .SetClaim(Claims.Name, await userManager.GetUserNameAsync(user))
+        //         .SetClaims(Claims.Role, [..(await userManager.GetRolesAsync(user))]);
+        
+        var identity =  await CreateClaimsBasedIdentity(user, null);
 
         await AddUserClaimsAsync(identity, user);
 

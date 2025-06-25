@@ -38,7 +38,8 @@ public static class OidcConfig
                     RoleClaimType = "roles"
                 };
                 options.Scope.Add("api");
-                options.Scope.Add(AppScopes.WeatherReadScope);
+                // options.Scope.Add("api3");
+                // options.Scope.Add(AppScopes.WeatherReadScope);
             });
         
             services.AddAntiforgery(options =>

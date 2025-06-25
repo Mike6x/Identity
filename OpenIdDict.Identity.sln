@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		readme.md = readme.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.Provider", "Identity\Identity.Provider\Identity.Provider.csproj", "{E108FFD4-DA23-4FF1-A912-6728DCBAEF29}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Identity.AuthServer", "Identity\Identity.AuthServer\Identity.AuthServer.csproj", "{E108FFD4-DA23-4FF1-A912-6728DCBAEF29}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Apps", "Apps", "{09FC1714-F674-4569-82A8-70D525A65F7C}"
 EndProject

@@ -54,9 +54,9 @@ public class ScopeCollection
             Description = "Access to all resource servers",
             Resources =
             {
-                ClientConstants.ResourceServer01,
-                ClientConstants.ResourceServer02,
-                ClientConstants.ResourceServer03
+                "resource_server_1",
+                "resource_server_2",
+                "resource_server_3"
             }
         });
         
@@ -65,27 +65,27 @@ public class ScopeCollection
             Name = "api1",
             DisplayName = "Api1 scope",
             Description = "Access to resource server 1",
-            Resources = { ClientConstants.ResourceServer01 }
+            Resources = { "resource_server_1" }
         }); 
         _scopes.Add( new OpenIddictScopeDescriptor
         {
             Name = "api2",
             DisplayName = "Api2 scope",
             Description = "Access to resource server 2",
-            Resources = { ClientConstants.ResourceServer02 }
+            Resources = { "resource_server_2" }
         }); 
         _scopes.Add( new OpenIddictScopeDescriptor
         {
             Name = "api3",
             DisplayName = "Api3 scope",
             Description = "Access to resource server 3",
-            Resources = { ClientConstants.ResourceServer03 }
+            Resources = { "resource_server_3"}
         }); 
         _scopes.Add( new OpenIddictScopeDescriptor
         {
             Name = "dataEventRecords",
             DisplayName = "dataEventRecords API access",
-            Description = "Access to resource server 1",
+            Description = "Access to resource server test",
             Resources = { "rs_dataEventRecordsApi" }
         }); 
         
@@ -95,7 +95,7 @@ public class ScopeCollection
             Resources =
             {
                 ClientConstants.CatalogResource,
-                ClientConstants.GatewayResource
+                "gateway.resource.server"
             }
         }); 
         
@@ -105,7 +105,7 @@ public class ScopeCollection
             Resources =
             {
                 ClientConstants.CatalogResource,
-                ClientConstants.GatewayResource
+                "gateway.resource.server"
             }
         }); 
         
@@ -115,7 +115,7 @@ public class ScopeCollection
             Resources =
             {
                 ClientConstants.CartResource,
-                ClientConstants.GatewayResource
+                "gateway.resource.server"
             }
         }); 
         
@@ -125,7 +125,7 @@ public class ScopeCollection
             Resources =
             {
                 ClientConstants.CartResource,
-                ClientConstants.GatewayResource
+                "gateway.resource.server"
             }
         }); 
         
@@ -134,9 +134,9 @@ public class ScopeCollection
             Name = AppScopes.WeatherReadScope,
             Resources =
             {
-                ClientConstants.ResourceServer02,
-                ClientConstants.ResourceServer03,
-                ClientConstants.GatewayResource
+                "resource_server_2" ,
+                "resource_server_3" ,
+                "gateway.resource.server"
             }
         }); 
         
@@ -145,8 +145,8 @@ public class ScopeCollection
             Name = AppScopes.EmployeeWriteScope,
             Resources =
             {
-                ClientConstants.ResourceServer01,
-                ClientConstants.GatewayResource
+                "resource_server_1",
+                "gateway.resource.server"
             }
         }); 
         
@@ -155,8 +155,8 @@ public class ScopeCollection
             Name = AppScopes.EmployeeReadScope,
             Resources =
             {
-                ClientConstants.ResourceServer01,
-                ClientConstants.GatewayResource
+                "resource_server_1",
+                "gateway.resource.server"
             }
         }); 
         
@@ -165,8 +165,8 @@ public class ScopeCollection
             Name = AppScopes.StudentWriteScope,
             Resources =
             {
-                ClientConstants.ResourceServer03,
-                ClientConstants.GatewayResource
+                "resource_server_3",
+                "gateway.resource.server"
             }
         }); 
         
@@ -175,8 +175,8 @@ public class ScopeCollection
             Name = AppScopes.StudentReadScope,
             Resources =
             {
-                ClientConstants.ResourceServer03,
-                ClientConstants.GatewayResource
+                "resource_server_3",
+                "gateway.resource.server"
             }
         }); 
         
@@ -185,8 +185,8 @@ public class ScopeCollection
             Name = AppScopes.CityWriteScope,
             Resources =
             {
-                ClientConstants.ResourceServer03,
-                ClientConstants.GatewayResource
+                "resource_server_3" ,
+                "gateway.resource.server"
             }
         }); 
         
@@ -195,8 +195,8 @@ public class ScopeCollection
             Name = AppScopes.CityReadScope,
             Resources =
             {
-                ClientConstants.ResourceServer03,
-                ClientConstants.GatewayResource
+                "resource_server_3" ,
+                "gateway.resource.server"
             }
         }); 
         

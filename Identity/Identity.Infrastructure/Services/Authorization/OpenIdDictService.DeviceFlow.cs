@@ -1,3 +1,9 @@
+/*
+ * Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
+ * See https://github.com/openiddict/openiddict-core for more information concerning
+ * the license and the contributors participating to this project.
+ */
+
 using System.Collections.Immutable;
 using System.Security.Claims;
 using BuildingBlocks.Common.Extensions;
@@ -8,6 +14,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
+using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Identity.Infrastructure.Services.Authorization;
 
@@ -33,8 +40,8 @@ public partial class OpenIdDictService
         if (result.Succeeded)
         {
             // Retrieve the application details from the database using the client_id stored in the principal.
-            var application = await applicationManager.FindByClientIdAsync(result.Principal.GetClaim(OpenIddictConstants.Claims.ClientId)) ??
-                              throw new InvalidOperationException("Details concerning the calling client application cannot be found.");
+            var application = await applicationManager.FindByClientIdAsync(result.Principal.GetClaim(Claims.ClientId) ?? throw new InvalidOperationException()) 
+                              ?? throw new InvalidOperationException("Details concerning the calling client application cannot be found.");
 
             // Render a form asking the user to confirm the authorization demand.
             return Results.Ok(new VerifyViewModel
@@ -48,7 +55,7 @@ public partial class OpenIdDictService
         // Redisplay the form when the user code is not valid.
         return Results.Ok(new VerifyViewModel
         {
-            Error = OpenIddictConstants.Errors.InvalidToken,
+            Error = Errors.InvalidToken,
             ErrorDescription = "The specified user code is not valid. Please make sure you typed it correctly."
         });
     }
@@ -62,32 +69,35 @@ public partial class OpenIdDictService
         if (principal == null) 
             return Results.Challenge(
                 authenticationSchemes: [OpenIddictServerAspNetCoreDefaults.AuthenticationScheme],
-                properties: new AuthenticationProperties(new Dictionary<string, string>
+                properties: new AuthenticationProperties(new Dictionary<string, string?>
                 {
-                    [OpenIddictServerAspNetCoreConstants.Properties.Error] = OpenIddictConstants.Errors.InvalidToken,
+                    [OpenIddictServerAspNetCoreConstants.Properties.Error] = Errors.InvalidToken,
                     [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] =
                         "The specified access token is bound to an account that no longer exists."
-                }!));
+                }));
         
         // Retrieve the profile of the logged in user.
-        var loggedInUser = await userManager.GetUserAsync(principal) ??
+        var user = await userManager.GetUserAsync(principal) ??
             throw new InvalidOperationException("The user details cannot be retrieved.");
 
         if (result.Succeeded)
         {
             // Create the claims-based identity that will be used by Authorization to generate tokens.
-            var identity = new ClaimsIdentity(
-                authenticationType: TokenValidationParameters.DefaultAuthenticationType,
-                nameType: OpenIddictConstants.Claims.Name,
-                roleType: OpenIddictConstants.Claims.Role);
+            
+            // var identity = new ClaimsIdentity(
+            //     authenticationType: TokenValidationParameters.DefaultAuthenticationType,
+            //     nameType: Claims.Name,
+            //     roleType: Claims.Role);
+            //
+            // // Add the claims that will be persisted in the tokens.
+            // identity.SetClaim(Claims.Subject, await userManager.GetUserIdAsync(loggedInUser))
+            //         .SetClaim(Claims.Email, await userManager.GetEmailAsync(loggedInUser))
+            //         .SetClaim(Claims.Name, await userManager.GetUserNameAsync(loggedInUser))
+            //         .SetClaims(Claims.Role, [..(await userManager.GetRolesAsync(loggedInUser))]);
+            
+            var identity =  await CreateClaimsBasedIdentity(user, null);
 
-            // Add the claims that will be persisted in the tokens.
-            identity.SetClaim(OpenIddictConstants.Claims.Subject, await userManager.GetUserIdAsync(loggedInUser))
-                    .SetClaim(OpenIddictConstants.Claims.Email, await userManager.GetEmailAsync(loggedInUser))
-                    .SetClaim(OpenIddictConstants.Claims.Name, await userManager.GetUserNameAsync(loggedInUser))
-                    .SetClaims(OpenIddictConstants.Claims.Role, (await userManager.GetRolesAsync(loggedInUser)).ToImmutableArray());
-
-            await AddUserClaimsAsync(identity, loggedInUser);
+            await AddUserClaimsAsync(identity, user);
 
             // Note: in this sample, the granted scopes match the requested scope
             // but you may want to allow the user to uncheck specific scopes.
@@ -112,7 +122,7 @@ public partial class OpenIdDictService
         // Redisplay the form when the user code is not valid.
         return Results.Ok(new VerifyViewModel
         {
-            Error = OpenIddictConstants.Errors.InvalidToken,
+            Error = Errors.InvalidToken,
             ErrorDescription = "The specified user code is not valid. Please make sure you typed it correctly."
         });
     }

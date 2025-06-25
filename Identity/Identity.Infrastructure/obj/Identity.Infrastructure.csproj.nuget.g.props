@@ -15,8 +15,16 @@
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Import Project="$(NuGetPackageRoot)microsoft.extensions.telemetry.abstractions/9.6.0/buildTransitive/net8.0/Microsoft.Extensions.Telemetry.Abstractions.props" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.telemetry.abstractions/9.6.0/buildTransitive/net8.0/Microsoft.Extensions.Telemetry.Abstractions.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore/9.0.6/buildTransitive/net8.0/Microsoft.EntityFrameworkCore.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore/9.0.6/buildTransitive/net8.0/Microsoft.EntityFrameworkCore.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.extensions.apidescription.server/8.0.14/build/Microsoft.Extensions.ApiDescription.Server.props" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.apidescription.server/8.0.14/build/Microsoft.Extensions.ApiDescription.Server.props')" />
+    <Import Project="$(NuGetPackageRoot)nswag.aspnetcore/14.4.0/build/NSwag.AspNetCore.props" Condition="Exists('$(NuGetPackageRoot)nswag.aspnetcore/14.4.0/build/NSwag.AspNetCore.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.codeanalysis.analyzers/3.3.4/buildTransitive/Microsoft.CodeAnalysis.Analyzers.props" Condition="Exists('$(NuGetPackageRoot)microsoft.codeanalysis.analyzers/3.3.4/buildTransitive/Microsoft.CodeAnalysis.Analyzers.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.entityframeworkcore.design/9.0.6/build/net8.0/Microsoft.EntityFrameworkCore.Design.props" Condition="Exists('$(NuGetPackageRoot)microsoft.entityframeworkcore.design/9.0.6/build/net8.0/Microsoft.EntityFrameworkCore.Design.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.aspnetcore.identity.ui/9.0.6/build/Microsoft.AspNetCore.Identity.UI.props" Condition="Exists('$(NuGetPackageRoot)microsoft.aspnetcore.identity.ui/9.0.6/build/Microsoft.AspNetCore.Identity.UI.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <PkgMicrosoft_Extensions_ApiDescription_Server Condition=" '$(PkgMicrosoft_Extensions_ApiDescription_Server)' == '' ">/Users/tuanpa/.nuget/packages/microsoft.extensions.apidescription.server/8.0.14</PkgMicrosoft_Extensions_ApiDescription_Server>
+    <PkgMicrosoft_CodeAnalysis_Analyzers Condition=" '$(PkgMicrosoft_CodeAnalysis_Analyzers)' == '' ">/Users/tuanpa/.nuget/packages/microsoft.codeanalysis.analyzers/3.3.4</PkgMicrosoft_CodeAnalysis_Analyzers>
+    <PkgMicrosoft_EntityFrameworkCore_Tools Condition=" '$(PkgMicrosoft_EntityFrameworkCore_Tools)' == '' ">/Users/tuanpa/.nuget/packages/microsoft.entityframeworkcore.tools/9.0.6</PkgMicrosoft_EntityFrameworkCore_Tools>
     <PkgHangfire_SqlServer Condition=" '$(PkgHangfire_SqlServer)' == '' ">/Users/tuanpa/.nuget/packages/hangfire.sqlserver/1.8.20</PkgHangfire_SqlServer>
   </PropertyGroup>
 </Project>

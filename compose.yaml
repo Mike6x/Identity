@@ -23,3 +23,9 @@
       context: .
       dockerfile: Apps/Identity.Admin/Dockerfile
 
+  identityprovider:
+    image: identityprovider
+    build:
+      context: .
+      dockerfile: Identity/IdentityProvider/Dockerfile
+

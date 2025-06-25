@@ -1,0 +1,34 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>aspnet-Provider-73432761-743c-43e4-afea-060721fdb913</UserSecretsId>
+        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.6">
+          <PrivateAssets>all</PrivateAssets>
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="PasswordGenerator" Version="2.1.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="9.0.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Include="..\.dockerignore">
+        <Link>.dockerignore</Link>
+      </Content>
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Identity.Infrastructure\Identity.Infrastructure.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Files\" />
+    </ItemGroup>
+
+</Project>

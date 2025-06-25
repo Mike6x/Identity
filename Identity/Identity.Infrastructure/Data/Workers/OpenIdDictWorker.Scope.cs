@@ -7,15 +7,15 @@ public partial class OpenIdDictWorker
 {
     private static async Task SeedScopesAsync(IServiceScope scope, CancellationToken cancellationToken)
     {
-        var scopesManager = scope.ServiceProvider.GetRequiredService<IOpenIddictScopeManager>();
+        var scopeManager = scope.ServiceProvider.GetRequiredService<IOpenIddictScopeManager>();
         
         var seedingList = new ScopeCollection().GetAll().ToList();
         
-        if (await scopesManager.CountAsync(cancellationToken) == 0 && seedingList.Count != 0)
+        if (await scopeManager.CountAsync(cancellationToken) == 0 && seedingList.Count != 0)
         {
             foreach (var item in seedingList)
             {
-                await scopesManager.CreateAsync(item, cancellationToken);
+                await scopeManager.CreateAsync(item, cancellationToken);
             }
         }
     }

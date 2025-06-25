@@ -1,0 +1,27 @@
+﻿using System.Security.Claims;
+using BuildingBlocks.Exceptions;
+using BuildingBlocks.Identity.Users.Abstractions;
+using Identity.Shared.Authorization;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Routing;
+
+namespace Identity.Infrastructure.Endpoints.CurrentUser;
+public static class GetCurrentUserPermissionsEndpoint
+{
+    internal static RouteHandlerBuilder MapGetCurrentUserPermissionsEndpoint(this IEndpointRouteBuilder endpoints)
+    {
+        return endpoints.MapGet("/permissions", async (ClaimsPrincipal user, IUserService service, CancellationToken cancellationToken) =>
+        {
+            if (user.GetUserId() is not { } userId || string.IsNullOrEmpty(userId))
+            {
+                throw new UnauthorizedException();
+            }
+
+            return await service.GetPermissionsAsync(userId, cancellationToken);
+        })
+        .WithName(nameof(GetCurrentUserPermissionsEndpoint))
+        .WithSummary("Get current user permissions")
+        .WithDescription("Get current user permissions");
+    }
+}

@@ -17,6 +17,7 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Infrastructure/obj/Debug/net9.0/Identity.Infrastructure.pdb
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity.Infrastructure/obj/Debug/net9.0/ref/Identity.Infrastructure.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Infrastructure/bin/Debug/net9.0/Identity.Infrastructure.deps.json
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Infrastructure/bin/Debug/net9.0/Identity.Infrastructure.runtimeconfig.json
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Infrastructure/bin/Debug/net9.0/Identity.Infrastructure.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Infrastructure/bin/Debug/net9.0/Identity.Infrastructure.pdb
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Infrastructure/bin/Debug/net9.0/BuildingBlocks.dll
@@ -35,4 +36,5 @@
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Infrastructure/obj/Debug/net9.0/Identity.Infrastructure.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Infrastructure/obj/Debug/net9.0/refint/Identity.Infrastructure.dll
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Infrastructure/obj/Debug/net9.0/Identity.Infrastructure.pdb
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Infrastructure/obj/Debug/net9.0/Identity.Infrastructure.genruntimeconfig.cache
 /Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Identity/Identity.Infrastructure/obj/Debug/net9.0/ref/Identity.Infrastructure.dll
