@@ -21,8 +21,4 @@
     <ProjectReference Include="..\..\Framework\Identity.Shared\Identity.Shared.csproj" />
     <ProjectReference Include="..\Client.Infrastructure\Client.Infrastructure.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Components\Pages\Authenticator\" />
-  </ItemGroup>
 </Project>

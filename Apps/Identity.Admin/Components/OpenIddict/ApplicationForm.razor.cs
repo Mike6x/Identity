@@ -1,4 +1,5 @@
 ﻿using Client.Infrastructure.Api;
+using Identity.Admin.Components.OpenIddict.ViewModels;
 using Identity.Shared.Helpers;
 using Microsoft.AspNetCore.Components;
 using MudBlazor;

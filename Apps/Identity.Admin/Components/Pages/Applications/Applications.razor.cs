@@ -26,7 +26,7 @@ public partial class Applications : ComponentBase
     
     private bool _canViewItemDetails;
     
-    private EntityClientTableContext<ApplicationDto, string?, ApplicationViewModel>? Context { get; set; }
+    private EntityClientTableContext<ApplicationDto, string?, ApplicationViewModel> Context { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

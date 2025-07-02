@@ -1,6 +1,6 @@
-﻿namespace Client.Infrastructure.Infra;
-
-public interface IRefreshService
-{
-    Task<AuthRefreshResult> RefreshAsync();
-}
+﻿// namespace Client.Infrastructure.Infra;
+//
+// public interface IRefreshService
+// {
+//     Task<AuthRefreshResult> RefreshAsync();
+// }

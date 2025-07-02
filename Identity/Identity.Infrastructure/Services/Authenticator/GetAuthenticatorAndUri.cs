@@ -17,7 +17,7 @@ public static class GetAuthenticatorAndUri
         
         var sharedKeyAndQrCode = await LoadSharedKeyAndQrCodeUri.Handler(user, userManager);
           
-        return Results.Ok(new EnableAuthenticatorModel()
+        return Results.Ok(new EnableAuthenticatorModel
         {
             SharedKey = sharedKeyAndQrCode.Item1,
             AuthenticatorUri = sharedKeyAndQrCode.Item2

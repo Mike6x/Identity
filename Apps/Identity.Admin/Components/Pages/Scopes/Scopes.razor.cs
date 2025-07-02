@@ -17,15 +17,15 @@ public partial class Scopes : ComponentBase
     [Inject]
     protected IAuthorizationService? AuthService { get; set; }
     [Inject]
-    private IApiClient? ApiClient { get; set; }
+    public NavigationManager? Navigator { get; set; }
     
     [Inject]
-    public NavigationManager? Navigator { get; set; }
+    private IApiClient? ApiClient { get; set; }
     
     public required IDialogService Dialog;
     
     private bool _canViewScopeResources;
-    private EntityClientTableContext<ScopeDto, string?, ScopeViewModel>? Context { get; set; }
+    private EntityClientTableContext<ScopeDto, string?, ScopeViewModel> Context { get; set; }
 
     protected override async Task OnInitializedAsync()
     {

@@ -1,0 +1,17 @@
+﻿@page "/Account/Authenticator/Manage"
+@using Identity.Admin.Components.OpenIddict
+@attribute [Authorize]
+
+<MudExpansionPanels Elevation="4">
+    <MudExpansionPanel Text="Generate Recovery Codes">
+        <RecoveryCodes/>
+    </MudExpansionPanel>
+    
+    <MudExpansionPanel Text="Reset Authenticator">
+        <ResetAuthenticator/>
+    </MudExpansionPanel>
+    
+    <MudExpansionPanel Text="Disable Authenticator">
+        <DisableAuthenticator/>
+    </MudExpansionPanel>   
+</MudExpansionPanels>

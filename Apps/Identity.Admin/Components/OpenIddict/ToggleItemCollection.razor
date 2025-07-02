@@ -1,4 +1,5 @@
-﻿<MudGrid Spacing="2">
+﻿@using Identity.Admin.Components.OpenIddict.ViewModels
+<MudGrid Spacing="2">
     @foreach (var item in Items)
     {
         <MudItem UserAttributes="@(new (){{"id","toggleItem"}})" xs="@ItemSize">           

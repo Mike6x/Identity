@@ -5,12 +5,7 @@ namespace Identity.Infrastructure.Services.Client;
 
 public static class OriginHelper
 {
-    /// <summary>
-    /// Add a uri to list of allowed origins on default cors policy
-    /// </summary>
-    /// <param name="origins"></param>
-    /// <param name="corsOptions"></param>
-    /// <returns></returns>
+
     public static void AllowOriginsAsync(IEnumerable<Uri> origins, IOptions<CorsOptions> corsOptions)
     {
         var defaultCorsPolicy = corsOptions.Value.GetPolicy(corsOptions.Value.DefaultPolicyName)
@@ -27,11 +22,6 @@ public static class OriginHelper
         
     }
     
-    /// <summary>
-    /// Remmove a uri from list of allowed origins on default cors policy
-    /// </summary>
-    /// <param name="origins"></param>
-    /// <returns></returns>
     public static void  RemoveOriginsAsync(IEnumerable<Uri> origins, IOptions<CorsOptions> corsOptions)
     {
         var defaultCorsPolicy = corsOptions.Value.GetPolicy(corsOptions.Value.DefaultPolicyName);

@@ -18,15 +18,15 @@ public partial class Users : ComponentBase
     protected Task<AuthenticationState> AuthState { get; set; } = default!;
     [Inject]
     protected IAuthorizationService AuthService { get; set; } = default!;
-
-    [Inject]
-    protected IApiClient UsersClient { get; set; } = default!;
-    
     [Inject]
     public NavigationManager? Navigator { get; set; }
 
+    [Inject]
+    protected IApiClient UsersClient { get; set; } = default!;
+
     public required IDialogService Dialog;
     protected EntityClientTableContext<UserDetail, Guid, UserViewModel> Context { get; set; } = default!;
+    
 
     private bool _canRemoveUsers;
     private bool _canViewAuditTrails;

@@ -1,4 +1,4 @@
-﻿namespace Identity.Admin.Components.OpenIddict
+﻿namespace Identity.Admin.Components.OpenIddict.ViewModels
 {
     public class SwitchItemViewModel
     {
