@@ -1,0 +1,31 @@
+@page "/identity/scopes/{Id}/details"
+
+@using Identity.Admin.Components.OpenIddict
+
+<PageHeader Title="@_title" Header="@_title" SubHeader="@_description" />
+
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+    <MudPaper Elevation="4">
+        <EditForm Model="@_item" OnValidSubmit="SaveAsync">
+            <MudCard>
+                <MudCardContent>
+                    <CascadingValue Value="_item">
+                        <ScopeForm Dialog="Dialog" />
+                    </CascadingValue>
+                </MudCardContent>
+                <MudCardActions>
+                    @if (_canEditItems)
+                    {
+                        <MudButton UserAttributes="@(new() { { "id", "btnUpdateScope" } })" 
+                                   ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Update</MudButton>
+                    }
+                </MudCardActions>
+            </MudCard>
+        </EditForm>
+    </MudPaper>
+}

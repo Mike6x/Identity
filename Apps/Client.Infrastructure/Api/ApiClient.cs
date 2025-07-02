@@ -63,11 +63,32 @@ namespace Client.Infrastructure.Api
         System.Threading.Tasks.Task AuthorizeEndpointAsync(System.Threading.CancellationToken cancellationToken);
 
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task GetUserInfoEndpointAsync();
+        System.Threading.Tasks.Task GetTokenEndpointAsync();
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task GetUserInfoEndpointAsync(System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task GetTokenEndpointAsync(System.Threading.CancellationToken cancellationToken);
+
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task TokenEndpointAsync();
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task TokenEndpointAsync(System.Threading.CancellationToken cancellationToken);
+
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task GetVerifyConnectionEndpointAsync();
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task GetVerifyConnectionEndpointAsync(System.Threading.CancellationToken cancellationToken);
+
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task VerifyConnectionEndpointAsync();
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task VerifyConnectionEndpointAsync(System.Threading.CancellationToken cancellationToken);
 
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task GetEndSessionEndpointAsync();
@@ -84,18 +105,32 @@ namespace Client.Infrastructure.Api
         System.Threading.Tasks.Task EndSessionEndpointAsync(System.Threading.CancellationToken cancellationToken);
 
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task TokenEndpointAsync();
+        System.Threading.Tasks.Task GetSignOutEndpointAsync();
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task TokenEndpointAsync(System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task GetSignOutEndpointAsync(System.Threading.CancellationToken cancellationToken);
 
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task GetTokenEndpointAsync();
+        System.Threading.Tasks.Task SignOutEndpointAsync();
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task GetTokenEndpointAsync(System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task SignOutEndpointAsync(System.Threading.CancellationToken cancellationToken);
+
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task GetUserInfoEndpointAsync();
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task GetUserInfoEndpointAsync(System.Threading.CancellationToken cancellationToken);
+
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task UserInfoEndpointAsync();
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task UserInfoEndpointAsync(System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Login User
@@ -985,7 +1020,7 @@ namespace Client.Infrastructure.Api
         System.Threading.Tasks.Task<RoleDto> UpdateRoleEndpointAsync(UpdateRoleCommand request, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
-        /// Get role details without claims and permissions
+        /// Get role details with claims and permissions
         /// </summary>
         /// <remarks>
         /// Retrieve the details of a role by its Id.
@@ -995,7 +1030,7 @@ namespace Client.Infrastructure.Api
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Get role details without claims and permissions
+        /// Get role details with claims and permissions
         /// </summary>
         /// <remarks>
         /// Retrieve the details of a role by its Id.
@@ -1042,26 +1077,26 @@ namespace Client.Infrastructure.Api
         System.Threading.Tasks.Task<PagedListOfRoleDto> SearchRolesEndpointAsync(SearchRolesRequest request, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
-        /// Assign role Claims
+        /// Assign Claims to the role.
         /// </summary>
         /// <remarks>
-        /// Assign/remove a list of Claims
+        /// Assign/remove a list of Claims to/from the role
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task AssignClaimsToRoleEndpointAsync(string roleId, AssignClaimsCommand request);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Assign role Claims
+        /// Assign Claims to the role.
         /// </summary>
         /// <remarks>
-        /// Assign/remove a list of Claims
+        /// Assign/remove a list of Claims to/from the role
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task AssignClaimsToRoleEndpointAsync(string roleId, AssignClaimsCommand request, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
-        /// Get Role claims
+        /// Get all claims of the role.
         /// </summary>
         /// <remarks>
         /// Retrieve all claim of a role.
@@ -1071,7 +1106,7 @@ namespace Client.Infrastructure.Api
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Get Role claims
+        /// Get all claims of the role.
         /// </summary>
         /// <remarks>
         /// Retrieve all claim of a role.
@@ -1099,20 +1134,20 @@ namespace Client.Infrastructure.Api
         System.Threading.Tasks.Task UpdateClaimsToRoleEndpointAsync(string roleId, AssignClaimsCommand request, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
-        /// Add a claim to Role
+        /// Add a claim to the Role
         /// </summary>
         /// <remarks>
-        /// Add a claim to Role
+        /// Add a claim to the Role
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task AddClaimToRoleEndpointAsync(string roleId, AddClaimCommand request);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Add a claim to Role
+        /// Add a claim to the Role
         /// </summary>
         /// <remarks>
-        /// Add a claim to Role
+        /// Add a claim to the Role
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task AddClaimToRoleEndpointAsync(string roleId, AddClaimCommand request, System.Threading.CancellationToken cancellationToken);
@@ -1156,25 +1191,6 @@ namespace Client.Infrastructure.Api
         System.Threading.Tasks.Task RemoveClaimOfRoleEndpointAsync(string roleId, RemoveClaimCommand command, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
-        /// get role permissions
-        /// </summary>
-        /// <remarks>
-        /// get all permissions of a role
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<string>> GetRolePermissionsEndpointAsync(string roleId);
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// get role permissions
-        /// </summary>
-        /// <remarks>
-        /// get all permissions of a role
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<string>> GetRolePermissionsEndpointAsync(string roleId, System.Threading.CancellationToken cancellationToken);
-
-        /// <summary>
         /// update role permissions
         /// </summary>
         /// <remarks>
@@ -1200,7 +1216,7 @@ namespace Client.Infrastructure.Api
         /// Create new Scope.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ScopeViewModel> CreateScopeEndpointAsync(ScopeViewModel request);
+        System.Threading.Tasks.Task CreateScopeEndpointAsync(CreateScopeCommand request);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1210,7 +1226,7 @@ namespace Client.Infrastructure.Api
         /// Create new Scope.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ScopeViewModel> CreateScopeEndpointAsync(ScopeViewModel request, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task CreateScopeEndpointAsync(CreateScopeCommand request, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Get all Scopes
@@ -1219,7 +1235,7 @@ namespace Client.Infrastructure.Api
         /// Retrieve a list of all Scope available in the system.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ScopeViewModel>> GetScopesEndpointAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ScopeDto>> GetScopesEndpointAsync();
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1229,7 +1245,7 @@ namespace Client.Infrastructure.Api
         /// Retrieve a list of all Scope available in the system.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ScopeViewModel>> GetScopesEndpointAsync(System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ScopeDto>> GetScopesEndpointAsync(System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Update Scope.
@@ -1238,7 +1254,7 @@ namespace Client.Infrastructure.Api
         /// Update Scope.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task UpdateScopeEndpointAsync(ScopeViewModel request);
+        System.Threading.Tasks.Task UpdateScopeEndpointAsync(UpdateScopeCommand request);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1248,7 +1264,7 @@ namespace Client.Infrastructure.Api
         /// Update Scope.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task UpdateScopeEndpointAsync(ScopeViewModel request, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task UpdateScopeEndpointAsync(UpdateScopeCommand request, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Get scope details
@@ -1257,7 +1273,7 @@ namespace Client.Infrastructure.Api
         /// Retrieve the details of a scope by its ID.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ScopeViewModel> GetScopeEndpointAsync(string scopeId);
+        System.Threading.Tasks.Task<ScopeDto> GetScopeEndpointAsync(string scopeId);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1267,7 +1283,7 @@ namespace Client.Infrastructure.Api
         /// Retrieve the details of a scope by its ID.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ScopeViewModel> GetScopeEndpointAsync(string scopeId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<ScopeDto> GetScopeEndpointAsync(string scopeId, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Remove Scope.
@@ -1295,7 +1311,7 @@ namespace Client.Infrastructure.Api
         /// Return a Paged list of Scopes.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<PagedListOfScopeViewModel> SearchScopesEndpointAsync(SearchScopesRequest request);
+        System.Threading.Tasks.Task<PagedListOfScopeDto> SearchScopesEndpointAsync(SearchScopesRequest request);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1305,7 +1321,7 @@ namespace Client.Infrastructure.Api
         /// Return a Paged list of Scopes.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<PagedListOfScopeViewModel> SearchScopesEndpointAsync(SearchScopesRequest request, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<PagedListOfScopeDto> SearchScopesEndpointAsync(SearchScopesRequest request, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Create new application
@@ -1314,7 +1330,7 @@ namespace Client.Infrastructure.Api
         /// Create new Application.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ApplicationViewModel> CreateApplicationEndpointAsync(ApplicationViewModel request);
+        System.Threading.Tasks.Task CreateApplicationEndpointAsync(CreateClientCommand request);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1324,7 +1340,7 @@ namespace Client.Infrastructure.Api
         /// Create new Application.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ApplicationViewModel> CreateApplicationEndpointAsync(ApplicationViewModel request, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task CreateApplicationEndpointAsync(CreateClientCommand request, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Get all clients
@@ -1333,7 +1349,7 @@ namespace Client.Infrastructure.Api
         /// Return a list of all Applications.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ApplicationViewModel>> GetApplicationsEndpointAsync();
+        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ApplicationDto>> GetApplicationsEndpointAsync();
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1343,7 +1359,7 @@ namespace Client.Infrastructure.Api
         /// Return a list of all Applications.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ApplicationViewModel>> GetApplicationsEndpointAsync(System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ApplicationDto>> GetApplicationsEndpointAsync(System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Update application.
@@ -1352,7 +1368,7 @@ namespace Client.Infrastructure.Api
         /// Update Application.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task UpdateApplicationEndpointAsync(ApplicationViewModel request);
+        System.Threading.Tasks.Task UpdateApplicationEndpointAsync(UpdateClientCommand request);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1362,7 +1378,7 @@ namespace Client.Infrastructure.Api
         /// Update Application.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task UpdateApplicationEndpointAsync(ApplicationViewModel request, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task UpdateApplicationEndpointAsync(UpdateClientCommand request, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Get Application details by Internal Id
@@ -1371,7 +1387,7 @@ namespace Client.Infrastructure.Api
         /// Retrieve the details of a role by its ID.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ApplicationViewModel> GetApplicationEndpointAsync(string id);
+        System.Threading.Tasks.Task<ApplicationDto> GetApplicationEndpointAsync(string id);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1381,45 +1397,7 @@ namespace Client.Infrastructure.Api
         /// Retrieve the details of a role by its ID.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ApplicationViewModel> GetApplicationEndpointAsync(string id, System.Threading.CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Get Application details by Client Id
-        /// </summary>
-        /// <remarks>
-        /// Retrieve the details of a role by its ID.
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ApplicationViewModel> GetApplicationByNameEndpointAsync(string clientId);
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Get Application details by Client Id
-        /// </summary>
-        /// <remarks>
-        /// Retrieve the details of a role by its ID.
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<ApplicationViewModel> GetApplicationByNameEndpointAsync(string clientId, System.Threading.CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Search applications
-        /// </summary>
-        /// <remarks>
-        /// Return a Paged list of Applications.
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<PagedListOfApplicationViewModel> SearchApplicationsEndpointAsync(SearchApplicationsRequest request);
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Search applications
-        /// </summary>
-        /// <remarks>
-        /// Return a Paged list of Applications.
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<PagedListOfApplicationViewModel> SearchApplicationsEndpointAsync(SearchApplicationsRequest request, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<ApplicationDto> GetApplicationEndpointAsync(string id, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Remove application.
@@ -1428,7 +1406,7 @@ namespace Client.Infrastructure.Api
         /// Remove Application.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task DeleteApplicationEndpointAsync(string clientId);
+        System.Threading.Tasks.Task DeleteApplicationEndpointAsync(string id);
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1438,7 +1416,45 @@ namespace Client.Infrastructure.Api
         /// Remove Application.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task DeleteApplicationEndpointAsync(string clientId, System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task DeleteApplicationEndpointAsync(string id, System.Threading.CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Get Application details by Client Id
+        /// </summary>
+        /// <remarks>
+        /// Retrieve the details of a role by its ID.
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<ApplicationDto> GetApplicationByNameEndpointAsync(string clientId);
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Get Application details by Client Id
+        /// </summary>
+        /// <remarks>
+        /// Retrieve the details of a role by its ID.
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<ApplicationDto> GetApplicationByNameEndpointAsync(string clientId, System.Threading.CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Search applications
+        /// </summary>
+        /// <remarks>
+        /// Return a Paged list of Applications.
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<PagedListOfApplicationDto> SearchApplicationsEndpointAsync(SearchClientsRequest request);
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Search applications
+        /// </summary>
+        /// <remarks>
+        /// Return a Paged list of Applications.
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<PagedListOfApplicationDto> SearchApplicationsEndpointAsync(SearchClientsRequest request, System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Call back application.
@@ -2003,14 +2019,14 @@ namespace Client.Infrastructure.Api
         }
 
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task GetUserInfoEndpointAsync()
+        public virtual System.Threading.Tasks.Task GetTokenEndpointAsync()
         {
-            return GetUserInfoEndpointAsync(System.Threading.CancellationToken.None);
+            return GetTokenEndpointAsync(System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task GetUserInfoEndpointAsync(System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task GetTokenEndpointAsync(System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -2022,8 +2038,220 @@ namespace Client.Infrastructure.Api
 
                     var urlBuilder_ = new System.Text.StringBuilder();
                 
-                    // Operation Path: "connect/userinfo"
-                    urlBuilder_.Append("connect/userinfo");
+                    // Operation Path: "connect/token"
+                    urlBuilder_.Append("connect/token");
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
+                        foreach (var item_ in response_.Headers)
+                            headers_[item_.Key] = item_.Value;
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task TokenEndpointAsync()
+        {
+            return TokenEndpointAsync(System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task TokenEndpointAsync(System.Threading.CancellationToken cancellationToken)
+        {
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+
+                    var urlBuilder_ = new System.Text.StringBuilder();
+                
+                    // Operation Path: "connect/token"
+                    urlBuilder_.Append("connect/token");
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
+                        foreach (var item_ in response_.Headers)
+                            headers_[item_.Key] = item_.Value;
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task GetVerifyConnectionEndpointAsync()
+        {
+            return GetVerifyConnectionEndpointAsync(System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task GetVerifyConnectionEndpointAsync(System.Threading.CancellationToken cancellationToken)
+        {
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+
+                    var urlBuilder_ = new System.Text.StringBuilder();
+                
+                    // Operation Path: "connect/verify"
+                    urlBuilder_.Append("connect/verify");
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
+                        foreach (var item_ in response_.Headers)
+                            headers_[item_.Key] = item_.Value;
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task VerifyConnectionEndpointAsync()
+        {
+            return VerifyConnectionEndpointAsync(System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task VerifyConnectionEndpointAsync(System.Threading.CancellationToken cancellationToken)
+        {
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+
+                    var urlBuilder_ = new System.Text.StringBuilder();
+                
+                    // Operation Path: "connect/verify"
+                    urlBuilder_.Append("connect/verify");
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -2214,14 +2442,14 @@ namespace Client.Infrastructure.Api
         }
 
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task TokenEndpointAsync()
+        public virtual System.Threading.Tasks.Task GetSignOutEndpointAsync()
         {
-            return TokenEndpointAsync(System.Threading.CancellationToken.None);
+            return GetSignOutEndpointAsync(System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task TokenEndpointAsync(System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task GetSignOutEndpointAsync(System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -2229,13 +2457,12 @@ namespace Client.Infrastructure.Api
             {
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
-                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
-                    request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
 
                     var urlBuilder_ = new System.Text.StringBuilder();
                 
-                    // Operation Path: "connect/token"
-                    urlBuilder_.Append("connect/token");
+                    // Operation Path: "connect/signout"
+                    urlBuilder_.Append("connect/signout");
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -2285,14 +2512,85 @@ namespace Client.Infrastructure.Api
         }
 
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task GetTokenEndpointAsync()
+        public virtual System.Threading.Tasks.Task SignOutEndpointAsync()
         {
-            return GetTokenEndpointAsync(System.Threading.CancellationToken.None);
+            return SignOutEndpointAsync(System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task GetTokenEndpointAsync(System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task SignOutEndpointAsync(System.Threading.CancellationToken cancellationToken)
+        {
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+
+                    var urlBuilder_ = new System.Text.StringBuilder();
+                
+                    // Operation Path: "connect/signout"
+                    urlBuilder_.Append("connect/signout");
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
+                        foreach (var item_ in response_.Headers)
+                            headers_[item_.Key] = item_.Value;
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task GetUserInfoEndpointAsync()
+        {
+            return GetUserInfoEndpointAsync(System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task GetUserInfoEndpointAsync(System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -2304,8 +2602,79 @@ namespace Client.Infrastructure.Api
 
                     var urlBuilder_ = new System.Text.StringBuilder();
                 
-                    // Operation Path: "connect/token"
-                    urlBuilder_.Append("connect/token");
+                    // Operation Path: "connect/userinfo"
+                    urlBuilder_.Append("connect/userinfo");
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
+                        foreach (var item_ in response_.Headers)
+                            headers_[item_.Key] = item_.Value;
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            return;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task UserInfoEndpointAsync()
+        {
+            return UserInfoEndpointAsync(System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task UserInfoEndpointAsync(System.Threading.CancellationToken cancellationToken)
+        {
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+
+                    var urlBuilder_ = new System.Text.StringBuilder();
+                
+                    // Operation Path: "connect/userinfo"
+                    urlBuilder_.Append("connect/userinfo");
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -5395,10 +5764,10 @@ namespace Client.Infrastructure.Api
 
                     var urlBuilder_ = new System.Text.StringBuilder();
                 
-                    // Operation Path: "users/{userId}/otherusers"
+                    // Operation Path: "users/{userId}/others"
                     urlBuilder_.Append("users/");
                     urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(userId, System.Globalization.CultureInfo.InvariantCulture)));
-                    urlBuilder_.Append("/otherusers");
+                    urlBuilder_.Append("/others");
 
                     PrepareRequest(client_, request_, urlBuilder_);
 
@@ -6669,7 +7038,7 @@ namespace Client.Infrastructure.Api
         }
 
         /// <summary>
-        /// Get role details without claims and permissions
+        /// Get role details with claims and permissions
         /// </summary>
         /// <remarks>
         /// Retrieve the details of a role by its Id.
@@ -6682,7 +7051,7 @@ namespace Client.Infrastructure.Api
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Get role details without claims and permissions
+        /// Get role details with claims and permissions
         /// </summary>
         /// <remarks>
         /// Retrieve the details of a role by its Id.
@@ -6942,10 +7311,10 @@ namespace Client.Infrastructure.Api
         }
 
         /// <summary>
-        /// Assign role Claims
+        /// Assign Claims to the role.
         /// </summary>
         /// <remarks>
-        /// Assign/remove a list of Claims
+        /// Assign/remove a list of Claims to/from the role
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task AssignClaimsToRoleEndpointAsync(string roleId, AssignClaimsCommand request)
@@ -6955,10 +7324,10 @@ namespace Client.Infrastructure.Api
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Assign role Claims
+        /// Assign Claims to the role.
         /// </summary>
         /// <remarks>
-        /// Assign/remove a list of Claims
+        /// Assign/remove a list of Claims to/from the role
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task AssignClaimsToRoleEndpointAsync(string roleId, AssignClaimsCommand request, System.Threading.CancellationToken cancellationToken)
@@ -7036,7 +7405,7 @@ namespace Client.Infrastructure.Api
         }
 
         /// <summary>
-        /// Get Role claims
+        /// Get all claims of the role.
         /// </summary>
         /// <remarks>
         /// Retrieve all claim of a role.
@@ -7049,7 +7418,7 @@ namespace Client.Infrastructure.Api
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Get Role claims
+        /// Get all claims of the role.
         /// </summary>
         /// <remarks>
         /// Retrieve all claim of a role.
@@ -7223,10 +7592,10 @@ namespace Client.Infrastructure.Api
         }
 
         /// <summary>
-        /// Add a claim to Role
+        /// Add a claim to the Role
         /// </summary>
         /// <remarks>
-        /// Add a claim to Role
+        /// Add a claim to the Role
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task AddClaimToRoleEndpointAsync(string roleId, AddClaimCommand request)
@@ -7236,10 +7605,10 @@ namespace Client.Infrastructure.Api
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
-        /// Add a claim to Role
+        /// Add a claim to the Role
         /// </summary>
         /// <remarks>
-        /// Add a claim to Role
+        /// Add a claim to the Role
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task AddClaimToRoleEndpointAsync(string roleId, AddClaimCommand request, System.Threading.CancellationToken cancellationToken)
@@ -7505,99 +7874,6 @@ namespace Client.Infrastructure.Api
         }
 
         /// <summary>
-        /// get role permissions
-        /// </summary>
-        /// <remarks>
-        /// get all permissions of a role
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<System.Collections.Generic.ICollection<string>> GetRolePermissionsEndpointAsync(string roleId)
-        {
-            return GetRolePermissionsEndpointAsync(roleId, System.Threading.CancellationToken.None);
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// get role permissions
-        /// </summary>
-        /// <remarks>
-        /// get all permissions of a role
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<string>> GetRolePermissionsEndpointAsync(string roleId, System.Threading.CancellationToken cancellationToken)
-        {
-            if (roleId == null)
-                throw new System.ArgumentNullException("roleId");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    var urlBuilder_ = new System.Text.StringBuilder();
-                
-                    // Operation Path: "roles/{roleId}/permissions"
-                    urlBuilder_.Append("roles/");
-                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(roleId, System.Globalization.CultureInfo.InvariantCulture)));
-                    urlBuilder_.Append("/permissions");
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
-                        foreach (var item_ in response_.Headers)
-                            headers_[item_.Key] = item_.Value;
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<string>>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <summary>
         /// update role permissions
         /// </summary>
         /// <remarks>
@@ -7698,7 +7974,7 @@ namespace Client.Infrastructure.Api
         /// Create new Scope.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<ScopeViewModel> CreateScopeEndpointAsync(ScopeViewModel request)
+        public virtual System.Threading.Tasks.Task CreateScopeEndpointAsync(CreateScopeCommand request)
         {
             return CreateScopeEndpointAsync(request, System.Threading.CancellationToken.None);
         }
@@ -7711,7 +7987,7 @@ namespace Client.Infrastructure.Api
         /// Create new Scope.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ScopeViewModel> CreateScopeEndpointAsync(ScopeViewModel request, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task CreateScopeEndpointAsync(CreateScopeCommand request, System.Threading.CancellationToken cancellationToken)
         {
             if (request == null)
                 throw new System.ArgumentNullException("request");
@@ -7727,7 +8003,6 @@ namespace Client.Infrastructure.Api
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
                 
@@ -7759,12 +8034,7 @@ namespace Client.Infrastructure.Api
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<ScopeViewModel>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
+                            return;
                         }
                         else
                         {
@@ -7793,7 +8063,7 @@ namespace Client.Infrastructure.Api
         /// Retrieve a list of all Scope available in the system.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ScopeViewModel>> GetScopesEndpointAsync()
+        public virtual System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ScopeDto>> GetScopesEndpointAsync()
         {
             return GetScopesEndpointAsync(System.Threading.CancellationToken.None);
         }
@@ -7806,7 +8076,7 @@ namespace Client.Infrastructure.Api
         /// Retrieve a list of all Scope available in the system.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ScopeViewModel>> GetScopesEndpointAsync(System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ScopeDto>> GetScopesEndpointAsync(System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -7847,7 +8117,7 @@ namespace Client.Infrastructure.Api
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<ScopeViewModel>>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<ScopeDto>>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -7881,7 +8151,7 @@ namespace Client.Infrastructure.Api
         /// Update Scope.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task UpdateScopeEndpointAsync(ScopeViewModel request)
+        public virtual System.Threading.Tasks.Task UpdateScopeEndpointAsync(UpdateScopeCommand request)
         {
             return UpdateScopeEndpointAsync(request, System.Threading.CancellationToken.None);
         }
@@ -7894,7 +8164,7 @@ namespace Client.Infrastructure.Api
         /// Update Scope.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task UpdateScopeEndpointAsync(ScopeViewModel request, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task UpdateScopeEndpointAsync(UpdateScopeCommand request, System.Threading.CancellationToken cancellationToken)
         {
             if (request == null)
                 throw new System.ArgumentNullException("request");
@@ -7970,7 +8240,7 @@ namespace Client.Infrastructure.Api
         /// Retrieve the details of a scope by its ID.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<ScopeViewModel> GetScopeEndpointAsync(string scopeId)
+        public virtual System.Threading.Tasks.Task<ScopeDto> GetScopeEndpointAsync(string scopeId)
         {
             return GetScopeEndpointAsync(scopeId, System.Threading.CancellationToken.None);
         }
@@ -7983,7 +8253,7 @@ namespace Client.Infrastructure.Api
         /// Retrieve the details of a scope by its ID.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ScopeViewModel> GetScopeEndpointAsync(string scopeId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<ScopeDto> GetScopeEndpointAsync(string scopeId, System.Threading.CancellationToken cancellationToken)
         {
             if (scopeId == null)
                 throw new System.ArgumentNullException("scopeId");
@@ -8028,7 +8298,7 @@ namespace Client.Infrastructure.Api
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<ScopeViewModel>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ScopeDto>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -8148,7 +8418,7 @@ namespace Client.Infrastructure.Api
         /// Return a Paged list of Scopes.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<PagedListOfScopeViewModel> SearchScopesEndpointAsync(SearchScopesRequest request)
+        public virtual System.Threading.Tasks.Task<PagedListOfScopeDto> SearchScopesEndpointAsync(SearchScopesRequest request)
         {
             return SearchScopesEndpointAsync(request, System.Threading.CancellationToken.None);
         }
@@ -8161,7 +8431,7 @@ namespace Client.Infrastructure.Api
         /// Return a Paged list of Scopes.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<PagedListOfScopeViewModel> SearchScopesEndpointAsync(SearchScopesRequest request, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<PagedListOfScopeDto> SearchScopesEndpointAsync(SearchScopesRequest request, System.Threading.CancellationToken cancellationToken)
         {
             if (request == null)
                 throw new System.ArgumentNullException("request");
@@ -8209,7 +8479,7 @@ namespace Client.Infrastructure.Api
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<PagedListOfScopeViewModel>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<PagedListOfScopeDto>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -8243,7 +8513,7 @@ namespace Client.Infrastructure.Api
         /// Create new Application.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<ApplicationViewModel> CreateApplicationEndpointAsync(ApplicationViewModel request)
+        public virtual System.Threading.Tasks.Task CreateApplicationEndpointAsync(CreateClientCommand request)
         {
             return CreateApplicationEndpointAsync(request, System.Threading.CancellationToken.None);
         }
@@ -8256,7 +8526,7 @@ namespace Client.Infrastructure.Api
         /// Create new Application.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ApplicationViewModel> CreateApplicationEndpointAsync(ApplicationViewModel request, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task CreateApplicationEndpointAsync(CreateClientCommand request, System.Threading.CancellationToken cancellationToken)
         {
             if (request == null)
                 throw new System.ArgumentNullException("request");
@@ -8272,7 +8542,6 @@ namespace Client.Infrastructure.Api
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
                 
@@ -8304,12 +8573,7 @@ namespace Client.Infrastructure.Api
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<ApplicationViewModel>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
+                            return;
                         }
                         else
                         {
@@ -8338,7 +8602,7 @@ namespace Client.Infrastructure.Api
         /// Return a list of all Applications.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ApplicationViewModel>> GetApplicationsEndpointAsync()
+        public virtual System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ApplicationDto>> GetApplicationsEndpointAsync()
         {
             return GetApplicationsEndpointAsync(System.Threading.CancellationToken.None);
         }
@@ -8351,7 +8615,7 @@ namespace Client.Infrastructure.Api
         /// Return a list of all Applications.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ApplicationViewModel>> GetApplicationsEndpointAsync(System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<ApplicationDto>> GetApplicationsEndpointAsync(System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -8392,7 +8656,7 @@ namespace Client.Infrastructure.Api
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<ApplicationViewModel>>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<ApplicationDto>>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -8426,7 +8690,7 @@ namespace Client.Infrastructure.Api
         /// Update Application.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task UpdateApplicationEndpointAsync(ApplicationViewModel request)
+        public virtual System.Threading.Tasks.Task UpdateApplicationEndpointAsync(UpdateClientCommand request)
         {
             return UpdateApplicationEndpointAsync(request, System.Threading.CancellationToken.None);
         }
@@ -8439,7 +8703,7 @@ namespace Client.Infrastructure.Api
         /// Update Application.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task UpdateApplicationEndpointAsync(ApplicationViewModel request, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task UpdateApplicationEndpointAsync(UpdateClientCommand request, System.Threading.CancellationToken cancellationToken)
         {
             if (request == null)
                 throw new System.ArgumentNullException("request");
@@ -8515,7 +8779,7 @@ namespace Client.Infrastructure.Api
         /// Retrieve the details of a role by its ID.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<ApplicationViewModel> GetApplicationEndpointAsync(string id)
+        public virtual System.Threading.Tasks.Task<ApplicationDto> GetApplicationEndpointAsync(string id)
         {
             return GetApplicationEndpointAsync(id, System.Threading.CancellationToken.None);
         }
@@ -8528,7 +8792,7 @@ namespace Client.Infrastructure.Api
         /// Retrieve the details of a role by its ID.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ApplicationViewModel> GetApplicationEndpointAsync(string id, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<ApplicationDto> GetApplicationEndpointAsync(string id, System.Threading.CancellationToken cancellationToken)
         {
             if (id == null)
                 throw new System.ArgumentNullException("id");
@@ -8573,12 +8837,98 @@ namespace Client.Infrastructure.Api
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<ApplicationViewModel>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ApplicationDto>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Remove application.
+        /// </summary>
+        /// <remarks>
+        /// Remove Application.
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task DeleteApplicationEndpointAsync(string id)
+        {
+            return DeleteApplicationEndpointAsync(id, System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Remove application.
+        /// </summary>
+        /// <remarks>
+        /// Remove Application.
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task DeleteApplicationEndpointAsync(string id, System.Threading.CancellationToken cancellationToken)
+        {
+            if (id == null)
+                throw new System.ArgumentNullException("id");
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
+
+                    var urlBuilder_ = new System.Text.StringBuilder();
+                
+                    // Operation Path: "applications/{id}"
+                    urlBuilder_.Append("applications/");
+                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(id, System.Globalization.CultureInfo.InvariantCulture)));
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
+                        foreach (var item_ in response_.Headers)
+                            headers_[item_.Key] = item_.Value;
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            return;
                         }
                         else
                         {
@@ -8607,7 +8957,7 @@ namespace Client.Infrastructure.Api
         /// Retrieve the details of a role by its ID.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<ApplicationViewModel> GetApplicationByNameEndpointAsync(string clientId)
+        public virtual System.Threading.Tasks.Task<ApplicationDto> GetApplicationByNameEndpointAsync(string clientId)
         {
             return GetApplicationByNameEndpointAsync(clientId, System.Threading.CancellationToken.None);
         }
@@ -8620,7 +8970,7 @@ namespace Client.Infrastructure.Api
         /// Retrieve the details of a role by its ID.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<ApplicationViewModel> GetApplicationByNameEndpointAsync(string clientId, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<ApplicationDto> GetApplicationByNameEndpointAsync(string clientId, System.Threading.CancellationToken cancellationToken)
         {
             if (clientId == null)
                 throw new System.ArgumentNullException("clientId");
@@ -8665,7 +9015,7 @@ namespace Client.Infrastructure.Api
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<ApplicationViewModel>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<ApplicationDto>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
@@ -8699,7 +9049,7 @@ namespace Client.Infrastructure.Api
         /// Return a Paged list of Applications.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<PagedListOfApplicationViewModel> SearchApplicationsEndpointAsync(SearchApplicationsRequest request)
+        public virtual System.Threading.Tasks.Task<PagedListOfApplicationDto> SearchApplicationsEndpointAsync(SearchClientsRequest request)
         {
             return SearchApplicationsEndpointAsync(request, System.Threading.CancellationToken.None);
         }
@@ -8712,7 +9062,7 @@ namespace Client.Infrastructure.Api
         /// Return a Paged list of Applications.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<PagedListOfApplicationViewModel> SearchApplicationsEndpointAsync(SearchApplicationsRequest request, System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<PagedListOfApplicationDto> SearchApplicationsEndpointAsync(SearchClientsRequest request, System.Threading.CancellationToken cancellationToken)
         {
             if (request == null)
                 throw new System.ArgumentNullException("request");
@@ -8760,98 +9110,12 @@ namespace Client.Infrastructure.Api
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            var objectResponse_ = await ReadObjectResponseAsync<PagedListOfApplicationViewModel>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            var objectResponse_ = await ReadObjectResponseAsync<PagedListOfApplicationDto>(response_, headers_, cancellationToken).ConfigureAwait(false);
                             if (objectResponse_.Object == null)
                             {
                                 throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
                             }
                             return objectResponse_.Object;
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <summary>
-        /// Remove application.
-        /// </summary>
-        /// <remarks>
-        /// Remove Application.
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task DeleteApplicationEndpointAsync(string clientId)
-        {
-            return DeleteApplicationEndpointAsync(clientId, System.Threading.CancellationToken.None);
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Remove application.
-        /// </summary>
-        /// <remarks>
-        /// Remove Application.
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task DeleteApplicationEndpointAsync(string clientId, System.Threading.CancellationToken cancellationToken)
-        {
-            if (clientId == null)
-                throw new System.ArgumentNullException("clientId");
-
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    request_.Method = new System.Net.Http.HttpMethod("DELETE");
-
-                    var urlBuilder_ = new System.Text.StringBuilder();
-                
-                    // Operation Path: "applications/{clientId}"
-                    urlBuilder_.Append("applications/");
-                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(clientId, System.Globalization.CultureInfo.InvariantCulture)));
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
-                        foreach (var item_ in response_.Headers)
-                            headers_[item_.Key] = item_.Value;
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            return;
                         }
                         else
                         {
@@ -11183,35 +11447,50 @@ namespace Client.Infrastructure.Api
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class ScopeViewModel
+    public partial class CreateScopeCommand
     {
 
-        [System.Text.Json.Serialization.JsonPropertyName("id")]
-        [System.ComponentModel.DataAnnotations.Required(AllowEmptyStrings = true)]
-        public string Id { get; set; } = default!;
-
         [System.Text.Json.Serialization.JsonPropertyName("name")]
-        [System.ComponentModel.DataAnnotations.Required]
         public string Name { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("displayName")]
-        [System.ComponentModel.DataAnnotations.Required]
         public string DisplayName { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("description")]
         public string Description { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("resources")]
-        public System.Collections.Generic.ICollection<string> Resources { get; set; } = default!;
+        public System.Collections.Generic.ICollection<string>? Resources { get; set; } = default!;
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class PagedListOfScopeViewModel
+    public partial class ScopeDto
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public string Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("displayName")]
+        public string DisplayName { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
+        public string Description { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("resources")]
+        public System.Collections.Generic.ICollection<string>? Resources { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class PagedListOfScopeDto
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("items")]
-        public System.Collections.Generic.ICollection<ScopeViewModel> Items { get; set; } = default!;
+        public System.Collections.Generic.ICollection<ScopeDto> Items { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("pageNumber")]
         public int PageNumber { get; set; } = default!;
@@ -11243,22 +11522,46 @@ namespace Client.Infrastructure.Api
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class ApplicationViewModel
+    public partial class UpdateScopeCommand
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("id")]
+        public string Id { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
+        public string Name { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("displayName")]
+        public string DisplayName { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
+        public string Description { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("resources")]
+        public System.Collections.Generic.ICollection<string> Resources { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class CreateClientCommand : ApplicationDto
+    {
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class ApplicationDto
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
         public string Id { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("applicationType")]
-        [System.ComponentModel.DataAnnotations.Required]
         public string ApplicationType { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("clientId")]
-        [System.ComponentModel.DataAnnotations.Required]
         public string ClientId { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("clientType")]
-        [System.ComponentModel.DataAnnotations.Required]
         public string ClientType { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("isConfidentialClient")]
@@ -11271,39 +11574,34 @@ namespace Client.Infrastructure.Api
         public string? JsonWebKeySet { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("consentType")]
-        [System.ComponentModel.DataAnnotations.Required]
         public string ConsentType { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("displayName")]
-        [System.ComponentModel.DataAnnotations.Required]
         public string DisplayName { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("permissions")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<string> Permissions { get; set; } = new System.Collections.ObjectModel.Collection<string>();
+        public System.Collections.Generic.ICollection<string>? Permissions { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("redirectUris")]
-        public System.Collections.Generic.ICollection<System.Uri> RedirectUris { get; set; } = default!;
+        public System.Collections.Generic.ICollection<System.Uri>? RedirectUris { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("postLogoutRedirectUris")]
-        public System.Collections.Generic.ICollection<System.Uri> PostLogoutRedirectUris { get; set; } = default!;
+        public System.Collections.Generic.ICollection<System.Uri>? PostLogoutRedirectUris { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("requirements")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.ICollection<string> Requirements { get; set; } = new System.Collections.ObjectModel.Collection<string>();
+        public System.Collections.Generic.ICollection<string>? Requirements { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("settings")]
-        [System.ComponentModel.DataAnnotations.Required]
-        public System.Collections.Generic.IDictionary<string, string> Settings { get; set; } = new System.Collections.Generic.Dictionary<string, string>();
+        public System.Collections.Generic.IDictionary<string, string>? Settings { get; set; } = default!;
 
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class PagedListOfApplicationViewModel
+    public partial class PagedListOfApplicationDto
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("items")]
-        public System.Collections.Generic.ICollection<ApplicationViewModel> Items { get; set; } = default!;
+        public System.Collections.Generic.ICollection<ApplicationDto> Items { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("pageNumber")]
         public int PageNumber { get; set; } = default!;
@@ -11326,11 +11624,17 @@ namespace Client.Infrastructure.Api
     }
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))")]
-    public partial class SearchApplicationsRequest : PaginationFilter
+    public partial class SearchClientsRequest : PaginationFilter
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("roleFilter")]
         public string? RoleFilter { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class UpdateClientCommand : ApplicationDto
+    {
 
     }
 

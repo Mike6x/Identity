@@ -1,10 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "QCjpLukOYP0=",
+  "dgSpecHash": "cyUe0NioUA8=",
   "success": true,
   "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/Identity.Admin/Identity.Admin.csproj",
   "expectedPackageFiles": [
     "/Users/tuanpa/.nuget/packages/blazored.localstorage/4.5.0/blazored.localstorage.4.5.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/fluentvalidation/12.0.0/fluentvalidation.12.0.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/mapster/7.4.0/mapster.7.4.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/mapster.core/1.2.1/mapster.core.1.2.1.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.authentication.openidconnect/9.0.6/microsoft.aspnetcore.authentication.openidconnect.9.0.6.nupkg.sha512",
@@ -37,8 +38,9 @@
     "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.protocols.openidconnect/8.0.1/microsoft.identitymodel.protocols.openidconnect.8.0.1.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.tokens/8.12.0/microsoft.identitymodel.tokens.8.12.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.jsinterop/9.0.1/microsoft.jsinterop.9.0.1.nupkg.sha512",
-    "/Users/tuanpa/.nuget/packages/mudblazor/8.7.0/mudblazor.8.7.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/mudblazor/8.8.0/mudblazor.8.8.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/netescapades.aspnetcore.securityheaders/1.1.0/netescapades.aspnetcore.securityheaders.1.1.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/openiddict.abstractions/6.4.0/openiddict.abstractions.6.4.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/system.identitymodel.tokens.jwt/8.12.0/system.identitymodel.tokens.jwt.8.12.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.netcore.app.ref/9.0.1/microsoft.netcore.app.ref.9.0.1.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.1/microsoft.aspnetcore.app.ref.9.0.1.nupkg.sha512",

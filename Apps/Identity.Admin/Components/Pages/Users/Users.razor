@@ -12,6 +12,7 @@
         @if (_canViewRoles)
         {
             <MudMenuItem OnClick="(() => ManageRoles(context.Id))" >Manage Roles</MudMenuItem>
+            <MudMenuItem OnClick="(() => ManageClaims(context.Id))" >Manage Claims</MudMenuItem>
         }
         @if (_canViewAuditTrails)
         {

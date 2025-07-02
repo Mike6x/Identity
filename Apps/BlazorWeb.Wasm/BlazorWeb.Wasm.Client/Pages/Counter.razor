@@ -23,11 +23,12 @@
 @code {
     private int _currentCount = 0;
     private string _say = string.Empty;
-
+    // private bool _isSaving;
+    
     [SupplyParameterFromForm]
     public string? Text { get; set; }
 
-    private bool _isSaving;
+   
 
     [CascadingParameter]
     private Task<AuthenticationState>? AuthenticationState { get; set; }
@@ -44,15 +45,15 @@
         _currentCount++;
     }
 
-    private async void HandleSubmit()
-    {
-
-        _isSaving = true;
-        await Task.Delay(2000);
-
-        _isSaving = false;
-        StateHasChanged();
-    }
+    // private async void HandleSubmit()
+    // {
+    //
+    //     _isSaving = true;
+    //     await Task.Delay(2000);
+    //
+    //     _isSaving = false;
+    //     StateHasChanged();
+    // }
 
     protected override async Task OnInitializedAsync()
     {

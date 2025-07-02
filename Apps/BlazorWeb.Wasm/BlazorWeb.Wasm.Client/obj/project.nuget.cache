@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "MWQwZd65c/U=",
+  "dgSpecHash": "zj1/axWyi84=",
   "success": true,
   "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/BlazorWeb.Wasm/BlazorWeb.Wasm.Client/BlazorWeb.Wasm.Client.csproj",
   "expectedPackageFiles": [
@@ -39,6 +39,7 @@
     "/Users/tuanpa/.nuget/packages/microsoft.jsinterop.webassembly/9.0.6/microsoft.jsinterop.webassembly.9.0.6.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.net.illink.tasks/9.0.1/microsoft.net.illink.tasks.9.0.1.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.net.sdk.webassembly.pack/9.0.0/microsoft.net.sdk.webassembly.pack.9.0.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/openiddict.abstractions/6.4.0/openiddict.abstractions.6.4.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/system.identitymodel.tokens.jwt/8.12.0/system.identitymodel.tokens.jwt.8.12.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.netcore.app.runtime.mono.browser-wasm/9.0.0/microsoft.netcore.app.runtime.mono.browser-wasm.9.0.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.1/microsoft.aspnetcore.app.ref.9.0.1.nupkg.sha512"

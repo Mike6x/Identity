@@ -1,6 +1,5 @@
 ﻿using Ardalis.Specification.EntityFrameworkCore;
 using BuildingBlocks.Exceptions;
-using BuildingBlocks.Identity.Users.Abstractions;
 using BuildingBlocks.Paging;
 using BuildingBlocks.Specifications;
 using Identity.Core.Entities;
@@ -8,7 +7,6 @@ using Identity.Core.Features.Claim;
 using Identity.Core.Features.Role;
 using Identity.Core.Features.Role.CreateOrUpdateRole;
 using Identity.Core.Features.Role.SearchRoles;
-using Identity.Infrastructure.Data;
 using Identity.Shared.Authorization;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
@@ -18,23 +16,16 @@ namespace Identity.Infrastructure.Services.Role;
 
 public sealed partial class RoleService(
     RoleManager<AppRole> roleManager,
-    UserManager<AppUser> userManager,
-    ApplicationDbContext context,
-    ICurrentUser currentUser) : IRoleService
+    UserManager<AppUser> userManager
+    // ApplicationDbContext context,
+    // ICurrentUser currentUser
+    ) : IRoleService
 {
     public async Task<List<RoleDto>> GetAllAsync(CancellationToken cancellationToken)
     {
         return await roleManager.Roles.AsNoTracking()
             .Select(role => role.ToDto())
             .ToListAsync(cancellationToken);
-        
-        // return await roleManager.Roles.AsNoTracking()
-        //     .Select(role => new RoleDto
-        //         { 
-        //             Id = role.Id, 
-        //             Name = role.Name ?? string.Empty, 
-        //             Description = role.Description })
-        //     .ToListAsync(cancellationToken);
     }
     public async Task<PagedList<RoleDto>> SearchAsync(SearchRolesRequest request, CancellationToken cancellationToken)
     {

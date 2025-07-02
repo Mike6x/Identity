@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <PackageReference Include="Blazored.LocalStorage" Version="4.5.0" />
+    <PackageReference Include="FluentValidation" Version="12.0.0" />
     <PackageReference Include="Mapster" Version="7.4.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="9.0.6" />
 
@@ -19,5 +20,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Framework\Identity.Shared\Identity.Shared.csproj" />
     <ProjectReference Include="..\Client.Infrastructure\Client.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Components\Pages\Authenticator\" />
   </ItemGroup>
 </Project>

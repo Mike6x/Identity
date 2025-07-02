@@ -1,0 +1,35 @@
+@page "/identity/scopes"
+
+<PageHeader Title="Scopes" Header="Scopes" SubHeader="Manage scopes." />
+
+<EntityTable TEntity="ScopeDto" TId="string" TRequest="ScopeViewModel" Context="@Context">
+
+    <ExtraActions>
+        @if (_canViewScopeResources)
+        {
+            <MudMenuItem @onclick="@(() => ManageResources(@context))">Scope Details</MudMenuItem>
+        }
+    </ExtraActions>
+
+    <EditFormContent>
+        @if (!Context.AddEditModal.IsCreate)
+        {
+            <MudItem xs="12" md="12">
+                <MudTextField Value="context.Id" ReadOnly Underline="false" Label="Scope Id]" />
+            </MudItem>
+        }
+        <MudItem xs="12" md="6">
+            <MudTextField For="@(() => context.Name)" @bind-Value="context.Name" Label="Scope Name" />
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudTextField For="@(() => context.DisplayName)" @bind-Value="context.DisplayName" Label="Display Name" />
+        </MudItem>
+
+        <MudItem xs="12" md="6">
+            <MudTextField For="@(() => context.Description)" @bind-Value="context.Description"
+                Label="Description" />
+        </MudItem>
+  
+    </EditFormContent>
+
+</EntityTable>

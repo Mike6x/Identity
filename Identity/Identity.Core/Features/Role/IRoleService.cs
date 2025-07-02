@@ -37,7 +37,7 @@ public interface IRoleService
     
     #region Permission Role
 
-    Task<List<string>> GetRolePermissionsAsync(string roleId, CancellationToken cancellationToken);
+    // Task<List<string>> GetRolePermissionsAsync(string roleId, CancellationToken cancellationToken);
     Task<string> UpdatePermissionsToRoleAsync(UpdatePermissionsCommand request);
 
     #endregion

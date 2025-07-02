@@ -15,13 +15,13 @@ else
             var allRoleClaimsInGroup = _groupedRoleClaims[group].ToList();
             <MudTabPanel Text="@group" BadgeData="@($"{selectedRoleClaimsInGroup.Count}/{allRoleClaimsInGroup.Count}")" Style="padding-right: 43px;"
                 BadgeColor="@GetGroupBadgeColor(selectedRoleClaimsInGroup.Count, allRoleClaimsInGroup.Count)">
-                <MudTable Hover="true" Dense="false" Outlined Items="@allRoleClaimsInGroup" Style="margin-bottom:0px!important" Filter="new Func<PermissionViewModel, bool>(Search)">
+                <MudTable Hover="true" Dense="false" Outlined Items="@allRoleClaimsInGroup" Style="margin-bottom:0!important" Filter="new Func<PermissionViewModel, bool>(Search)">
                     <ToolBarContent>
                         <div class="justify-center mud-text-align-center">
                             <MudButton Variant="Variant.Filled" DropShadow="false" Color="Color.Info" Class="ml-auto" StartIcon="@Icons.Material.Filled.ArrowBack" Href="/identity/roles">
                                 Back
                             </MudButton>
-                            @if (_canEditRoleClaims)
+                            @if (_canEditItems)
                             {
                                 <MudButton Variant="Variant.Filled" DropShadow="false" Color="Color.Primary" Class="ml-auto" OnClick="SaveAsync"
                                     ButtonType="ButtonType.Submit" Style="margin-left: 5px!important;" StartIcon="@Icons.Material.Filled.Save">Update Permissions
@@ -29,7 +29,7 @@ else
                             }
                         </div>
                         <MudSpacer />
-                        @if (_canSearchRoleClaims)
+                        @if (_canSearchItems)
                         {
                             <MudTextField @bind-Value="_searchString" Immediate="true" FullWidth=false
                                 Placeholder="Search For Role Permissions" Adornment="Adornment.End"
@@ -59,7 +59,7 @@ else
                             <MudHighlighter Text="@context.Description" HighlightedText="@_searchString" />
                         </MudTd>
                         <MudTd DataLabel="Permission">
-                            <MudCheckBox T="bool" @bind-Value="@context.Enabled" Disabled="@(!_canEditRoleClaims)" Color="Color.Secondary">
+                            <MudCheckBox T="bool" @bind-Value="@context.Enabled" Disabled="@(!_canEditItems)" Color="Color.Secondary">
                             </MudCheckBox>
                         </MudTd>
                     </RowTemplate>

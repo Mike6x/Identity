@@ -4,13 +4,11 @@ using BuildingBlocks.Exceptions;
 using Identity.Core.Entities;
 using Identity.Core.Features.Authentication;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.OpenIdConnect;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.Data;
 using OpenIddict.Abstractions;
 using OpenIddict.Client.AspNetCore;
-using OpenIddict.Server.AspNetCore;
 using UnauthorizedException = BuildingBlocks.Exceptions.UnauthorizedException;
 
 namespace Identity.Infrastructure.Services.Authentication;

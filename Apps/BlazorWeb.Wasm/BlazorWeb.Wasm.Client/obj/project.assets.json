@@ -617,6 +617,24 @@
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.targets": {}
         }
       },
+      "OpenIddict.Abstractions/6.4.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.6",
+          "Microsoft.Extensions.Primitives": "9.0.6",
+          "Microsoft.IdentityModel.Tokens": "8.12.0"
+        },
+        "compile": {
+          "lib/net9.0/OpenIddict.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/OpenIddict.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.IdentityModel.Tokens.Jwt/8.12.0": {
         "type": "package",
         "dependencies": {
@@ -654,6 +672,9 @@
       "Identity.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "OpenIddict.Abstractions": "6.4.0"
+        },
         "compile": {
           "bin/placeholder/Identity.Shared.dll": {}
         },
@@ -1278,6 +1299,24 @@
           "build/Microsoft.NET.Sdk.WebAssembly.Pack.targets": {}
         }
       },
+      "OpenIddict.Abstractions/6.4.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.6",
+          "Microsoft.Extensions.Primitives": "9.0.6",
+          "Microsoft.IdentityModel.Tokens": "8.12.0"
+        },
+        "compile": {
+          "lib/net9.0/OpenIddict.Abstractions.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net9.0/OpenIddict.Abstractions.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "System.IdentityModel.Tokens.Jwt/8.12.0": {
         "type": "package",
         "dependencies": {
@@ -1315,6 +1354,9 @@
       "Identity.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "OpenIddict.Abstractions": "6.4.0"
+        },
         "compile": {
           "bin/placeholder/Identity.Shared.dll": {}
         },
@@ -2275,6 +2317,34 @@
         "tools/net472/Microsoft.NET.WebAssembly.Webcil.dll",
         "tools/net9.0/Microsoft.NET.Sdk.WebAssembly.Pack.Tasks.dll",
         "tools/net9.0/Microsoft.NET.WebAssembly.Webcil.dll"
+      ]
+    },
+    "OpenIddict.Abstractions/6.4.0": {
+      "sha512": "sVhLvY4sZ3UFXudfc8A6gM45uyA9WwL8987ksf8zY4spVoADFH3cblkyj85OYF5fCQxRDxvOCvyeYfs7zTiaig==",
+      "type": "package",
+      "path": "openiddict.abstractions/6.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "lib/net462/OpenIddict.Abstractions.dll",
+        "lib/net462/OpenIddict.Abstractions.xml",
+        "lib/net472/OpenIddict.Abstractions.dll",
+        "lib/net472/OpenIddict.Abstractions.xml",
+        "lib/net48/OpenIddict.Abstractions.dll",
+        "lib/net48/OpenIddict.Abstractions.xml",
+        "lib/net6.0/OpenIddict.Abstractions.dll",
+        "lib/net6.0/OpenIddict.Abstractions.xml",
+        "lib/net8.0/OpenIddict.Abstractions.dll",
+        "lib/net8.0/OpenIddict.Abstractions.xml",
+        "lib/net9.0/OpenIddict.Abstractions.dll",
+        "lib/net9.0/OpenIddict.Abstractions.xml",
+        "lib/netstandard2.0/OpenIddict.Abstractions.dll",
+        "lib/netstandard2.0/OpenIddict.Abstractions.xml",
+        "lib/netstandard2.1/OpenIddict.Abstractions.dll",
+        "lib/netstandard2.1/OpenIddict.Abstractions.xml",
+        "openiddict.abstractions.6.4.0.nupkg.sha512",
+        "openiddict.abstractions.nuspec"
       ]
     },
     "System.IdentityModel.Tokens.Jwt/8.12.0": {

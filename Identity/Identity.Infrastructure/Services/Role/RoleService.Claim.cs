@@ -19,7 +19,7 @@ public partial class RoleService
         var roleClaims = await roleManager.GetClaimsAsync(role);
         
         var claims = new List<ClaimViewModel>();
-        claims.AddRange(Enumerable.Select<Claim, ClaimViewModel>(roleClaims, ClaimViewModel.FromClaim));
+        claims.AddRange(roleClaims.Select<Claim, ClaimViewModel>(ClaimViewModel.FromClaim));
         
         return claims;
     }
@@ -31,8 +31,8 @@ public partial class RoleService
         
         var currentClaims = await roleManager.GetClaimsAsync(role);
         
-        if (Enumerable.Any<Claim>(currentClaims, a => a.Type.Equals(request.ClaimToAdd.Type) 
-                                                      && a.Value.Equals(request.ClaimToAdd.Value)))
+        if (currentClaims.Any<Claim>(a => a.Type.Equals(request.ClaimToAdd.Type) 
+                                          && a.Value.Equals(request.ClaimToAdd.Value)))
         {
             throw new ConflictException($"Role: {request.Owner} already have this claim.");
         }
@@ -47,14 +47,14 @@ public partial class RoleService
                    ?? throw new NotFoundException($"Role : {request.Owner} not found.");
         
         var currentClaims = await roleManager.GetClaimsAsync(role);
-        var claimToRemove = Enumerable.FirstOrDefault<Claim>(currentClaims, c => c.Type.Equals(request.Original.Type)
-                                                                                    && c.Value.Equals(request.Original.Value));
+        var claimToRemove = currentClaims.FirstOrDefault<Claim>(c => c.Type.Equals(request.Original.Type)
+                                                                     && c.Value.Equals(request.Original.Value));
         if (claimToRemove == null)  throw new NotFoundException($"Role: {request.Owner} do not have remove claim.{request.Original.Value}");
         
         var removeResult = await roleManager.RemoveClaimAsync(role, claimToRemove);
         
-        var claimToAdd = Enumerable.FirstOrDefault<Claim>(currentClaims, c => c.Type.Equals(request.Modified.Type)
-                                                                              && c.Value.Equals(request.Modified.Value));
+        var claimToAdd = currentClaims.FirstOrDefault<Claim>(c => c.Type.Equals(request.Modified.Type)
+                                                                  && c.Value.Equals(request.Modified.Value));
         if (claimToAdd != null) return removeResult.Succeeded;
         
         var addResult = await roleManager.AddClaimAsync(role, request.Modified.ToClaim());
@@ -68,8 +68,8 @@ public partial class RoleService
         
         var currentClaims = await roleManager.GetClaimsAsync(role);
         
-        var claimToRemove = Enumerable.FirstOrDefault<Claim>(currentClaims, a => a.Type.Equals(request.ClaimToRemove.Type) 
-                                                                                    && a.Value.Equals(request.ClaimToRemove.Value))
+        var claimToRemove = currentClaims.FirstOrDefault<Claim>(a => a.Type.Equals(request.ClaimToRemove.Type) 
+                                                                     && a.Value.Equals(request.ClaimToRemove.Value))
                             ?? throw new ConflictException($"Role: {request.Owner} do not have request claim {request.ClaimToRemove.Value}.");
         
         var result = await roleManager.RemoveClaimAsync(role, claimToRemove);
@@ -85,17 +85,17 @@ public partial class RoleService
         var currentClaims = await roleManager.GetClaimsAsync(role);
 
         // Remove current claims not in request list
-        foreach (var claim in Enumerable.Where<Claim>(currentClaims, c => !request.Claims.Exists(
+        foreach (var claim in currentClaims.Where<Claim>(c => !request.Claims.Exists(
                      r => r.Type.Equals(c.Type) && r.Value.Equals(c.Value))))
         {
             var result = await roleManager.RemoveClaimAsync(role, claim);
             if (result.Succeeded) continue;
-            var errors = Enumerable.Select<IdentityError, string>(result.Errors, error => error.Description).ToList();
+            var errors = result.Errors.Select<IdentityError, string>(error => error.Description).ToList();
             throw new GeneralException("operation failed", errors);
         }
 
         // Add all request claims except which have existed
-        foreach (var claim  in request.Claims.Where(r => Enumerable.All<Claim>(currentClaims, c => c.Type != r.Type && c.Value != r.Value)))
+        foreach (var claim  in request.Claims.Where(r => currentClaims.All<Claim>(c => c.Type != r.Type && c.Value != r.Value)))
         {
             await roleManager.AddClaimAsync(role, claim.ToClaim());
         }
@@ -116,14 +116,14 @@ public partial class RoleService
         {
             if (claim.Enabled)
             {
-                if (!Enumerable.Any<Claim>(currentClaims, a => a.Type.Equals(claim.Type) && a.Value.Equals(claim.Value)))
+                if (!currentClaims.Any<Claim>(a => a.Type.Equals(claim.Type) && a.Value.Equals(claim.Value)))
                 {
                     await roleManager.AddClaimAsync(role, claim.ToClaim());
                 }
             }
             else
             {
-                if (Enumerable.Any<Claim>(currentClaims, a => a.Type.Equals(claim.Type) && a.Value.Equals(claim.Value)))
+                if (currentClaims.Any<Claim>(a => a.Type.Equals(claim.Type) && a.Value.Equals(claim.Value)))
                 {
                     await roleManager.RemoveClaimAsync(role, claim.ToClaim());
                 }

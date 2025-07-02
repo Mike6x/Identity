@@ -6,7 +6,8 @@
     <ExtraActions>
         @if (_canViewRoleClaims)
         {
-            <MudMenuItem @onclick="@(() => ManagePermissions(@context.Id.ToString()))">Manage Permission</MudMenuItem>
+            <MudMenuItem @onclick="@(() => ManagePermissions(@context.Id))">Manage Permission</MudMenuItem>
+            <MudMenuItem @onclick="@(() => ManageClaims(@context.Id))">Manage Claims</MudMenuItem>
         }
     </ExtraActions>
     <EditFormContent>

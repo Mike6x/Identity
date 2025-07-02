@@ -2,6 +2,11 @@
 
 public static class AppScopes
 {
+    public const string Profile = "profile";
+    public const string Email = "email";
+    public const string Roles = "roles";
+    public const string Api = "api";
+    
     public const string WeatherReadScope = "weather:read";
     
     public const string EmployeeReadScope = "employee:read";

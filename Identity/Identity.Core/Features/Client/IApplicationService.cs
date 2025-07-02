@@ -1,27 +1,28 @@
 using BuildingBlocks.Paging;
+using Identity.Core.Features.Client.Create;
 using Identity.Core.Features.Client.Search;
+using Identity.Core.Features.Client.Update;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Identity.Core.Features.Client;
 
-public interface IApplicationService
+public interface IClientService
 {
-    Task<ApplicationViewModel?> CreateAsync(ApplicationViewModel applicationDescriptor,
+    Task<IResult> CreateAsync(CreateClientCommand request, CancellationToken cancellationToken);
+
+    Task<ApplicationDto> GetAsync(string id, CancellationToken cancellationToken);
+    
+    Task<ApplicationDto> GetByNameAsync(string clientId, CancellationToken cancellationToken);
+    
+    Task<List<ApplicationDto>> GetAllAsync(CancellationToken cancellationToken);
+
+    Task<PagedList<ApplicationDto>> SearchAsync(SearchClientsRequest request,
         CancellationToken cancellationToken);
 
-    Task<ApplicationViewModel> GetAsync(string id, CancellationToken cancellationToken);
-    
-    Task<ApplicationViewModel> GetByNameAsync(string clientId, CancellationToken cancellationToken);
-    
-    Task<List<ApplicationViewModel>> GetAllAsync(CancellationToken cancellationToken);
+    Task<IResult> DeleteAsync(string id, CancellationToken cancellationToken);
 
-    Task<PagedList<ApplicationViewModel>> SearchAsync(SearchApplicationsRequest request,
-        CancellationToken cancellationToken);
-
-    Task<IResult> DeleteAsync(string clientId, CancellationToken cancellationToken);
-
-    Task<IResult> UpdateAsync(ApplicationViewModel applicationDescriptor, CancellationToken cancellationToken);
+    Task<IResult> UpdateAsync(UpdateClientCommand request, CancellationToken cancellationToken);
 
     Task<IResult> CallbackAsync(HttpContext httpContext, [FromServices] IHttpClientFactory httpClientFactory);
 }

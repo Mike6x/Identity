@@ -2753,6 +2753,7 @@
           "AspNetCore.HealthChecks.SqlServer": "9.0.0",
           "ClosedXML": "0.105.0",
           "ClosedXML.Report": "0.2.12",
+          "FluentValidation": "12.0.0",
           "FluentValidation.DependencyInjectionExtensions": "12.0.0",
           "Hangfire": "1.8.20",
           "Hangfire.PostgreSql": "1.20.12",
@@ -2784,6 +2785,9 @@
       "Identity.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "OpenIddict.Abstractions": "6.4.0"
+        },
         "compile": {
           "bin/placeholder/Identity.Shared.dll": {}
         },

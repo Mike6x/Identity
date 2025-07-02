@@ -13,6 +13,6 @@
     <SourceRoot Include="/Users/tuanpa/.nuget/packages/" />
   </ItemGroup>
   <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <Import Project="$(NuGetPackageRoot)mudblazor/8.7.0/buildTransitive/MudBlazor.props" Condition="Exists('$(NuGetPackageRoot)mudblazor/8.7.0/buildTransitive/MudBlazor.props')" />
+    <Import Project="$(NuGetPackageRoot)mudblazor/8.8.0/buildTransitive/MudBlazor.props" Condition="Exists('$(NuGetPackageRoot)mudblazor/8.8.0/buildTransitive/MudBlazor.props')" />
   </ImportGroup>
 </Project>

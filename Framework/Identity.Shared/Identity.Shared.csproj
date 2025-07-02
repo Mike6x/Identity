@@ -10,4 +10,8 @@
       <Folder Include="Resource_Server_3\AuthorizationPolicy\" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="OpenIddict.Abstractions" Version="6.4.0" />
+    </ItemGroup>
+
 </Project>

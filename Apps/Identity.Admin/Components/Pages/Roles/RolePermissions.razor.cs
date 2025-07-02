@@ -11,41 +11,50 @@ namespace Identity.Admin.Components.Pages.Roles;
 
 public partial class RolePermissions
 {
-    [Parameter]
-    public string Id { get; set; } = default!; // from route
-    [CascadingParameter]
-    protected Task<AuthenticationState> AuthState { get; set; } = default!;
-    [Inject]
-    protected IAuthorizationService AuthService { get; set; } = default!;
-    [Inject]
-    protected IApiClient RolesClient { get; set; } = default!;
 
-    private Dictionary<string, List<PermissionViewModel>> _groupedRoleClaims = default!;
+    [CascadingParameter]
+    protected Task<AuthenticationState>? AuthState { get; set; }
+    [Inject]
+    protected IAuthorizationService? AuthService { get; set; }
+    [Inject]
+    private IApiClient? ApiClient { get; set; }
+    
+    [Parameter]
+    public string? Id { get; set; }
+
+    private Dictionary<string, List<PermissionViewModel>> _groupedRoleClaims =new();
 
     private string _title = string.Empty;
     private string _description = string.Empty;
 
     private string _searchString = string.Empty;
 
-    private bool _canEditRoleClaims;
-    private bool _canSearchRoleClaims;
+    private bool _canEditItems;
+    private bool _canSearchItems;
+    
     private bool _loaded;
 
     static RolePermissions() => TypeAdapterConfig<AppPermission, PermissionViewModel>.NewConfig().MapToConstructor(true);
 
     protected override async Task OnInitializedAsync()
     {
+        if (ApiClient == null) return;
+        if (AuthState == null)  return;
+        if(string.IsNullOrEmpty(Id)) return;
+        
         var state = await AuthState;
-
-        _canEditRoleClaims = await AuthService.HasPermissionAsync(state.User, AppActions.Update, AppResources.RoleClaims);
-        _canSearchRoleClaims = await AuthService.HasPermissionAsync(state.User, AppActions.View, AppResources.RoleClaims);
-
-        if (await ApiHelper.ExecuteCallGuardedAsync(
-                () => RolesClient.GetRolePermissionsEndpointAsync(Id), Toast, Navigation)
-            is RoleDto role && role.Permissions is not null)
+        if (AuthService != null)
         {
-            _title = $"{role.Name} Permissions";
-            _description = $"Manage {role.Name} Role Permissions";
+            _canEditItems = await AuthService.HasPermissionAsync(state.User, AppActions.Update, AppResources.RoleClaims);
+            _canSearchItems = await AuthService.HasPermissionAsync(state.User, AppActions.View, AppResources.RoleClaims);
+        }
+        
+        if (await ApiHelper.ExecuteCallGuardedAsync(
+                () => ApiClient.GetRoleEndpointAsync(Id), Toast, Navigation)
+            is { } mainItem)
+        {
+            _title = $"{mainItem.Name} Permissions";
+            _description = $"Manage {mainItem.Name} Role Permissions";
 
             var permissions = state.User.GetTenant() == TenantConstants.Root.Id
                 ? AppPermissions.All
@@ -56,7 +65,7 @@ public partial class RolePermissions
                 .ToDictionary(g => g.Key, g => g.Select(p =>
                 {
                     var permission = p.Adapt<PermissionViewModel>();
-                    permission.Enabled = role.Permissions.Contains(permission.Name);
+                    permission.Enabled = mainItem.Permissions.Contains(permission.Name);
                     return permission;
                 }).ToList());
         }
@@ -64,7 +73,7 @@ public partial class RolePermissions
         _loaded = true;
     }
 
-    private Color GetGroupBadgeColor(int selected, int all)
+    private static Color GetGroupBadgeColor(int selected, int all)
     {
         if (selected == 0)
             return Color.Error;
@@ -77,6 +86,8 @@ public partial class RolePermissions
 
     private async Task SaveAsync()
     {
+        if(string.IsNullOrEmpty(Id)) return;
+        
         var allPermissions = _groupedRoleClaims.Values.SelectMany(a => a);
         var selectedPermissions = allPermissions.Where(a => a.Enabled);
         var request = new UpdatePermissionsCommand()
@@ -85,7 +96,7 @@ public partial class RolePermissions
             Permissions = selectedPermissions.Where(x => x.Enabled).Select(x => x.Name).ToList(),
         };
         await ApiHelper.ExecuteCallGuardedAsync(
-                () => RolesClient.UpdateRolePermissionsEndpointAsync(request.RoleId, request),
+                () => ApiClient?.UpdateRolePermissionsEndpointAsync(request.RoleId, request)!,
                 Toast,
                 successMessage: "Updated Permissions.");
         Navigation.NavigateTo("/identity/roles");
@@ -97,13 +108,12 @@ public partial class RolePermissions
             || permission.Description.Contains(_searchString, StringComparison.OrdinalIgnoreCase) is true;
 }
 
-public record PermissionViewModel(
-    string Description,
-    string Action,
-    string Resource,
-    bool IsBasic = false,
-    bool IsRoot = false)
-    : AppPermission(Description, Action, Resource, IsBasic, IsRoot)
+public record PermissionViewModel : AppPermission
 {
     public bool Enabled { get; set; }
+
+    public PermissionViewModel(string Description, string Action, string Resource, bool IsBasic = false, bool IsRoot = false)
+        : base(Description, Action, Resource, IsBasic, IsRoot)
+    {
+    }
 }

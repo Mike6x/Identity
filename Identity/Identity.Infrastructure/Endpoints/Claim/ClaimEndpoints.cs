@@ -10,6 +10,7 @@ public static class ClaimEndpoints
         
         app.MapAddClaimToRoleEndpoint();
         app.MapGetRoleClaimsEndpoint();
+      
         app.MapUpdateClaimsToRoleEndpoint();
         app.MapChangeClaimOfRoleEndpoint();
         app.MapRemoveClaimOfRoleEndpoint();

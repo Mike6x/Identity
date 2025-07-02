@@ -4,9 +4,18 @@
     <AuthorizeView>
         <Authorized>
             <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
-            <MudNavLink Href="./applications/list" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Dashboard">Applications</MudNavLink>
-            <MudNavLink Match="NavLinkMatch.Prefix" Href="/identity/users" Icon="@Icons.Material.Filled.PeopleAlt">Users</MudNavLink>
-            <MudNavLink Href="/identity/roles" Icon="@Icons.Material.Filled.EmojiPeople">Roles</MudNavLink>
+            
+            <MudNavGroup Title="USER MANAGEMENT" Expanded="false" Icon="@Icons.Material.Outlined.Dashboard">
+                <MudNavLink Match="NavLinkMatch.Prefix" Href="/identity/users" Icon="@Icons.Material.Filled.PeopleAlt">Users</MudNavLink>
+                <MudNavLink Href="/identity/roles" Icon="@Icons.Material.Filled.EmojiPeople">Roles</MudNavLink>
+                
+            </MudNavGroup>
+
+            <MudNavGroup Title="CLIENT MANAGEMENT" Expanded="false" Icon="@Icons.Material.Outlined.Dashboard">
+                <MudNavLink Href="./identity/applications" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Dashboard">Applications</MudNavLink>
+                <MudNavLink Href="/identity/scopes" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Dashboard">Scopes</MudNavLink>
+      
+            </MudNavGroup>
             
             <MudNavGroup Title="Demo" Expanded="false" Icon="@Icons.Material.Outlined.Dashboard">
                 <MudNavLink Href="counter" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">Counter</MudNavLink>

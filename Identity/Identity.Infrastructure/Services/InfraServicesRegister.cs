@@ -30,7 +30,9 @@ public static class InfraServicesRegister
         services.AddTransient<IRoleService, RoleService>();
         
         services.AddTransient<IScopeService, ScopeService>();
-        services.AddTransient<IApplicationService, ApplicationService>();
+        services.AddTransient<IClientService, ClientService>();
+        
+        // services.AddTransient<IApplicationService, ApplicationService>();
         
         services.AddTransient<IAuthService, AuthService>();
         services.AddTransient<IAuthorizationService, OpenIdDictService>();

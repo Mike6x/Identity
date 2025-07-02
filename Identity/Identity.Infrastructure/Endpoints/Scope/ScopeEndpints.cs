@@ -1,5 +1,7 @@
 using Identity.Core.Features.Scope;
+using Identity.Core.Features.Scope.Create;
 using Identity.Core.Features.Scope.Search;
+using Identity.Core.Features.Scope.Update;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -25,7 +27,7 @@ public static class CreateScopeEndpoint
 {
     public static RouteHandlerBuilder MapCreateScopeEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        return endpoints.MapPost("/", (ScopeViewModel request, IScopeService service, CancellationToken cancellationToken) 
+        return endpoints.MapPost("/", (CreateScopeCommand request, IScopeService service, CancellationToken cancellationToken) 
                 => service.CreateAsync(request, cancellationToken))
             .WithName(nameof(CreateScopeEndpoint))
             .WithSummary("Create new Scope")
@@ -93,7 +95,7 @@ public static class UpdateScopeEndpoint
 {
     public static RouteHandlerBuilder MapUpdateScopeEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        return endpoints.MapPut("/", (ScopeViewModel request, IScopeService service, CancellationToken cancellationToken) 
+        return endpoints.MapPut("/", (UpdateScopeCommand request, IScopeService service, CancellationToken cancellationToken) 
                 => service.UpdateAsync(request, cancellationToken))
             .WithName(nameof(UpdateScopeEndpoint))
             .WithSummary("Update Scope.")

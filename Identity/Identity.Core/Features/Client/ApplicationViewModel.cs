@@ -84,7 +84,7 @@ namespace Identity.Core.Features.Client
         /// identity tokens, refresh tokens and user codes.
         /// </summary>
         [Required]
-        public Dictionary<string, string> Settings { get; set; } = new(StringComparer.Ordinal);
+        public Dictionary<string, string>? Settings { get; set; } = new(StringComparer.Ordinal);
 
     }
 }

@@ -1,5 +1,7 @@
 using Identity.Core.Features.Client;
+using Identity.Core.Features.Client.Create;
 using Identity.Core.Features.Client.Search;
+using Identity.Core.Features.Client.Update;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -30,7 +32,7 @@ public static class CreateApplicationEndpoint
 {
     public static RouteHandlerBuilder MapCreateApplicationEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        return endpoints.MapPost("/", (ApplicationViewModel request, IApplicationService service, CancellationToken cancellationToken) 
+        return endpoints.MapPost("/", (CreateClientCommand request, IClientService service, CancellationToken cancellationToken) 
                 => service.CreateAsync(request, cancellationToken))
             .WithName(nameof(CreateApplicationEndpoint))
             .WithSummary("Create new application")
@@ -43,7 +45,7 @@ public static class GetApplicationEndpoint
 {
     public static RouteHandlerBuilder MapGetApplicationEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        return endpoints.MapGet("{id}",async (string id, IApplicationService service, CancellationToken cancellationToken) 
+        return endpoints.MapGet("{id}",async (string id, IClientService service, CancellationToken cancellationToken) 
                 => await service.GetAsync(id, cancellationToken))
             .WithName(nameof(GetApplicationEndpoint))
             .WithSummary("Get Application details by Internal Id")
@@ -56,7 +58,7 @@ public static class GetApplicationByNameEndpoint
 {
     public static RouteHandlerBuilder MapGetApplicationByNameEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        return endpoints.MapGet("/clientId/{clientId}",async (string clientId, IApplicationService service, CancellationToken cancellationToken) 
+        return endpoints.MapGet("/clientId/{clientId}",async (string clientId, IClientService service, CancellationToken cancellationToken) 
                 => await service.GetByNameAsync(clientId, cancellationToken))
             .WithName(nameof(GetApplicationByNameEndpoint))
             .WithSummary("Get Application details by Client Id")
@@ -69,7 +71,7 @@ public static class GetApplicationsEndpoint
 {
     public static RouteHandlerBuilder MapGetApplicationsEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        return endpoints.MapGet("/", async (IApplicationService service, CancellationToken cancellationToken) 
+        return endpoints.MapGet("/", async (IClientService service, CancellationToken cancellationToken) 
                 => await service.GetAllAsync(cancellationToken))
             .WithName(nameof(GetApplicationsEndpoint))
             .WithSummary("Get all clients ")
@@ -82,7 +84,7 @@ public static class SearchApplicationsEndpoint
 {
     public static RouteHandlerBuilder MapSearchApplicationsEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        return endpoints.MapPost("/search", (SearchApplicationsRequest request, IApplicationService service, 
+        return endpoints.MapPost("/search", (SearchClientsRequest request, IClientService service, 
                 CancellationToken cancellationToken)  
                 => service.SearchAsync(request, cancellationToken))
             .WithName(nameof(SearchApplicationsEndpoint))
@@ -96,9 +98,9 @@ public static class DeleteApplicationEndpoint
 {
     public static RouteHandlerBuilder MapDeleteApplicationEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        return endpoints.MapDelete("/{clientId}",  async (string clientId, IApplicationService service, CancellationToken cancellationToken) =>
+        return endpoints.MapDelete("/{id}",  async (string id, IClientService service, CancellationToken cancellationToken) =>
             {
-                await service.DeleteAsync(clientId, cancellationToken);
+                await service.DeleteAsync(id, cancellationToken);
             })
             .WithName(nameof(DeleteApplicationEndpoint))
             .WithSummary("Remove application.")
@@ -111,7 +113,7 @@ public static class UpdateApplicationEndpoint
 {
     public static RouteHandlerBuilder MapUpdateApplicationEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        return endpoints.MapPut("/", (ApplicationViewModel request, IApplicationService service, CancellationToken cancellationToken) 
+        return endpoints.MapPut("/", (UpdateClientCommand request, IClientService service, CancellationToken cancellationToken) 
                 => service.UpdateAsync(request, cancellationToken))
             .WithName(nameof(UpdateApplicationEndpoint))
             .WithSummary("Update application.")
@@ -127,7 +129,7 @@ public static class CallBackApplicationEndpoint
         return endpoints.MapGet("/callback", (
                     HttpContext httpContext, 
                     [FromServices] IHttpClientFactory httpClientFactory,
-                    IApplicationService service) 
+                    IClientService service) 
                 => service.CallbackAsync(httpContext, httpClientFactory))
             .WithName(nameof(CallBackApplicationEndpoint))
             .WithSummary("Call back application.")

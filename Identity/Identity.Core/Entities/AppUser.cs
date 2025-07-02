@@ -1,3 +1,4 @@
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Identity;
 namespace Identity.Core.Entities;
 
@@ -8,7 +9,7 @@ public class AppUser : IdentityUser<Guid>
     public Uri? ImageUrl { get; set; }
     public bool IsActive { get; set; }
     public bool? IsOnline { get; set; }
-    
+
     public string? RefreshToken { get; set; }
     
     public DateTime RefreshTokenExpiryTime { get; set; }
@@ -23,6 +24,7 @@ public class AppUser : IdentityUser<Guid>
 
     public DateTime? LastModifiedOn { get; set; }
     
+
     public string? ObjectId { get; set; }
     
 

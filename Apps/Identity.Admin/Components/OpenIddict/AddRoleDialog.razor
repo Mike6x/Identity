@@ -1,0 +1,21 @@
+﻿    <MudDialog>
+    <DialogContent>
+       <MudGrid Spacing="3" Justify="Justify.FlexStart">
+            <MudItem xs="10" Style="width:360px">
+                 <MudAutocomplete T="RoleDto" Label="Roles" @bind-Value="_selectedOption" 
+                         SearchFunc="@SearchRoles" ToStringFunc="@(e=> e == null ? null : e.Name)"
+                         ResetValueOnEmptyText="true" CoerceText="false" CoerceValue="false"
+                         Class="mt-n3" Variant="Variant.Text" Margin="Margin.None" Immediate="true"
+                         AdornmentIcon="@Icons.Material.Filled.Search" AdornmentColor="Color.Primary" />
+            </MudItem>
+            <MudItem xs="2">
+                <MudIconButton UserAttributes="@(new (){{"id","btnAddRole"}})" OnClick="AddRoleAsync" Disabled="@(null == _selectedOption)"
+                               Icon="@Icons.Material.Filled.Add" Color="Color.Primary" />
+            </MudItem>
+        </MudGrid>     
+        @if (!string.IsNullOrEmpty(_error))
+        {
+            <MudAlert id="errorMessage" Severity="Severity.Error">@_error</MudAlert>
+        }
+    </DialogContent>
+</MudDialog>

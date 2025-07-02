@@ -1000,6 +1000,9 @@
       "Identity.Shared/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
+        "dependencies": {
+          "OpenIddict.Abstractions": "6.4.0"
+        },
         "compile": {
           "bin/placeholder/Identity.Shared.dll": {}
         },

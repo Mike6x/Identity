@@ -7,22 +7,23 @@ namespace Identity.Infrastructure.Services.Scope;
 
 public static class ScopeMapping
 {
-    public static ScopeViewModel ToDto(this OpenIddictEntityFrameworkCoreScope source)
+    public static ScopeDto ToDto(this OpenIddictEntityFrameworkCoreScope source)
     {
-        return new ScopeViewModel
-        {
-            Id = source.Id ?? string.Empty,
-            Name = source.Name ?? string.Empty,
-            DisplayName = source.DisplayName ?? string.Empty,
-            Description = source.Description ?? string.Empty,
-            Resources = string.IsNullOrEmpty(source.Resources) 
-                    ? []
-                    : JsonConvert.DeserializeObject<IEnumerable<string>>(source.Resources)!.ToList(),
-
-        };
+        var resources = string.IsNullOrWhiteSpace(source.Resources)
+            ? []
+            : JsonConvert.DeserializeObject<IEnumerable<string>>(source.Resources)!.ToHashSet();
+        
+        return new ScopeDto
+        (
+            Id: source.Id ?? string.Empty,
+            Name: source.Name ?? string.Empty,
+            DisplayName: source.DisplayName ?? string.Empty,
+            Description: source.Description ?? string.Empty,
+            Resources: resources
+        );
     }
 
-    public static OpenIddictScopeDescriptor ToModel(this ScopeViewModel source)
+    public static OpenIddictScopeDescriptor ToModel(this ScopeDto source)
     {
         var destination = new OpenIddictScopeDescriptor
         {
@@ -32,7 +33,7 @@ public static class ScopeMapping
 
         };
 
-        if (source.Resources.Count > 0)
+        if (source.Resources is { Count: > 0 })
             foreach (var resource in source.Resources)
             {
                 destination.Resources.Add(resource);

@@ -4,7 +4,7 @@
 
 @code {
 
-    protected override async Task OnInitializedAsync()
+    protected override Task OnInitializedAsync()
     {
         var returnUrl = NavigationManager.ToBaseRelativePath(NavigationManager.Uri);
         if (string.IsNullOrEmpty(returnUrl))
@@ -13,5 +13,6 @@
         }
 
         NavigationManager.NavigateTo("/account/login?returnUrl=" + HttpUtility.UrlEncode(returnUrl), forceLoad: true);
+        return Task.CompletedTask;
     }
 }

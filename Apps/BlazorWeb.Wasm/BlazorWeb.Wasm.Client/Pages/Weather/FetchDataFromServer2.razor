@@ -106,7 +106,7 @@ else
     }
 
     
-    protected override async Task OnInitializedAsync()
+    protected override Task OnInitializedAsync()
     {
         var startDate = DateTime.Now;
         
@@ -118,5 +118,6 @@ else
             TemperatureC = Random.Shared.Next(-20, 55),
             Summary = summaries[Random.Shared.Next(summaries.Length)]
         }).ToArray();
+        return Task.CompletedTask;
     }
 }

@@ -1,0 +1,63 @@
+@page "/identity/users/{Id}/claims"
+<PageHeader Title="@_title" Header="@_title" SubHeader="@_description" />
+
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+    <MudTable Hover="true" Outlined Items="_itemList" Filter="new Func<ClaimViewModel, bool>(Search)">
+        <ToolBarContent>
+            <div class="justify-center mud-text-align-center">
+                <MudButton Variant="Variant.Filled" DropShadow="false" Color="Color.Info" Class="ml-auto" StartIcon="@Icons.Material.Filled.ArrowBack" Href="/identity/users">
+                    Back
+                </MudButton>
+                @if (_canEditItems)
+                {
+                    <MudButton Variant="Variant.Filled" DropShadow="false" Color="Color.Primary" Class="ml-auto" OnClick="SaveAsync" StartIcon="@Icons.Material.Filled.Save"
+                        ButtonType="ButtonType.Submit" Style="margin-left: 5px!important;">
+                        Update
+                    </MudButton>
+                }
+            </div>
+            <MudSpacer />
+            @if (_canSearchItems)
+            {
+                <MudTextField @bind-Value="_searchString" Immediate="true" FullWidth=false
+                    Placeholder="Search For User Roles" Adornment="Adornment.End"
+                    AdornmentIcon="@Icons.Material.Filled.Search" IconSize="Size.Medium" Class="mt-0 mb-3">
+                </MudTextField>
+            }
+        </ToolBarContent>
+        <HeaderContent>
+            <MudTh>
+                <MudTableSortLabel SortBy="new Func<ClaimViewModel, object?>(x => x.Type)">Claim Type
+                </MudTableSortLabel>
+            </MudTh>
+            <MudTh>
+                <MudTableSortLabel SortBy="new Func<ClaimViewModel, object?>(x => x.Value)">Claim Value
+                </MudTableSortLabel>
+            </MudTh>
+            <MudTh>
+                <MudTableSortLabel SortBy="new Func<ClaimViewModel, object>(x => x.Enabled)"> IsEnabled
+                </MudTableSortLabel>
+            </MudTh>
+        </HeaderContent>
+        <RowTemplate>
+            <MudTd DataLabel="Role Name">
+                <MudHighlighter Text="@context.Type" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Description">
+                <MudHighlighter Text="@context.Value" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Status">
+                <MudCheckBox T="bool" @bind-Value="@context.Enabled" Disabled="@(!_canEditItems)" Color="Color.Secondary">
+                </MudCheckBox>
+            </MudTd>
+        </RowTemplate>
+        <PagerContent>
+            <TablePager />
+        </PagerContent>
+    </MudTable>
+}

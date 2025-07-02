@@ -1,0 +1,68 @@
+@page "/identity/Applications"
+
+<PageHeader Title="Applications" Header="Applications" SubHeader="Manage Application Clients." />
+
+<EntityTable TEntity="ApplicationDto" TId="string" TRequest="ApplicationViewModel" Context="@Context">
+
+    <ExtraActions>
+        @if (_canViewItemDetails)
+        {
+            <MudMenuItem @onclick="@(() => ManageDetails(@context))">Client Details</MudMenuItem>
+        }
+    </ExtraActions>
+
+    <EditFormContent>
+        @if (!Context.AddEditModal.IsCreate)
+        {
+            <MudItem xs="12" md="12">
+                <MudTextField Value="context.Id" ReadOnly Underline="false" Label="Scope Id]" />
+            </MudItem>
+        }
+        <MudItem xs="12" md="6">
+            <MudTextField For="@(() => context.ClientId)" @bind-Value="context.ClientId" Label="ClientId" />
+        </MudItem>
+        <MudItem xs="12" md="6">
+            <MudTextField For="@(() => context.DisplayName)" @bind-Value="context.DisplayName" Label="Display Name" />
+        </MudItem>
+        
+         <MudItem xs="12" md="4">
+            <MudSelect UserAttributes="@(new (){{"id","cbApplicationType"}})" T="string" Label="Application Type" @bind-Value="context.ApplicationType">
+                <MudSelectItem Value="@("web")" />
+                <MudSelectItem Value="@("native")" />
+            </MudSelect>
+        </MudItem>
+
+        <MudItem xs="12" md="4">
+            <MudSelect UserAttributes="@(new (){{"id","cbConsentType"}})" T="string" Label="Consent Type" @bind-Value="context.ConsentType">
+                <MudSelectItem Value="@("explicit")" />
+                <MudSelectItem Value="@("external")" />
+                <MudSelectItem Value="@("implicit")" />
+                <MudSelectItem Value="@("systematic")" />
+            </MudSelect>
+            <ValidationMessage For="() => context.ConsentType"></ValidationMessage>
+        </MudItem>
+
+        <MudItem xs="12" md="4">
+            <MudSelect UserAttributes="@(new (){{"id","cbClientType"}})" T="string" Label="Client Type" @bind-Value="context.ClientType">
+                <MudSelectItem Value="@("public")" />
+                <MudSelectItem Value="@("confidential")" />
+            </MudSelect>
+            <ValidationMessage For="() => context.ClientType"></ValidationMessage>
+        </MudItem>
+        
+        <MudItem xs="12" md="6">
+            <MudTextField UserAttributes="@(new (){{"id","txtJsonWebKeySet"}})" T="string" Label="Json Web Key Set"  Variant="Variant.Text" 
+                            For="@(() => context.JsonWebKeySet)" @bind-Value="@context.JsonWebKeySet" 
+                            AutoGrow HelperText="public key of ECDSA private/public key pair used by the server to validate the client assertions" />
+            <ValidationMessage For="() => context.JsonWebKeySet"></ValidationMessage>
+        </MudItem>
+        <MudItem xs="12" md="12">
+            <MudTextField UserAttributes="@(new (){{"id","txtClientSecret"}})" Label="Client Secret" Variant="Variant.Text"
+                           For="@(() => context.ClientSecret)" @bind-Value="context.ClientSecret" />
+            <ValidationMessage For="() => context.ClientSecret"></ValidationMessage>
+        </MudItem>
+
+        
+    </EditFormContent>
+
+</EntityTable>

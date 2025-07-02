@@ -1,0 +1,50 @@
+﻿<MudDialog>
+    <DialogContent>
+        <MudGrid Spacing="3" Justify="Justify.FlexStart">
+            <MudItem xs="10" Style="width:360px">
+                <MudTextField id="txtUri" @bind-Value="@_uri" Label="Uri" Class="mt-n3" @onfocus="(() => _error = string.Empty)"
+                              Variant="Variant.Text" Margin="Margin.None"></MudTextField>
+            </MudItem>
+            <MudItem xs="2" Class="ml-n3">
+                <MudIconButton UserAttributes="@(new (){{"id","btnAddUri"}})" OnClick="AddNewUri"
+                               Icon="@Icons.Material.Filled.Add" Color="Color.Primary" />
+            </MudItem>
+        </MudGrid>
+        @if (!string.IsNullOrEmpty(_error))
+        {
+            <MudAlert UserAttributes="@(new (){{"id","errorAlert"}})" Severity="Severity.Error">@_error</MudAlert>
+        }
+    </DialogContent>  
+</MudDialog>
+
+@code {
+    
+    [CascadingParameter]
+    
+    public required IMudDialogInstance MudDialog { get; set; }
+
+    [Parameter]
+    public IEnumerable<Uri>? ExistingUris { get; set; }
+    
+    
+    string? _error;
+    string _uri = string.Empty;
+
+    void AddNewUri()
+    {
+        if(Uri.IsWellFormedUriString(_uri, UriKind.Absolute) && Uri.TryCreate(_uri, UriKind.Absolute, out Uri? result))
+        {
+            if(ExistingUris != null && !ExistingUris.Any(u => u.Equals(result)))
+            {
+                MudDialog.Close(DialogResult.Ok<Uri>(result));
+                return;
+            }
+            _error = "Uri is already added.";
+            return;
+        }
+        _error = "Invalid Uri format";
+
+    }   
+
+    void Cancel() => MudDialog.Cancel();
+}

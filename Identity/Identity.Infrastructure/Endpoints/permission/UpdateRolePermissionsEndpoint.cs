@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using BuildingBlocks.Behaviours;
+using FluentValidation;
 using Identity.Core.Features.Role;
 using Identity.Core.Features.Role.UpdatePermissions;
 using Microsoft.AspNetCore.Builder;
@@ -15,9 +16,14 @@ public static class UpdateRolePermissionsEndpoint
             UpdatePermissionsCommand request,
             IRoleService roleService,
             string roleId,
-            [FromServices] IValidator<UpdatePermissionsCommand> validator) =>
+            [FromServices] IValidator<UpdatePermissionsCommand> validator
+            ) =>
         {
+            var validationResult = await request.ValidateRequest(validator);
+            if (validationResult is not null) return validationResult;
+            
             if (roleId != request.RoleId) return Results.BadRequest();
+            
             var response = await roleService.UpdatePermissionsToRoleAsync(request);
             return Results.Ok(response);
         })

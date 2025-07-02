@@ -21,7 +21,11 @@ public partial class Users : ComponentBase
 
     [Inject]
     protected IApiClient UsersClient { get; set; } = default!;
+    
+    [Inject]
+    public NavigationManager? Navigator { get; set; }
 
+    public required IDialogService Dialog;
     protected EntityClientTableContext<UserDetail, Guid, UserViewModel> Context { get; set; } = default!;
 
     private bool _canRemoveUsers;
@@ -115,12 +119,15 @@ public partial class Users : ComponentBase
     }
 
     private void ViewProfile(in Guid userId) =>
-        Navigation.NavigateTo($"/identity/users/{userId}/profile");
+        Navigator?.NavigateTo($"/identity/users/{userId}/profile");
 
     private void ManageRoles(in Guid userId) =>
-        Navigation.NavigateTo($"/identity/users/{userId}/roles");
+        Navigator?.NavigateTo($"/identity/users/{userId}/roles");
+    
+    private void ManageClaims(in Guid userId) =>
+        Navigator?.NavigateTo($"/identity/users/{userId}/claims");
     private void ViewAuditTrails(in Guid userId) =>
-        Navigation.NavigateTo($"/identity/users/{userId}/audit-trail");
+        Navigator?.NavigateTo($"/identity/users/{userId}/audit-trail");
 
     private void TogglePasswordVisibility()
     {
@@ -149,7 +156,7 @@ public partial class Users : ComponentBase
         {
             { nameof(DeleteConfirmation.ContentText), contentText }
         };
-        var dialog = await DialogService.ShowAsync<DeleteConfirmation>("Remove", parameters, options);
+        var dialog = await Dialog.ShowAsync<DeleteConfirmation>("Remove", parameters, options);
         
         var result = await dialog.Result;
         if (!result!.Canceled)

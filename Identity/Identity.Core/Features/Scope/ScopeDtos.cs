@@ -1,6 +1,7 @@
 namespace Identity.Core.Features.Scope;
 
 public record ScopeDto(
+    string Id,
     string Name,
     string DisplayName,
     string Description,
@@ -46,4 +47,18 @@ public record EditScopeDto(
 //     public string Description { get; set; } = string.Empty;
 //     
 //     public List<string> Resources { get; set; } = [];
+// }
+
+// namespace Identity.Core.Features.Scope
+// {
+//     public class ScopeViewModel
+//     {
+//         public string Id { get; set; } = string.Empty;
+//         public string Name { get; set; } = string.Empty;
+//         
+//         public string DisplayName { get; set; } = string.Empty;
+//         public string Description { get; set; } = string.Empty;
+//         public List<string> Resources { get; set; } = [];
+//
+//     }
 // }

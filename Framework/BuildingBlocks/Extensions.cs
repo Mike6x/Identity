@@ -1,4 +1,3 @@
-using System.Reflection;
 using BuildingBlocks.Caching;
 using BuildingBlocks.DataIO;
 using BuildingBlocks.Exceptions;
@@ -34,11 +33,11 @@ public static class Extensions
         services.AddOptions<OriginOptions>().BindConfiguration(nameof(OriginOptions));
         
         // Register validators
-        var assemblies = new[]
-        {
-            typeof(AppBlocks).Assembly
-        };
-        services.AddValidatorsFromAssemblies(assemblies);
+        // var assemblies = new[]
+        // {
+        //     typeof(AppBlocks).Assembly
+        // };
+        // services.AddValidatorsFromAssemblies(assemblies);
         
         return services;
     }

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "eOsxkjc3aTw=",
+  "dgSpecHash": "ytvMwCf+F5M=",
   "success": true,
   "projectFilePath": "/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Apps/Client.Infrastructure/Client.Infrastructure.csproj",
   "expectedPackageFiles": [
@@ -27,6 +27,7 @@
     "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.logging/8.12.0/microsoft.identitymodel.logging.8.12.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.identitymodel.tokens/8.12.0/microsoft.identitymodel.tokens.8.12.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/nswag.msbuild/14.4.0/nswag.msbuild.14.4.0.nupkg.sha512",
+    "/Users/tuanpa/.nuget/packages/openiddict.abstractions/6.4.0/openiddict.abstractions.6.4.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/system.identitymodel.tokens.jwt/8.12.0/system.identitymodel.tokens.jwt.8.12.0.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.netcore.app.ref/9.0.1/microsoft.netcore.app.ref.9.0.1.nupkg.sha512",
     "/Users/tuanpa/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.1/microsoft.aspnetcore.app.ref.9.0.1.nupkg.sha512"

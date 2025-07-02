@@ -6,7 +6,7 @@ public static class PermisionEndpoints
 {
     public static IEndpointRouteBuilder MapRolePermissionEndpoints(this IEndpointRouteBuilder app)
     {
-        app.MapGetRolePermissionsEndpoint();
+        // app.MapGetRolePermissionsEndpoint();
         app.MapUpdateRolePermissionsEndpoint();
         
         return app;
