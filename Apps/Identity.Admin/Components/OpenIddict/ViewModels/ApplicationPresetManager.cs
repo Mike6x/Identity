@@ -19,7 +19,7 @@ namespace Identity.Admin.Components.OpenIddict.ViewModels
             applicationViewModel.Permissions ??= new List<string>();
             applicationViewModel.Requirements  ??= new List<string>();
             
-          applicationViewModel.Permissions.Clear();
+            applicationViewModel.Permissions.Clear();
             applicationViewModel.Requirements.Clear();
             applicationViewModel.ClientType = OpenIddictConstants.ClientTypes.Public;
             applicationViewModel.ConsentType = OpenIddictConstants.ConsentTypes.Explicit;

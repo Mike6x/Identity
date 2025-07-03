@@ -6,7 +6,7 @@ using MudBlazor;
 namespace Identity.Admin.Components.OpenIddict
 {
     /// <summary>
-    /// DisableAuthenticator component allows disabling the 2FA authentication for user account.
+    /// DisableAuthenticator component allows disabling the 2FA authentication for a user account.
     /// </summary>
     public partial class DisableAuthenticator : ComponentBase
     {
@@ -14,8 +14,8 @@ namespace Identity.Admin.Components.OpenIddict
         [CascadingParameter]
         public required IMudDialogInstance MudDialog { get; set; }
 
-        [Inject]
-        public ISnackbar? SnackBar { get; set; }
+        // [Inject]
+        // public ISnackbar? SnackBar { get; set; }
 
         [Inject]
         public required NavigationManager Navigator { get; set; }
@@ -24,14 +24,14 @@ namespace Identity.Admin.Components.OpenIddict
         protected IApiClient? ApiClient { get; set; }
         
 
-        private DisableAuthenticatorViewModel _model  = new();
+        private readonly DisableAuthenticatorViewModel _model  = new();
 
         /// <summary>
-        /// Disable 2FA for user account
+        /// Disable 2FA for a user account
         /// </summary>
         private async void DisableAuthenticatorAsync()
         {
-            if (ApiClient != null) await ApiClient.DisableAuthenticatorEndpointAsync(_model.Code);
+            // var result = await ApiClient.DisableAuthenticatorEndpointAsync(_model.Code);
             // if (!result.IsSuccess)
             // {
             //     SnackBar.Add(result.ToString(), Severity.Error, config =>
@@ -41,7 +41,10 @@ namespace Identity.Admin.Components.OpenIddict
             //     });
             //     return;
             // }
-
+            
+            if (ApiClient == null) return;
+            await ApiClient.DisableAuthenticatorEndpointAsync(_model.Code);
+            
             await DialogService.ShowMessageBox("Success",
               "2FA is disabled now. You should enable 2FA for a better security of your account.");
 

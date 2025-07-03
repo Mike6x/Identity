@@ -14,7 +14,7 @@ namespace Identity.Admin.Components.OpenIddict
 
         
         private readonly List<string> _recoveryCodes = [];
-        private int _recoveryCodesCount = 0;
+        private int _recoveryCodesCount;
 
         protected override async Task OnInitializedAsync()
         {
@@ -22,8 +22,7 @@ namespace Identity.Admin.Components.OpenIddict
             try
             {
                _recoveryCodesCount = await ApiClient.CountActiveRecoveryCodesEndpointAsync();
-               // _recoveryCodesCount = await ApiClient.GetRecoveryCodesCountAsync();
-               
+   
             }
             catch (Exception ex)
             {
@@ -48,9 +47,9 @@ namespace Identity.Admin.Components.OpenIddict
           
                 var codes = await ApiClient.GenerateRecoverCodesEndpointAsync();
                 
-                this._recoveryCodes.Clear();
-                this._recoveryCodes.AddRange(codes);
-                this._recoveryCodesCount = this._recoveryCodes.Count;
+                _recoveryCodes.Clear();
+                _recoveryCodes.AddRange(codes);
+                _recoveryCodesCount = _recoveryCodes.Count;
             }
             catch(Exception ex)
             {

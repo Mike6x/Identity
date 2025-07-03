@@ -31,14 +31,14 @@ namespace Identity.Admin.Components.Pages.Authenticator
 
         protected override async Task OnInitializedAsync()
         {
+            if (ApiClient == null) return;
+            
             try
             {
-                //var result = await ApiClient.GetAuthenticatorSetupConfigurationEndpointAsync();
+                var result = await ApiClient.GetAuthenticatorConfigEndpointAsync();
                 
-                await ApiClient.GetAuthenticatorAndUriEndpointAsync();
-                
-                // model.SharedKey = result.SharedKey;
-                // model.AuthenticatorUri = result.AuthenticatorUri;
+                model.SharedKey = result.SharedKey;
+                model.AuthenticatorUri = result.AuthenticatorUri;
             }
             catch (Exception ex)
             {
@@ -67,7 +67,9 @@ namespace Identity.Admin.Components.Pages.Authenticator
         /// <returns></returns>
         private async Task EnableAuthenticatorAsync()
         {
-            if (ApiClient != null) await ApiClient.EnableAuthenticatorEndpointAsync(model.Code);
+            if (ApiClient == null) return;
+  
+           await ApiClient.EnableAuthenticatorEndpointAsync(model.Code);
             
             // if (!result.IsSuccess)
             // {

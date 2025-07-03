@@ -1574,7 +1574,7 @@ namespace Client.Infrastructure.Api
         /// Is enabled
         /// </summary>
         /// <remarks>
-        /// Gets whether authenticator is enabled for the user account
+        /// Check whether authenticator is enabled for the user account
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<bool> IsAuthenticatorEnabledEndpointAsync();
@@ -1584,7 +1584,7 @@ namespace Client.Infrastructure.Api
         /// Is enabled
         /// </summary>
         /// <remarks>
-        /// Gets whether authenticator is enabled for the user account
+        /// Check whether authenticator is enabled for the user account
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task<bool> IsAuthenticatorEnabledEndpointAsync(System.Threading.CancellationToken cancellationToken);
@@ -1596,7 +1596,7 @@ namespace Client.Infrastructure.Api
         /// Get the details required for setting up authenticator for the user
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task GetAuthenticatorAndUriEndpointAsync();
+        System.Threading.Tasks.Task<EnableAuthenticatorModel> GetAuthenticatorConfigEndpointAsync();
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -1606,7 +1606,45 @@ namespace Client.Infrastructure.Api
         /// Get the details required for setting up authenticator for the user
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task GetAuthenticatorAndUriEndpointAsync(System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<EnableAuthenticatorModel> GetAuthenticatorConfigEndpointAsync(System.Threading.CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Generate new recovery codes
+        /// </summary>
+        /// <remarks>
+        /// Generate new recovery codes for the authenticator
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<string>> GenerateRecoverCodesEndpointAsync();
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Generate new recovery codes
+        /// </summary>
+        /// <remarks>
+        /// Generate new recovery codes for the authenticator
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<string>> GenerateRecoverCodesEndpointAsync(System.Threading.CancellationToken cancellationToken);
+
+        /// <summary>
+        /// Count Active recovery codes
+        /// </summary>
+        /// <remarks>
+        /// Get the number of remaining recovery codes
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<int> CountActiveRecoveryCodesEndpointAsync();
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Count Active recovery codes
+        /// </summary>
+        /// <remarks>
+        /// Get the number of remaining recovery codes
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<int> CountActiveRecoveryCodesEndpointAsync(System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Enable the authenticator or user account
@@ -1664,44 +1702,6 @@ namespace Client.Infrastructure.Api
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         System.Threading.Tasks.Task ResetAuthenticatorEndpointAsync(string code, System.Threading.CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Generate new recovery codes
-        /// </summary>
-        /// <remarks>
-        /// Generate new recovery codes for the authenticator
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<string?>> GenerateRecoverCodesEndpointAsync();
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Generate new recovery codes
-        /// </summary>
-        /// <remarks>
-        /// Generate new recovery codes for the authenticator
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<System.Collections.Generic.ICollection<string?>> GenerateRecoverCodesEndpointAsync(System.Threading.CancellationToken cancellationToken);
-
-        /// <summary>
-        /// Count Active recovery codes
-        /// </summary>
-        /// <remarks>
-        /// Get the number of remaining recovery codes
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<int> CountActiveRecoveryCodesEndpointAsync();
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Count Active recovery codes
-        /// </summary>
-        /// <remarks>
-        /// Get the number of remaining recovery codes
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task<int> CountActiveRecoveryCodesEndpointAsync(System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Get all external logins.
@@ -9678,7 +9678,7 @@ namespace Client.Infrastructure.Api
         /// Is enabled
         /// </summary>
         /// <remarks>
-        /// Gets whether authenticator is enabled for the user account
+        /// Check whether authenticator is enabled for the user account
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual System.Threading.Tasks.Task<bool> IsAuthenticatorEnabledEndpointAsync()
@@ -9691,7 +9691,7 @@ namespace Client.Infrastructure.Api
         /// Is enabled
         /// </summary>
         /// <remarks>
-        /// Gets whether authenticator is enabled for the user account
+        /// Check whether authenticator is enabled for the user account
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
         public virtual async System.Threading.Tasks.Task<bool> IsAuthenticatorEnabledEndpointAsync(System.Threading.CancellationToken cancellationToken)
@@ -9769,9 +9769,9 @@ namespace Client.Infrastructure.Api
         /// Get the details required for setting up authenticator for the user
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task GetAuthenticatorAndUriEndpointAsync()
+        public virtual System.Threading.Tasks.Task<EnableAuthenticatorModel> GetAuthenticatorConfigEndpointAsync()
         {
-            return GetAuthenticatorAndUriEndpointAsync(System.Threading.CancellationToken.None);
+            return GetAuthenticatorConfigEndpointAsync(System.Threading.CancellationToken.None);
         }
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
@@ -9782,7 +9782,7 @@ namespace Client.Infrastructure.Api
         /// Get the details required for setting up authenticator for the user
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task GetAuthenticatorAndUriEndpointAsync(System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<EnableAuthenticatorModel> GetAuthenticatorConfigEndpointAsync(System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -9791,6 +9791,7 @@ namespace Client.Infrastructure.Api
                 using (var request_ = new System.Net.Http.HttpRequestMessage())
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
                 
@@ -9822,7 +9823,188 @@ namespace Client.Infrastructure.Api
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return;
+                            var objectResponse_ = await ReadObjectResponseAsync<EnableAuthenticatorModel>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Generate new recovery codes
+        /// </summary>
+        /// <remarks>
+        /// Generate new recovery codes for the authenticator
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task<System.Collections.Generic.ICollection<string>> GenerateRecoverCodesEndpointAsync()
+        {
+            return GenerateRecoverCodesEndpointAsync(System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Generate new recovery codes
+        /// </summary>
+        /// <remarks>
+        /// Generate new recovery codes for the authenticator
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<string>> GenerateRecoverCodesEndpointAsync(System.Threading.CancellationToken cancellationToken)
+        {
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    var urlBuilder_ = new System.Text.StringBuilder();
+                
+                    // Operation Path: "Authenticator/recoverycodes"
+                    urlBuilder_.Append("Authenticator/recoverycodes");
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
+                        foreach (var item_ in response_.Headers)
+                            headers_[item_.Key] = item_.Value;
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<string>>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// Count Active recovery codes
+        /// </summary>
+        /// <remarks>
+        /// Get the number of remaining recovery codes
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task<int> CountActiveRecoveryCodesEndpointAsync()
+        {
+            return CountActiveRecoveryCodesEndpointAsync(System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// Count Active recovery codes
+        /// </summary>
+        /// <remarks>
+        /// Get the number of remaining recovery codes
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<int> CountActiveRecoveryCodesEndpointAsync(System.Threading.CancellationToken cancellationToken)
+        {
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Method = new System.Net.Http.HttpMethod("GET");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    var urlBuilder_ = new System.Text.StringBuilder();
+                
+                    // Operation Path: "Authenticator/recoverycodescount"
+                    urlBuilder_.Append("Authenticator/recoverycodescount");
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
+                        foreach (var item_ in response_.Headers)
+                            headers_[item_.Key] = item_.Value;
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<int>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
                         }
                         else
                         {
@@ -10090,182 +10272,6 @@ namespace Client.Infrastructure.Api
                         if (status_ == 200)
                         {
                             return;
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <summary>
-        /// Generate new recovery codes
-        /// </summary>
-        /// <remarks>
-        /// Generate new recovery codes for the authenticator
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<System.Collections.Generic.ICollection<string?>> GenerateRecoverCodesEndpointAsync()
-        {
-            return GenerateRecoverCodesEndpointAsync(System.Threading.CancellationToken.None);
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Generate new recovery codes
-        /// </summary>
-        /// <remarks>
-        /// Generate new recovery codes for the authenticator
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<System.Collections.Generic.ICollection<string?>> GenerateRecoverCodesEndpointAsync(System.Threading.CancellationToken cancellationToken)
-        {
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    var urlBuilder_ = new System.Text.StringBuilder();
-                
-                    // Operation Path: "Authenticator/recoverycodes"
-                    urlBuilder_.Append("Authenticator/recoverycodes");
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
-                        foreach (var item_ in response_.Headers)
-                            headers_[item_.Key] = item_.Value;
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<System.Collections.Generic.ICollection<string?>>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
-                        }
-                        else
-                        {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
-                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
-                        }
-                    }
-                    finally
-                    {
-                        if (disposeResponse_)
-                            response_.Dispose();
-                    }
-                }
-            }
-            finally
-            {
-                if (disposeClient_)
-                    client_.Dispose();
-            }
-        }
-
-        /// <summary>
-        /// Count Active recovery codes
-        /// </summary>
-        /// <remarks>
-        /// Get the number of remaining recovery codes
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task<int> CountActiveRecoveryCodesEndpointAsync()
-        {
-            return CountActiveRecoveryCodesEndpointAsync(System.Threading.CancellationToken.None);
-        }
-
-        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
-        /// <summary>
-        /// Count Active recovery codes
-        /// </summary>
-        /// <remarks>
-        /// Get the number of remaining recovery codes
-        /// </remarks>
-        /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task<int> CountActiveRecoveryCodesEndpointAsync(System.Threading.CancellationToken cancellationToken)
-        {
-            var client_ = _httpClient;
-            var disposeClient_ = false;
-            try
-            {
-                using (var request_ = new System.Net.Http.HttpRequestMessage())
-                {
-                    request_.Method = new System.Net.Http.HttpMethod("GET");
-                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-
-                    var urlBuilder_ = new System.Text.StringBuilder();
-                
-                    // Operation Path: "Authenticator/recoverycodescount"
-                    urlBuilder_.Append("Authenticator/recoverycodescount");
-
-                    PrepareRequest(client_, request_, urlBuilder_);
-
-                    var url_ = urlBuilder_.ToString();
-                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
-
-                    PrepareRequest(client_, request_, url_);
-
-                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
-                    var disposeResponse_ = true;
-                    try
-                    {
-                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
-                        foreach (var item_ in response_.Headers)
-                            headers_[item_.Key] = item_.Value;
-                        if (response_.Content != null && response_.Content.Headers != null)
-                        {
-                            foreach (var item_ in response_.Content.Headers)
-                                headers_[item_.Key] = item_.Value;
-                        }
-
-                        ProcessResponse(client_, response_);
-
-                        var status_ = (int)response_.StatusCode;
-                        if (status_ == 200)
-                        {
-                            var objectResponse_ = await ReadObjectResponseAsync<int>(response_, headers_, cancellationToken).ConfigureAwait(false);
-                            if (objectResponse_.Object == null)
-                            {
-                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
-                            }
-                            return objectResponse_.Object;
                         }
                         else
                         {
@@ -11644,6 +11650,18 @@ namespace Client.Infrastructure.Api
 
         [System.Text.Json.Serialization.JsonPropertyName("origins")]
         public System.Collections.Generic.ICollection<string> Origins { get; set; } = default!;
+
+    }
+
+    [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "14.4.0.0 (NJsonSchema v11.3.2.0 (Newtonsoft.Json v13.0.0.0))")]
+    public partial class EnableAuthenticatorModel
+    {
+
+        [System.Text.Json.Serialization.JsonPropertyName("sharedKey")]
+        public string SharedKey { get; set; } = default!;
+
+        [System.Text.Json.Serialization.JsonPropertyName("authenticatorUri")]
+        public string AuthenticatorUri { get; set; } = default!;
 
     }
 

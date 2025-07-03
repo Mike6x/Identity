@@ -21,17 +21,14 @@ namespace Identity.Admin.Components.OpenIddict
         [Inject]
         private IApiClient? ApiClient { get; set; }
 
-        private ResetAuthenticatorViewModel _model = new();
+        private readonly ResetAuthenticatorViewModel _model = new();
 
         /// <summary>
         /// Disable 2FA for user account and reset Authenticator key.      
         /// </summary>
         private async void ResetAuthenticatorAsync()
         {
-           // var result = await ApiClient.ResetAuthenticatorEndpointAsync(_model.Code);
-           
-           await ApiClient?.ResetAuthenticatorEndpointAsync(_model.Code)!;
-            
+            // var result = await ApiClient.ResetAuthenticatorEndpointAsync(_model.Code);
             // if (!result.IsSuccess)
             // {
             //     SnackBar.Add(result.ToString(), Severity.Error, config =>
@@ -41,6 +38,10 @@ namespace Identity.Admin.Components.OpenIddict
             //     });
             //     return;
             // }
+            
+            if (ApiClient == null) return;
+            await ApiClient.ResetAuthenticatorEndpointAsync(_model.Code);
+            
             await DialogService.ShowMessageBox("Success",
                 "Authenticator is reset now. You need to re-configure authenticator again to enable 2FA!");
           

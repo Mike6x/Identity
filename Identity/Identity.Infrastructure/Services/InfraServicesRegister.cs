@@ -1,12 +1,14 @@
 using BuildingBlocks.Auth;
 using BuildingBlocks.Identity.Users.Abstractions;
 using Identity.Core.Features.Authentication;
+using Identity.Core.Features.Authenticator;
 using Identity.Core.Features.Authorization;
 using Identity.Core.Features.Client;
 using Identity.Core.Features.Role;
 using Identity.Core.Features.Scope;
 using Identity.Infrastructure.Data.Repository;
 using Identity.Infrastructure.Services.Authentication;
+using Identity.Infrastructure.Services.Authenticator;
 using Identity.Infrastructure.Services.Authorization;
 using Identity.Infrastructure.Services.Client;
 using Identity.Infrastructure.Services.Logging;
@@ -32,8 +34,7 @@ public static class InfraServicesRegister
         services.AddTransient<IScopeService, ScopeService>();
         services.AddTransient<IClientService, ClientService>();
         
-        // services.AddTransient<IApplicationService, ApplicationService>();
-        
+        services.AddTransient<IAuthenticatorService, AuthenticatorService>();
         services.AddTransient<IAuthService, AuthService>();
         services.AddTransient<IAuthorizationService, OpenIdDictService>();
         
