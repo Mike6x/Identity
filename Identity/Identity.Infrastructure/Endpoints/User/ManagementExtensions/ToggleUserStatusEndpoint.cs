@@ -19,7 +19,7 @@ public static class ToggleUserStatusEndpoint
         {
             if (userId != command.UserId) return Results.BadRequest();
             
-            await userService.SetActiveStatusAsync(command, cancellationToken);
+            await userService.ChangeActiveStatusAsync(command, cancellationToken);
             return Results.Ok();
         })
         .WithName(nameof(ToggleUserStatusEndpoint))

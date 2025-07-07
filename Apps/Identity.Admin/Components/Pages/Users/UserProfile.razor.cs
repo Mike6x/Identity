@@ -27,10 +27,12 @@ public partial class UserProfile
     [Parameter]
     public required  string Id { get; set; }
     
-    private readonly UpdateUserCommand _model = new();
+    private UserDto _model = new();
+    
+    private bool _loaded;
     private string Title => $"{_model.FirstName} {_model.LastName}'s Profile";
     private string Description => $"Id: {_model.Id}";
-    private bool IsOnline => _model.IsOnline?? false;
+    private char FirstLetterOfName => _model.FirstName?.Length > 0 ? _model.FirstName.ToUpper(System.Globalization.CultureInfo.CurrentCulture).FirstOrDefault() : 'U';
     
     private string Tenant { get; set; } = TenantConstants.Root.Id;
 
@@ -41,15 +43,15 @@ public partial class UserProfile
     private bool _canSearchItems;
     private string _searchString = string.Empty;
     
-    private bool _loaded;
-    private bool _isActive;
-    private char _firstLetterOfName;
-    private Uri? _imageUrl;
-    
+    private bool DeleteImageRequest { get; set; } = false;
+    private Uri? ImageUrl { get; set; }
 
-    private bool IsLocked { get; set; }
+    private FileUploadCommand ImageUpload { get; set; } = new FileUploadCommand();
     private DateTime? LockoutEndDate { get; set; }
     private TimeSpan? LockoutEndTime { get; set; }
+    
+    private string Password { get; set; } = string.Empty;
+    private string ConfirmPassword { get; set; } = string.Empty;
 
     protected override async Task OnInitializedAsync()
     {
@@ -66,40 +68,16 @@ public partial class UserProfile
                 () => UsersClient.GetUserEndpointAsync(Id), Toast, Navigation)
             is { } user)
         {
-            _model.Id = user.Id.ToString();
-            _model.FirstName = user.FirstName ?? string.Empty;
-            _model.LastName = user.LastName ?? string.Empty;
-            _model.UserName = user.UserName ?? string.Empty;
-            _model.Email = user.Email ?? string.Empty;
-            _model.PhoneNumber = user.PhoneNumber ?? string.Empty;
-            _model.IsActive = _isActive = user.IsActive;
-
-            _model.IsOnline = user.IsOnline;
-            _model.EmailConfirmed = user.EmailConfirmed;
-
-             _model.ImageUrl = user.ImageUrl;
-
-            _model.CreatedBy = user.CreatedBy.ToString() ?? string.Empty;
-            _model.CreatedOn = user.CreatedOn;
-            _model.LastModifiedBy = user.LastModifiedBy.ToString() ?? string.Empty;
-            _model.LastModifiedOn = user.LastModifiedOn ?? user.CreatedOn;
-
-            if (_model.FirstName.Length > 0)
-            {
-                _firstLetterOfName = _model.FirstName.ToUpper(System.Globalization.CultureInfo.CurrentCulture).FirstOrDefault();
-            }
+            
+            _model = user;
 
             if (user.LockoutEnd != null)
             {
-                _model.LockoutEnd = (DateTime)user.LockoutEnd;
-
                 LockoutEndDate = user.LockoutEnd.Value.ToLocalTime().Date;
                 LockoutEndTime = user.LockoutEnd.Value.ToLocalTime().TimeOfDay;
-                var now = DateTimeOffset.Now;
-                IsLocked = user.LockoutEnd > now;
             }
             
-            _imageUrl = user.ImageUrl;
+            ImageUrl = user.ImageUrl;
             
         }
 
@@ -109,17 +87,16 @@ public partial class UserProfile
 
     private void BackToUsers() => Navigation.NavigateTo("/identity/users");
     
-    private void BackToEmplyees() => Navigation.NavigateTo("/People/Employees");
+    private void BackToEmployees() => Navigation.NavigateTo("/People/Employees");
     
-   
 
     private async Task SendVerificationEmailAsync()
     {
 
-        if (await ApiHelper.ExecuteCallGuardedAsync(() => UsersClient.SendVerificationEmailEndPointAsync(Id!), Toast))
+        if (await ApiHelper.ExecuteCallGuardedAsync(() => UsersClient.SendVerificationEmailEndPointAsync(Id), Toast))
         {
             Toast.Add("Verification email has been sent.", Severity.Success);
-            _isActive = true;
+  
             _model.IsActive = true;
             _model.EmailConfirmed = false;
         }
@@ -128,74 +105,103 @@ public partial class UserProfile
 
     private async Task SendRecoveryPasswordEmailAsync()
     {
-        var forgotPasswordRequest = new ForgotPasswordCommand
+        if (!string.IsNullOrEmpty(_model.Email))
         {
-            Email = _model.Email!
-        };
+            var forgotPasswordRequest = new ForgotPasswordCommand
+            {
+                Email = _model.Email
+            };
 
-        await ApiHelper.ExecuteCallGuardedAsync(
-            () => UsersClient.ForgotPasswordEndpointAsync(Tenant, forgotPasswordRequest),
-            Toast);
+            await ApiHelper.ExecuteCallGuardedAsync(
+                () => UsersClient.ForgotPasswordEndpointAsync(Tenant, forgotPasswordRequest),
+                Toast);
 
-        Toast.Add("Reset email has been sent.", Severity.Success);
+            Toast.Add("Reset email has been sent.", Severity.Success);
+        }
+        
+        Toast.Add("Reset email is empty.", Severity.Error);
+
     }
 
-    private async Task ToggleUserStatusAsync()
+    private async Task ToggleActiveStatusAsync()
     {
-        var request = new ToggleUserStatusCommand { IsActive = !_isActive, UserId = Id };
-        
-        if ( await ApiHelper.ExecuteCallGuardedAsync(() => UsersClient.ToggleUserStatusEndpointAsync(Id!, request), Toast))
+        var request = new ToggleUserStatusCommand { IsActive = !_model.IsActive, UserId = Id };
+        var message = _model.IsActive ? "The Account have disabled" : "The Account have activated";
+      
+        if ( await ApiHelper.ExecuteCallGuardedAsync(() => UsersClient.ToggleUserStatusEndpointAsync(Id, request), Toast))
         {
-            string message = _isActive ? "The Account have disabled" : "The Account have activated";
             Toast.Add(message, Severity.Success);
-            _isActive = !_isActive!;
-            _model.IsActive = _isActive;
+            _model.IsActive = !_model.IsActive;
         }
         else { Toast.Add("Internal error.", Severity.Error); }
-
-        // await ApiHelper.ExecuteCallGuardedAsync(() => UsersClient.ToggleUserStatusEndpointAsync(Id!, request), Toast)
-        // Navigation.NavigateTo("/identity/users")
+        
     }
-
-    private async Task UnlockUserAsync()
+    
+    private async Task ToggleLockedStatusAsync()
     {
-        _model.LockoutEnd = DateTime.UtcNow;
-        if (await ApiHelper.ExecuteCallGuardedAsync(
-            () => UsersClient.UpdateUserEndpointAsync(Id!, _model), Toast))
+        var message = _model.IsLocked ? "The Account have unlocked" : "User account locked for 30 days .";
+        
+        var result = _model.IsLocked 
+            ? await UsersClient.UnLockUserEndpointAsync(_model.Id.ToString())
+            : await UsersClient.LockUserEndpointAsync(_model.Id.ToString());
+        
+        if (result)
         {
-            Toast.Add("User is unlocked.", Severity.Success);
+            Toast.Add(message, Severity.Success);               
             await OnInitializedAsync();
         }
-        else { Toast.Add("Internal error.", Severity.Error); }
-    }
-
-    public async Task ClearOnlineStatus()
-    {
-        if(_model.IsOnline == true)
+        else
         {
-            _model.IsOnline  = false;
-
-            if (await ApiHelper.ExecuteCallGuardedAsync(
-                () => UsersClient.UpdateUserEndpointAsync(Id!, _model), Toast))
-            {
-                Toast.Add("User status is offline now.", Severity.Success);
-                await OnInitializedAsync();
-            }
+            Toast.Add("Internal error.", Severity.Error);
         }
     }
+    
+    private async Task ToggleOnlineStatus()
+    {
+        var message = _model.IsOnline ? "The User is offline now" : "The user is online now";
+
+        if (await ApiHelper.ExecuteCallGuardedAsync(
+                () => UsersClient.SetOnlineStatusEndpointAsync(Id, !_model.IsOnline), Toast))
+        {
+            Toast.Add(message, Severity.Success);
+            _model.IsOnline  = !_model.IsOnline;
+            await OnInitializedAsync(); 
+        }
+        else { Toast.Add("Internal error.", Severity.Error); }
+        
+    }
+    
 
     private async Task UpdateUserAsync()
     {
-        if (LockoutEndDate != null && LockoutEndTime != null)
+        var request = new UpdateUserCommand
         {
+            Id = _model.Id.ToString(),
 
-            LockoutEndDate += LockoutEndTime;
-            var timeSpan = LockoutEndDate - DateTime.Now;
-            _model.LockoutEnd = DateTime.UtcNow.Add((TimeSpan)timeSpan);
-        }
-
+            FirstName = _model.FirstName,
+            LastName = _model.LastName,
+            UserName = _model.UserName,
+            
+            ImageUrl = ImageUrl,
+            DeleteCurrentImage = DeleteImageRequest,
+            Image = ImageUpload,
+            
+            Email = _model.Email,
+            EmailConfirmed = _model.EmailConfirmed,
+            PhoneNumber = _model.PhoneNumber,
+            
+            IsActive = _model.IsActive,
+            IsOnline = _model.IsOnline,
+            
+            LockoutEnd = ConvertToUtcDateTime(LockoutEndDate,LockoutEndTime),
+           
+            CreatedOn = _model.CreatedOn,
+            LastModifiedOn = _model.LastModifiedOn,
+            
+        };
+        
         if (await ApiHelper.ExecuteCallGuardedAsync(
-            () => UsersClient.UpdateUserEndpointAsync(Id!, _model), Toast))
+            () => UsersClient.UpdateUserEndpointAsync(Id, request), Toast))
         {
             Toast.Add("Your Profile has been updated.", Severity.Success);
             await OnInitializedAsync();
@@ -203,9 +209,21 @@ public partial class UserProfile
         else { Toast.Add("Internal error.", Severity.Error); }
     }
 
+    private static DateTime? ConvertToUtcDateTime(DateTime? localDate, TimeSpan? localTime)
+    {
+        if (localDate == null && localTime == null)
+            return null;
+
+        var date = (localDate ?? DateTime.Now.Date).Date;
+        var time = localTime ?? DateTime.Now.TimeOfDay;
+
+        var localDateTime = date.Add(time);
+        return TimeZoneInfo.ConvertTimeToUtc(localDateTime);
+    }
+
     public async Task RemoveImageAsync()
     {
-        string deleteContent = "You're sure you want to delete your Profile Image?";
+        const string deleteContent = "You're sure you want to delete your Profile Image?";
         var parameters = new DialogParameters
         {
             { nameof(DeleteConfirmation.ContentText), deleteContent }
@@ -213,9 +231,9 @@ public partial class UserProfile
         var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true, BackdropClick = false };
         var dialog = await DialogService.ShowAsync<DeleteConfirmation>("Delete", parameters, options);
         var result = await dialog.Result;
-        if (!result!.Canceled)
+        if (result is { Canceled: false })
         {
-            _model.DeleteCurrentImage = true;
+            DeleteImageRequest = true;
             await UpdateUserAsync();
         }
     }
@@ -223,22 +241,22 @@ public partial class UserProfile
     private async Task UploadFiles(InputFileChangeEventArgs e)
     {
         var file = e.File;
-        if (file is not null)
         {
-            string? extension = Path.GetExtension(file.Name);
+            var extension = Path.GetExtension(file.Name);
             if (!AppConstants.SupportedImageFormats.Contains(extension.ToLower(System.Globalization.CultureInfo.CurrentCulture)))
             {
                 Toast.Add("Image Format Not Supported.", Severity.Error);
                 return;
             }
 
-            string? fileName = $"{Id}-{Guid.NewGuid():N}";
+            var fileName = $"{Id}-{Guid.NewGuid():N}";
             fileName = fileName[..Math.Min(fileName.Length, 90)];
             var imageFile = await file.RequestImageFileAsync(AppConstants.StandardImageFormat, AppConstants.MaxImageWidth, AppConstants.MaxImageHeight);
             byte[]? buffer = new byte[imageFile.Size];
             _ = await imageFile.OpenReadStream(AppConstants.MaxAllowedSize).ReadAsync(buffer);
-            string? base64String = $"data:{AppConstants.StandardImageFormat};base64,{Convert.ToBase64String(buffer)}";
-            _model.Image = new FileUploadCommand() { Name = fileName, Data = base64String, Extension = extension };
+            var base64String = $"data:{AppConstants.StandardImageFormat};base64,{Convert.ToBase64String(buffer)}";
+            
+            ImageUpload = new FileUploadCommand() { Name = fileName, Data = base64String, Extension = extension };
 
             await UpdateUserAsync();
         }
@@ -262,4 +280,5 @@ public partial class UserProfile
             _passwordInput = InputType.Text;
         }
     }
+    
 }

@@ -19,7 +19,7 @@ public static class ToggleOnlineStatusEndpoint
             {
                 throw new UnauthorizedException();
             }
-            return service.SetOnlineStatusAsync(userId, false, cancellationToken);
+            return service.ChangeOnlineStatusAsync(userId, false, cancellationToken);
         })
         .WithName(nameof(ToggleOnlineStatusEndpoint))
         // .AllowAnonymous()

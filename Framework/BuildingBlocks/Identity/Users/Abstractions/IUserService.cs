@@ -47,13 +47,13 @@ public interface IUserService
 
     #endregion
     
-    #region User Managgement Extention
+    #region User Status Section
 
     // Task<bool> LockUser(string userId, CancellationToken cancellationToken);
     // Task<bool> UnlockUserAsync(string userId, CancellationToken cancellationToken);
     
-    Task SetActiveStatusAsync(ToggleUserStatusCommand request, CancellationToken cancellationToken);
-    Task SetOnlineStatusAsync(string userId, bool isOnline, CancellationToken cancellationToken) ;
+    Task <bool>ChangeActiveStatusAsync(ToggleUserStatusCommand request, CancellationToken cancellationToken);
+    Task <bool>ChangeOnlineStatusAsync(string userId, bool isOnline, CancellationToken cancellationToken) ;
     Task<bool> LockUserAsync(string userId, int lockedDays, CancellationToken cancellationToken);
     
     #endregion

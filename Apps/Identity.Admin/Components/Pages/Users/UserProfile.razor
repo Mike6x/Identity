@@ -1,4 +1,5 @@
 ﻿@page "/identity/users/{Id}/profile"
+@using System.Globalization
 
 <PageHeader Title="@Title" Header="@Title" SubHeader="@Description" />
 @if (!_loaded)
@@ -13,17 +14,17 @@ else
             <MudGrid>
                 <MudItem xs="12" sm="4" md="3">
                     <MudCard Elevation="25">
-                        <MudCardContent Style="padding:0px!important">
+                        <MudCardContent Style="padding:0!important">
                             <div class="d-flex justify-center mb-4">
-                                 @if (_imageUrl != null)
+                                 @if (ImageUrl != null)
                                     {
                                         <MudAvatar Square="true" Style="height:250px; width:250px;" Elevation="5" Class="rounded-lg">
-                                            <MudImage Src="@_imageUrl.ToString()"></MudImage>
+                                            <MudImage Src="@ImageUrl.ToString()"></MudImage>
                                         </MudAvatar>
                                     }
                                     else
                                     {
-                                        <MudAvatar Color="Color.Secondary" Style="height:250px; width:250px;">@_firstLetterOfName</MudAvatar>
+                                        <MudAvatar Color="Color.Secondary" Style="height:250px; width:250px;">@FirstLetterOfName</MudAvatar>
                                     }
                             </div>
                             <MudText Typo="Typo.h6" Align="Align.Center">@_model.FirstName @_model.LastName</MudText>
@@ -36,10 +37,10 @@ else
                                 StartIcon="@Icons.Material.Filled.CloudUpload" for="fileInput">
                                 Upload
                             </MudButton>
-                           @if (_imageUrl != null)
+                           @if (ImageUrl != null)
                             {
                                 <MudButton HtmlTag="label" DisableElevation Variant="Variant.Filled" Color="Color.Info" Size="Size.Small" Target="_blank"
-                                    StartIcon="@Icons.Material.Filled.RemoveRedEye" Href="@_imageUrl.ToString()" Style="margin-left: 5px;" >
+                                    StartIcon="@Icons.Material.Filled.RemoveRedEye" Href="@ImageUrl.ToString()" Style="margin-left: 5px;" >
                                     View
                                 </MudButton>
 
@@ -54,105 +55,135 @@ else
                 </MudItem>
                 <MudItem xs="12" sm="8" md="9">
                     <EditForm Model="@_model" OnValidSubmit="UpdateUserAsync">
-                    <MudCard Elevation="25">
-                        <MudCardContent>
-                            <MudGrid>
-                                <DataAnnotationsValidator />
-                                <CustomValidation @ref="_customValidation" />
-                                <MudItem xs="12" md="4">
-                                    <MudTextField @bind-Value="@_model.UserName" For="@(() => _model.UserName)"
-                                        Label="User Name" Variant="Variant.Outlined" />
-                                </MudItem>
-                                <MudItem xs="12" md="4">
-                                    <MudTextField @bind-Value="@_model.FirstName" For="@(() => _model.FirstName)"
-                                        Label="First Name" Variant="Variant.Outlined" />
-                                </MudItem>
-                                <MudItem xs="12" md="4">
-                                    <MudTextField @bind-Value="@_model.LastName" For="@(() => _model.LastName)"
-                                        Label="Last Name" Variant="Variant.Outlined" />
-                                </MudItem>
+                        <MudCard Elevation="25">
+                            <MudCardContent>
+                                <MudGrid>
+                                    <DataAnnotationsValidator />
+                                    <CustomValidation @ref="_customValidation" />
+                                    <MudItem xs="12" md="4">
+                                        <MudTextField @bind-Value="@_model.UserName" For="@(() => _model.UserName)"
+                                                      Label="User Name" Variant="Variant.Outlined" />
+                                    </MudItem>
+                                    <MudItem xs="12" md="4">
+                                        <MudTextField @bind-Value="@_model.FirstName" For="@(() => _model.FirstName)"
+                                                      Label="First Name" Variant="Variant.Outlined" />
+                                    </MudItem>
+                                    <MudItem xs="12" md="4">
+                                        <MudTextField @bind-Value="@_model.LastName" For="@(() => _model.LastName)"
+                                                      Label="Last Name" Variant="Variant.Outlined" />
+                                    </MudItem>
 
-                               <MudItem xs="12" md="4">
-                                    <MudTextField @bind-Value="@_model.Email" Label="Email"
-                                        For="@(() => _model.Email)" Variant="Variant.Outlined"
-                                        InputType="InputType.Email" Disabled=true />
-                                </MudItem>
-                                <MudItem xs="12" md="4">
-                                    <MudTextField @bind-Value="@_model.PhoneNumber"
-                                        For="@(() => _model.PhoneNumber)" Label="Phone Number"
-                                        Variant="Variant.Outlined" />
-                                </MudItem>
-                                <MudItem xs="12" md="4">
-                                </MudItem>
+                                    <MudItem xs="12" md="4">
+                                        <MudTextField @bind-Value="@_model.Email" Label="Email"
+                                                      For="@(() => _model.Email)" Variant="Variant.Outlined"
+                                                      InputType="InputType.Email" Disabled=true />
+                                    </MudItem>
+                                    <MudItem xs="12" md="4">
+                                        <MudTextField @bind-Value="@_model.PhoneNumber"
+                                                      For="@(() => _model.PhoneNumber)" Label="Phone Number"
+                                                      Variant="Variant.Outlined" />
+                                    </MudItem>
+                                    <MudItem xs="12" md="4">
+                                    </MudItem>
 
-                                <MudItem xs="12" md="12">
-                                    <MudTextField @bind-Value="@_model.ImageUrl" For="@(() => _model.ImageUrl)" Label="User Picture URL" Variant="Variant.Outlined" Disabled/>
-                                </MudItem>
+                                    <MudItem xs="12" md="12">
+                                        <MudTextField @bind-Value="@_model.ImageUrl" For="@(() => _model.ImageUrl)" Label="User Picture URL" Variant="Variant.Outlined" Disabled/>
+                                    </MudItem>
 
-                                <MudItem xs="12" md="3">
-                                    <MudTextField T="string" @bind-Value="@_model.Password"
-                                        For="@(() => _model.Password)" Label="Password" Variant="Variant.Outlined"
-                                        InputType="_passwordInput" Adornment="Adornment.End" AdornmentIcon="@_passwordInputIcon"
-                                        OnAdornmentClick="@(() => TogglePasswordVisibility())" />
-                                </MudItem>
-                                <MudItem xs="12" md="3">
-                                    <MudTextField T="string" @bind-Value="@_model.ConfirmPassword"
-                                        For="@(() => _model.ConfirmPassword)" Label="Password Confirmation"
-                                        Variant="Variant.Outlined" InputType="_passwordInput" Adornment="Adornment.End"
-                                        AdornmentIcon="@_passwordInputIcon"
-                                        OnAdornmentClick="@(() => TogglePasswordVisibility())" />
-                                </MudItem>
+                                    <MudItem xs="12" md="3">
+                                        <MudTextField T="string" @bind-Value="@Password"
+                                                      For="@(() => Password)" Label="Password" Variant="Variant.Outlined"
+                                                      InputType="_passwordInput" Adornment="Adornment.End" AdornmentIcon="@_passwordInputIcon"
+                                                      OnAdornmentClick="@(() => TogglePasswordVisibility())" />
+                                    </MudItem>
+                                    <MudItem xs="12" md="3">
+                                        <MudTextField T="string" @bind-Value="@ConfirmPassword"
+                                                      For="@(() => ConfirmPassword)" Label="Password Confirmation"
+                                                      Variant="Variant.Outlined" InputType="_passwordInput" Adornment="Adornment.End"
+                                                      AdornmentIcon="@_passwordInputIcon"
+                                                      OnAdornmentClick="@(() => TogglePasswordVisibility())" />
+                                    </MudItem>
 
-                                <MudItem xs="12" md="3">
-                                    <MudDatePicker Label="LockedDate" Editable="true" @bind-Date="LockoutEndDate" DisableToolbar="true" Variant="Variant.Outlined" />
-                                </MudItem>
-                                <MudItem xs="12" md="3">
-                                    <MudTimePicker Label="LockedTime" Editable="true" @bind-Time="LockoutEndTime" DisableToolbar="true" Variant="Variant.Outlined" />
-                                </MudItem>
+                                    <MudItem xs="12" md="3">
+                                        <MudDatePicker Label="LockedDate" Editable="true" @bind-Date="LockoutEndDate" DisableToolbar="true" Variant="Variant.Outlined" />
+                                    </MudItem>
+                                    <MudItem xs="12" md="3">
+                                        <MudTimePicker Label="LockedTime" Editable="true" @bind-Time="LockoutEndTime" DisableToolbar="true" Variant="Variant.Outlined" />
+                                    </MudItem>
 
-                                <MudItem xs="12" md="3">
-                                    <MudCheckBox @bind-Value="_model.IsActive" For="@(() => _model.IsActive)" Label="Active"></MudCheckBox>
-                                </MudItem>
-                                <MudItem xs="12" md="3">
-                                    <MudCheckBox @bind-Value="_model.EmailConfirmed" For="@(() => _model.EmailConfirmed)" Label="Email Confirmation"></MudCheckBox>
-                                </MudItem>
-                                <MudItem xs="12" md="3">
-                                    <MudCheckBox @bind-Value="IsLocked" For="@(() => IsLocked)" Label="is Locked" ReadOnly></MudCheckBox>
-                                </MudItem>
-                                <MudItem xs="12" md="3">
+                                    <MudItem xs="12" md="3">
+                                        <MudCheckBox @bind-Value="_model.IsActive" For="@(() => _model.IsActive)" Label="Active" ReadOnly></MudCheckBox>
+                                    </MudItem>
+                                    <MudItem xs="12" md="3">
+                                        <MudCheckBox @bind-Value="_model.EmailConfirmed" For="@(() => _model.EmailConfirmed)" Label="Email Confirmation" ReadOnly></MudCheckBox>
+                                    </MudItem>
+                                    <MudItem xs="12" md="3">
+                                        <MudCheckBox @bind-Value="_model.IsLocked" For="@(() => _model.IsLocked)" Label="is Locked" ReadOnly></MudCheckBox>
+                                    </MudItem>
+                                    <MudItem xs="12" md="3">
                                         <MudCheckBox @bind-Value="_model.IsOnline" For="@(() => _model.IsOnline)" Label="Online" ReadOnly></MudCheckBox>
-                                </MudItem>
-                            </MudGrid>
-                        </MudCardContent>
-                        <MudCardActions Class="pb-4 pl-4">
-                            <MudButton OnClick="BackToUsers" Variant="Variant.Filled"
-                                StartIcon="@Icons.Material.Filled.ArrowBack" Style="margin-right: 5px;">Users</MudButton>
-                            <MudButton OnClick="BackToEmplyees" Variant="Variant.Filled"
-                                StartIcon="@Icons.Material.Filled.List" Style="margin-right: 5px;">Employees</MudButton>
-                            <MudButton OnClick="ToggleUserStatusAsync" Variant="Variant.Filled" Color="Color.Warning"
-                                StartIcon="@Icons.Material.Filled.ToggleOn" Style="margin-right: 5px;">Act/Dis</MudButton>
-                            <MudButton OnClick="SendVerificationEmailAsync" Variant="Variant.Filled" Color="Color.Info"
-                                StartIcon="@Icons.Material.Filled.MarkEmailUnread" Style="margin-right: 5px;">Verify Email</MudButton>
-                            <MudButton OnClick="SendRecoveryPasswordEmailAsync" Variant="Variant.Filled" Color="Color.Success"
-                                StartIcon="@Icons.Material.Filled.MarkEmailUnread" Style="margin-right: 5px;">Recovery Pass</MudButton>
-                            @if (IsLocked)
-                            {
-                            <MudButton OnClick="UnlockUserAsync" Disabled="@(!IsLocked)" Variant="Variant.Filled" Color="Color.Tertiary"
-                                StartIcon="@Icons.Material.Filled.LockReset" Style="margin-right: 5px;">Unlock</MudButton>
-                            }
-                            @if (IsOnline)
-                            {
-                            <MudButton OnClick="ClearOnlineStatus" Disabled="@(!IsOnline)" Variant="Variant.Filled" Color="Color.Tertiary"
-                                StartIcon="@Icons.Material.Filled.LockReset" Style="margin-right: 5px;">Clear Online</MudButton>
-                            }
+                                    </MudItem>
+                                </MudGrid>
+                            </MudCardContent>
+                            <MudCardActions Class="pb-4 pl-4">
+                                <MudButton OnClick="@BackToUsers" Variant="Variant.Filled"
+                                           StartIcon="@Icons.Material.Filled.ArrowBack" Style="margin-right: 5px;">Users</MudButton>
+                                <MudButton OnClick="@BackToEmployees" Variant="Variant.Filled"
+                                           StartIcon="@Icons.Material.Filled.List" Style="margin-right: 5px;">Employees</MudButton>
+                                
+                                @{ var actLabel =  _model.IsActive ? "Disable" : "Active";}
+                                <MudButton OnClick="@ToggleActiveStatusAsync" Variant="Variant.Filled" Color="Color.Info"
+                                           StartIcon="@Icons.Material.Filled.ToggleOn" Style="margin-right: 5px;">@actLabel</MudButton>
+                                
+                                <MudButton OnClick="SendVerificationEmailAsync" Variant="Variant.Filled" Color="Color.Success"
+                                           StartIcon="@Icons.Material.Filled.MarkEmailUnread" Style="margin-right: 5px;">Verify Email</MudButton>
+                                <MudButton OnClick="SendRecoveryPasswordEmailAsync" Variant="Variant.Filled" Color="Color.Tertiary"
+                                           StartIcon="@Icons.Material.Filled.MarkEmailUnread" Style="margin-right: 5px;">Recovery Pass</MudButton>
+                                
+                                @{ var lockLabel =  _model.IsLocked ? "Unlock" : "Lock";}
+                                <MudButton OnClick="@ToggleLockedStatusAsync" Variant="Variant.Filled" Color="Color.Warning"
+                                           StartIcon="@Icons.Material.Filled.LockReset" Style="margin-right: 5px;">@lockLabel</MudButton>
+                                
+                                @if (_model.IsOnline)
+                                {
+                                    <MudButton OnClick="@ToggleOnlineStatus" Disabled="@(!_model.IsOnline)" Variant="Variant.Filled" Color="Color.Tertiary"
+                                               StartIcon="@Icons.Material.Filled.LockReset" Style="margin-right: 5px;">Clear Online</MudButton>
+                                }
+                                else
+                                {
+                                    <MudButton OnClick="@ToggleOnlineStatus" Disabled="@(_model.IsOnline)" Variant="Variant.Filled" Color="Color.Tertiary"
+                                               StartIcon="@Icons.Material.Filled.LockReset" Style="margin-right: 5px;">Set Online</MudButton>
+                                }
 
-                            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Secondary"
-                                StartIcon="@Icons.Material.Filled.SystemUpdateAlt" Style="margin-right: 5px;">Update</MudButton>
-                        </MudCardActions>
+                                <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Secondary"
+                                           StartIcon="@Icons.Material.Filled.SystemUpdateAlt" Style="margin-right: 5px;">Update</MudButton>
+                            </MudCardActions>
 
-                    </MudCard>
+                        </MudCard>
                     </EditForm>
+                    @if (_model.IsLocked)
+                    {
+                        <div role="alert" class="mud-alert mud-alert-outlined-warning mud-square mud-elevation-2">
+                            <MudGrid Justify="Justify.FlexEnd">
+                                <MudSpacer />
+                                <MudItem xs="2">
+                                    <div class="mud-alert-icon mud-alert-icon-left">
+                                        <svg class="mud-icon-root mud-svg-icon mud-inherit-text mud-icon-size-medium" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                                            <path d="M0 0h24v24H0V0z" fill="none"></path>
+                                            <path d="M12 5.99L19.53 19H4.47L12 5.99M12 2L1 21h22L12 2zm1 14h-2v2h2v-2zm0-6h-2v4h2v-4z">
+                                            </path>
+                                        </svg>
+                                    </div>
+                                </MudItem>
+                                <MudItem xs="10" Class="d-flex align-center">
+                                    User account is temporarily locked out until @_model.LockoutEnd.GetValueOrDefault().ToString(CultureInfo.InvariantCulture)
+                                </MudItem>
+                            
+                            </MudGrid>
+                        </div>
+                    }
                 </MudItem>
+
             </MudGrid>
         </MudTabPanel>
 
@@ -188,143 +219,53 @@ else
 }
 
 
-
-@* else
-{
-    <MudGrid>
-        <AuthorizeView>
-            @if (_canToggleUserStatus)
-            {
-                <MudItem xs="12" sm="12" md="12">
-                    <MudCard Outlined>
-                        <MudCardHeader>
-                            <CardHeaderContent>
-                                <MudText Typo="Typo.body1">Administrator Settings.</MudText>
-                                <MudText Typo="Typo.body2">This is an Administrator Only View.</MudText>
-                            </CardHeaderContent>
-                        </MudCardHeader>
-                        <MudCardContent Class="pa-46" Style="padding:26px!important">
-                            <MudGrid Style="padding-left:14px">
-                                    <MudSwitch T="bool" @bind-Value="@_active" Color="Color.Primary" Label="Active?"></MudSwitch>
-                                <MudSwitch T="bool" ReadOnly @bind-Value="@_emailConfirmed" Disabled Label="Email Confirmed?" Color="Color.Secondary"></MudSwitch>
-                                <MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto"
-                            OnClick="ToggleUserStatus" ButtonType="ButtonType.Submit">Save Changes
-                                </MudButton>
-                            </MudGrid>
-                        </MudCardContent>
-                    </MudCard>
-                </MudItem>
-            }
-        </AuthorizeView>
-        <MudItem xs="12" sm="4" md="4">
-            <MudCard Outlined>
-                <MudCardContent Style="padding:0px!important">
-                    <div class="d-flex justify-center mb-4">
-                        @if (_imageUrl != null)
-                        {
-                            <MudAvatar Style=" width:100%;height:auto;border-radius:0px!important;">
-                                <MudImage Src="@_imageUrl.ToString()"></MudImage>
-                            </MudAvatar>
-                        }
-                        else
-                        {
-                            <MudAvatar Square="true" Color="Color.Primary" Style="width:100%;height:300px;">@_firstLetterOfName
-                            </MudAvatar>
-                        }
-                    </div>
-                    <MudText Typo="Typo.h6" Align="Align.Center">@_firstName @_lastName</MudText>
-                    <MudText Align="Align.Center">@_email</MudText>
-                </MudCardContent>
-                <MudCardActions Class="d-flex justify-center">
-                    <div style="padding-bottom:20px">
-                        @if (_imageUrl != null)
-                        {
-                            <MudButton HtmlTag="label" DropShadow="false" Variant="Variant.Filled" Color="Color.Info"
-                                       Size="Size.Small" Target="_blank" StartIcon="@Icons.Material.Filled.RemoveRedEye" Href="@_imageUrl.ToString()"
-                        Style="margin-left: 5px;">
-                               View
-                            </MudButton>
-                        }
-                    </div>
-
-                </MudCardActions>
-            </MudCard>
-        </MudItem>
-        <MudItem xs="12" sm="8" md="8">
-            <MudCard Outlined>
-                <MudCardHeader>
-                    <CardHeaderContent>
-                        <MudText>Public Profile</MudText>
-                    </CardHeaderContent>
-                </MudCardHeader>
-                <MudCardContent>
-                    <MudGrid>
-                        <MudItem xs="12" md="6">
-                            <MudField Label="First Name" Variant="Variant.Outlined">@_firstName</MudField>
-                        </MudItem>
-                        <MudItem xs="12" md="6">
-                            <MudField Label="Last Name" Variant="Variant.Outlined">@_lastName</MudField>
-                        </MudItem>
-                        <MudItem xs="12" md="6">
-                            <MudField Label="Phone Number" Variant="Variant.Outlined">@_phoneNumber
-                            </MudField>
-                        </MudItem>
-                        <MudItem xs="12" md="6">
-                            <MudField Label="Email" Variant="Variant.Outlined">@_email</MudField>
-                        </MudItem>
-                    </MudGrid>
-                </MudCardContent>
-            </MudCard>
-        </MudItem>
-    </MudGrid>
-} *@
-
-@code
-{
-public class CustomStringToBoolConverter : BoolConverter<string>
-    {
-
-        public CustomStringToBoolConverter()
-        {
-            SetFunc = OnSet;
-            GetFunc = OnGet;
-        }
-        private string TrueString = "User Active";
-        private string FalseString = "no, at all";
-        private string NullString = "I don't know";
-
-        private string OnGet(bool? value)
-        {
-            try
-            {
-                return (value == true) ? TrueString : FalseString;
-            }
-            catch (Exception e)
-            {
-                UpdateGetError("Conversion error: " + e.Message);
-                return NullString;
-            }
-        }
-
-        private bool? OnSet(string arg)
-        {
-            if (arg == null)
-                return null;
-            try
-            {
-                if (arg == TrueString)
-                    return true;
-                if (arg == FalseString)
-                    return false;
-                else
-                    return null;
-            }
-            catch (FormatException e)
-            {
-                UpdateSetError("Conversion error: " + e.Message);
-                return null;
-            }
-        }
-
-    }
-}
+@* @code *@
+@* { *@
+@*     public class CustomStringToBoolConverter : BoolConverter<string> *@
+@*         { *@
+@* *@
+@*             public CustomStringToBoolConverter() *@
+@*             { *@
+@*                 SetFunc = OnSet; *@
+@*                 GetFunc = OnGet; *@
+@*             } *@
+@*             private string TrueString = "User Active"; *@
+@*             private string FalseString = "no, at all"; *@
+@*             private string NullString = "I don't know"; *@
+@* *@
+@*             private string OnGet(bool? value) *@
+@*             { *@
+@*                 try *@
+@*                 { *@
+@*                     return (value == true) ? TrueString : FalseString; *@
+@*                 } *@
+@*                 catch (Exception e) *@
+@*                 { *@
+@*                     UpdateGetError("Conversion error: " + e.Message); *@
+@*                     return NullString; *@
+@*                 } *@
+@*             } *@
+@* *@
+@*             private bool? OnSet(string arg) *@
+@*             { *@
+@*                 if (arg == null) *@
+@*                     return null; *@
+@*                 try *@
+@*                 { *@
+@*                     if (arg == TrueString) *@
+@*                         return true; *@
+@*                     if (arg == FalseString) *@
+@*                         return false; *@
+@*                     else *@
+@*                         return null; *@
+@*                 } *@
+@*                 catch (FormatException e) *@
+@*                 { *@
+@*                     UpdateSetError("Conversion error: " + e.Message); *@
+@*                     return null; *@
+@*                 } *@
+@*             } *@
+@* *@
+@*         } *@
+@* } *@
+@* } *@

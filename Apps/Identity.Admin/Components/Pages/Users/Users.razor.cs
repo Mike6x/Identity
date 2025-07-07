@@ -84,7 +84,7 @@ public partial class Users : ComponentBase
                 new EntityField<UserSummaryDto>(user => user.IsActive, "Active", Type: typeof(bool)),
                 new EntityField<UserSummaryDto>(user => user.EmailConfirmed, "Email Confirmed", Type: typeof(bool)),
                 //new EntityField<UserSummaryDto>(user => user.LockoutEnd, "LockoutEnd", Type: typeof(DateTime)),
-                new EntityField<UserSummaryDto>(user => user.IsLocked, "Lockout", Type: typeof(bool)),
+                new EntityField<UserSummaryDto>(user => user.IsLocked, "Locked", Type: typeof(bool)),
                 new EntityField<UserSummaryDto>(user => user.IsOnline, "Online", Type: typeof(bool))
             ],
             idFunc: user => user.Id,

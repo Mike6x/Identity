@@ -22,6 +22,7 @@ public static class UserEndpoints
         app.MapLockUserEndpoint();
         app.MapUnLockUserEndpoint();
         app.MapToggleUserStatusEndpoint();
+        app.MapSetOnlineStatusEndpoint();
         // app.MapDisableUserEndpoint();
         app.MapToggleOnlineStatusEndpoint();
         

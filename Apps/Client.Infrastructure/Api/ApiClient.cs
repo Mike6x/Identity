@@ -681,10 +681,29 @@ namespace Client.Infrastructure.Api
         /// update online status
         /// </summary>
         /// <remarks>
+        /// update the user online status.
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<bool> SetOnlineStatusEndpointAsync(string userId, bool isOnline);
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// update online status
+        /// </summary>
+        /// <remarks>
+        /// update the user online status.
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        System.Threading.Tasks.Task<bool> SetOnlineStatusEndpointAsync(string userId, bool isOnline, System.Threading.CancellationToken cancellationToken);
+
+        /// <summary>
+        /// update online status
+        /// </summary>
+        /// <remarks>
         /// Update profile of currently logged in user.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ToggleOnlineStatusEndpointAsync();
+        System.Threading.Tasks.Task<bool> ToggleOnlineStatusEndpointAsync();
 
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         /// <summary>
@@ -694,7 +713,7 @@ namespace Client.Infrastructure.Api
         /// Update profile of currently logged in user.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        System.Threading.Tasks.Task ToggleOnlineStatusEndpointAsync(System.Threading.CancellationToken cancellationToken);
+        System.Threading.Tasks.Task<bool> ToggleOnlineStatusEndpointAsync(System.Threading.CancellationToken cancellationToken);
 
         /// <summary>
         /// Get user profile by Email
@@ -5392,10 +5411,110 @@ namespace Client.Infrastructure.Api
         /// update online status
         /// </summary>
         /// <remarks>
+        /// update the user online status.
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual System.Threading.Tasks.Task<bool> SetOnlineStatusEndpointAsync(string userId, bool isOnline)
+        {
+            return SetOnlineStatusEndpointAsync(userId, isOnline, System.Threading.CancellationToken.None);
+        }
+
+        /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
+        /// <summary>
+        /// update online status
+        /// </summary>
+        /// <remarks>
+        /// update the user online status.
+        /// </remarks>
+        /// <exception cref="ApiException">A server side error occurred.</exception>
+        public virtual async System.Threading.Tasks.Task<bool> SetOnlineStatusEndpointAsync(string userId, bool isOnline, System.Threading.CancellationToken cancellationToken)
+        {
+            if (userId == null)
+                throw new System.ArgumentNullException("userId");
+
+            if (isOnline == null)
+                throw new System.ArgumentNullException("isOnline");
+
+            var client_ = _httpClient;
+            var disposeClient_ = false;
+            try
+            {
+                using (var request_ = new System.Net.Http.HttpRequestMessage())
+                {
+                    request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
+                    request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
+
+                    var urlBuilder_ = new System.Text.StringBuilder();
+                
+                    // Operation Path: "users/{userId}/set-online"
+                    urlBuilder_.Append("users/");
+                    urlBuilder_.Append(System.Uri.EscapeDataString(ConvertToString(userId, System.Globalization.CultureInfo.InvariantCulture)));
+                    urlBuilder_.Append("/set-online");
+                    urlBuilder_.Append('?');
+                    urlBuilder_.Append(System.Uri.EscapeDataString("isOnline")).Append('=').Append(System.Uri.EscapeDataString(ConvertToString(isOnline, System.Globalization.CultureInfo.InvariantCulture))).Append('&');
+                    urlBuilder_.Length--;
+
+                    PrepareRequest(client_, request_, urlBuilder_);
+
+                    var url_ = urlBuilder_.ToString();
+                    request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
+
+                    PrepareRequest(client_, request_, url_);
+
+                    var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
+                    var disposeResponse_ = true;
+                    try
+                    {
+                        var headers_ = new System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>>();
+                        foreach (var item_ in response_.Headers)
+                            headers_[item_.Key] = item_.Value;
+                        if (response_.Content != null && response_.Content.Headers != null)
+                        {
+                            foreach (var item_ in response_.Content.Headers)
+                                headers_[item_.Key] = item_.Value;
+                        }
+
+                        ProcessResponse(client_, response_);
+
+                        var status_ = (int)response_.StatusCode;
+                        if (status_ == 200)
+                        {
+                            var objectResponse_ = await ReadObjectResponseAsync<bool>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
+                        }
+                        else
+                        {
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            throw new ApiException("The HTTP status code of the response was not expected (" + status_ + ").", status_, responseData_, headers_, null);
+                        }
+                    }
+                    finally
+                    {
+                        if (disposeResponse_)
+                            response_.Dispose();
+                    }
+                }
+            }
+            finally
+            {
+                if (disposeClient_)
+                    client_.Dispose();
+            }
+        }
+
+        /// <summary>
+        /// update online status
+        /// </summary>
+        /// <remarks>
         /// Update profile of currently logged in user.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual System.Threading.Tasks.Task ToggleOnlineStatusEndpointAsync()
+        public virtual System.Threading.Tasks.Task<bool> ToggleOnlineStatusEndpointAsync()
         {
             return ToggleOnlineStatusEndpointAsync(System.Threading.CancellationToken.None);
         }
@@ -5408,7 +5527,7 @@ namespace Client.Infrastructure.Api
         /// Update profile of currently logged in user.
         /// </remarks>
         /// <exception cref="ApiException">A server side error occurred.</exception>
-        public virtual async System.Threading.Tasks.Task ToggleOnlineStatusEndpointAsync(System.Threading.CancellationToken cancellationToken)
+        public virtual async System.Threading.Tasks.Task<bool> ToggleOnlineStatusEndpointAsync(System.Threading.CancellationToken cancellationToken)
         {
             var client_ = _httpClient;
             var disposeClient_ = false;
@@ -5418,6 +5537,7 @@ namespace Client.Infrastructure.Api
                 {
                     request_.Content = new System.Net.Http.StringContent(string.Empty, System.Text.Encoding.UTF8, "application/json");
                     request_.Method = new System.Net.Http.HttpMethod("POST");
+                    request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
 
                     var urlBuilder_ = new System.Text.StringBuilder();
                 
@@ -5449,7 +5569,12 @@ namespace Client.Infrastructure.Api
                         var status_ = (int)response_.StatusCode;
                         if (status_ == 200)
                         {
-                            return;
+                            var objectResponse_ = await ReadObjectResponseAsync<bool>(response_, headers_, cancellationToken).ConfigureAwait(false);
+                            if (objectResponse_.Object == null)
+                            {
+                                throw new ApiException("Response was null which was not expected.", status_, objectResponse_.Text, headers_, null);
+                            }
+                            return objectResponse_.Object;
                         }
                         else
                         {
