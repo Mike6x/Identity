@@ -11,13 +11,13 @@ public interface IClientService
 {
     Task<IResult> CreateAsync(CreateClientCommand request, CancellationToken cancellationToken);
 
-    Task<ApplicationDto> GetAsync(string id, CancellationToken cancellationToken);
+    Task<ApplicationDto> GetByIdAsync(string id, CancellationToken cancellationToken);
     
     Task<ApplicationDto> GetByNameAsync(string clientId, CancellationToken cancellationToken);
     
-    Task<List<ApplicationDto>> GetAllAsync(CancellationToken cancellationToken);
+    Task<List<ApplicationSummaryDto>> GetAllAsync(CancellationToken cancellationToken);
 
-    Task<PagedList<ApplicationDto>> SearchAsync(SearchClientsRequest request,
+    Task<PagedList<ApplicationSummaryDto>> SearchAsync(SearchClientsRequest request,
         CancellationToken cancellationToken);
 
     Task<IResult> DeleteAsync(string id, CancellationToken cancellationToken);

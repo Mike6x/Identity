@@ -27,6 +27,26 @@ public record EditClientDto(
     HashSet<string> AllowedScopes
 );
 
+public class ApplicationSummaryDto
+{
+    public string Id { get; set; } = string.Empty;
+
+    public string ApplicationType { get; set; } = ApplicationTypes.Web;
+
+    public string ClientId { get; set; } = string.Empty;
+    public string ClientType { get; set; } = string.Empty;
+    public bool IsConfidentialClient => ClientType?.Equals(ClientTypes.Confidential) ?? false;
+
+    public string? ClientSecret { get; set; }
+
+    public string? JsonWebKeySet { get; set; }
+
+    public string ConsentType { get; set; } = string.Empty;
+
+    public string DisplayName { get; set; } = string.Empty;
+}
+
+
 public class ApplicationDto
 {
     public string Id { get; set; } = string.Empty;

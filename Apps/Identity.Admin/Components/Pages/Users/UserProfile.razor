@@ -9,7 +9,7 @@
 else
 {
     <MudTabs Elevation="25" Color="Color.Transparent" Rounded="true" PanelClass="mt-6">
-        <MudTabPanel Text="General">
+        <MudTabPanel Text="Profile">
             <MudGrid>
                 <MudItem xs="12" sm="4" md="3">
                     <MudCard Elevation="25">
@@ -26,8 +26,8 @@ else
                                         <MudAvatar Color="Color.Secondary" Style="height:250px; width:250px;">@_firstLetterOfName</MudAvatar>
                                     }
                             </div>
-                            <MudText Typo="Typo.h6" Align="Align.Center">@_profileModel.FirstName @_profileModel.LastName</MudText>
-                            <MudText Align="Align.Center">@_profileModel.Email</MudText>
+                            <MudText Typo="Typo.h6" Align="Align.Center">@_model.FirstName @_model.LastName</MudText>
+                            <MudText Align="Align.Center">@_model.Email</MudText>
                         </MudCardContent>
                         <MudCardActions Class="d-flex justify-center">
                             <InputFile id="fileInput" OnChange="UploadFiles" hidden accept=".jpg,.jpeg,.png" />
@@ -53,51 +53,51 @@ else
                     </MudCard>
                 </MudItem>
                 <MudItem xs="12" sm="8" md="9">
-                    <EditForm Model="@_profileModel" OnValidSubmit="UpdateUserAsync">
+                    <EditForm Model="@_model" OnValidSubmit="UpdateUserAsync">
                     <MudCard Elevation="25">
                         <MudCardContent>
                             <MudGrid>
                                 <DataAnnotationsValidator />
                                 <CustomValidation @ref="_customValidation" />
                                 <MudItem xs="12" md="4">
-                                    <MudTextField @bind-Value="@_profileModel.UserName" For="@(() => _profileModel.UserName)"
+                                    <MudTextField @bind-Value="@_model.UserName" For="@(() => _model.UserName)"
                                         Label="User Name" Variant="Variant.Outlined" />
                                 </MudItem>
                                 <MudItem xs="12" md="4">
-                                    <MudTextField @bind-Value="@_profileModel.FirstName" For="@(() => _profileModel.FirstName)"
+                                    <MudTextField @bind-Value="@_model.FirstName" For="@(() => _model.FirstName)"
                                         Label="First Name" Variant="Variant.Outlined" />
                                 </MudItem>
                                 <MudItem xs="12" md="4">
-                                    <MudTextField @bind-Value="@_profileModel.LastName" For="@(() => _profileModel.LastName)"
+                                    <MudTextField @bind-Value="@_model.LastName" For="@(() => _model.LastName)"
                                         Label="Last Name" Variant="Variant.Outlined" />
                                 </MudItem>
 
                                <MudItem xs="12" md="4">
-                                    <MudTextField @bind-Value="@_profileModel.Email" Label="Email"
-                                        For="@(() => _profileModel.Email)" Variant="Variant.Outlined"
+                                    <MudTextField @bind-Value="@_model.Email" Label="Email"
+                                        For="@(() => _model.Email)" Variant="Variant.Outlined"
                                         InputType="InputType.Email" Disabled=true />
                                 </MudItem>
                                 <MudItem xs="12" md="4">
-                                    <MudTextField @bind-Value="@_profileModel.PhoneNumber"
-                                        For="@(() => _profileModel.PhoneNumber)" Label="Phone Number"
+                                    <MudTextField @bind-Value="@_model.PhoneNumber"
+                                        For="@(() => _model.PhoneNumber)" Label="Phone Number"
                                         Variant="Variant.Outlined" />
                                 </MudItem>
                                 <MudItem xs="12" md="4">
                                 </MudItem>
 
                                 <MudItem xs="12" md="12">
-                                    <MudTextField @bind-Value="@_profileModel.ImageUrl" For="@(() => _profileModel.ImageUrl)" Label="User Picture URL" Variant="Variant.Outlined" Disabled/>
+                                    <MudTextField @bind-Value="@_model.ImageUrl" For="@(() => _model.ImageUrl)" Label="User Picture URL" Variant="Variant.Outlined" Disabled/>
                                 </MudItem>
 
                                 <MudItem xs="12" md="3">
-                                    <MudTextField T="string" @bind-Value="@_profileModel.Password"
-                                        For="@(() => @_profileModel.Password)" Label="Password" Variant="Variant.Outlined"
+                                    <MudTextField T="string" @bind-Value="@_model.Password"
+                                        For="@(() => _model.Password)" Label="Password" Variant="Variant.Outlined"
                                         InputType="_passwordInput" Adornment="Adornment.End" AdornmentIcon="@_passwordInputIcon"
                                         OnAdornmentClick="@(() => TogglePasswordVisibility())" />
                                 </MudItem>
                                 <MudItem xs="12" md="3">
-                                    <MudTextField T="string" @bind-Value="@_profileModel.ConfirmPassword"
-                                        For="@(() => _profileModel.ConfirmPassword)" Label="Password Confirmation"
+                                    <MudTextField T="string" @bind-Value="@_model.ConfirmPassword"
+                                        For="@(() => _model.ConfirmPassword)" Label="Password Confirmation"
                                         Variant="Variant.Outlined" InputType="_passwordInput" Adornment="Adornment.End"
                                         AdornmentIcon="@_passwordInputIcon"
                                         OnAdornmentClick="@(() => TogglePasswordVisibility())" />
@@ -111,16 +111,16 @@ else
                                 </MudItem>
 
                                 <MudItem xs="12" md="3">
-                                    <MudCheckBox @bind-Value="_profileModel.IsActive" For="@(() => _profileModel.IsActive)" Label="Active"></MudCheckBox>
+                                    <MudCheckBox @bind-Value="_model.IsActive" For="@(() => _model.IsActive)" Label="Active"></MudCheckBox>
                                 </MudItem>
                                 <MudItem xs="12" md="3">
-                                    <MudCheckBox @bind-Value="_profileModel.EmailConfirmed" For="@(() => _profileModel.EmailConfirmed)" Label="Email Confirmation"></MudCheckBox>
+                                    <MudCheckBox @bind-Value="_model.EmailConfirmed" For="@(() => _model.EmailConfirmed)" Label="Email Confirmation"></MudCheckBox>
                                 </MudItem>
                                 <MudItem xs="12" md="3">
                                     <MudCheckBox @bind-Value="IsLocked" For="@(() => IsLocked)" Label="is Locked" ReadOnly></MudCheckBox>
                                 </MudItem>
                                 <MudItem xs="12" md="3">
-                                        <MudCheckBox @bind-Value="_profileModel.IsOnline" For="@(() => _profileModel.IsOnline)" Label="Online" ReadOnly></MudCheckBox>
+                                        <MudCheckBox @bind-Value="_model.IsOnline" For="@(() => _model.IsOnline)" Label="Online" ReadOnly></MudCheckBox>
                                 </MudItem>
                             </MudGrid>
                         </MudCardContent>
@@ -156,7 +156,7 @@ else
             </MudGrid>
         </MudTabPanel>
 
-        <MudTabPanel Text="Reference">
+        <MudTabPanel Text="Roles and Claims">
 
         </MudTabPanel>
 
@@ -166,20 +166,20 @@ else
                 Icon="@Icons.Material.Filled.InfoOutline" Color="Color.Info" Size="Size.Large"></MudIconButton>*@
             </MudItem>
             <MudItem xs="12" md="7">
-                <MudTextField Disabled="true" For="@(() => _profileModel.CreatedBy)" @bind-Value="_profileModel.CreatedBy" Label="CreatedBy" />
+                <MudTextField Disabled="true" For="@(() => _model.CreatedBy)" @bind-Value="_model.CreatedBy" Label="CreatedBy" />
             </MudItem>
             <MudItem xs="12" md="3">
-                <MudTextField Disabled="true" For="@(() => _profileModel.CreatedOn)" @bind-Value="_profileModel.CreatedOn" Label="CreatedOn" />
+                <MudTextField Disabled="true" For="@(() => _model.CreatedOn)" @bind-Value="_model.CreatedOn" Label="CreatedOn" />
             </MudItem>
             <MudItem xs="12" md="2">
                 @*<MudIconButton OnClick="LoadLastModifiedByInfoAsync"
                 Icon="@Icons.Material.Filled.InfoOutline" Color="Color.Info" Size="Size.Large"></MudIconButton>*@
             </MudItem>
             <MudItem xs="12" md="7">
-                <MudTextField Disabled="true" For="@(() => _profileModel.LastModifiedBy)" @bind-Value="_profileModel.LastModifiedBy" Label="LastModifiedBy" />
+                <MudTextField Disabled="true" For="@(() => _model.LastModifiedBy)" @bind-Value="_model.LastModifiedBy" Label="LastModifiedBy" />
             </MudItem>
             <MudItem xs="12" md="3">
-                <MudTextField Disabled="true" For="@(() => _profileModel.LastModifiedOn)" @bind-Value="_profileModel.LastModifiedOn" Label="LastModifiedOn" />
+                <MudTextField Disabled="true" For="@(() => _model.LastModifiedOn)" @bind-Value="_model.LastModifiedOn" Label="LastModifiedOn" />
             </MudItem>
 
         </MudTabPanel>

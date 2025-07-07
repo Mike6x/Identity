@@ -25,7 +25,7 @@ public partial class Scopes : ComponentBase
     public required IDialogService Dialog;
     
     private bool _canViewScopeResources;
-    private EntityClientTableContext<ScopeDto, string?, ScopeViewModel> Context { get; set; }
+    private EntityClientTableContext<ScopeSummaryDto, string?, ScopeViewModel> Context { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -38,18 +38,18 @@ public partial class Scopes : ComponentBase
             _canViewScopeResources =
                 await AuthService.HasPermissionAsync(state.User, AppActions.View, AppResources.Scopes);
 
-        Context = new EntityClientTableContext<ScopeDto, string?, ScopeViewModel>(
+        Context = new EntityClientTableContext<ScopeSummaryDto, string?, ScopeViewModel>(
             entityName: "Scope",
             entityNamePlural: "Scopes",
             entityResource: AppResources.Scopes,
             searchAction: AppActions.View,
             fields:
             [
-                new EntityField<ScopeDto>(item => item.Name, "Name"),
-                new EntityField<ScopeDto>(item => item.DisplayName, "Display Name"),
-                new EntityField<ScopeDto>(item => item.Description, "Description"),
-                // new EntityField<ScopeDto>(item => item.Resources?.ToString(), "Resource"),
-                new EntityField<ScopeDto>(item => item.Id, "Id")
+                new EntityField<ScopeSummaryDto>(item => item.Name, "Name"),
+                new EntityField<ScopeSummaryDto>(item => item.DisplayName, "Display Name"),
+                new EntityField<ScopeSummaryDto>(item => item.Description, "Description"),
+                // new EntityField<ScopeSummaryDto>(item => item.Resources?.ToString(), "Resource"),
+                new EntityField<ScopeSummaryDto>(item => item.Id, "Id")
             ],
             idFunc: scope => scope.Id.ToString(),
             loadDataFunc: async () => (await ApiClient.GetScopesEndpointAsync()).ToList(),
@@ -68,7 +68,7 @@ public partial class Scopes : ComponentBase
     }
     
     
-    protected void ManageResources(ScopeDto scope) => Navigator?.NavigateTo($"/identity/scopes/{scope.Id}/details");
+    private void ToScopeDetails(in string scopeId) => Navigator?.NavigateTo($"/identity/scopes/{scopeId}/details");
     
 }
 

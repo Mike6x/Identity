@@ -1,0 +1,56 @@
+﻿@page "/identity/roles/{Id}/details"
+@using Identity.Admin.Components.OpenIddict
+
+<PageHeader Title="@Title" Header="@Title" SubHeader="@Description" />
+
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+@if (_model != null)
+{
+    <MudCard Elevation="4">
+        <EditForm Model="@_model" OnValidSubmit="UpdateRoleNameAsync">
+            <FluentValidationValidator />           
+            <MudCard>
+                <MudCardContent>
+                    <MudStack Spacing="10" Row="true">
+                        <MudTextField Value="_model.Id" ReadOnly Underline="false" Label="Role Id]" />
+                        
+                        <MudTextField @bind-Value="_model.Name" For="@(() => _model.Name)" Immediate="true"
+                                      Label="Role Name" HelperText="Required" Disabled="@(!_canEditItems)"
+                                      UserAttributes="@(new() { { "id", "txtRoleName" } })" />
+
+                        <MudTextField @bind-Value="_model.Description" For="@(() => _model.Description)" Label="Description"/>
+
+                        <MudIconButton UserAttributes="@(new() { { "id", "toggleRoleNameEdit" } })" Icon="@Icons.Material.Filled.Edit"
+                                       Color="Color.Primary" OnClick="ToggleEditRoleName" Class="ma-3">
+                        </MudIconButton>
+                    </MudStack>
+                </MudCardContent>
+                <MudCardActions>
+                    <div class="center-right mud-text-align-center">
+                        <MudButton Href="/identity/roles" Variant="Variant.Filled" DropShadow="false" 
+                                   Color="Color.Info" Class="ml-auto" 
+                                   StartIcon="@Icons.Material.Filled.ArrowBack">Back
+                        </MudButton>
+                        @if (_canEditItems)
+                        {
+                            <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" DropShadow="false"
+                                       Color="Color.Primary" Class="ml-auto" Style="margin-left: 5px!important;"
+                                       StartIcon="@Icons.Material.Filled.Save"
+                                       Disabled="@(RoleChanged)"
+                                       hidden="@(_itemUpdated)">Update
+                            </MudButton>
+                        }
+                    </div>
+                </MudCardActions>
+            </MudCard>
+        </EditForm>
+    </MudCard>
+
+    <br />
+    <ClaimsManager Claims="_model.Claims" OnAddItem="AddClaimAsync"
+               OnUpdateItem="UpdateClaimAsync" OnDeleteItem="RemoveClaimAsync" />
+}

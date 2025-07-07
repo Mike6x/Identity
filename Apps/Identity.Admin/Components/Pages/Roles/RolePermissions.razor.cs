@@ -50,11 +50,11 @@ public partial class RolePermissions
         }
         
         if (await ApiHelper.ExecuteCallGuardedAsync(
-                () => ApiClient.GetRoleEndpointAsync(Id), Toast, Navigation)
+                () => ApiClient.GetRoleByIdEndpointAsync(Id), Toast, Navigation)
             is { } mainItem)
         {
-            _title = $"{mainItem.Name} Permissions";
-            _description = $"Manage {mainItem.Name} Role Permissions";
+            _title = $"{mainItem.Name.ToUpper()} Permissions";
+            _description = $"Manage {mainItem.Name.ToUpper()} role permissions";
 
             var permissions = state.User.GetTenant() == TenantConstants.Root.Id
                 ? AppPermissions.All

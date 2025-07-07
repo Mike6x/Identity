@@ -46,7 +46,7 @@ public static class GetApplicationEndpoint
     public static RouteHandlerBuilder MapGetApplicationEndpoint(this IEndpointRouteBuilder endpoints)
     {
         return endpoints.MapGet("{id}",async (string id, IClientService service, CancellationToken cancellationToken) 
-                => await service.GetAsync(id, cancellationToken))
+                => await service.GetByIdAsync(id, cancellationToken))
             .WithName(nameof(GetApplicationEndpoint))
             .WithSummary("Get Application details by Internal Id")
             // .RequirePermission("Permissions.Handlers.View")

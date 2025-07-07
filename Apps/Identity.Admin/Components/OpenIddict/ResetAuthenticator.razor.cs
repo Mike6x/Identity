@@ -1,7 +1,6 @@
 ﻿using Client.Infrastructure.Api;
 using Identity.Admin.Components.OpenIddict.ViewModels;
 using Microsoft.AspNetCore.Components;
-using MudBlazor;
 
 namespace Identity.Admin.Components.OpenIddict
 {
@@ -12,9 +11,6 @@ namespace Identity.Admin.Components.OpenIddict
     /// </summary>
     public partial class ResetAuthenticator : ComponentBase
     {
-        [Inject]
-        public ISnackbar? SnackBar { get; set; }
-
         [Inject]
         public NavigationManager? Navigator { get; set; }
         

@@ -23,15 +23,12 @@ public partial class ScopeDetails : ComponentBase
     [Parameter]
     public string? Id { get; set; }
     
-    private ScopeDto _item = new();
-
-    private string _title = string.Empty;
-    private string _description = string.Empty;
-
-    private string _searchString = string.Empty;
-
+    private ScopeDto _model = new();
+    
     private bool _canEditItems;
+    
     private bool _canSearchItems;
+    private string _searchString = string.Empty;
     
     private bool _loaded;
     
@@ -48,27 +45,28 @@ public partial class ScopeDetails : ComponentBase
         
         if (await ApiHelper.ExecuteCallGuardedAsync(
                 () => ApiClient.GetScopeEndpointAsync(Id), Toast, Navigation)
-            is { } scopeDto)
+            is { } result)
         {
-            _item = scopeDto;
-            _title = $"{_item.Name} scope in details";
-            _description = $"Manage {_item.Name} scope resources";
+            _model = result;
         }
 
         _loaded = true;
     }
     
+    private string Title => $"{_model.Name} scope in details";
+    private string Description => $"Manage {_model.Name} scope resources";
+    
     private async Task SaveAsync()
     {
-        if (string.IsNullOrEmpty(_item.Id) || ApiClient == null) return;
+        if (string.IsNullOrEmpty(_model?.Id) || ApiClient == null) return;
         
         var request = new UpdateScopeCommand
         {
-            Id = _item.Id,
-            Name = _item.Name,
-            Description = _item.Description,
-            DisplayName = _item.DisplayName,
-            Resources = _item.Resources ?? [],
+            Id = _model.Id,
+            Name = _model.Name,
+            Description = _model.Description,
+            DisplayName = _model.DisplayName,
+            Resources = _model.Resources ?? [],
         };
 
 

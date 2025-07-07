@@ -24,7 +24,7 @@ public partial class RoleService
         return claims;
     }
     
-    public async Task<bool> AddClaimToRoleAsync(string roleId, AddClaimCommand request, CancellationToken cancellationToken )
+    public async Task<bool> AddClaimToRoleAsync(AddClaimCommand request, CancellationToken cancellationToken )
     {
         var role = await roleManager.FindByNameAsync(request.Owner)
                    ?? throw new NotFoundException($"Role : {request.Owner} not found.");
@@ -41,7 +41,7 @@ public partial class RoleService
         return result.Succeeded;
     }
     
-    public async Task<bool> ChangeClaimOfRoleAsync( string roleId, ChangeClaimCommand request, CancellationToken cancellationToken)
+    public async Task<bool> ChangeClaimOfRoleAsync(ChangeClaimCommand request, CancellationToken cancellationToken)
     {
         var role = await roleManager.FindByNameAsync(request.Owner)
                    ?? throw new NotFoundException($"Role : {request.Owner} not found.");
@@ -53,6 +53,8 @@ public partial class RoleService
         
         var removeResult = await roleManager.RemoveClaimAsync(role, claimToRemove);
         
+        currentClaims = await roleManager.GetClaimsAsync(role);
+        
         var claimToAdd = currentClaims.FirstOrDefault<Claim>(c => c.Type.Equals(request.Modified.Type)
                                                                   && c.Value.Equals(request.Modified.Value));
         if (claimToAdd != null) return removeResult.Succeeded;
@@ -61,7 +63,7 @@ public partial class RoleService
         return removeResult.Succeeded && addResult.Succeeded;
     }
     
-    public async Task<bool> RemoveClaimOfRoleAsync( string roleId, RemoveClaimCommand request,CancellationToken cancellationToken )
+    public async Task<bool> RemoveClaimOfRoleAsync(RemoveClaimCommand request,CancellationToken cancellationToken )
     {
         var role = await roleManager.FindByNameAsync(request.Owner)
                    ?? throw new NotFoundException($"Role : {request.Owner} not found.");
@@ -77,7 +79,7 @@ public partial class RoleService
     }
 
     // clone from UpdatePermissionsToRoleAsync
-    public async Task<string> UpdateClaimsToRoleAsync(string roleId, AssignClaimsCommand request, CancellationToken cancellationToken )
+    public async Task<string> UpdateClaimsToRoleAsync(AssignClaimsCommand request, CancellationToken cancellationToken )
     {
         var role = await roleManager.FindByIdAsync(request.Owner)
                    ?? throw new NotFoundException($"Role with Id: {request.Owner} not found");
@@ -104,7 +106,7 @@ public partial class RoleService
     }
     
     // clone assign role to user
-    public async Task<string> AssignClaimsToRoleAsync(string roleId, AssignClaimsCommand request, CancellationToken cancellationToken)
+    public async Task<string> AssignClaimsToRoleAsync(AssignClaimsCommand request, CancellationToken cancellationToken)
     {
         ArgumentNullException.ThrowIfNull(request);
         var role = await roleManager.FindByIdAsync(request.Owner)

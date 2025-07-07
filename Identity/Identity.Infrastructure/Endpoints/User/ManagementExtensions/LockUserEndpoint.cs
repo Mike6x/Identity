@@ -10,7 +10,7 @@ public static class LockUserEndpoint
     internal static RouteHandlerBuilder MapLockUserEndpoint(this IEndpointRouteBuilder endpoints)
     {
         return endpoints.MapPost("/{userId}/lock", (string userId, IUserService service,CancellationToken cancellationToken) 
-                => service.LockUserAsync(userId,cancellationToken))
+                => service.LockUserAsync(userId, 30, cancellationToken))
                     .WithName(nameof(LockUserEndpoint))
                     .WithSummary("Lock user for 30 days")
                     // .RequirePermission("Permissions.Handlers.Remove")

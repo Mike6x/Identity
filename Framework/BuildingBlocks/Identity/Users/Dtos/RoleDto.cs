@@ -1,6 +1,6 @@
 ﻿using Identity.Core.Features.Claim;
 
-namespace Identity.Core.Features.Role;
+namespace BuildingBlocks.Identity.Users.Dtos;
 
 public class RoleDto
 {
@@ -16,7 +16,7 @@ public class RoleDto
 
     }
 
-    private RoleDto(string roleName)
+    public RoleDto(string roleName)
     {
         Id = Guid.NewGuid();
         Name = roleName;
@@ -27,3 +27,6 @@ public class RoleDto
         Id = roleId;         
     }
 }
+
+
+

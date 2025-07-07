@@ -8,7 +8,7 @@ public static class GetUserByPhoneNumberEndpoint
 {
     internal static RouteHandlerBuilder MapGetUserByPhoneNumberEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        return endpoints.MapGet("phoneNumber/{phoneNumber}/", (string phoneNumber, IUserService service) =>
+        return endpoints.MapGet("phoneNumber/{phoneNumber}", (string phoneNumber, IUserService service) =>
         {
             return service.GetByPhoneAsync(phoneNumber, CancellationToken.None);
         })

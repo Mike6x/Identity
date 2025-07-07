@@ -1,8 +1,8 @@
-﻿using Identity.Core.Features.User.Dtos;
+﻿using BuildingBlocks.Identity.Users.Dtos;
 
 namespace Identity.Core.Features.User.AssignUserRole;
 
 public class AssignUserRoleCommand
 {
-    public List<UserRoleDetail> UserRoles { get; set; } = [];
+    public List<RoleSummaryDto> UserRoles { get; set; } = [];
 }

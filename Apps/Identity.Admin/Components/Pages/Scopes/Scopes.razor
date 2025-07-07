@@ -2,12 +2,12 @@
 
 <PageHeader Title="Scopes" Header="Scopes" SubHeader="Manage scopes." />
 
-<EntityTable TEntity="ScopeDto" TId="string" TRequest="ScopeViewModel" Context="@Context">
+<EntityTable TEntity="ScopeSummaryDto" TId="string" TRequest="ScopeViewModel" Context="@Context">
 
     <ExtraActions>
         @if (_canViewScopeResources)
         {
-            <MudMenuItem @onclick="@(() => ManageResources(@context))">Scope Details</MudMenuItem>
+            <MudMenuItem @onclick="@(() => ToScopeDetails(@context.Id))">Scope Details</MudMenuItem>
         }
     </ExtraActions>
 

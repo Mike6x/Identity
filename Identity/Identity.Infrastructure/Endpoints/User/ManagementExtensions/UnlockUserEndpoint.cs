@@ -10,7 +10,7 @@ public static class UnLockUserEndpoint
     internal static RouteHandlerBuilder MapUnLockUserEndpoint(this IEndpointRouteBuilder endpoints)
     {
         return endpoints.MapPost("/{userId}/unlock", (string userId, IUserService service, CancellationToken cancellationToken) 
-                =>  service.UnlockUserAsync(userId,cancellationToken))
+                =>  service.LockUserAsync(userId, 0, cancellationToken))
                         .WithName(nameof(UnLockUserEndpoint))
                         .WithSummary("UnLock user")
                         // .RequirePermission("Permissions.Handlers.Remove")

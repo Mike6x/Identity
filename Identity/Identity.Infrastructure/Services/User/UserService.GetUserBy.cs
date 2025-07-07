@@ -1,7 +1,5 @@
 using BuildingBlocks.Exceptions;
-using Identity.Core.Entities;
-using Identity.Core.Features.User.Dtos;
-using Mapster;
+using BuildingBlocks.Identity.Users.Dtos;
 using Microsoft.EntityFrameworkCore;
 
 namespace Identity.Infrastructure.Services.User
@@ -12,7 +10,7 @@ namespace Identity.Infrastructure.Services.User
         
         public Task<int> GetCountAsync(CancellationToken cancellationToken)
         {
-            return EntityFrameworkQueryableExtensions.AsNoTracking<AppUser>(userManager.Users).CountAsync(cancellationToken);
+            return userManager.Users.AsNoTracking().CountAsync(cancellationToken);
         }
         
         public async Task<bool> ExistsWithEmailAsync(string email, Guid? exceptId = null)
@@ -30,44 +28,42 @@ namespace Identity.Infrastructure.Services.User
         public async Task<bool> ExistsWithPhoneNumberAsync(string phoneNumber, Guid? exceptId = null)
         {
             EnsureValidTenant();
-            return await EntityFrameworkQueryableExtensions.FirstOrDefaultAsync<AppUser>(userManager.Users, x => x.PhoneNumber == phoneNumber) is { } user && user.Id != exceptId;
+            return await userManager.Users.FirstOrDefaultAsync(x => x.PhoneNumber == phoneNumber) is { } user && user.Id != exceptId;
         }
         
         
-        public async Task<UserDetail> GetByNameAsync(string name, CancellationToken cancellationToken)
+        public async Task<UserDto> GetByNameAsync(string name, CancellationToken cancellationToken)
         {
-            var user = await EntityFrameworkQueryableExtensions
-                .AsNoTracking<AppUser>(userManager.Users)
-                .Where(u => u.UserName == name)
-                    .FirstOrDefaultAsync(cancellationToken);
-
-            _ = user ?? throw new NotFoundException($"User with username: {name} not found!");
-
-            return user.Adapt<UserDetail>();
+            var user = await userManager.Users
+                    .AsNoTracking()
+                    .Where(u => u.UserName == name)
+                    .FirstOrDefaultAsync(cancellationToken)
+                       ?? throw new NotFoundException($"User with username: {name} not found!");
+                       
+            return await GetUserDetailsAsync(user, cancellationToken);
         }
 
-        public async Task<UserDetail> GetByEmailAsync(string email, CancellationToken cancellationToken)
+        public async Task<UserDto> GetByEmailAsync(string email, CancellationToken cancellationToken)
         {
-            var user = await EntityFrameworkQueryableExtensions
-                .AsNoTracking<AppUser>(userManager.Users)
-                .Where(u => u.Email == email)
-                    .FirstOrDefaultAsync(cancellationToken);
+            var user = await userManager.Users
+                    .AsNoTracking()
+                    .Where(u => u.Email == email)
+                    .FirstOrDefaultAsync(cancellationToken)
+                       ?? throw new NotFoundException($"User with email address: {email} not found!");
 
-            _ = user ?? throw new NotFoundException($"User with email address: {email} not found!");
-
-            return user.Adapt<UserDetail>();
+            return await GetUserDetailsAsync(user, cancellationToken);
         }
 
-        public async Task<UserDetail> GetByPhoneAsync(string phone, CancellationToken cancellationToken)
+        public async Task<UserDto> GetByPhoneAsync(string phone, CancellationToken cancellationToken)
         {
-            var user = await EntityFrameworkQueryableExtensions
-                .AsNoTracking<AppUser>(userManager.Users)
+            var user = await userManager.Users
+                .AsNoTracking()
                 .Where(u => u.PhoneNumber == phone)
                     .FirstOrDefaultAsync(cancellationToken);
 
-            _ = user ?? throw new NotFoundException($"User with phone number: {phone} not found!");
+            if(user == null) throw new NotFoundException($"User with phone number: {phone} not found!");
 
-            return user.Adapt<UserDetail>();
+            return await GetUserDetailsAsync(user, cancellationToken);
         }
 
         #endregion

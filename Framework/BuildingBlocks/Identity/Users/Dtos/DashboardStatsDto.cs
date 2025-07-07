@@ -1,4 +1,4 @@
-﻿namespace Identity.Core.Features.User.Dtos;
+﻿namespace BuildingBlocks.Identity.Users.Dtos;
 public class DashboardStatsDto
 {
     public int TotalUsers { get; set; }
@@ -7,5 +7,5 @@ public class DashboardStatsDto
     
     public int LockedUsers { get; set; }
     public int NewUsersToday { get; set; }
-    public IEnumerable<RecentUserDto> RecentUsers { get; set; } = new List<RecentUserDto>();
+    public IEnumerable<UserOnlineDto> RecentUsers { get; set; } = new List<UserOnlineDto>();
 }

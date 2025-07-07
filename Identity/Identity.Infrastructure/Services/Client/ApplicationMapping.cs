@@ -14,6 +14,21 @@ namespace Identity.Infrastructure.Services.Client;
 
 public static class ClientMapping
 {
+    public static ApplicationSummaryDto ToSummaryDto(this OpenIddictEntityFrameworkCoreApplication source)
+    {
+        return new ApplicationSummaryDto
+        {
+            Id = source.Id ?? string.Empty,
+            ApplicationType = source.ApplicationType ?? string.Empty,
+            ClientId = source.ClientId ?? string.Empty,
+            ClientType = source.ClientType ?? string.Empty,
+            ClientSecret = source.ClientSecret,
+            JsonWebKeySet = source.JsonWebKeySet,
+            ConsentType = source.ConsentType ?? string.Empty,
+            DisplayName = source.DisplayName ?? string.Empty,
+        };
+    }
+
     public static ApplicationDto ToDto(this OpenIddictEntityFrameworkCoreApplication source)
     {
         return new ApplicationDto

@@ -1,5 +1,6 @@
 ﻿using Ardalis.Specification.EntityFrameworkCore;
 using BuildingBlocks.Exceptions;
+using BuildingBlocks.Identity.Users.Dtos;
 using BuildingBlocks.Paging;
 using BuildingBlocks.Specifications;
 using Identity.Core.Entities;
@@ -17,41 +18,39 @@ namespace Identity.Infrastructure.Services.Role;
 public sealed partial class RoleService(
     RoleManager<AppRole> roleManager,
     UserManager<AppUser> userManager
-    // ApplicationDbContext context,
-    // ICurrentUser currentUser
     ) : IRoleService
 {
-    public async Task<List<RoleDto>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<List<RoleSummaryDto>> GetAllAsync(CancellationToken cancellationToken)
     {
         return await roleManager.Roles.AsNoTracking()
-            .Select(role => role.ToDto())
+            .Select(role => role.ToSummaryDto())
             .ToListAsync(cancellationToken);
     }
-    public async Task<PagedList<RoleDto>> SearchAsync(SearchRolesRequest request, CancellationToken cancellationToken)
+    public async Task<PagedList<RoleSummaryDto>> SearchAsync(SearchRolesRequest request, CancellationToken cancellationToken)
     {
         var spec = new EntitiesByPaginationFilterSpec<AppRole>(request);
 
         var roles = await roleManager.Roles
             .WithSpecification(spec)
-            .ProjectToType<RoleDto>()
+            .ProjectToType<RoleSummaryDto>()
             .ToListAsync(cancellationToken);
 
         var count = await roleManager.Roles.CountAsync(cancellationToken);
 
-        return new PagedList<RoleDto>(roles, request.PageNumber, request.PageSize, count);
+        return new PagedList<RoleSummaryDto>(roles, request.PageNumber, request.PageSize, count);
     }
-    public async Task<RoleDto?> GetAsync(string roleId)
+    public async Task<RoleDto?> GetByIdAsync(string roleId)
     {
         var role = await roleManager.FindByIdAsync(roleId) 
                    ?? throw new NotFoundException($"Role with Id: {roleId} could not be located");
 
         var roleDto = role.ToDto();
-       
+        
         var claims = await roleManager.GetClaimsAsync(role);
         foreach (var claim in claims)
         {
             roleDto.Claims.Add(ClaimViewModel.FromClaim(claim));
-            if(claim.Type == AppClaims.Permission) roleDto.Permissions?.Add(claim.Value);
+            if(claim.Type == AppClaims.Permission) roleDto.Permissions.Add(claim.Value);
         }
         
         return roleDto;
@@ -137,7 +136,7 @@ public sealed partial class RoleService(
         return role.ToDto();
     }
     
-    public async Task DeleteAsync(string roleId)
+    public async Task<bool> DeleteAsync(string roleId)
     {
         var role = await roleManager.FindByIdAsync(roleId) ?? throw new NotFoundException($"Role with Id: {roleId} not found");
         
@@ -147,7 +146,7 @@ public sealed partial class RoleService(
 
         var result =  await roleManager.DeleteAsync(role);
         
-        if (!result.Succeeded) throw new InternalServerException("DeleteRoleAsync failed. ");
+        return result.Succeeded;
     }
 
 }

@@ -26,7 +26,7 @@ public partial class Applications : ComponentBase
     
     private bool _canViewItemDetails;
     
-    private EntityClientTableContext<ApplicationDto, string?, ApplicationViewModel> Context { get; set; }
+    private EntityClientTableContext<ApplicationSummaryDto, string?, ApplicationViewModel> Context { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
@@ -39,22 +39,22 @@ public partial class Applications : ComponentBase
             _canViewItemDetails =
                 await AuthService.HasPermissionAsync(state.User, AppActions.View, AppResources.Clients);
 
-        Context = new EntityClientTableContext<ApplicationDto, string?, ApplicationViewModel>(
+        Context = new EntityClientTableContext<ApplicationSummaryDto, string?, ApplicationViewModel>(
             entityName: "Application",
             entityNamePlural: "Applications",
             entityResource: AppResources.Clients,
             searchAction: AppActions.View,
             fields:
             [
-                new EntityField<ApplicationDto>(item => item.ClientId, "ClientId"),
-                new EntityField<ApplicationDto>(item => item.DisplayName, "Display Name"),
-                new EntityField<ApplicationDto>(item => item.ClientType, "Client Type"),
-                new EntityField<ApplicationDto>(item => item.ConsentType, "Consent Type"),
+                new EntityField<ApplicationSummaryDto>(item => item.ClientId, "ClientId"),
+                new EntityField<ApplicationSummaryDto>(item => item.DisplayName, "Display Name"),
+                new EntityField<ApplicationSummaryDto>(item => item.ClientType, "Client Type"),
+                new EntityField<ApplicationSummaryDto>(item => item.ConsentType, "Consent Type"),
         
         
-                new EntityField<ApplicationDto>(item => item.Id, "Internal Id"),
-                new EntityField<ApplicationDto>(item => item.ApplicationType, "App Type"),
-                new EntityField<ApplicationDto>(item => item.IsConfidentialClient, "IsConfidential", Type: typeof(bool))
+                new EntityField<ApplicationSummaryDto>(item => item.Id, "Internal Id"),
+                new EntityField<ApplicationSummaryDto>(item => item.ApplicationType, "App Type"),
+                new EntityField<ApplicationSummaryDto>(item => item.IsConfidentialClient, "IsConfidential", Type: typeof(bool))
             ],
             idFunc: item => item.Id.ToString(),
             loadDataFunc: async () => (await ApiClient.GetApplicationsEndpointAsync()).ToList(),
@@ -74,7 +74,7 @@ public partial class Applications : ComponentBase
             );
     }
     
-    protected void ManageDetails(ApplicationDto client) => Navigator?.NavigateTo($"/identity/Applications/{client.Id}/details");
+    private void ToApplicationDetails(in string clientId) => Navigator?.NavigateTo($"/identity/Applications/{clientId}/details");
     
 }
 

@@ -8,62 +8,59 @@ namespace Identity.Admin.Components.OpenIddict
     {
         [CascadingParameter]
         public required IMudDialogInstance MudDialog { get; set; }
-
-        [Inject]
-        public ISnackbar? SnackBar { get; set; }
-
-        [Inject]
-        protected IApiClient? ApiClient { get; set; }  
+        
+        [Parameter]
+        public IApiClient? ApiClient { get; set; }  
 
         [Parameter]
         public string? Owner { get; set; }
        
         [Parameter]
-        public IEnumerable<RoleDto>? ExistingRoles { get; set; }
+        public IEnumerable<RoleSummaryDto>? ExistingRoles { get; set; }
 
         private string? _error;
-        private RoleDto? _selectedOption;
+        private RoleSummaryDto? _selectedOption;
 
-        /// <summary>
-        /// Add role to user and close the dialog
-        /// </summary>
-        private Task AddRoleAsync()
+
+        private async Task AddRoleAsync()
         {
-            if (null == _selectedOption) return Task.CompletedTask;
+            if (ApiClient == null || string.IsNullOrEmpty(Owner) || _selectedOption == null || ExistingRoles == null) return;
             
-            if (ExistingRoles != null && !ExistingRoles.Any(u => u.Name.Equals(_selectedOption.Name)))
+            if (!ExistingRoles.Any(u => u.Name.Equals(_selectedOption.Name)))
             {
-                // var result = await ApiClient.AssignRolesToUserEndpointAsync(Owner, new AssignUserRoleCommand()
-                // {
-                //
-                //
-                // };
-                // new[] { selectedOption });
-                // if (result.IsSuccess)
-                // {
-                //     MudDialog.Close(DialogResult.Ok<RoleDto>(selectedOption));
-                //     return;
-                // }
-                // error = result.ToString();
-                return Task.CompletedTask;
-            }                
-            _error = $"{_selectedOption.Name} role is already assigned to user.";
+                var request = new AssignUserRoleCommand {
+                    UserRoles = [ _selectedOption
+                        // new UserRoleDetail {
+                        //     RoleId = _selectedOption.Id,
+                        //     RoleName = _selectedOption.Name,
+                        //     Description = _selectedOption.Description,
+                        //     Enabled = true
+                        // }
+                    ]
+                };
 
-            return Task.CompletedTask;
+                var result = await ApiClient.AssignRolesToUserEndpointAsync(Owner, request);
+                
+                if(result)
+                {
+                    MudDialog.Close(DialogResult.Ok(_selectedOption));
+                    return;
+                }
+                _error = "internal error";
+            }  
+                
+            _error = $"{_selectedOption.Name} role is already assigned to user.";
         }
 
-
-        private void Cancel() => MudDialog.Cancel();
-        
-        private async Task<IEnumerable<RoleDto>?> SearchRoles(string value, CancellationToken ct)
+        private async Task<IEnumerable<RoleSummaryDto>?> SearchRoles(string value, CancellationToken cancellationToken)
         {
-            // if text is null or empty, don't return values (drop-down will not open)
-            if (string.IsNullOrEmpty(value) || ApiClient == null)  return null;
+            // if a text is null or empty, don't return values (drop-down will not open)
+            if (string.IsNullOrEmpty(value) || ApiClient == null) return null;
             
-            var result = await ApiClient?.SearchRolesEndpointAsync(new SearchRolesRequest
+            var result = await ApiClient.SearchRolesEndpointAsync(new SearchRolesRequest
             {
                 RoleFilter = value
-            })!;
+            }, cancellationToken);
             
             return result.Items;
         }

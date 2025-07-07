@@ -10,14 +10,9 @@ public static class AssignClaimsToUserEndpoint
 {
     internal static RouteHandlerBuilder MapAssignClaimsToUserEndpoint(this IEndpointRouteBuilder endpoints)
     {
-        return endpoints.MapPost("/{userId}/claims", (
-                string userId, 
-                AssignClaimsCommand request,
-                IUserService service,
-                CancellationToken cancellationToken) =>
-            {
-                return service.AssignClaimsToUserAsync(userId, request, cancellationToken);
-            })
+        return endpoints.MapPost("/{userId}/claims", (string userId, AssignClaimsCommand request, IUserService service,
+                CancellationToken cancellationToken) 
+                => service.AssignClaimsToUserAsync(request, cancellationToken))
             .WithName(nameof(AssignClaimsToUserEndpoint))
             .WithSummary("Assign a list of claims")
             // .RequirePermission("Permissions.Handlers.View")

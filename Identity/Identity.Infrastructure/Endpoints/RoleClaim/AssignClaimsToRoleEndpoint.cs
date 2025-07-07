@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
-namespace Identity.Infrastructure.Endpoints.Claim;
+namespace Identity.Infrastructure.Endpoints.RoleClaim;
 
 public static class AssignClaimsToRoleEndpoint
 {
@@ -19,9 +19,9 @@ public static class AssignClaimsToRoleEndpoint
                 [FromServices] IValidator<AssignClaimsCommand> validator,
                 CancellationToken cancellationToken) =>
             {
-                if (roleId != request.Owner) return Results.BadRequest();
-                var response = await roleService.AssignClaimsToRoleAsync(roleId,request,cancellationToken); //
-                return Results.Ok(response);
+                // if (roleId != request.Owner) return Results.BadRequest();
+                var response = await roleService.AssignClaimsToRoleAsync(request,cancellationToken); //
+                return response;
             })
             .WithName(nameof(AssignClaimsToRoleEndpoint))
             .WithSummary("Assign Claims to the role.")

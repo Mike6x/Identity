@@ -9,29 +9,29 @@ namespace Identity.Infrastructure.Services.User;
 
 public partial class UserService
 {
-    public async Task <bool> LockUserAsync(string userId, CancellationToken cancellationToken)
-    {
-        var user = await userManager.FindByIdAsync(userId)
-                   ?? throw new NotFoundException($"User with Id: {userId} doesn't exist.");
-
-        var result = await userManager.SetLockoutEnabledAsync(user, true);
-        await userManager.SetLockoutEndDateAsync(user, DateTimeOffset.Now.AddDays(90));
-        await userManager.UpdateSecurityStampAsync(user);
-        
-        return result.Succeeded;
-    }
-    
-    public async Task<bool> UnlockUserAsync(string userId, CancellationToken cancellationToken)
-    {
-        var user = await userManager.FindByIdAsync(userId)
-                   ?? throw new NotFoundException($"User with Id: {userId} doesn't exist.");
-        
-
-        var result = await userManager.SetLockoutEndDateAsync(user, null);
-        
-        return result.Succeeded;
-  
-    }
+    // public async Task <bool> LockUser(string userId, CancellationToken cancellationToken)
+    // {
+    //     var user = await userManager.FindByIdAsync(userId)
+    //                ?? throw new NotFoundException($"User with Id: {userId} doesn't exist.");
+    //
+    //     var result = await userManager.SetLockoutEnabledAsync(user, true);
+    //     await userManager.SetLockoutEndDateAsync(user, DateTimeOffset.Now.AddDays(90));
+    //     await userManager.UpdateSecurityStampAsync(user);
+    //     
+    //     return result.Succeeded;
+    // }
+    //
+    // public async Task<bool> UnlockUserAsync(string userId, CancellationToken cancellationToken)
+    // {
+    //     var user = await userManager.FindByIdAsync(userId)
+    //                ?? throw new NotFoundException($"User with Id: {userId} doesn't exist.");
+    //     
+    //
+    //     var result = await userManager.SetLockoutEndDateAsync(user, null);
+    //     
+    //     return result.Succeeded;
+    //
+    // }
     
     public async Task SetActiveStatusAsync(ToggleUserStatusCommand request, CancellationToken cancellationToken)
     {
@@ -65,17 +65,36 @@ public partial class UserService
 
     public async Task DisableAsync(string userId)
     {
-        AppUser? user = await userManager.FindByIdAsync(userId);
-
-        _ = user ?? throw new NotFoundException("User Not Found.");
-
+        var user = await userManager.FindByIdAsync(userId)
+                   ?? throw new NotFoundException($"User With ID: {userId} Not Found.");
+        
         user.IsActive = false;
-        IdentityResult? result = await userManager.UpdateAsync(user);
+        var result = await userManager.UpdateAsync(user);
 
         if (!result.Succeeded)
         {
-            List<string> errors = result.Errors.Select(error => error.Description).ToList();
+            var errors = result.Errors.Select(error => error.Description).ToList();
             throw new GeneralException("Delete profile failed", errors);
         }
+    }
+    
+    public async Task <bool> LockUserAsync(string userId, int lockedDays, CancellationToken cancellationToken)
+    {
+        var user = await userManager.FindByIdAsync(userId)
+                   ?? throw new NotFoundException($"User with Id: {userId} doesn't exist.");
+        
+        IdentityResult result;
+        if (lockedDays > 0)
+        {
+            result = await userManager.SetLockoutEnabledAsync(user, true);
+            await userManager.SetLockoutEndDateAsync(user, DateTimeOffset.Now.AddDays(90));
+            await userManager.UpdateSecurityStampAsync(user);
+        }
+        else
+        {
+            result = await userManager.SetLockoutEndDateAsync(user, null);
+        }
+        
+        return result.Succeeded;
     }
 }

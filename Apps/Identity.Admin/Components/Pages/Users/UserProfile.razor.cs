@@ -1,4 +1,5 @@
 ﻿using Client.Infrastructure.Api;
+using Client.Infrastructure.Auth;
 using Identity.Admin.Components.Common;
 using Identity.Admin.Components.Dialogs;
 using Identity.Shared.Authorization;
@@ -13,30 +14,38 @@ namespace Identity.Admin.Components.Pages.Users;
 public partial class UserProfile
 {
     [CascadingParameter]
-    protected Task<AuthenticationState> AuthState { get; set; } = null!;
+    protected Task<AuthenticationState>? AuthState { get; set; }
     [Inject]
-    protected IAuthorizationService AuthService { get; set; } = null!;
+    protected IAuthorizationService? AuthService { get; set; }
+    
     [Inject]
-    protected IApiClient UsersClient { get; set; } = null!;
-
+    public required IDialogService Dialog { get; set; }
+    
+    [Inject]
+    public required IApiClient UsersClient { get; set; } 
+    
     [Parameter]
-    public string? Id { get; set; }
-    [Parameter]
-    public string? Title { get; set; }
-    [Parameter]
-    public string? Description { get; set; }
-
+    public required  string Id { get; set; }
+    
+    private readonly UpdateUserCommand _model = new();
+    private string Title => $"{_model.FirstName} {_model.LastName}'s Profile";
+    private string Description => $"Id: {_model.Id}";
+    private bool IsOnline => _model.IsOnline?? false;
+    
     private string Tenant { get; set; } = TenantConstants.Root.Id;
-    private readonly UpdateUserCommand _profileModel = new();
 
     private CustomValidation? _customValidation;
-
+    
+    private bool _canEditItems;
+    
+    private bool _canSearchItems;
+    private string _searchString = string.Empty;
+    
     private bool _loaded;
     private bool _isActive;
     private char _firstLetterOfName;
     private Uri? _imageUrl;
-
-    private bool IsOnline => _profileModel.IsOnline?? false;
+    
 
     private bool IsLocked { get; set; }
     private DateTime? LockoutEndDate { get; set; }
@@ -44,64 +53,64 @@ public partial class UserProfile
 
     protected override async Task OnInitializedAsync()
     {
-        if (await ApiHelper.ExecuteCallGuardedAsync(
-                () => UsersClient.GetUserEndpointAsync(Id!), Toast, Navigation)
-            is UserDetail user)
+        if (AuthState == null || string.IsNullOrEmpty(Id)) return;
+            
+        var state = await AuthState;
+        if (AuthService != null)
         {
-            _profileModel.Id = user.Id.ToString();
-            _profileModel.FirstName = user.FirstName ?? string.Empty;
-            _profileModel.LastName = user.LastName ?? string.Empty;
-            _profileModel.UserName = user.UserName ?? string.Empty;
-            _profileModel.Email = user.Email ?? string.Empty;
-            _profileModel.PhoneNumber = user.PhoneNumber ?? string.Empty;
-            _profileModel.IsActive = _isActive = user.IsActive;
+            _canEditItems = await AuthService.HasPermissionAsync(state.User, AppActions.Update, AppResources.Users);
+            _canSearchItems = await AuthService.HasPermissionAsync(state.User, AppActions.Search, AppResources.Users);
+        }
+        
+        if (await ApiHelper.ExecuteCallGuardedAsync(
+                () => UsersClient.GetUserEndpointAsync(Id), Toast, Navigation)
+            is { } user)
+        {
+            _model.Id = user.Id.ToString();
+            _model.FirstName = user.FirstName ?? string.Empty;
+            _model.LastName = user.LastName ?? string.Empty;
+            _model.UserName = user.UserName ?? string.Empty;
+            _model.Email = user.Email ?? string.Empty;
+            _model.PhoneNumber = user.PhoneNumber ?? string.Empty;
+            _model.IsActive = _isActive = user.IsActive;
 
-            _profileModel.IsOnline = user.IsOnline;
-            _profileModel.EmailConfirmed = user.EmailConfirmed;
+            _model.IsOnline = user.IsOnline;
+            _model.EmailConfirmed = user.EmailConfirmed;
 
-             _profileModel.ImageUrl = user.ImageUrl;
+             _model.ImageUrl = user.ImageUrl;
 
-            _profileModel.CreatedBy = user.CreatedBy.ToString() ?? string.Empty;
-            _profileModel.CreatedOn = user.CreatedOn;
-            _profileModel.LastModifiedBy = user.LastModifiedBy.ToString() ?? string.Empty;
-            _profileModel.LastModifiedOn = user.LastModifiedOn ?? user.CreatedOn;
+            _model.CreatedBy = user.CreatedBy.ToString() ?? string.Empty;
+            _model.CreatedOn = user.CreatedOn;
+            _model.LastModifiedBy = user.LastModifiedBy.ToString() ?? string.Empty;
+            _model.LastModifiedOn = user.LastModifiedOn ?? user.CreatedOn;
 
-            if (_profileModel.FirstName.Length > 0)
+            if (_model.FirstName.Length > 0)
             {
-                _firstLetterOfName = _profileModel.FirstName.ToUpper(System.Globalization.CultureInfo.CurrentCulture).FirstOrDefault();
+                _firstLetterOfName = _model.FirstName.ToUpper(System.Globalization.CultureInfo.CurrentCulture).FirstOrDefault();
             }
 
             if (user.LockoutEnd != null)
             {
-                _profileModel.LockoutEnd = (DateTime)user.LockoutEnd;
+                _model.LockoutEnd = (DateTime)user.LockoutEnd;
 
                 LockoutEndDate = user.LockoutEnd.Value.ToLocalTime().Date;
                 LockoutEndTime = user.LockoutEnd.Value.ToLocalTime().TimeOfDay;
                 var now = DateTimeOffset.Now;
                 IsLocked = user.LockoutEnd > now;
             }
-
-
+            
             _imageUrl = user.ImageUrl;
-            Title = $"{_profileModel.FirstName} {_profileModel.LastName}'s Profile";
-            Description = $"Id: {_profileModel.Id}";
-
+            
         }
 
-        var state = await AuthState;
-        //_canToggleUserStatus = await AuthService.HasPermissionAsync(state.User, FshActions.Update, FshResources.Users)
+
         _loaded = true;
     }
 
-    private void BackToUsers()
-    {
-        Navigation.NavigateTo("/identity/users");
-    }
-
-    private void BackToEmplyees()
-    {
-        Navigation.NavigateTo("/People/Employees");
-    }
+    private void BackToUsers() => Navigation.NavigateTo("/identity/users");
+    
+    private void BackToEmplyees() => Navigation.NavigateTo("/People/Employees");
+    
    
 
     private async Task SendVerificationEmailAsync()
@@ -111,8 +120,8 @@ public partial class UserProfile
         {
             Toast.Add("Verification email has been sent.", Severity.Success);
             _isActive = true;
-            _profileModel.IsActive = true;
-            _profileModel.EmailConfirmed = false;
+            _model.IsActive = true;
+            _model.EmailConfirmed = false;
         }
         else { Toast.Add("Internal error.", Severity.Error); }
     }
@@ -121,7 +130,7 @@ public partial class UserProfile
     {
         var forgotPasswordRequest = new ForgotPasswordCommand
         {
-            Email = _profileModel.Email!
+            Email = _model.Email!
         };
 
         await ApiHelper.ExecuteCallGuardedAsync(
@@ -140,7 +149,7 @@ public partial class UserProfile
             string message = _isActive ? "The Account have disabled" : "The Account have activated";
             Toast.Add(message, Severity.Success);
             _isActive = !_isActive!;
-            _profileModel.IsActive = _isActive;
+            _model.IsActive = _isActive;
         }
         else { Toast.Add("Internal error.", Severity.Error); }
 
@@ -150,9 +159,9 @@ public partial class UserProfile
 
     private async Task UnlockUserAsync()
     {
-        _profileModel.LockoutEnd = DateTime.UtcNow;
+        _model.LockoutEnd = DateTime.UtcNow;
         if (await ApiHelper.ExecuteCallGuardedAsync(
-            () => UsersClient.UpdateUserEndpointAsync(Id!, _profileModel), Toast))
+            () => UsersClient.UpdateUserEndpointAsync(Id!, _model), Toast))
         {
             Toast.Add("User is unlocked.", Severity.Success);
             await OnInitializedAsync();
@@ -162,12 +171,12 @@ public partial class UserProfile
 
     public async Task ClearOnlineStatus()
     {
-        if(_profileModel.IsOnline == true)
+        if(_model.IsOnline == true)
         {
-            _profileModel.IsOnline  = false;
+            _model.IsOnline  = false;
 
             if (await ApiHelper.ExecuteCallGuardedAsync(
-                () => UsersClient.UpdateUserEndpointAsync(Id!, _profileModel), Toast))
+                () => UsersClient.UpdateUserEndpointAsync(Id!, _model), Toast))
             {
                 Toast.Add("User status is offline now.", Severity.Success);
                 await OnInitializedAsync();
@@ -182,11 +191,11 @@ public partial class UserProfile
 
             LockoutEndDate += LockoutEndTime;
             var timeSpan = LockoutEndDate - DateTime.Now;
-            _profileModel.LockoutEnd = DateTime.UtcNow.Add((TimeSpan)timeSpan);
+            _model.LockoutEnd = DateTime.UtcNow.Add((TimeSpan)timeSpan);
         }
 
         if (await ApiHelper.ExecuteCallGuardedAsync(
-            () => UsersClient.UpdateUserEndpointAsync(Id!, _profileModel), Toast))
+            () => UsersClient.UpdateUserEndpointAsync(Id!, _model), Toast))
         {
             Toast.Add("Your Profile has been updated.", Severity.Success);
             await OnInitializedAsync();
@@ -206,7 +215,7 @@ public partial class UserProfile
         var result = await dialog.Result;
         if (!result!.Canceled)
         {
-            _profileModel.DeleteCurrentImage = true;
+            _model.DeleteCurrentImage = true;
             await UpdateUserAsync();
         }
     }
@@ -229,7 +238,7 @@ public partial class UserProfile
             byte[]? buffer = new byte[imageFile.Size];
             _ = await imageFile.OpenReadStream(AppConstants.MaxAllowedSize).ReadAsync(buffer);
             string? base64String = $"data:{AppConstants.StandardImageFormat};base64,{Convert.ToBase64String(buffer)}";
-            _profileModel.Image = new FileUploadCommand() { Name = fileName, Data = base64String, Extension = extension };
+            _model.Image = new FileUploadCommand() { Name = fileName, Data = base64String, Extension = extension };
 
             await UpdateUserAsync();
         }

@@ -41,7 +41,7 @@ public static class GetScopeEndpoint
     public static RouteHandlerBuilder MapGetScopeEndpoint(this IEndpointRouteBuilder endpoints)
     {
         return endpoints.MapGet("/{scopeId}",async (string scopeId, IScopeService service, CancellationToken cancellationToken) 
-                => await service.GetAsync(scopeId, cancellationToken))
+                => await service.GetByIdAsync(scopeId, cancellationToken))
             .WithName(nameof(GetScopeEndpoint))
             .WithSummary("Get scope details ")
             // .RequirePermission("Permissions.Handlers.View")

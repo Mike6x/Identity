@@ -1,4 +1,4 @@
-namespace Identity.Core.Features.User.Dtos;
+namespace BuildingBlocks.Identity.Users.Dtos;
 
 public class UserExportDto
 {

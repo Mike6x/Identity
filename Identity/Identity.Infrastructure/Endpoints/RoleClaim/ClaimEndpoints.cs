@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Routing;
 
-namespace Identity.Infrastructure.Endpoints.Claim;
+namespace Identity.Infrastructure.Endpoints.RoleClaim;
 
 public static class ClaimEndpoints
 {

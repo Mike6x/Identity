@@ -1,5 +1,6 @@
 using System.Security.Claims;
 using BuildingBlocks.DataIO;
+using BuildingBlocks.Identity.Users.Dtos;
 using BuildingBlocks.Paging;
 using BuildingBlocks.Storage.File.Features;
 using Identity.Core.Features.Claim;
@@ -11,7 +12,6 @@ using Identity.Core.Features.User.AssignUserRole;
 using Identity.Core.Features.User.ChangePassword;
 using Identity.Core.Features.User.CreateUser;
 using Identity.Core.Features.User.DeleteAccount;
-using Identity.Core.Features.User.Dtos;
 using Identity.Core.Features.User.ExportUsers;
 using Identity.Core.Features.User.ForgotPassword;
 using Identity.Core.Features.User.ResetPassword;
@@ -27,10 +27,10 @@ public interface IUserService
     # region Basic User CRUD functions
 
     Task<CreateUserResponse> CreateAsync(CreateUserCommand request, string origin, CancellationToken cancellationToken);
-    Task<UserDetail> GetAsync(string userId, CancellationToken cancellationToken);
-    Task<UserDto?> GetMeAsync(ClaimsPrincipal principal, CancellationToken cancellationToken);
-    Task<List<UserDetail>> GetAllAsync(CancellationToken cancellationToken);
-    Task<PagedList<UserDetail>> SearchAsync(SearchUsersRequest request, CancellationToken cancellationToken);
+    Task<UserDto> GetByIdAsync(string userId, CancellationToken cancellationToken);
+    Task<UserSummaryDto?> GetMeAsync(ClaimsPrincipal principal, CancellationToken cancellationToken);
+    Task<List<UserSummaryDto>> GetAllAsync(CancellationToken cancellationToken);
+    Task<PagedList<UserSummaryDto>> SearchAsync(SearchUsersRequest request, CancellationToken cancellationToken);
     Task UpdateAsync(UpdateUserCommand request, string userId, CancellationToken cancellationToken);
     Task UpdateProfileAsync(UpdateUserCommand request, string userId, string origin, CancellationToken cancellationToken);
     Task DeleteAsync(string userId);
@@ -49,12 +49,12 @@ public interface IUserService
     
     #region User Managgement Extention
 
-    Task<bool> LockUserAsync(string userId, CancellationToken cancellationToken);
-    Task<bool> UnlockUserAsync(string userId, CancellationToken cancellationToken);
-    Task<bool> HasPasswordAsync(HttpContext httpContext, CancellationToken cancellationToken);
+    // Task<bool> LockUser(string userId, CancellationToken cancellationToken);
+    // Task<bool> UnlockUserAsync(string userId, CancellationToken cancellationToken);
     
     Task SetActiveStatusAsync(ToggleUserStatusCommand request, CancellationToken cancellationToken);
     Task SetOnlineStatusAsync(string userId, bool isOnline, CancellationToken cancellationToken) ;
+    Task<bool> LockUserAsync(string userId, int lockedDays, CancellationToken cancellationToken);
     
     #endregion
 
@@ -65,9 +65,9 @@ public interface IUserService
     Task<bool> ExistsWithPhoneNumberAsync(string phoneNumber, Guid? exceptId = null);
     Task<int> GetCountAsync(CancellationToken cancellationToken);
     
-    Task<UserDetail> GetByNameAsync(string name, CancellationToken cancellationToken);
-    Task<UserDetail> GetByEmailAsync(string email, CancellationToken cancellationToken);
-    Task<UserDetail> GetByPhoneAsync(string phone, CancellationToken cancellationToken);    
+    Task<UserDto> GetByNameAsync(string name, CancellationToken cancellationToken);
+    Task<UserDto> GetByEmailAsync(string email, CancellationToken cancellationToken);
+    Task<UserDto> GetByPhoneAsync(string phone, CancellationToken cancellationToken);    
 
     #endregion
     
@@ -78,7 +78,7 @@ public interface IUserService
     Task ChangePasswordAsync(ChangePasswordCommand request, string userId, CancellationToken cancellationToken);
 
     Task DeleteAccountAsync(HttpContext httpContext, DeleteAccountModel request, CancellationToken cancellationToken);
-    
+    Task<bool> HasPasswordAsync(HttpContext httpContext, CancellationToken cancellationToken);
         
     Task<Guid> GetOrCreateFromPrincipalAsync(ClaimsPrincipal principal, CancellationToken cancellationToken);
     
@@ -93,10 +93,13 @@ public interface IUserService
 
     #endregion
     
-    #region User role and permissions Management 
-
-    Task<List<UserRoleDetail>> GetUserRolesAsync(string userId, CancellationToken cancellationToken);
-    Task<string> AssignRolesToUserAsync(string userId, AssignUserRoleCommand request, CancellationToken cancellationToken);
+    #region User role section 
+    Task<List<RoleSummaryDto>> GetUserRolesAsync(string userId, CancellationToken cancellationToken);
+    Task<bool> AssignRolesToUserAsync(string userId, AssignUserRoleCommand request, CancellationToken cancellationToken);
+    
+    #endregion
+    
+    #region User permissions Section 
 
     Task<List<string>?> GetUserPermissionsAsync(string userId, CancellationToken cancellationToken);
     Task<List<string>?> GetPermissionsAsync(string userId, CancellationToken cancellationToken);
@@ -109,12 +112,12 @@ public interface IUserService
     #region User Claim section
 
     Task<List<ClaimViewModel>> GetUserClaimsAsync(string userId, CancellationToken cancellationToken);
-    Task<string> AssignClaimsToUserAsync(string userId, AssignClaimsCommand request, CancellationToken cancellationToken);
+    Task<bool>AddClaimToUserAsync(AddClaimCommand request, CancellationToken cancellationToken);
+    Task<bool> RemoveClaimOfUserAsync(RemoveClaimCommand request, CancellationToken cancellationToken);
+    Task<bool> ChangeClaimOfUserAsync(ChangeClaimCommand request, CancellationToken cancellationToken);
     
-    Task<bool>AddClaimToUserAsync(string userId, AddClaimCommand request, CancellationToken cancellationToken);
-    Task<bool> RemoveClaimOfUserAsync(string userId, RemoveClaimCommand request, CancellationToken cancellationToken);
-    Task<bool> ChangeClaimOfUserAsync(string userId, ChangeClaimCommand request, CancellationToken cancellationToken);
-
+    Task<string> AssignClaimsToUserAsync(AssignClaimsCommand request, CancellationToken cancellationToken);
+    
     #endregion
 
 }

@@ -2,7 +2,7 @@
 
 @using Identity.Admin.Components.OpenIddict
 
-<PageHeader Title="@_title" Header="@_title" SubHeader="@_description" />
+<PageHeader Title="@Title" Header="@Title" SubHeader="@Description" />
 
 @if (!_loaded)
 {
@@ -11,10 +11,10 @@
 else
 {
     <MudPaper Elevation="4">
-        <EditForm Model="@_item" OnValidSubmit="SaveAsync">
+        <EditForm Model="@_model" OnValidSubmit="SaveAsync">
             <MudCard>
                 <MudCardContent>
-                    <CascadingValue Value="_item">
+                    <CascadingValue Value="_model">
                         <ScopeForm Dialog="Dialog" />
                     </CascadingValue>
                 </MudCardContent>

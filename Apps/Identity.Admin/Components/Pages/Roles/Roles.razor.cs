@@ -20,7 +20,7 @@ public partial class Roles : ComponentBase
     [Inject]
     public NavigationManager? Navigator { get; set; }
 
-    private EntityClientTableContext<RoleDto, string?, CreateOrUpdateRoleCommand>? Context { get; set; }
+    private EntityClientTableContext<RoleSummaryDto, string?, CreateOrUpdateRoleCommand>? Context { get; set; }
 
     private bool _canViewRoleClaims;
 
@@ -33,16 +33,16 @@ public partial class Roles : ComponentBase
         if (AuthService != null)
             _canViewRoleClaims = await AuthService.HasPermissionAsync(state.User, AppActions.View, AppResources.RoleClaims);
 
-        Context = new EntityClientTableContext<RoleDto, string?, CreateOrUpdateRoleCommand>(
+        Context = new EntityClientTableContext<RoleSummaryDto, string?, CreateOrUpdateRoleCommand>(
             entityName: "Role",
             entityNamePlural: "Roles",
             entityResource: AppResources.Roles,
             searchAction: AppActions.View,
             fields:
             [
-                new EntityField<RoleDto>(role => role.Name, "Name"),
-                new EntityField<RoleDto>(role => role.Description, "Description"),
-                new EntityField<RoleDto>(role => role.Id, "Id")
+                new EntityField<RoleSummaryDto>(role => role.Name, "Name"),
+                new EntityField<RoleSummaryDto>(role => role.Description, "Description"),
+                new EntityField<RoleSummaryDto>(role => role.Id, "Id")
             ],
             idFunc: role => role.Id.ToString(),
             loadDataFunc: async () => (await ApiClient.GetRolesEndpointAsync()).ToList(),
@@ -60,7 +60,9 @@ public partial class Roles : ComponentBase
             );
     }
 
-    private void ManagePermissions(in Guid  roleId) => Navigator?.NavigateTo($"/identity/roles/{roleId}/permissions");
+    private void ToRolePermissions(in Guid  roleId) => Navigator?.NavigateTo($"/identity/roles/{roleId}/permissions");
     
-    private void ManageClaims(in Guid roleId) => Navigator?.NavigateTo($"/identity/roles/{roleId}/claims");
+    private void ToRoleClaims(in Guid roleId) => Navigator?.NavigateTo($"/identity/roles/{roleId}/claims");
+    
+    private void ToRoleDetails(in Guid roleId) => Navigator?.NavigateTo($"/identity/roles/{roleId}/details");
 }

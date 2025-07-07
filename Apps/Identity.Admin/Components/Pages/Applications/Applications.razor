@@ -2,12 +2,12 @@
 
 <PageHeader Title="Applications" Header="Applications" SubHeader="Manage Application Clients." />
 
-<EntityTable TEntity="ApplicationDto" TId="string" TRequest="ApplicationViewModel" Context="@Context">
+<EntityTable TEntity="ApplicationSummaryDto" TId="string" TRequest="ApplicationViewModel" Context="@Context">
 
     <ExtraActions>
         @if (_canViewItemDetails)
         {
-            <MudMenuItem @onclick="@(() => ManageDetails(@context))">Client Details</MudMenuItem>
+            <MudMenuItem @onclick="@(() => ToApplicationDetails(@context.Id))">Client Details</MudMenuItem>
         }
     </ExtraActions>
 

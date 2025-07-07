@@ -18,7 +18,7 @@ public partial class UserRoles
     [Inject]
     protected IApiClient UsersClient { get; set; } = default!;
 
-    private List<UserRoleDetail> _userRolesList = default!;
+    private List<RoleSummaryDto> _userRolesList = default!;
 
     private string _title = string.Empty;
     private string _description = string.Empty;
@@ -38,14 +38,14 @@ public partial class UserRoles
 
         if (await ApiHelper.ExecuteCallGuardedAsync(
                 () => UsersClient.GetUserEndpointAsync(Id!), Toast, Navigation)
-            is UserDetail user)
+            is { } user)
         {
             _title = $"{user.FirstName} {user.LastName}'s Roles";
-            _description = string.Format("Manage {0} {1}'s Roles", user.FirstName, user.LastName);
+            _description = $"Manage {user.FirstName} {user.LastName}'s Roles";
 
             if (await ApiHelper.ExecuteCallGuardedAsync(
                     () => UsersClient.GetUserRolesEndpointAsync(user.Id.ToString()), Toast, Navigation)
-                is ICollection<UserRoleDetail> response)
+                is { } response)
             {
                 _userRolesList = response.ToList();
             }
@@ -71,7 +71,7 @@ public partial class UserRoles
         Navigation.NavigateTo("/identity/users");
     }
 
-    private bool Search(UserRoleDetail userRole) =>
+    private bool Search(RoleSummaryDto userRole) =>
         string.IsNullOrWhiteSpace(_searchString)
-            || userRole.RoleName?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) is true;
+            || userRole.Name?.Contains(_searchString, StringComparison.OrdinalIgnoreCase) is true;
 }

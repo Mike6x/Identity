@@ -1,7 +1,6 @@
 using Identity.Infrastructure.Endpoints.Authentication;
 using Identity.Infrastructure.Endpoints.Authenticator;
 using Identity.Infrastructure.Endpoints.Authorization;
-using Identity.Infrastructure.Endpoints.Claim;
 using Identity.Infrastructure.Endpoints.Client;
 using Identity.Infrastructure.Endpoints.CorsPolicy;
 using Identity.Infrastructure.Endpoints.CurrentUser;
@@ -9,6 +8,7 @@ using Identity.Infrastructure.Endpoints.ExternalCallback;
 using Identity.Infrastructure.Endpoints.ExternalLogin;
 using Identity.Infrastructure.Endpoints.permission;
 using Identity.Infrastructure.Endpoints.Role;
+using Identity.Infrastructure.Endpoints.RoleClaim;
 using Identity.Infrastructure.Endpoints.Scope;
 using Identity.Infrastructure.Endpoints.Status;
 using Identity.Infrastructure.Endpoints.User;

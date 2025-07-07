@@ -36,9 +36,6 @@ public partial class ApplicationSettings : ComponentBase
             return;
         }
         
-        MudDialog.Close(DialogResult.Ok<KeyValuePair<string,string>>(new KeyValuePair<string, string>(TokenLifeTimesHelper.GetValueFromName(_selectedSetting), _configuredValue)));
-        return;
+        MudDialog.Close(DialogResult.Ok(new KeyValuePair<string, string>(TokenLifeTimesHelper.GetValueFromName(_selectedSetting), _configuredValue)));
     }
-
-    private void Cancel() => MudDialog.Cancel();
 }

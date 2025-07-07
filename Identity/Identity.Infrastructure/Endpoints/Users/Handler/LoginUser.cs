@@ -8,15 +8,15 @@
 // public static class LoginUser
 // {
 //     
-//     public static async Task<Results<Ok<UserDto?>, ForbidHttpResult>> Handler(HttpContext httpContext, UserManager<AppUser> userManager)
+//     public static async Task<Results<Ok<UserSummaryDto?>, ForbidHttpResult>> Handler(HttpContext httpContext, UserManager<AppUser> userManager)
 //     {
 //         if (httpContext.User?.Identity?.IsAuthenticated != true)
-//             return TypedResults.Ok<UserDto?>(null);
+//             return TypedResults.Ok<UserSummaryDto?>(null);
 //
 //         var user = await userManager.GetUserAsync(httpContext.User);
 //         if (user is null)
 //             return TypedResults.Forbid();
-//         return TypedResults.Ok<UserDto?>(new UserDto
+//         return TypedResults.Ok<UserSummaryDto?>(new UserSummaryDto
 //         {
 //             Id = user.Id,
 //             Email = user.Email ?? "",

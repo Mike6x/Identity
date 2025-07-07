@@ -18,7 +18,7 @@ public static class GetCurrentUserEndpoint
                 throw new UnauthorizedException();
             }
 
-            return await service.GetAsync(userId, cancellationToken);
+            return await service.GetByIdAsync(userId, cancellationToken);
         })
         .WithName(nameof(GetCurrentUserEndpoint))
         .WithSummary("Get current user information based on token")

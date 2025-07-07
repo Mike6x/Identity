@@ -4,9 +4,7 @@ using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Identity.Core.Features.Client
 {
-    /// <summary>
-    /// ClientDetails or Client Dto
-    /// </summary>
+
     public class ApplicationViewModel
     {        
         public string Id { get; set; } = string.Empty;

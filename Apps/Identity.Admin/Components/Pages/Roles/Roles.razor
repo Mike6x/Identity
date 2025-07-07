@@ -2,12 +2,13 @@
 
 <PageHeader Title="Roles" Header="Roles" SubHeader="Manage Roles." />
 
-<EntityTable TEntity="RoleDto" TId="string" TRequest="CreateOrUpdateRoleCommand" Context="@Context">
+<EntityTable TEntity="RoleSummaryDto" TId="string" TRequest="CreateOrUpdateRoleCommand" Context="@Context">
     <ExtraActions>
         @if (_canViewRoleClaims)
         {
-            <MudMenuItem @onclick="@(() => ManagePermissions(@context.Id))">Manage Permission</MudMenuItem>
-            <MudMenuItem @onclick="@(() => ManageClaims(@context.Id))">Manage Claims</MudMenuItem>
+            <MudMenuItem @onclick="@(() => ToRolePermissions(@context.Id))">Role Permissions</MudMenuItem>
+            <MudMenuItem @onclick="@(() => ToRoleClaims(@context.Id))">Role Claim</MudMenuItem>
+            <MudMenuItem @onclick="@(() => ToRoleDetails(@context.Id))">Role Details</MudMenuItem>
         }
     </ExtraActions>
     <EditFormContent>

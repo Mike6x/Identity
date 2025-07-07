@@ -1,3 +1,4 @@
+using BuildingBlocks.Identity.Users.Dtos;
 using Identity.Core.Entities;
 using Identity.Core.Features.Claim;
 using Identity.Core.Features.Role;
@@ -13,16 +14,19 @@ public static class RoleMapping
             Id = source.Id, 
             Name = source.Name?? string.Empty, 
             Description = source.Description,
+            Claims = [],
+            Permissions = []
         };
     }
-    public static RoleDto ToDetailDto(this AppRole source, List<ClaimViewModel> claims)
+    public static RoleSummaryDto ToSummaryDto(this AppRole source)
     {
-        return  new RoleDto
+        return  new RoleSummaryDto
         {
             Id = source.Id, 
             Name = source.Name?? string.Empty, 
             Description = source.Description,
-            Claims = claims
+            Enabled = false
+            
         };
     }
 

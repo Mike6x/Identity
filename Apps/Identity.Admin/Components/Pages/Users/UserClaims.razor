@@ -40,6 +40,14 @@ else
                 </MudTableSortLabel>
             </MudTh>
             <MudTh>
+                <MudTableSortLabel SortBy="new Func<ClaimViewModel, object>(x => x.IncludeInAccessToken)"> IncludeInAccessToken
+                </MudTableSortLabel>
+            </MudTh>
+            <MudTh>
+                <MudTableSortLabel SortBy="new Func<ClaimViewModel, object>(x => x.IncludeInIdentityToken)"> IncludeInIdentityToken
+                </MudTableSortLabel>
+            </MudTh>
+            <MudTh>
                 <MudTableSortLabel SortBy="new Func<ClaimViewModel, object>(x => x.Enabled)"> IsEnabled
                 </MudTableSortLabel>
             </MudTh>
@@ -50,6 +58,14 @@ else
             </MudTd>
             <MudTd DataLabel="Description">
                 <MudHighlighter Text="@context.Value" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="IncludeInAccessToken">
+                <MudCheckBox T="bool" @bind-Value="@context.IncludeInAccessToken" Disabled="@(!_canEditItems)" Color="Color.Primary">
+                </MudCheckBox>
+            </MudTd>
+            <MudTd DataLabel="IncludeInIdentityToken">
+                <MudCheckBox T="bool" @bind-Value="@context.IncludeInIdentityToken" Disabled="@(!_canEditItems)" Color="Color.Primary">
+                </MudCheckBox>
             </MudTd>
             <MudTd DataLabel="Status">
                 <MudCheckBox T="bool" @bind-Value="@context.Enabled" Disabled="@(!_canEditItems)" Color="Color.Secondary">

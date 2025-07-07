@@ -2,6 +2,18 @@
   "version": 3,
   "targets": {
     "net9.0": {
+      "Blazored.FluentValidation/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "FluentValidation": "11.9.1"
+        },
+        "compile": {
+          "lib/net8.0/Blazored.FluentValidation.dll": {}
+        },
+        "runtime": {
+          "lib/net8.0/Blazored.FluentValidation.dll": {}
+        }
+      },
       "Blazored.LocalStorage/4.5.0": {
         "type": "package",
         "compile": {
@@ -567,7 +579,7 @@
           }
         }
       },
-      "MudBlazor/8.8.0": {
+      "MudBlazor/8.9.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.AspNetCore.Components": "9.0.1",
@@ -676,6 +688,21 @@
     }
   },
   "libraries": {
+    "Blazored.FluentValidation/2.2.0": {
+      "sha512": "lBSHW7faCJqwn7KtZt6vqHSiyGvTL5McpS4sQUW3RLu2R5eMmf4oolFeufZfcAB8TV8iI+/PYouz7sn773E8Og==",
+      "type": "package",
+      "path": "blazored.fluentvalidation/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "blazored.fluentvalidation.2.2.0.nupkg.sha512",
+        "blazored.fluentvalidation.nuspec",
+        "icon.png",
+        "lib/net6.0/Blazored.FluentValidation.dll",
+        "lib/net7.0/Blazored.FluentValidation.dll",
+        "lib/net8.0/Blazored.FluentValidation.dll"
+      ]
+    },
     "Blazored.LocalStorage/4.5.0": {
       "sha512": "6nZuJwA7zNIKx83IsObiHXZb09ponJOpCClU3en+hI8ZFvrOKXeOw+H7TegQZQrvdR1n9fkrVkEBQZg8vx6ZTw==",
       "type": "package",
@@ -1498,10 +1525,10 @@
         "microsoft.jsinterop.nuspec"
       ]
     },
-    "MudBlazor/8.8.0": {
-      "sha512": "9LTen4AUh+GjXqKcrBoUxCZEEgnKx3a+82k2F7K849rfpGs/fQ1pha0sw2upMzGFIsCRfI+w8bkgZZspJCxbpQ==",
+    "MudBlazor/8.9.0": {
+      "sha512": "KdjXMXiSvl6uNr+S2YDhGI1aX/TULMQejQSniMlp6QTss35NKFrJyrMAmN082HNvOObuKdnTtLpntJ7rM5Op/A==",
       "type": "package",
-      "path": "mudblazor/8.8.0",
+      "path": "mudblazor/8.9.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -1519,7 +1546,7 @@
         "lib/net8.0/MudBlazor.xml",
         "lib/net9.0/MudBlazor.dll",
         "lib/net9.0/MudBlazor.xml",
-        "mudblazor.8.8.0.nupkg.sha512",
+        "mudblazor.8.9.0.nupkg.sha512",
         "mudblazor.nuspec",
         "staticwebassets/MudBlazor.min.css",
         "staticwebassets/MudBlazor.min.js"
@@ -1605,6 +1632,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "Blazored.FluentValidation >= 2.2.0",
       "Blazored.LocalStorage >= 4.5.0",
       "Client.Infrastructure >= 1.0.0",
       "FluentValidation >= 12.0.0",
@@ -1667,6 +1695,10 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+          "Blazored.FluentValidation": {
+            "target": "Package",
+            "version": "[2.2.0, )"
+          },
           "Blazored.LocalStorage": {
             "target": "Package",
             "version": "[4.5.0, )"

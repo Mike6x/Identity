@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-namespace Identity.Infrastructure.Endpoints.Claim;
+namespace Identity.Infrastructure.Endpoints.RoleClaim;
 
 public static class AddClaimToRoleEndpoint
 {
@@ -16,10 +16,8 @@ public static class AddClaimToRoleEndpoint
                 IRoleService service,
                 CancellationToken cancellationToken) =>
             {
-                if (roleId != request.Owner) return Results.BadRequest();
-                
-                var message = await service.AddClaimToRoleAsync(roleId, request, cancellationToken);
-                return Results.Ok(message);
+                var response = await service.AddClaimToRoleAsync(request, cancellationToken);
+                return response;
             })
             .WithName(nameof(AddClaimToRoleEndpoint))
             .WithSummary("Add a claim to the Role")

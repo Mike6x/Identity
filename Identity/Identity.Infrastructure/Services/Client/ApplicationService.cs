@@ -57,7 +57,7 @@ public class ClientService(
         return applicationDescriptor;
     }
     
-    public async Task<ApplicationDto> GetAsync(string id, CancellationToken cancellationToken)
+    public async Task<ApplicationDto> GetByIdAsync(string id, CancellationToken cancellationToken)
     {
         var existing = await applicationManager.FindByIdAsync(id, cancellationToken) 
                            as OpenIddictEntityFrameworkCoreApplication
@@ -67,9 +67,9 @@ public class ClientService(
         return applicationDescriptor;
     }
     
-    public async Task<List<ApplicationDto>>GetAllAsync(CancellationToken cancellationToken)
+    public async Task<List<ApplicationSummaryDto>>GetAllAsync(CancellationToken cancellationToken)
     {
-        List<ApplicationDto> applicationDescriptors = [];
+        List<ApplicationSummaryDto> applicationDescriptors = [];
 
         Func<IQueryable<object>, IQueryable<OpenIddictEntityFrameworkCoreApplication>> query;
                 
@@ -79,18 +79,18 @@ public class ClientService(
                 
         await foreach (var app in applicationManager.ListAsync(query, cancellationToken))
         {
-            var applicationDescriptor = app.ToDto();
+            var applicationDescriptor = app.ToSummaryDto();
             applicationDescriptors.Add(applicationDescriptor);
         }
         
         return applicationDescriptors;
     }
     
-    public async Task<PagedList<ApplicationDto>> SearchAsync (SearchClientsRequest request, CancellationToken cancellationToken)
+    public async Task<PagedList<ApplicationSummaryDto>> SearchAsync (SearchClientsRequest request, CancellationToken cancellationToken)
     {
         var spec = new EntitiesByPaginationFilterSpec<OpenIddictEntityFrameworkCoreApplication>(request);
                 
-        List<ApplicationDto> applicationDescriptors = [];
+        List<ApplicationSummaryDto> applicationDescriptors = [];
 
         Func<IQueryable<object>, IQueryable<OpenIddictEntityFrameworkCoreApplication>> query;
                 
@@ -101,14 +101,14 @@ public class ClientService(
                 
         await foreach (var app in applicationManager.ListAsync(query, cancellationToken))
         {
-            var applicationDescriptor = app.ToDto();
+            var applicationDescriptor = app.ToSummaryDto();
             //applicationDescriptor.ClientSecret = string.Empty
             applicationDescriptors.Add(applicationDescriptor);
         }
 
         var count = (int)await applicationManager.CountAsync(cancellationToken);
                 
-        return new PagedList<ApplicationDto>(applicationDescriptors, request.PageNumber, request.PageSize, count);
+        return new PagedList<ApplicationSummaryDto>(applicationDescriptors, request.PageNumber, request.PageSize, count);
 
     }
     

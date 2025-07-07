@@ -12,7 +12,6 @@ using Microsoft.AspNetCore.Identity;
 namespace Identity.Infrastructure.Services.Authenticator;
 
 public class AuthenticatorService(
-    // HttpContext context,
     UserManager<AppUser> userManager,
     SignInManager<AppUser> signInManager): IAuthenticatorService
 {
@@ -196,42 +195,4 @@ public class AuthenticatorService(
             unformattedKey);
     }
     
-
-    
-    // private static async Task<IResult> SetUser2FaStatus(string code, HttpContext context, 
-    //     bool is2FaEnabled,  bool isReset, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
-    // {
-    //     if (string.IsNullOrEmpty(code)) 
-    //         throw new BadRequestException("Verification code can not be null or empty." );
-    //     
-    //     var currentUser = context.User;
-    //     
-    //     var user = await userManager.GetUserAsync(currentUser) 
-    //                ?? throw new NotFoundException($"Unable to load user with ID '{userManager.GetUserId(currentUser)}'.");
-    //     
-    //     // Strip spaces and hyphens
-    //     var verificationCode = code.Replace(" ", string.Empty).Replace("-", string.Empty);
-    //
-    //     var is2FaTokenValid = await userManager.VerifyTwoFactorTokenAsync(user,
-    //         userManager.Options.Tokens.AuthenticatorTokenProvider, verificationCode);
-    //
-    //     if (!is2FaTokenValid)  
-    //         throw new BadRequestException("Verification code is invalid." );
-    //     
-    //     var settingResult = await userManager.SetTwoFactorEnabledAsync(user, is2FaEnabled);
-    //     if (!settingResult.Succeeded)
-    //     {
-    //         throw new BadRequestException(string.Join(Environment.NewLine, settingResult.GetErrors()));
-    //     }
-    //
-    //     if (isReset)
-    //     {
-    //         await userManager.ResetAuthenticatorKeyAsync(user);
-    //         await userManager.GetUserIdAsync(user);         
-    //         await signInManager.RefreshSignInAsync(user);
-    //     }
-    //     
-    //     return Results.Ok(); 
-    // }
-
 }

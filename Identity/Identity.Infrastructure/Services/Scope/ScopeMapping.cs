@@ -12,6 +12,17 @@ namespace Identity.Infrastructure.Services.Scope;
 
 public static class ScopeMapping
 {
+    public static ScopeSummaryDto ToSummaryDto(this OpenIddictEntityFrameworkCoreScope source)
+    {
+        return  new ScopeSummaryDto
+        (
+            Id: source.Id ?? string.Empty,
+            Name: source.Name ?? string.Empty,
+            DisplayName: source.DisplayName ?? string.Empty,
+            Description: source.Description ?? string.Empty
+        );
+    }
+
     public static ScopeDto ToDto(this OpenIddictEntityFrameworkCoreScope source)
     {
         var resources = string.IsNullOrWhiteSpace(source.Resources)

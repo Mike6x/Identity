@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
-namespace Identity.Infrastructure.Endpoints.Claim;
+namespace Identity.Infrastructure.Endpoints.RoleClaim;
 public static class UpdateClaimsToRoleEndpoint
 {
     public static RouteHandlerBuilder MapUpdateClaimsToRoleEndpoint(this IEndpointRouteBuilder endpoints)
@@ -18,9 +18,10 @@ public static class UpdateClaimsToRoleEndpoint
             [FromServices] IValidator<AssignClaimsCommand> validator,
             CancellationToken cancellationToken) =>
         {
-            if (roleId != request.Owner) return Results.BadRequest();
-            var response = await roleService.UpdateClaimsToRoleAsync(roleId,request,cancellationToken);
-            return Results.Ok(response);
+            // if (roleId != request.Owner) return Results.BadRequest();
+            
+            var response = await roleService.UpdateClaimsToRoleAsync(request,cancellationToken);
+            return response;
         })
         .WithName(nameof(UpdateClaimsToRoleEndpoint))
         .WithSummary("update role Claims")

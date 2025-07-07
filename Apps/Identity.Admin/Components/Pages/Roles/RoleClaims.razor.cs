@@ -45,7 +45,7 @@ public partial class RoleClaims : ComponentBase
         }
         
         if (await ApiHelper.ExecuteCallGuardedAsync(
-                () => ApiClient.GetRoleEndpointAsync(Id!), Toast, Navigation)
+                () => ApiClient.GetRoleByIdEndpointAsync(Id!), Toast, Navigation)
             is { } mainItem)
         {
             _title = $"{mainItem.Name} Claims";

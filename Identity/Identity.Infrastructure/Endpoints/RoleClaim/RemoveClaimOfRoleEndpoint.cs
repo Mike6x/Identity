@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
 
-namespace Identity.Infrastructure.Endpoints.Claim;
+namespace Identity.Infrastructure.Endpoints.RoleClaim;
 
 public static class RemoveClaimOfRoleEndpoint
 {
@@ -17,10 +17,10 @@ public static class RemoveClaimOfRoleEndpoint
                 IRoleService service,
                 CancellationToken cancellationToken) =>
             {
-                if (roleId != command.Owner) return Results.BadRequest();
-                var message = await service.RemoveClaimOfRoleAsync(roleId, command, cancellationToken);
+                // if (roleId != command.Owner) return Results.BadRequest();
+                var response = await service.RemoveClaimOfRoleAsync(command, cancellationToken);
 
-                return Results.Ok(message);
+                return response;
             })
             .WithName(nameof(RemoveClaimOfRoleEndpoint))
             .WithSummary("Remove a claim from Role ")

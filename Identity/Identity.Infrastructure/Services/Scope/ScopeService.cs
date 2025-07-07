@@ -40,7 +40,7 @@ public class ScopeService(
         return result == null ? Results.InternalServerError() : Results.Ok("Item created");
     }
     
-    public async Task<ScopeDto> GetAsync(string scopeId, CancellationToken cancellationToken)
+    public async Task<ScopeDto> GetByIdAsync(string scopeId, CancellationToken cancellationToken)
     {
         var existing = await scopeManager.FindByIdAsync(scopeId, cancellationToken) 
                            as OpenIddictEntityFrameworkCoreScope
@@ -51,9 +51,9 @@ public class ScopeService(
         return scopeDescriptor;
     }
     
-    public async Task<List<ScopeDto>> GetAllAsync (CancellationToken cancellationToken)
+    public async Task<List<ScopeSummaryDto>> GetAllAsync (CancellationToken cancellationToken)
     {
-        var scopeDescriptors = new List<ScopeDto>();
+        var scopeDescriptors = new List<ScopeSummaryDto>();
 
         Func<IQueryable<object>, IQueryable<OpenIddictEntityFrameworkCoreScope>> query 
             = sources => sources.Where(s => true)
@@ -62,18 +62,18 @@ public class ScopeService(
             
         await foreach (var scope in scopeManager.ListAsync(query, cancellationToken))
         {
-            var descriptor = scope.ToDto();
+            var descriptor = scope.ToSummaryDto();
             scopeDescriptors.Add(descriptor);
         }
             
         return scopeDescriptors;
     }
     
-    public  async Task<PagedList<ScopeDto>> SearchAsync(SearchScopesRequest request, CancellationToken cancellationToken)
+    public  async Task<PagedList<ScopeSummaryDto>> SearchAsync(SearchScopesRequest request, CancellationToken cancellationToken)
     {
         var spec = new EntitiesByPaginationFilterSpec<OpenIddictEntityFrameworkCoreScope>(request);
             
-        var scopeDescriptors = new List<ScopeDto>();
+        var scopeDescriptors = new List<ScopeSummaryDto>();
 
         Func<IQueryable<object>, IQueryable<OpenIddictEntityFrameworkCoreScope>> query;
             
@@ -84,13 +84,13 @@ public class ScopeService(
             
         await foreach (var app in scopeManager.ListAsync(query, cancellationToken))
         {
-            var descriptor = app.ToDto();
+            var descriptor = app.ToSummaryDto();
             scopeDescriptors.Add(descriptor);
         }
 
         var count = (int)await scopeManager.CountAsync(cancellationToken);
             
-        return new PagedList<ScopeDto>(scopeDescriptors, request.PageNumber, request.PageSize, count);
+        return new PagedList<ScopeSummaryDto>(scopeDescriptors, request.PageNumber, request.PageSize, count);
 
     }
     

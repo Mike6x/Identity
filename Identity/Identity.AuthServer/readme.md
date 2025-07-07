@@ -10,6 +10,8 @@ dotnet ef migrations add "Add Identity Schema" --project ../Identity.Infrastruct
     cd ./Identity/Identity.Provider/
     dotnet ef migrations add "Add Identity claim" --project ../Identity.Infrastructure/ --context ApplicationDbContext --output-dir Data/Migrations
     dotnet ef database update
+    
+    dotnet ef migrations add "fix user dto" --project ../Identity.Infrastructure/ --context ApplicationDbContext --output-dir Data/Migrations
  
 1. SETUP
 

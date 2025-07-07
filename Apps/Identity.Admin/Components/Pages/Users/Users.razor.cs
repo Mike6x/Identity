@@ -15,17 +15,17 @@ namespace Identity.Admin.Components.Pages.Users;
 public partial class Users : ComponentBase
 {
     [CascadingParameter]
-    protected Task<AuthenticationState> AuthState { get; set; } = default!;
+    protected Task<AuthenticationState>? AuthState { get; set; }
     [Inject]
-    protected IAuthorizationService AuthService { get; set; } = default!;
+    protected IAuthorizationService? AuthService { get; set; }
     [Inject]
     public NavigationManager? Navigator { get; set; }
 
     [Inject]
-    protected IApiClient UsersClient { get; set; } = default!;
+    protected IApiClient? ApiClient { get; set; }
 
     public required IDialogService Dialog;
-    protected EntityClientTableContext<UserDetail, Guid, UserViewModel> Context { get; set; } = default!;
+    private EntityClientTableContext<UserSummaryDto, Guid, UserViewModel> Context { get; set; }
     
 
     private bool _canRemoveUsers;
@@ -43,16 +43,28 @@ public partial class Users : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-
-        if ((await AuthState).User is { } user)
+        if (ApiClient == null) return;
+        if (AuthState == null)  return;
+        
+        var state = await AuthState;
+        if (AuthService != null)
         {
-            _canRemoveUsers = await AuthService.HasPermissionAsync(user, AppActions.Delete, AppResources.Users);
-            _canViewRoles = await AuthService.HasPermissionAsync(user, AppActions.View, AppResources.UserRoles);
-            _canViewAuditTrails = await AuthService.HasPermissionAsync(user, AppActions.View, AppResources.AuditTrails);
-            _currentUserId = user.GetUserId() ?? string.Empty;
+            _canRemoveUsers = await AuthService.HasPermissionAsync(state.User, AppActions.Delete, AppResources.Users);
+            _canViewRoles = await AuthService.HasPermissionAsync(state.User, AppActions.View, AppResources.UserRoles);
+            _canViewAuditTrails = await AuthService.HasPermissionAsync(state.User, AppActions.View, AppResources.AuditTrails);
+            
+            _currentUserId = state.User.GetUserId() ?? string.Empty;
         }
-
-        Context = new(
+ 
+        // if ((await AuthState).User is { } user)
+        // {
+        //     _canRemoveUsers = await AuthService.HasPermissionAsync(user, AppActions.Delete, AppResources.Users);
+        //     _canViewRoles = await AuthService.HasPermissionAsync(user, AppActions.View, AppResources.UserRoles);
+        //     _canViewAuditTrails = await AuthService.HasPermissionAsync(user, AppActions.View, AppResources.AuditTrails);
+        //     _currentUserId = user.GetUserId() ?? string.Empty;
+        // }
+        
+        Context = new EntityClientTableContext<UserSummaryDto, Guid, UserViewModel>(
             entityName: "User",
             entityNamePlural: "Users",
             entityResource: AppResources.Users,
@@ -61,22 +73,22 @@ public partial class Users : ComponentBase
             // deleteAction: string.Empty,
             // exportAction: string.Empty,
             // importAction: string.Empty,
-            fields: new()
-            {
-                new(user => user.UserName, "UserName"),
-                new(user => user.Email, "Email"),
-                new(user => user.FirstName,"First Name"),
-                new(user => user.LastName, "Last Name"),
-                new(user => user.PhoneNumber, "PhoneNumber"),
+            fields:
+            [
+                new EntityField<UserSummaryDto>(user => user.UserName, "UserName"),
+                new EntityField<UserSummaryDto>(user => user.Email, "Email"),
+                new EntityField<UserSummaryDto>(user => user.FirstName, "First Name"),
+                new EntityField<UserSummaryDto>(user => user.LastName, "Last Name"),
+                new EntityField<UserSummaryDto>(user => user.PhoneNumber, "PhoneNumber"),
 
-                new(user => user.IsActive, "Active", Type: typeof(bool)),
-                new(user => user.EmailConfirmed, "Email Confirmed", Type: typeof(bool)),
-                // new(user => user.LockoutEnd, "LockoutEnd", Type: typeof(DateTime)),
-                new(user => user.IsLocked, "Lockout", Type: typeof(bool)),
-                new(user => user.IsOnline, "Online", Type: typeof(bool))               
-            },
+                new EntityField<UserSummaryDto>(user => user.IsActive, "Active", Type: typeof(bool)),
+                new EntityField<UserSummaryDto>(user => user.EmailConfirmed, "Email Confirmed", Type: typeof(bool)),
+                //new EntityField<UserSummaryDto>(user => user.LockoutEnd, "LockoutEnd", Type: typeof(DateTime)),
+                new EntityField<UserSummaryDto>(user => user.IsLocked, "Lockout", Type: typeof(bool)),
+                new EntityField<UserSummaryDto>(user => user.IsOnline, "Online", Type: typeof(bool))
+            ],
             idFunc: user => user.Id,
-            loadDataFunc: async () => (await UsersClient.GetUsersEndpointAsync()).ToList(),
+            loadDataFunc: async () => (await ApiClient.GetUsersEndpointAsync()).ToList(),
             searchFunc: (searchString, user) =>
                 string.IsNullOrWhiteSpace(searchString)
                     || user.FirstName?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true
@@ -90,7 +102,7 @@ public partial class Users : ComponentBase
 
                 if (string.IsNullOrEmpty(createRequest.UserName)) createRequest.UserName = createRequest.Email;
 
-                return UsersClient.CreateUserEndpointAsync(createRequest);
+                return ApiClient.CreateUserEndpointAsync(createRequest);
                 // return UsersClient.RegisterUserEndpointAsync(createRequest);
             },
             updateFunc: async (id, user) =>
@@ -100,31 +112,33 @@ public partial class Users : ComponentBase
                 updateRequest.LastModifiedBy = _currentUserId;
                 updateRequest.LastModifiedOn = DateTime.UtcNow;
 
-                await UsersClient.UpdateUserEndpointAsync(id.ToString(),updateRequest);
+                await ApiClient.UpdateUserEndpointAsync(id.ToString(),updateRequest);
             },
             // deleteFunc: async id => await UsersClient.DisableUserEndpointAsync(id.ToString()),
             deleteFunc: async id =>
             {
                 var request = new ToggleUserStatusCommand { UserId = id.ToString(), IsActive = true };
-                await UsersClient.ToggleUserStatusEndpointAsync(id.ToString(), request);
+                await ApiClient.ToggleUserStatusEndpointAsync(id.ToString(), request);
             },
             exportFunc: async filter =>
             {
                 var dataFilter = filter.Adapt<ExportUsersRequest>();
 
-                return await UsersClient.ExportUsersEndpointAsync(dataFilter);
+                return await ApiClient.ExportUsersEndpointAsync(dataFilter);
             },
-            importFunc: async (fileUploadModel, isUpdate) => await UsersClient.ImportUsersEndpointAsync(isUpdate, fileUploadModel),
+            importFunc: async (fileUploadModel, isUpdate) => await ApiClient.ImportUsersEndpointAsync(isUpdate, fileUploadModel),
             hasExtraActionsFunc: () => true);
     }
 
-    private void ViewProfile(in Guid userId) =>
+    private void ToUserProfile(in Guid userId) =>
         Navigator?.NavigateTo($"/identity/users/{userId}/profile");
+    private void ToUserDetails(in Guid userId) =>
+        Navigator?.NavigateTo($"/identity/users/{userId}/details");
 
-    private void ManageRoles(in Guid userId) =>
+    private void ToUserRoles(in Guid userId) =>
         Navigator?.NavigateTo($"/identity/users/{userId}/roles");
     
-    private void ManageClaims(in Guid userId) =>
+    private void ToUserClaims(in Guid userId) =>
         Navigator?.NavigateTo($"/identity/users/{userId}/claims");
     private void ViewAuditTrails(in Guid userId) =>
         Navigator?.NavigateTo($"/identity/users/{userId}/audit-trail");
@@ -161,7 +175,7 @@ public partial class Users : ComponentBase
         var result = await dialog.Result;
         if (!result!.Canceled)
         {
-            _ = UsersClient.DeleteUserEndpointAsync(userId.ToString());
+            _ = ApiClient?.DeleteUserEndpointAsync(userId.ToString());
              await OnInitializedAsync();
             //_ = Context.LoadDataFunc()
         }

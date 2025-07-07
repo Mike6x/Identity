@@ -64,7 +64,7 @@ public static class ValidationExtensions
 }
 
 // Using
-// app.MapPost("/users", async (UserDto user, IValidator<UserDto> validator) =>
+// app.MapPost("/users", async (UserSummaryDto user, IValidator<UserSummaryDto> validator) =>
 // {
 //     var validationResult = await user.ValidateRequest(validator);
 //     if (validationResult is not null) return validationResult;

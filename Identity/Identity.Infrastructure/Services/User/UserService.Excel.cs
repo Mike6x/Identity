@@ -1,12 +1,12 @@
 using System.Collections.ObjectModel;
 using Ardalis.Specification.EntityFrameworkCore;
 using BuildingBlocks.DataIO;
+using BuildingBlocks.Identity.Users.Dtos;
 using BuildingBlocks.Mail;
 using BuildingBlocks.Specifications;
 using BuildingBlocks.Storage.File;
 using BuildingBlocks.Storage.File.Features;
 using Identity.Core.Entities;
-using Identity.Core.Features.User.Dtos;
 using Identity.Core.Features.User.ExportUsers;
 using Identity.Shared.Authorization;
 using Microsoft.EntityFrameworkCore;

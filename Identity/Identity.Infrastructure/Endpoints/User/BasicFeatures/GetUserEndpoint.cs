@@ -11,7 +11,7 @@ public static class GetUserEndpoint
     {
         return endpoints.MapGet("/{userId:guid}", (string userId, IUserService service) =>
         {
-            return service.GetAsync(userId, CancellationToken.None);
+            return service.GetByIdAsync(userId, CancellationToken.None);
         })
         .WithName(nameof(GetUserEndpoint))
         .WithSummary("Get user profile by ID")

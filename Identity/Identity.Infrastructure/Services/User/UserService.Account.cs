@@ -1,6 +1,8 @@
 ﻿using System.Collections.ObjectModel;
+using System.Security.Claims;
 using System.Text;
 using BuildingBlocks.Exceptions;
+using BuildingBlocks.Identity.Users.Dtos;
 using BuildingBlocks.Mail;
 using Identity.Core.Features.User.ChangePassword;
 using Identity.Core.Features.User.DeleteAccount;
@@ -15,6 +17,15 @@ namespace Identity.Infrastructure.Services.User;
 
 public partial class UserService
 {
+    
+    public async Task<UserSummaryDto?> GetMeAsync(ClaimsPrincipal principal, CancellationToken cancellationToken)
+    {
+        var user = await userManager.GetUserAsync(principal);
+        
+        return user?.ToSummaryDto();
+        
+    }
+
     public async Task ForgotPasswordAsync(ForgotPasswordCommand request, string origin, CancellationToken cancellationToken)
     {
         EnsureValidTenant();

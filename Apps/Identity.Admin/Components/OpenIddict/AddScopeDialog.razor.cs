@@ -16,7 +16,7 @@ namespace Identity.Admin.Components.OpenIddict
         protected IApiClient? ApiClient { get; set; }
 
         
-        private ScopeDto? _selectedOption;
+        private ScopeSummaryDto? _selectedOption;
         private void AddScope()
         {
             if (_selectedOption != null)
@@ -27,7 +27,7 @@ namespace Identity.Admin.Components.OpenIddict
 
         private void Cancel() => MudDialog.Cancel();
         
-        private async Task<IEnumerable<ScopeDto>?> SearchScopes(string value, CancellationToken cancellationToken)
+        private async Task<IEnumerable<ScopeSummaryDto>?> SearchScopes(string value, CancellationToken cancellationToken)
         {
             // if text is null or empty, don't return values (drop-down will not open)
             if (string.IsNullOrEmpty(value) || ApiClient == null) return null;

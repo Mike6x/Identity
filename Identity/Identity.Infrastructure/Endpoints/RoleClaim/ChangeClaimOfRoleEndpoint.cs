@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 
-namespace Identity.Infrastructure.Endpoints.Claim;
+namespace Identity.Infrastructure.Endpoints.RoleClaim;
 
 public static class ChangeClaimOfRoleEndpoint
 {
@@ -16,10 +16,10 @@ public static class ChangeClaimOfRoleEndpoint
                 IRoleService service,
                 CancellationToken cancellationToken) =>
             {
-                if (roleId != command.Owner) return Results.BadRequest();
+                // if (roleId != command.Owner) return Results.BadRequest();
                 
-                var message = await service.ChangeClaimOfRoleAsync(roleId, command, cancellationToken);
-                return Results.Ok(message);
+                var response = await service.ChangeClaimOfRoleAsync(command, cancellationToken);
+                return response;
             })
             .WithName(nameof(ChangeClaimOfRoleEndpoint))
             .WithSummary("Change a Role claim to new")

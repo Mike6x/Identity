@@ -36,7 +36,7 @@
         {
             if(ExistingUris != null && !ExistingUris.Any(u => u.Equals(result)))
             {
-                MudDialog.Close(DialogResult.Ok<Uri>(result));
+                MudDialog.Close(DialogResult.Ok(result));
                 return;
             }
             _error = "Uri is already added.";
@@ -44,7 +44,6 @@
         }
         _error = "Invalid Uri format";
 
-    }   
+    }
 
-    void Cancel() => MudDialog.Cancel();
 }

@@ -1,9 +1,9 @@
-using System.Security.Claims;
 using Ardalis.Specification.EntityFrameworkCore;
 using BuildingBlocks.Caching;
 using BuildingBlocks.DataIO;
 using BuildingBlocks.Exceptions;
 using BuildingBlocks.Identity.Users.Abstractions;
+using BuildingBlocks.Identity.Users.Dtos;
 using BuildingBlocks.Jobs;
 using BuildingBlocks.Mail;
 using BuildingBlocks.Paging;
@@ -11,11 +11,12 @@ using BuildingBlocks.Specifications;
 using BuildingBlocks.Storage;
 using BuildingBlocks.Storage.File;
 using Identity.Core.Entities;
+using Identity.Core.Features.Claim;
 using Identity.Core.Features.User.CreateUser;
-using Identity.Core.Features.User.Dtos;
 using Identity.Core.Features.User.SearchUsers;
 using Identity.Core.Features.User.UpdateUser;
 using Identity.Infrastructure.Data;
+using Identity.Infrastructure.Services.Role;
 using Identity.Shared.Authorization;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
@@ -54,12 +55,14 @@ public sealed partial class UserService(
             Email = request.Email,
             FirstName = request.FirstName,
             LastName = request.LastName,
-            UserName = request.UserName ?? request.Email,
+            UserName = string.IsNullOrEmpty(request.UserName) ? request.Email : request.UserName,
             PhoneNumber = request.PhoneNumber,
             IsActive = true,
             EmailConfirmed = false,
         };
-
+        
+        if (string.IsNullOrEmpty(user.Email)) throw new BadRequestException("email is required");
+        
         var result = await userManager.CreateAsync(user, request.Password);
         if (!result.Succeeded)
         {
@@ -69,70 +72,69 @@ public sealed partial class UserService(
 
         await userManager.AddToRoleAsync(user, AppRoles.Basic);
         
-        // send confirmation mail
-        if (!string.IsNullOrEmpty(user.Email))
-        {
-            string emailVerificationUri = await GetEmailVerificationUriAsync(user, origin);
-            var mailRequest = new MailRequest(
-                [user.Email],
-                "Confirm Registration",
-                emailVerificationUri);
-            jobService.Enqueue("email", () => mailService.SendAsync(mailRequest, CancellationToken.None));
-        }
+        var emailVerificationUri = await GetEmailVerificationUriAsync(user, origin);
+        var mailRequest = new MailRequest(
+            [user.Email],
+            "Confirm Registration",
+            emailVerificationUri);
+        jobService.Enqueue("email", () => mailService.SendAsync(mailRequest, CancellationToken.None));
 
         return new CreateUserResponse(user.Id);
     }
 
-    public async Task<List<UserDetail>> GetAllAsync(CancellationToken cancellationToken)
+    public async Task<List<UserSummaryDto>> GetAllAsync(CancellationToken cancellationToken)
     {
-        var users = await userManager.Users.AsNoTracking().ToListAsync(cancellationToken);
-        return users.Adapt<List<UserDetail>>();
-    }
-
-    public async Task<UserDetail> GetAsync(string userId, CancellationToken cancellationToken)
-    {
-        var user = await userManager.Users
-            .AsNoTracking()
-            .Where(u => u.Id.ToString() == userId)
-            .FirstOrDefaultAsync(cancellationToken);
-
-        _ = user ?? throw new NotFoundException($"User with Id: {userId} not found!");
-
-        return user.Adapt<UserDetail>();
-    }
-    
-    public async Task<UserDto?> GetMeAsync(ClaimsPrincipal principal, CancellationToken cancellationToken)
-    {
-        var user = await userManager.GetUserAsync(principal);
+        var users = await userManager.Users.AsNoTracking()
+            .Select(u => u.ToSummaryDto())
+            .ToListAsync(cancellationToken);
         
-        return user == null 
-            ? null 
-            : new UserDto
-                {
-                    Id = user.Id,
-                    Email = user.Email,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    UserName = user.UserName,
-                    PhoneNumber = user.PhoneNumber,
-                    IsActive = user.IsActive,
-                    EmailConfirmed = user.EmailConfirmed,
-                };
+        return users;
     }
 
-    public async Task<PagedList<UserDetail>> SearchAsync(SearchUsersRequest request, CancellationToken cancellationToken)
+    public async Task<UserDto> GetByIdAsync(string userId, CancellationToken cancellationToken)
+    {
+        var user = await userManager.FindByIdAsync(userId)
+                   ?? throw new NotFoundException($"User with Id: {userId} not found!");
+
+        return await GetUserDetailsAsync(user, cancellationToken);
+    }
+
+    private async Task<UserDto> GetUserDetailsAsync(AppUser user, CancellationToken cancellationToken)
+    {
+        var userDetails = user.ToDto();
+        
+        var roles =await roleManager.Roles.AsNoTracking()
+            .Select(role => role.ToSummaryDto())
+            .ToListAsync(cancellationToken);
+
+        foreach (var role in roles)
+        {
+            if( await userManager.IsInRoleAsync(user, role.Name))
+                userDetails.UserRoles?.Add(role);
+        }
+        
+        var userClaims = await userManager.GetClaimsAsync(user);
+        foreach(var claim in userClaims)
+        {
+            userDetails.UserClaims?.Add(ClaimViewModel.FromClaim(claim));
+        }
+
+        return userDetails;
+    }
+
+    public async Task<PagedList<UserSummaryDto>> SearchAsync(SearchUsersRequest request, CancellationToken cancellationToken)
     {
         var spec = new EntitiesByPaginationFilterSpec<AppUser>(request);
 
         var users = await userManager.Users
             .WithSpecification(spec)
-            .ProjectToType<UserDetail>()
+            .ProjectToType<UserSummaryDto>()
             .ToListAsync(cancellationToken);
 
         var count = await userManager.Users
             .CountAsync(cancellationToken);
 
-        return new PagedList<UserDetail>(users, request.PageNumber, request.PageSize, count);
+        return new PagedList<UserSummaryDto>(users, request.PageNumber, request.PageSize, count);
     }
 
     public async Task DeleteAsync(string userId)
@@ -183,7 +185,7 @@ public sealed partial class UserService(
         
         if (request.Image != null || request.DeleteCurrentImage)
         {
-            user.ImageUrl = await storageService.UploadAsync<AppUser>(request.Image, FileType.Image);
+            user.ImageUrl = await storageService.UploadAsync<AppUser>(request.Image, FileType.Image, cancellationToken);
             if (request.DeleteCurrentImage && imageUri != null)
             {
                 storageService.Remove(imageUri);
@@ -276,9 +278,12 @@ public sealed partial class UserService(
             LockedUsers = users.Count(u=> u.LockoutEnd != null && u.LockoutEnd > DateTime.UtcNow),
             
             NewUsersToday = users.Count(u => u.CreatedOn.Date == DateTime.UtcNow.Date),
-            RecentUsers = users.Adapt<List<RecentUserDto>>().OrderBy(u => u.CreatedOn)
-
         };
+
+        foreach (var user in users)
+        {
+            stats.RecentUsers = stats.RecentUsers.Append(user.ToOnlineDto()) ;
+        }
 
         return stats;
     }
