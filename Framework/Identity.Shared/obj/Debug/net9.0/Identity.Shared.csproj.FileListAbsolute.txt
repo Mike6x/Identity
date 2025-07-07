@@ -10,3 +10,16 @@
 /Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/obj/Debug/net9.0/refint/Identity.Shared.dll
 /Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/obj/Debug/net9.0/Identity.Shared.pdb
 /Volumes/DATA/Projects/OpenIdDict/Identity/Identity.Shared/obj/Debug/net9.0/ref/Identity.Shared.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/Identity.Shared/bin/Debug/net9.0/Identity.Shared.deps.json
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/Identity.Shared/bin/Debug/net9.0/Identity.Shared.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/Identity.Shared/bin/Debug/net9.0/Identity.Shared.pdb
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/Identity.Shared/obj/Debug/net9.0/Identity.Shared.csproj.AssemblyReference.cache
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/Identity.Shared/obj/Debug/net9.0/Identity.Shared.GeneratedMSBuildEditorConfig.editorconfig
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/Identity.Shared/obj/Debug/net9.0/Identity.Shared.AssemblyInfoInputs.cache
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/Identity.Shared/obj/Debug/net9.0/Identity.Shared.AssemblyInfo.cs
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/Identity.Shared/obj/Debug/net9.0/Identity.Shared.csproj.CoreCompileInputs.cache
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/Identity.Shared/obj/Debug/net9.0/Identity.Shared.sourcelink.json
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/Identity.Shared/obj/Debug/net9.0/Identity.Shared.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/Identity.Shared/obj/Debug/net9.0/refint/Identity.Shared.dll
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/Identity.Shared/obj/Debug/net9.0/Identity.Shared.pdb
+/Volumes/DATA/Projects/OpenIdDict/OpenIdDict.Identity/Framework/Identity.Shared/obj/Debug/net9.0/ref/Identity.Shared.dll

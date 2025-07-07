@@ -103,18 +103,18 @@ public partial class Users : ComponentBase
                 if (string.IsNullOrEmpty(createRequest.UserName)) createRequest.UserName = createRequest.Email;
 
                 return ApiClient.CreateUserEndpointAsync(createRequest);
-                // return UsersClient.RegisterUserEndpointAsync(createRequest);
+                // return ApiClient.RegisterUserEndpointAsync(createRequest);
             },
             updateFunc: async (id, user) =>
             {
-                UpdateUserCommand updateRequest = user.Adapt<UpdateUserCommand>();
+                var updateRequest = user.Adapt<UpdateUserCommand>();
                 updateRequest.Id = id.ToString();
                 updateRequest.LastModifiedBy = _currentUserId;
                 updateRequest.LastModifiedOn = DateTime.UtcNow;
 
                 await ApiClient.UpdateUserEndpointAsync(id.ToString(),updateRequest);
             },
-            // deleteFunc: async id => await UsersClient.DisableUserEndpointAsync(id.ToString()),
+            // deleteFunc: async id => await ApiClient.DisableUserEndpointAsync(id.ToString()),
             deleteFunc: async id =>
             {
                 var request = new ToggleUserStatusCommand { UserId = id.ToString(), IsActive = true };
@@ -130,10 +130,11 @@ public partial class Users : ComponentBase
             hasExtraActionsFunc: () => true);
     }
 
-    private void ToUserProfile(in Guid userId) =>
-        Navigator?.NavigateTo($"/identity/users/{userId}/profile");
     private void ToUserDetails(in Guid userId) =>
         Navigator?.NavigateTo($"/identity/users/{userId}/details");
+    
+    // private void ToEditUser(in Guid userId) =>
+    //     Navigator?.NavigateTo($"/identity/users/{userId}/edit");
 
     private void ToUserRoles(in Guid userId) =>
         Navigator?.NavigateTo($"/identity/users/{userId}/roles");

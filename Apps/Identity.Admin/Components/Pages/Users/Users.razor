@@ -4,14 +4,13 @@
 
 <EntityTable TEntity="UserSummaryDto" TId="Guid" TRequest="UserViewModel" Context="@Context">
     <ExtraActions>
-     
-        <MudMenuItem OnClick="@(() => ToUserProfile(context.Id))">User Profile</MudMenuItem>
+       
         @if (_canViewRoles)
         {
-            <MudMenuItem OnClick="@(() => ToUserDetails(context.Id))">User Details</MudMenuItem>
             <MudMenuItem OnClick="@(() => ToUserRoles(context.Id))">User Roles</MudMenuItem>
             <MudMenuItem OnClick="@(() => ToUserClaims(context.Id))" >User Claims</MudMenuItem>
 
+            <MudMenuItem OnClick="@(() => ToUserDetails(context.Id))">User Details</MudMenuItem>
         }
         @if (_canViewAuditTrails)
         {

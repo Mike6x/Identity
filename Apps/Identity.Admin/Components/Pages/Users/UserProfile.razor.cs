@@ -2,6 +2,7 @@
 using Client.Infrastructure.Auth;
 using Identity.Admin.Components.Common;
 using Identity.Admin.Components.Dialogs;
+using Identity.Admin.Components.OpenIddict;
 using Identity.Shared.Authorization;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
@@ -22,7 +23,7 @@ public partial class UserProfile
     public required IDialogService Dialog { get; set; }
     
     [Inject]
-    public required IApiClient UsersClient { get; set; } 
+    public required IApiClient ApiClient { get; set; } 
     
     [Parameter]
     public required  string Id { get; set; }
@@ -38,15 +39,16 @@ public partial class UserProfile
 
     private CustomValidation? _customValidation;
     
+    private string _currentUserId = string.Empty;
     private bool _canEditItems;
     
     private bool _canSearchItems;
     private string _searchString = string.Empty;
     
-    private bool DeleteImageRequest { get; set; } = false;
+    private bool DeleteImageRequest { get; set; }
     private Uri? ImageUrl { get; set; }
 
-    private FileUploadCommand ImageUpload { get; set; } = new FileUploadCommand();
+    private FileUploadCommand ImageUpload { get; set; } = new();
     private DateTime? LockoutEndDate { get; set; }
     private TimeSpan? LockoutEndTime { get; set; }
     
@@ -60,12 +62,14 @@ public partial class UserProfile
         var state = await AuthState;
         if (AuthService != null)
         {
+            _currentUserId = state.User.GetUserId() ?? string.Empty;
+            
             _canEditItems = await AuthService.HasPermissionAsync(state.User, AppActions.Update, AppResources.Users);
             _canSearchItems = await AuthService.HasPermissionAsync(state.User, AppActions.Search, AppResources.Users);
         }
         
         if (await ApiHelper.ExecuteCallGuardedAsync(
-                () => UsersClient.GetUserEndpointAsync(Id), Toast, Navigation)
+                () => ApiClient.GetUserEndpointAsync(Id), Toast, Navigation)
             is { } user)
         {
             
@@ -93,7 +97,7 @@ public partial class UserProfile
     private async Task SendVerificationEmailAsync()
     {
 
-        if (await ApiHelper.ExecuteCallGuardedAsync(() => UsersClient.SendVerificationEmailEndPointAsync(Id), Toast))
+        if (await ApiHelper.ExecuteCallGuardedAsync(() => ApiClient.SendVerificationEmailEndPointAsync(Id), Toast))
         {
             Toast.Add("Verification email has been sent.", Severity.Success);
   
@@ -113,7 +117,7 @@ public partial class UserProfile
             };
 
             await ApiHelper.ExecuteCallGuardedAsync(
-                () => UsersClient.ForgotPasswordEndpointAsync(Tenant, forgotPasswordRequest),
+                () => ApiClient.ForgotPasswordEndpointAsync(Tenant, forgotPasswordRequest),
                 Toast);
 
             Toast.Add("Reset email has been sent.", Severity.Success);
@@ -128,7 +132,7 @@ public partial class UserProfile
         var request = new ToggleUserStatusCommand { IsActive = !_model.IsActive, UserId = Id };
         var message = _model.IsActive ? "The Account have disabled" : "The Account have activated";
       
-        if ( await ApiHelper.ExecuteCallGuardedAsync(() => UsersClient.ToggleUserStatusEndpointAsync(Id, request), Toast))
+        if ( await ApiHelper.ExecuteCallGuardedAsync(() => ApiClient.ToggleUserStatusEndpointAsync(Id, request), Toast))
         {
             Toast.Add(message, Severity.Success);
             _model.IsActive = !_model.IsActive;
@@ -142,8 +146,8 @@ public partial class UserProfile
         var message = _model.IsLocked ? "The Account have unlocked" : "User account locked for 30 days .";
         
         var result = _model.IsLocked 
-            ? await UsersClient.UnLockUserEndpointAsync(_model.Id.ToString())
-            : await UsersClient.LockUserEndpointAsync(_model.Id.ToString());
+            ? await ApiClient.UnLockUserEndpointAsync(_model.Id.ToString())
+            : await ApiClient.LockUserEndpointAsync(_model.Id.ToString());
         
         if (result)
         {
@@ -161,11 +165,10 @@ public partial class UserProfile
         var message = _model.IsOnline ? "The User is offline now" : "The user is online now";
 
         if (await ApiHelper.ExecuteCallGuardedAsync(
-                () => UsersClient.SetOnlineStatusEndpointAsync(Id, !_model.IsOnline), Toast))
+                () => ApiClient.SetOnlineStatusEndpointAsync(Id, !_model.IsOnline), Toast))
         {
             Toast.Add(message, Severity.Success);
             _model.IsOnline  = !_model.IsOnline;
-            await OnInitializedAsync(); 
         }
         else { Toast.Add("Internal error.", Severity.Error); }
         
@@ -194,14 +197,18 @@ public partial class UserProfile
             IsOnline = _model.IsOnline,
             
             LockoutEnd = ConvertToUtcDateTime(LockoutEndDate,LockoutEndTime),
+            
+            Password = Password,
+            ConfirmPassword = ConfirmPassword,
            
             CreatedOn = _model.CreatedOn,
-            LastModifiedOn = _model.LastModifiedOn,
+            LastModifiedOn = DateTime.UtcNow,
             
+            LastModifiedBy = _currentUserId
         };
         
         if (await ApiHelper.ExecuteCallGuardedAsync(
-            () => UsersClient.UpdateUserEndpointAsync(Id, request), Toast))
+            () => ApiClient.UpdateUserEndpointAsync(Id, request), Toast))
         {
             Toast.Add("Your Profile has been updated.", Severity.Success);
             await OnInitializedAsync();
@@ -252,7 +259,7 @@ public partial class UserProfile
             var fileName = $"{Id}-{Guid.NewGuid():N}";
             fileName = fileName[..Math.Min(fileName.Length, 90)];
             var imageFile = await file.RequestImageFileAsync(AppConstants.StandardImageFormat, AppConstants.MaxImageWidth, AppConstants.MaxImageHeight);
-            byte[]? buffer = new byte[imageFile.Size];
+            byte[] buffer = new byte[imageFile.Size];
             _ = await imageFile.OpenReadStream(AppConstants.MaxAllowedSize).ReadAsync(buffer);
             var base64String = $"data:{AppConstants.StandardImageFormat};base64,{Convert.ToBase64String(buffer)}";
             
@@ -279,6 +286,110 @@ public partial class UserProfile
             _passwordInputIcon = Icons.Material.Filled.Visibility;
             _passwordInput = InputType.Text;
         }
+    }
+    
+    
+    private async Task RemoveRoleFromUserAsync(RoleSummaryDto roleToDelete)
+    {
+        if(_model.UserRoles == null) return;
+            
+        var request = new AssignUserRoleCommand
+        {
+            UserRoles = [roleToDelete]
+        };
+
+        if (await ApiHelper.ExecuteCallGuardedAsync(() => ApiClient.AssignRolesToUserEndpointAsync(Id, request),
+                Toast,
+                successMessage: "Role was successfully removed.") is { } result)
+        {
+            _model.UserRoles.Remove(roleToDelete);
+        }
+            
+        if(!result)
+        {
+            Toast.Add($"Error while removing role.{result}", Severity.Error);
+        }
+    }
+    private async Task AddRoleAsync()
+    {
+            
+        var parameters = new DialogParameters
+        {
+            { "Owner", _model.Id.ToString() },
+            { "ExistingRoles", _model.UserRoles },
+            { "ApiClient", ApiClient }
+        };
+        var dialog = await Dialog.ShowAsync<AddRoleDialog>("Add New Role", parameters, new DialogOptions { MaxWidth = MaxWidth.Large, CloseButton = true });
+            
+        var result = await dialog.Result;         
+        if (result != null && !result.Canceled && result.Data is RoleSummaryDto role)
+        {
+            _model.UserRoles?.Add(role);
+            Toast.Add("Role successfully assigned.", Severity.Success);
+        }
+    }
+    
+    private async Task AddClaimAsync()
+    {
+        var parameters = new DialogParameters
+        {
+            { "Owner", _model.Id.ToString() },
+            { "ExistingClaims", _model.UserClaims },
+            { "ApiClient", ApiClient },
+            { "ToRole", false}
+        };
+        
+        var dialog = await Dialog.ShowAsync<AddClaimDialog>("Add Claim", parameters, new DialogOptions { MaxWidth = MaxWidth.ExtraLarge, CloseButton = true });
+        
+        var result = await dialog.Result;
+        if (result is { Canceled: false, Data: ClaimViewModel claim })
+        {
+            _model.UserClaims?.Add(claim);
+            Toast.Add($"Claim was added.", Severity.Success);
+        }
+    } 
+    private async Task RemoveClaimAsync(ClaimViewModel claim)
+    {
+        if (_model.UserClaims != null && _model.UserClaims.Contains(claim))
+        {
+            var request = new RemoveClaimCommand
+            {
+                Owner = _model.Id.ToString(),
+                ClaimToRemove = claim
+            };
+            
+            if (await ApiHelper.ExecuteCallGuardedAsync(
+                    () => ApiClient.RemoveClaimOfUserEndpointAsync(_model.Id.ToString(), request), 
+                    Toast, successMessage: $"Claim {claim.Type}:{claim.Value} was removed.")
+                is { } result)
+            {
+                _model.UserClaims.Remove(claim);
+            }
+            
+            if(!result) Toast.Add($"Failed to delete claim {claim.Type}:{claim.Value}.", Severity.Error);
+        }
+    }
+    private async Task<bool> UpdateClaimAsync(ClaimViewModel original, ClaimViewModel modified)
+    {
+        if (string.IsNullOrEmpty(_model.Id.ToString()))
+        {
+            Toast.Add($"UserId required.", Severity.Error);
+            return false;
+        }
+        
+        var request = new ChangeClaimCommand
+        {
+            Owner = _model.Id.ToString(),
+            Original = original,
+            Modified = modified
+        };
+
+        var result = await ApiHelper.ExecuteCallGuardedAsync(
+            () => ApiClient.ChangeClaimOfUserEndpointAsync(_model.Id.ToString(), request),
+            Toast, successMessage: $"Claim was updated.");
+        
+        if(!result) Toast.Add($"Failed to update claim .", Severity.Error);
+        return result;
     }
     
 }

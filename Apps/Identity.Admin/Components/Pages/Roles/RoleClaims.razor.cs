@@ -72,7 +72,7 @@ public partial class RoleClaims : ComponentBase
         // Console.WriteLine($"roles : {request.UserRoles.Count}");
         //
         // await ApiHelper.ExecuteCallGuardedAsync(
-        //         () => UsersClient.AssignRolesToUserEndpointAsync(Id, request),
+        //         () => ApiClient.AssignRolesToUserEndpointAsync(Id, request),
         //         Toast,
         //         successMessage: "updated user claims");
     

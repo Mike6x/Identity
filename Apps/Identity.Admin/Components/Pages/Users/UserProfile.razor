@@ -1,5 +1,6 @@
-﻿@page "/identity/users/{Id}/profile"
+﻿@page "/identity/users/{Id}/details"
 @using System.Globalization
+@using Identity.Admin.Components.OpenIddict
 
 <PageHeader Title="@Title" Header="@Title" SubHeader="@Description" />
 @if (!_loaded)
@@ -161,6 +162,8 @@ else
 
                         </MudCard>
                     </EditForm>
+                    <br />
+                    <br />
                     @if (_model.IsLocked)
                     {
                         <div role="alert" class="mud-alert mud-alert-outlined-warning mud-square mud-elevation-2">
@@ -188,6 +191,34 @@ else
         </MudTabPanel>
 
         <MudTabPanel Text="Roles and Claims">
+            <MudCard UserAttributes="@(new (){{"id","rolesCollection"}})" Elevation="4">
+                <MudCardHeader Class="pb-0">
+                    <CardHeaderContent>
+                        <div class="d-flex flex-wrap">
+                            <MudText Typo="Typo.h6" Class="mt-2">Roles</MudText>
+                            <MudIconButton UserAttributes="@(new (){{"id","btnAddRole"}})" Icon="@Icons.Material.Outlined.AddCircleOutline" Size="Size.Medium"
+                                           @onclick="AddRoleAsync" Color="Color.Primary"></MudIconButton>
+                        </div>
+                    </CardHeaderContent>
+                </MudCardHeader>
+                <MudCardContent Class="pt-1">
+                    <EditableCollection TItem="RoleSummaryDto" TValue="string" ItemSize="2"
+                                        OnDeleteItem="@RemoveRoleFromUserAsync" OnAddNewItem="AddRoleAsync"
+                                        Items="(_model.UserRoles ?? Enumerable.Empty<RoleSummaryDto>())" NewItem="@string.Empty">
+                        <ItemTemplate Context="item">
+                            <MudText Color="Color.Info" Typo="Typo.subtitle1" Class="ml-1">@item.Name</MudText>
+                        </ItemTemplate>
+                    </EditableCollection>
+                </MudCardContent>
+            </MudCard>
+
+            <br />
+
+            <ClaimsManager Claims="_model.UserClaims" OnAddItem="AddClaimAsync"
+                           OnUpdateItem="UpdateClaimAsync" OnDeleteItem="RemoveClaimAsync" />
+
+            <br />
+            <br />
 
         </MudTabPanel>
 

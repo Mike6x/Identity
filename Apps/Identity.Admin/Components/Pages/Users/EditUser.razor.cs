@@ -175,17 +175,7 @@ namespace Identity.Admin.Components.Pages.Users
             
             var request = new AssignUserRoleCommand
             {
-                UserRoles =
-                [
-                    roleToDelete
-                    // new UserRoleDetail
-                    // {
-                    //     RoleId = roleToDelete.Id,
-                    //     RoleName = roleToDelete.Name,
-                    //     Description = roleToDelete.Description,
-                    //     Enabled = false
-                    // }
-                ]
+                UserRoles = [roleToDelete]
             };
 
             if (await ApiHelper.ExecuteCallGuardedAsync(() => ApiClient.AssignRolesToUserEndpointAsync(Id, request),
@@ -199,7 +189,6 @@ namespace Identity.Admin.Components.Pages.Users
             {
                 Toast.Add($"Error while removing role.{result}", Severity.Error);
             }
-            
         }
         private async Task AddRoleAsync()
         {
