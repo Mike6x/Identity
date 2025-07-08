@@ -2,7 +2,7 @@
 
 @using Identity.Admin.Components.OpenIddict
 
-<PageHeader Title="@_title" Header="@_title" SubHeader="@_description" />
+<PageHeader Title="@Title" Header="@Title" SubHeader="@Description" />
 
 @if (!_loaded)
 {
@@ -11,15 +11,19 @@
 else
 {
     <MudPaper Elevation="4">
-        <EditForm Model="@_item" OnValidSubmit="SaveAsync">
+        <EditForm Model="@_model" OnValidSubmit="SaveAsync">
      
             <MudCard>
                 <MudCardContent>
-                    <CascadingValue Value="_item">
+                    <CascadingValue Value="_model">
                         <ApplicationForm Dialog="Dialog"/>
                     </CascadingValue>
                 </MudCardContent>
                 <MudCardActions>
+                    <MudButton Href="/identity/applications" Variant="Variant.Filled" DropShadow="false" 
+                               Color="Color.Info" Class="ml-auto" 
+                               StartIcon="@Icons.Material.Filled.ArrowBack">Back
+                    </MudButton>
                     @if (_canEditItems)
                     {
                         <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Update</MudButton>

@@ -20,9 +20,10 @@ public partial class Users : ComponentBase
     protected IAuthorizationService? AuthService { get; set; }
     [Inject]
     public NavigationManager? Navigator { get; set; }
-
+    
     [Inject]
-    protected IApiClient? ApiClient { get; set; }
+    public required IApiClient ApiClient { get; set; }
+
 
     public required IDialogService Dialog;
     private EntityClientTableContext<UserSummaryDto, Guid, UserViewModel> Context { get; set; }
@@ -32,8 +33,7 @@ public partial class Users : ComponentBase
     private bool _canViewAuditTrails;
     private bool _canViewRoles;
     private string _currentUserId = string.Empty;
-
-    // Fields for edit form
+    
     protected string Password { get; set; } = string.Empty;
     protected string ConfirmPassword { get; set; } = string.Empty;
 
@@ -43,7 +43,6 @@ public partial class Users : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        if (ApiClient == null) return;
         if (AuthState == null)  return;
         
         var state = await AuthState;
@@ -55,14 +54,6 @@ public partial class Users : ComponentBase
             
             _currentUserId = state.User.GetUserId() ?? string.Empty;
         }
- 
-        // if ((await AuthState).User is { } user)
-        // {
-        //     _canRemoveUsers = await AuthService.HasPermissionAsync(user, AppActions.Delete, AppResources.Users);
-        //     _canViewRoles = await AuthService.HasPermissionAsync(user, AppActions.View, AppResources.UserRoles);
-        //     _canViewAuditTrails = await AuthService.HasPermissionAsync(user, AppActions.View, AppResources.AuditTrails);
-        //     _currentUserId = user.GetUserId() ?? string.Empty;
-        // }
         
         Context = new EntityClientTableContext<UserSummaryDto, Guid, UserViewModel>(
             entityName: "User",
@@ -135,12 +126,12 @@ public partial class Users : ComponentBase
     
     // private void ToEditUser(in Guid userId) =>
     //     Navigator?.NavigateTo($"/identity/users/{userId}/edit");
-
+    // private void ToUserClaims(in Guid userId) =>
+    //     Navigator?.NavigateTo($"/identity/users/{userId}/claims");
+    
     private void ToUserRoles(in Guid userId) =>
         Navigator?.NavigateTo($"/identity/users/{userId}/roles");
-    
-    private void ToUserClaims(in Guid userId) =>
-        Navigator?.NavigateTo($"/identity/users/{userId}/claims");
+
     private void ViewAuditTrails(in Guid userId) =>
         Navigator?.NavigateTo($"/identity/users/{userId}/audit-trail");
 
@@ -174,11 +165,10 @@ public partial class Users : ComponentBase
         var dialog = await Dialog.ShowAsync<DeleteConfirmation>("Remove", parameters, options);
         
         var result = await dialog.Result;
-        if (!result!.Canceled)
+        if (result is { Canceled: false })
         {
-            _ = ApiClient?.DeleteUserEndpointAsync(userId.ToString());
+            _ = ApiClient.DeleteUserEndpointAsync(userId.ToString());
              await OnInitializedAsync();
-            //_ = Context.LoadDataFunc()
         }
 
     }

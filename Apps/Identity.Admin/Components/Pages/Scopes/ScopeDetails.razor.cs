@@ -10,18 +10,18 @@ namespace Identity.Admin.Components.Pages.Scopes;
 
 public partial class ScopeDetails : ComponentBase
 {
+    [CascadingParameter]
+    protected Task<AuthenticationState>? AuthState { get; set; }
     [Inject]
     protected IAuthorizationService? AuthService { get; set; }
     [Inject]
-    protected IApiClient? ApiClient { get; set; }
-    [Inject]
-    public IDialogService? Dialog { get; set; }
+    public required IDialogService Dialog { get; set; }
     
-    [CascadingParameter]
-    protected Task<AuthenticationState>? AuthState { get; set; }
+    [Inject]
+    public required IApiClient ApiClient { get; set; } 
 
     [Parameter]
-    public string? Id { get; set; }
+    public required  string Id { get; set; }
     
     private ScopeDto _model = new();
     
@@ -34,7 +34,7 @@ public partial class ScopeDetails : ComponentBase
     
     protected override async Task OnParametersSetAsync()
     {
-        if (ApiClient == null || AuthState == null || string.IsNullOrEmpty(Id)) return;
+        if (AuthState == null || string.IsNullOrEmpty(Id)) return;
         
         var state = await AuthState;
         if (AuthService != null)
@@ -58,7 +58,7 @@ public partial class ScopeDetails : ComponentBase
     
     private async Task SaveAsync()
     {
-        if (string.IsNullOrEmpty(_model?.Id) || ApiClient == null) return;
+        if (string.IsNullOrEmpty(_model.Id)) return;
         
         var request = new UpdateScopeCommand
         {

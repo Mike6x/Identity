@@ -19,9 +19,13 @@ else
                     </CascadingValue>
                 </MudCardContent>
                 <MudCardActions>
+                    <MudButton Href="/identity/scopes" Variant="Variant.Filled" DropShadow="false" 
+                               Color="Color.Info" Class="ml-auto" 
+                               StartIcon="@Icons.Material.Filled.ArrowBack">Back
+                    </MudButton>
                     @if (_canEditItems)
                     {
-                        <MudButton UserAttributes="@(new() { { "id", "btnUpdateScope" } })" 
+                        <MudButton UserAttributes="@(new() { { "id", "btnUpdateScope" } })"
                                    ButtonType="ButtonType.Submit" Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto">Update</MudButton>
                     }
                 </MudCardActions>

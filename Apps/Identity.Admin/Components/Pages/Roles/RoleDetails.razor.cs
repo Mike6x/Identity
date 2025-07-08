@@ -17,15 +17,15 @@ namespace Identity.Admin.Components.Pages.Roles
         protected IAuthorizationService? AuthService { get; set; }
         
         [Inject]
-        public  required IDialogService Dialog { get; set; }
+        public required IDialogService Dialog { get; set; }
         
         [Inject]
-        private IApiClient? ApiClient { get; set; }
+        public required IApiClient ApiClient { get; set; } 
     
         [Parameter]
-        public string? Id { get; set; }
+        public required string Id { get; set; }
         
-        private RoleDto? _model;
+        private RoleDto _model = new();
         
         private bool _canEditItems;
         
@@ -40,7 +40,7 @@ namespace Identity.Admin.Components.Pages.Roles
         
         protected override async Task OnInitializedAsync()
         {
-            if (ApiClient == null || AuthState == null || string.IsNullOrEmpty(Id)) return;
+            if (AuthState == null || string.IsNullOrEmpty(Id)) return;
         
             var state = await AuthState;
             if (AuthService != null)
@@ -54,6 +54,7 @@ namespace Identity.Admin.Components.Pages.Roles
                 is { } result)
             {
                 _model = result;
+                
                 _roleName = _model.Name;
                 _roleDescription = _model.Description;
             }
@@ -61,15 +62,13 @@ namespace Identity.Admin.Components.Pages.Roles
             _loaded = true;
         }
         
-        private string Title  => $"{_model?.Name.ToUpper()} ROLE";
-        private string Description => $"Manage {_model?.Name.ToUpper()} role in details";
+        private string Title  => $"{_model.Name} ROLE";
+        private string Description => $"Manage {_model.Name} role in details";
 
         private void ToggleEditRoleName() => _itemUpdated = !_itemUpdated;
-        private bool RoleChanged => (_roleName?.Equals(_model?.Name) ?? true) && (_roleDescription?.Equals(_model?.Description) ?? true);
+        private bool RoleChanged => _roleName.Equals(_model.Name) && (_roleDescription?.Equals(_model.Description) ?? true);
         private async Task UpdateRoleNameAsync()
         {
-            if (ApiClient == null || _model == null) return;
-            
             var request = new CreateOrUpdateRoleCommand
             {
                 Id = _model.Id.ToString(),
@@ -79,9 +78,8 @@ namespace Identity.Admin.Components.Pages.Roles
             
             if (await ApiHelper.ExecuteCallGuardedAsync(
                     () => ApiClient.CreateOrUpdateRoleEndpointAsync(request), Toast, Navigation, null, "Item was updated")
-                is { } result)
+                is not null)
             {
-                _model = result;
                 _roleName = _model.Name;
                 _roleDescription = _model.Description;
                 ToggleEditRoleName();
@@ -96,8 +94,8 @@ namespace Identity.Admin.Components.Pages.Roles
         {
             var parameters = new DialogParameters
             {
-                { "Owner", _model?.Name },
-                { "ExistingClaims", _model?.Claims },
+                { "Owner", _model.Name },
+                { "ExistingClaims", _model.Claims },
                 { "ApiClient", ApiClient },
                 { "ToRole", true}
             };
@@ -107,14 +105,14 @@ namespace Identity.Admin.Components.Pages.Roles
             var result = await dialog.Result;
             if (result is { Canceled: false, Data: ClaimViewModel claim })
             {
-                _model?.Claims.Add(claim);
+                _model.Claims.Add(claim);
                 Toast.Add($"Claim was added.", Severity.Success);
             }
         }
 
         private async Task RemoveClaimAsync(ClaimViewModel claim)
         {
-            if (ApiClient != null && _model != null && _model.Claims.Contains(claim))
+            if (_model.Claims.Contains(claim))
             {
                 var request = new RemoveClaimCommand
                 {
@@ -136,23 +134,19 @@ namespace Identity.Admin.Components.Pages.Roles
         
         private async Task<bool> UpdateClaimAsync(ClaimViewModel original, ClaimViewModel modified)
         {
-            if (ApiClient != null && _model != null)
+
+            var request = new ChangeClaimCommand
             {
-                var request = new ChangeClaimCommand
-                {
-                    Owner = _model.Name,
-                    Original = original,
-                    Modified = modified
-                };
+                Owner = _model.Name,
+                Original = original,
+                Modified = modified
+            };
                 
-                if (await ApiHelper.ExecuteCallGuardedAsync(
-                        () => ApiClient.ChangeClaimOfRoleEndpointAsync(_model.Name, request), 
-                        Toast, Navigation, null, $"Claim was updated.")
-                    is { } result)
-                {
-                    return true;
-                }
-                
+            if (await ApiHelper.ExecuteCallGuardedAsync(
+                    () => ApiClient.ChangeClaimOfRoleEndpointAsync(_model.Name, request), 
+                    Toast, Navigation, null, $"Claim was updated."))
+            {
+                return true;
             }
             
             Toast.Add($"Internal error.", Severity.Error);

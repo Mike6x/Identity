@@ -15,10 +15,10 @@ public partial class Roles : ComponentBase
     [Inject]
     protected IAuthorizationService? AuthService { get; set; }
     [Inject]
-    private IApiClient? ApiClient { get; set; }
+    public NavigationManager? Navigator { get; set; }
     
     [Inject]
-    public NavigationManager? Navigator { get; set; }
+    public required IApiClient ApiClient { get; set; }
 
     private EntityClientTableContext<RoleSummaryDto, string?, CreateOrUpdateRoleCommand>? Context { get; set; }
 
@@ -26,7 +26,6 @@ public partial class Roles : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        if (ApiClient == null) return;
         if (AuthState == null)  return;
         
         var state = await AuthState;
@@ -62,7 +61,7 @@ public partial class Roles : ComponentBase
 
     private void ToRolePermissions(in Guid  roleId) => Navigator?.NavigateTo($"/identity/roles/{roleId}/permissions");
     
-    private void ToRoleClaims(in Guid roleId) => Navigator?.NavigateTo($"/identity/roles/{roleId}/claims");
+    // private void ToRoleClaims(in Guid roleId) => Navigator?.NavigateTo($"/identity/roles/{roleId}/claims");
     
     private void ToRoleDetails(in Guid roleId) => Navigator?.NavigateTo($"/identity/roles/{roleId}/details");
 }

@@ -17,10 +17,10 @@ public partial class Applications : ComponentBase
     [Inject]
     protected IAuthorizationService? AuthService { get; set; }
     [Inject]
-    private IApiClient? ApiClient { get; set; }
-    
-    [Inject]
     public NavigationManager? Navigator { get; set; }
+    [Inject]
+    
+    public required IApiClient ApiClient { get; set; }
     
     public required IDialogService Dialog;
     
@@ -30,7 +30,6 @@ public partial class Applications : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        if (ApiClient == null) return;
         if (AuthState == null)  return;
         
         var state = await AuthState;

@@ -20,7 +20,7 @@ public partial class Scopes : ComponentBase
     public NavigationManager? Navigator { get; set; }
     
     [Inject]
-    private IApiClient? ApiClient { get; set; }
+    public required IApiClient ApiClient { get; set; }
     
     public required IDialogService Dialog;
     
@@ -29,11 +29,9 @@ public partial class Scopes : ComponentBase
 
     protected override async Task OnInitializedAsync()
     {
-        if (ApiClient == null) return;
         if (AuthState == null)  return;
         
         var state = await AuthState;
-
         if (AuthService != null)
             _canViewScopeResources =
                 await AuthService.HasPermissionAsync(state.User, AppActions.View, AppResources.Scopes);
@@ -55,8 +53,8 @@ public partial class Scopes : ComponentBase
             loadDataFunc: async () => (await ApiClient.GetScopesEndpointAsync()).ToList(),
             searchFunc: (searchString, scope) =>
                 string.IsNullOrWhiteSpace(searchString)
-                    || scope.Name?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true
-                    || scope.Description?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true,
+                    || scope.Name.Contains(searchString, StringComparison.OrdinalIgnoreCase)
+                    || scope.Description.Contains(searchString, StringComparison.OrdinalIgnoreCase),
             createFunc: async scope => await ApiClient.CreateScopeEndpointAsync(scope.Adapt<CreateScopeCommand>()),
             updateFunc: async (_, scope) => await ApiClient.UpdateScopeEndpointAsync(scope.Adapt<UpdateScopeCommand>()),
             deleteFunc: async id => await ApiClient.DeleteScopeEndpointAsync(id!),

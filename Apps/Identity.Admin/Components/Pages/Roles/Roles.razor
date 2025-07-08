@@ -7,7 +7,7 @@
         @if (_canViewRoleClaims)
         {
             <MudMenuItem @onclick="@(() => ToRolePermissions(@context.Id))">Role Permissions</MudMenuItem>
-            <MudMenuItem @onclick="@(() => ToRoleClaims(@context.Id))">Role Claim</MudMenuItem>
+
             <MudMenuItem @onclick="@(() => ToRoleDetails(@context.Id))">Role Details</MudMenuItem>
         }
     </ExtraActions>

@@ -8,7 +8,6 @@
         @if (_canViewRoles)
         {
             <MudMenuItem OnClick="@(() => ToUserRoles(context.Id))">User Roles</MudMenuItem>
-            <MudMenuItem OnClick="@(() => ToUserClaims(context.Id))" >User Claims</MudMenuItem>
 
             <MudMenuItem OnClick="@(() => ToUserDetails(context.Id))">User Details</MudMenuItem>
         }

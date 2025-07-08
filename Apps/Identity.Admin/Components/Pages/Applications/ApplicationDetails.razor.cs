@@ -11,23 +11,24 @@ namespace Identity.Admin.Components.Pages.Applications;
 
 public partial class ApplicationDetails : ComponentBase
 {
-    [Inject]
-    protected IAuthorizationService? AuthService { get; set; }
-    [Inject]
-    protected IApiClient? ApiClient { get; set; }
-    [Inject]
-    public IDialogService? Dialog { get; set; }
-    
     [CascadingParameter]
     protected Task<AuthenticationState>? AuthState { get; set; }
+    [Inject]
+    protected IAuthorizationService? AuthService { get; set; }
+        
+    [Inject]
+    public  required IDialogService Dialog { get; set; }
+        
+    [Inject]
+    public required IApiClient ApiClient { get; set; } 
 
     [Parameter]
-    public string? Id { get; set; }
+    public required  string Id { get; set; }
 
-    ApplicationDto _item = new();
+    private ApplicationDto _model = new();
 
-    private string _title = string.Empty;
-    private string _description = string.Empty;
+    private string Title => $"{_model.ClientId} application";
+    private string Description => $"Manage {_model.ClientId} application details";
 
     private string _searchString = string.Empty;
 
@@ -38,7 +39,7 @@ public partial class ApplicationDetails : ComponentBase
     
     protected override async Task OnParametersSetAsync()
     {
-        if ( ApiClient == null || AuthState == null || string.IsNullOrEmpty(Id) ) return;
+        if ( AuthState == null || string.IsNullOrEmpty(Id) ) return;
         
         var state = await AuthState;
         if (AuthService != null)
@@ -51,9 +52,8 @@ public partial class ApplicationDetails : ComponentBase
                 () => ApiClient.GetApplicationEndpointAsync(Id), Toast, Navigation)
             is { } applicationDto)
         {
-            _item = applicationDto;
-            _title = $"{_item.ClientId} application";
-            _description = $"Manage {_item.ClientId} application details";
+            _model = applicationDto;
+ 
         }
 
         _loaded = true;
@@ -61,12 +61,12 @@ public partial class ApplicationDetails : ComponentBase
 
     private async Task SaveAsync()
     {
-        if ( ApiClient == null || string.IsNullOrEmpty(_item.Id) ) return;
+        if ( string.IsNullOrEmpty(_model.Id) ) return;
 
-        var request = _item.Adapt<UpdateClientCommand>();
+        var request = _model.Adapt<UpdateClientCommand>();
         
         await ApiHelper.ExecuteCallGuardedAsync(
-            () => ApiClient.UpdateApplicationEndpointAsync(_item.Adapt<UpdateClientCommand>()), 
+            () => ApiClient.UpdateApplicationEndpointAsync(request), 
             Toast, 
             successMessage: "updated client successfully");
 

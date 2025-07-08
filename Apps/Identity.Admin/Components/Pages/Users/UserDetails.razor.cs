@@ -12,7 +12,7 @@ using MudBlazor;
 
 namespace Identity.Admin.Components.Pages.Users;
 
-public partial class UserProfile
+public partial class UserDetails
 {
     [CascadingParameter]
     protected Task<AuthenticationState>? AuthState { get; set; }
