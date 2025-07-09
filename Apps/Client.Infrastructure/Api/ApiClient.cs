@@ -11912,19 +11912,19 @@ namespace Client.Infrastructure.Api
         public string DisplayName { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("permissions")]
-        public System.Collections.Generic.ICollection<string>? Permissions { get; set; } = default!;
+        public System.Collections.Generic.ICollection<string> Permissions { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("redirectUris")]
-        public System.Collections.Generic.ICollection<System.Uri>? RedirectUris { get; set; } = default!;
+        public System.Collections.Generic.ICollection<System.Uri> RedirectUris { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("postLogoutRedirectUris")]
-        public System.Collections.Generic.ICollection<System.Uri>? PostLogoutRedirectUris { get; set; } = default!;
+        public System.Collections.Generic.ICollection<System.Uri> PostLogoutRedirectUris { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("requirements")]
-        public System.Collections.Generic.ICollection<string>? Requirements { get; set; } = default!;
+        public System.Collections.Generic.ICollection<string> Requirements { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("settings")]
-        public System.Collections.Generic.IDictionary<string, string>? Settings { get; set; } = default!;
+        public System.Collections.Generic.IDictionary<string, string> Settings { get; set; } = default!;
 
     }
 

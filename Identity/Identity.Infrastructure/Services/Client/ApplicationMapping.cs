@@ -66,9 +66,9 @@ public static class ClientMapping
                 ? []
                 : JsonConvert.DeserializeObject<IEnumerable<string>>(source.Requirements)!.ToList(),
             
-             Settings = string.IsNullOrEmpty(source.Settings) 
+             Settings = (string.IsNullOrEmpty(source.Settings) 
                  ? new Dictionary<string, string>() 
-                 : JsonConvert.DeserializeObject<Dictionary<string, string>>(source.Settings)
+                 : JsonConvert.DeserializeObject<Dictionary<string, string>>(source.Settings))!
         };
 
     }
@@ -87,30 +87,30 @@ public static class ClientMapping
             
         };
         
-        if (source.Requirements != null && source.Requirements.Count != 0)
+        if (source.Requirements.Count != 0)
             foreach (var requirement in source.Requirements)
             {
                 destination.Requirements.Add(requirement);
             }
 
-        if (source.Permissions != null && source.Permissions.Count != 0)
+        if (source.Permissions.Count != 0)
             foreach (var permission in source.Permissions)
             {
                 destination.Permissions.Add(permission);
             }
-        if (source.RedirectUris != null && source.RedirectUris.Count != 0)
+        if (source.RedirectUris.Count != 0)
             foreach (var uri in source.RedirectUris)
             {
                 destination.RedirectUris.Add(uri);
             }
 
-        if (source.PostLogoutRedirectUris != null && source.PostLogoutRedirectUris.Count != 0)
+        if (source.PostLogoutRedirectUris.Count != 0)
             foreach (var uri in source.PostLogoutRedirectUris)
             {
                 destination.PostLogoutRedirectUris.Add(uri);
             }
         
-        if (source.Settings != null && source.Settings.Count != 0)
+        if (source.Settings.Count != 0)
             foreach (var settingsDictionary in source.Settings)
             {
                 destination.Settings.Add(settingsDictionary.Key, settingsDictionary.Value);

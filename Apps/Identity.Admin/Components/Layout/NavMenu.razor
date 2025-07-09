@@ -1,22 +1,29 @@
 ﻿@using Microsoft.AspNetCore.Components.Authorization
 <PersonCard/>
+<br /> 
+<br /> 
 <MudNavMenu>
     <AuthorizeView>
         <Authorized>
             <MudNavLink Href="" Match="NavLinkMatch.All" Icon="@Icons.Material.Filled.Home">Home</MudNavLink>
-            
+            <br /> 
+            <MudNavGroup Title="MY ACCOUNT" Expanded="false" Icon="@Icons.Material.Outlined.ManageAccounts">
+                <MudNavLink Href="/identity/account" Icon="@Icons.Material.Filled.PermIdentity">Account</MudNavLink>
+                <MudNavLink Href="/identity/claims" Icon="@Icons.Material.Filled.AccountTree">Claims</MudNavLink>
+            </MudNavGroup>
+            <br /> 
             <MudNavGroup Title="USER MANAGEMENT" Expanded="false" Icon="@Icons.Material.Outlined.Security">
                 <MudNavLink Match="NavLinkMatch.Prefix" Href="/identity/users" Icon="@Icons.Material.Filled.PeopleAlt">Users</MudNavLink>
                 <MudNavLink Href="/identity/roles" Icon="@Icons.Material.Filled.EmojiPeople">Roles</MudNavLink>
                 
             </MudNavGroup>
-
-            <MudNavGroup Title="CLIENT MANAGEMENT" Expanded="false" Icon="@Icons.Material.Outlined.SettingsApplications">
-                <MudNavLink Href="./identity/applications" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Web">Applications</MudNavLink>
-                <MudNavLink Href="/identity/scopes" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.SettingsCell">Scopes</MudNavLink>
+            <br /> 
+            <MudNavGroup Title="CLIENT MANAGEMENT" Expanded="false" Icon="@Icons.Material.Outlined.Settings">
+                <MudNavLink Href="./identity/applications" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Api">Applications</MudNavLink>
+                <MudNavLink Href="/identity/scopes" Match="NavLinkMatch.All" Icon="@Icons.Material.Outlined.Rule">Scopes</MudNavLink>
       
             </MudNavGroup>
-            
+            <br /> 
             <MudNavGroup Title="Demo" Expanded="false" Icon="@Icons.Material.Outlined.Dashboard">
                 <MudNavLink Href="counter" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Add">Counter</MudNavLink>
                 <MudNavLink Href="weather" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.List">Weather</MudNavLink>

@@ -1,6 +1,7 @@
 using Client.Infrastructure.Api;
 using Client.Infrastructure.Auth;
 using Identity.Admin.Components.EntityTable;
+using Identity.Admin.Components.OpenIddict.ViewModels;
 using Identity.Shared.Authorization;
 using Mapster;
 using Microsoft.AspNetCore.Authorization;
@@ -18,13 +19,14 @@ public partial class Applications : ComponentBase
     protected IAuthorizationService? AuthService { get; set; }
     [Inject]
     public NavigationManager? Navigator { get; set; }
-    [Inject]
     
+    [Inject]
     public required IApiClient ApiClient { get; set; }
     
     public required IDialogService Dialog;
     
     private bool _canViewItemDetails;
+    private bool _canAddItemDetails;
     
     private EntityClientTableContext<ApplicationSummaryDto, string?, ApplicationViewModel> Context { get; set; }
 
@@ -35,8 +37,13 @@ public partial class Applications : ComponentBase
         var state = await AuthState;
 
         if (AuthService != null)
+        {
             _canViewItemDetails =
                 await AuthService.HasPermissionAsync(state.User, AppActions.View, AppResources.Clients);
+            _canAddItemDetails =
+                await AuthService.HasPermissionAsync(state.User, AppActions.Create, AppResources.Clients);
+        }
+
 
         Context = new EntityClientTableContext<ApplicationSummaryDto, string?, ApplicationViewModel>(
             entityName: "Application",
@@ -51,7 +58,7 @@ public partial class Applications : ComponentBase
                 new EntityField<ApplicationSummaryDto>(item => item.ConsentType, "Consent Type"),
         
         
-                new EntityField<ApplicationSummaryDto>(item => item.Id, "Internal Id"),
+                // new EntityField<ApplicationSummaryDto>(item => item.Id, "Internal Id"),
                 new EntityField<ApplicationSummaryDto>(item => item.ApplicationType, "App Type"),
                 new EntityField<ApplicationSummaryDto>(item => item.IsConfidentialClient, "IsConfidential", Type: typeof(bool))
             ],
@@ -60,7 +67,7 @@ public partial class Applications : ComponentBase
             searchFunc: (searchString, item) =>
                 string.IsNullOrWhiteSpace(searchString)
                     || item.ClientId.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true
-                    || item.DisplayName?.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true,
+                    || item.DisplayName.Contains(searchString, StringComparison.OrdinalIgnoreCase) == true,
             createFunc: async item =>
             {
                 var request = item.Adapt<CreateClientCommand>();
@@ -75,10 +82,27 @@ public partial class Applications : ComponentBase
     
     private void ToApplicationDetails(in string clientId) => Navigator?.NavigateTo($"/identity/Applications/{clientId}/details");
     
+    private void ToNewApplication() => Navigator?.NavigateTo($"/identity/Applications/new");
+    
+    
+    private readonly Func<ApplicationPreset, string> _displayStringConverter = ci => ci.ToDisplayString();
+    private void ApplyPreset(ApplicationPreset preset)
+    {
+        Context.AddEditModal.RequestModel.ApplyPreset(preset);
+        
+        Context.AddEditModal.ForceRender();
+    }
+    
+    private void ToggleRequirement(SwitchItemViewModel requirement)
+    {
+        // if (Application.Requirements != null) ToggleSwitch(requirement, Application.Requirements);
+    }
+    
+    private ApplicationPreset AppPreset { get; set; }
+    
 }
 
 public class ApplicationViewModel : UpdateClientCommand
 {
-
-    
+   
 }

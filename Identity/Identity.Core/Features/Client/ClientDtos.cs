@@ -65,13 +65,14 @@ public class ApplicationDto
 
     public string DisplayName { get; set; } = string.Empty;
 
-    public List<string>? Permissions { get; set; } = [];
+    public List<string> Permissions { get; set; } = [];
 
-    public List<Uri>? RedirectUris { get; set; } = [];
+    public List<Uri> RedirectUris { get; set; } = [];
 
-    public List<Uri>? PostLogoutRedirectUris { get; set; } = [];
+    public List<Uri> PostLogoutRedirectUris { get; set; } = [];
 
-    public List<string>? Requirements { get; set; } = [];
+    public List<string> Requirements { get; set; } = [];
 
-    public Dictionary<string, string>? Settings { get; set; } = new(StringComparer.Ordinal);
+    public Dictionary<string, string> Settings { get; set; } = new(StringComparer.Ordinal);
+
 }

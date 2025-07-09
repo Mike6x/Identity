@@ -1,4 +1,6 @@
 @page "/identity/Applications"
+@using Identity.Admin.Components.OpenIddict
+@using Identity.Admin.Components.OpenIddict.ViewModels
 
 <PageHeader Title="Applications" Header="Applications" SubHeader="Manage Application Clients." />
 
@@ -9,6 +11,11 @@
         {
             <MudMenuItem @onclick="@(() => ToApplicationDetails(@context.Id))">Client Details</MudMenuItem>
         }
+        @if (_canAddItemDetails)
+        {
+            <MudMenuItem @onclick="@(() => ToNewApplication())">New Client</MudMenuItem>
+        }
+
     </ExtraActions>
 
     <EditFormContent>
@@ -16,6 +23,27 @@
         {
             <MudItem xs="12" md="12">
                 <MudTextField Value="context.Id" ReadOnly Underline="false" Label="Scope Id]" />
+            </MudItem>
+        }
+        else
+        {       
+            <MudItem xs="12" md="6">
+                <MudSelect UserAttributes="@(new (){{"id","cbPresets"}})" Label="Apply Preset" T="ApplicationPreset" ValueChanged="(v) => ApplyPreset(v)" 
+                    AdornmentColor="Color.Secondary" FullWidth="false">
+                    @foreach (ApplicationPreset item in Enum.GetValues(typeof(ApplicationPreset)))
+                    {
+                        <MudSelectItem Value="@item">@_displayStringConverter(item)</MudSelectItem>
+                    }
+                </MudSelect>
+            </MudItem>
+            <MudItem xs="12" md="6">
+                <MudSelect Label="App template" T="ApplicationPreset" @bind-Value="AppPreset"
+                    AdornmentColor="Color.Secondary" FullWidth="false">
+                    @foreach (ApplicationPreset item in Enum.GetValues(typeof(ApplicationPreset)))
+                    {
+                        <MudSelectItem Value="@item">@_displayStringConverter(item)</MudSelectItem>
+                    }
+                </MudSelect>
             </MudItem>
         }
 
@@ -51,18 +79,22 @@
             <ValidationMessage For="() => context.ClientType"></ValidationMessage>
         </MudItem>
         
+
         <MudItem xs="12" md="6">
             <MudTextField UserAttributes="@(new (){{"id","txtJsonWebKeySet"}})" T="string" Label="Json Web Key Set"  Variant="Variant.Text" 
                             For="@(() => context.JsonWebKeySet)" @bind-Value="@context.JsonWebKeySet" 
                             AutoGrow HelperText="public key of ECDSA private/public key pair used by the server to validate the client assertions" />
             <ValidationMessage For="() => context.JsonWebKeySet"></ValidationMessage>
         </MudItem>
+   
         <MudItem xs="12" md="12">
             <MudTextField UserAttributes="@(new (){{"id","txtClientSecret"}})" Label="Client Secret" Variant="Variant.Text"
                            For="@(() => context.ClientSecret)" @bind-Value="context.ClientSecret" />
             <ValidationMessage For="() => context.ClientSecret"></ValidationMessage>
         </MudItem>
-
+        
+        <MudItem xs="12" md="12">
+        </MudItem>
         
     </EditFormContent>
 

@@ -2,24 +2,24 @@
 
 <MudStack Row="true" Spacing="3" Class="mt-3">
     <MudItem xs="6">
-        <MudTextField UserAttributes="@(new (){{"id","txtClientId"}})" Label="Client ID"
+        <MudTextField UserAttributes="@(new Dictionary<string, object?> {{"id","txtClientId"}})" Label="Client ID"
                       @bind-Value="Application.ClientId" For="@(() => Application.ClientId)" />
     </MudItem>
     <MudItem xs="6">
-        <MudTextField UserAttributes="@(new (){{"id","txtDisplayName"}})" Label="Display Name"
+        <MudTextField UserAttributes="@(new Dictionary<string, object?> {{"id","txtDisplayName"}})" Label="Display Name"
                       @bind-Value="Application.DisplayName" For="@(() => Application.DisplayName)" />
     </MudItem>
 </MudStack>
 
 <MudStack Row="true" Spacing="3" Class="mt-3">
     <MudItem xs="2">
-        <MudSelect UserAttributes="@(new (){{"id","cbApplicationType"}})" T="string" Label="Application Type" @bind-Value="Application.ApplicationType">
+        <MudSelect UserAttributes="@(new Dictionary<string, object?> {{"id","cbApplicationType"}})" T="string" Label="Application Type" @bind-Value="Application.ApplicationType">
             <MudSelectItem Value="@("web")" />
             <MudSelectItem Value="@("native")" />
         </MudSelect>
     </MudItem>
     <MudItem xs="2">
-        <MudSelect UserAttributes="@(new (){{"id","cbConsentType"}})" T="string" Label="Consent Type" @bind-Value="Application.ConsentType">
+        <MudSelect UserAttributes="@(new Dictionary<string, object?> {{"id","cbConsentType"}})" T="string" Label="Consent Type" @bind-Value="Application.ConsentType">
             <MudSelectItem Value="@("explicit")" />
             <MudSelectItem Value="@("external")" />
             <MudSelectItem Value="@("implicit")" />
@@ -28,7 +28,7 @@
         <ValidationMessage For="() => Application.ConsentType"></ValidationMessage>
     </MudItem>
     <MudItem xs="2">
-        <MudSelect UserAttributes="@(new (){{"id","cbClientType"}})" T="string" Label="Client Type" @bind-Value="Application.ClientType">
+        <MudSelect UserAttributes="@(new Dictionary<string, object?> {{"id","cbClientType"}})" T="string" Label="Client Type" @bind-Value="Application.ClientType">
             <MudSelectItem Value="@("public")" />
             <MudSelectItem Value="@("confidential")" />
         </MudSelect>
@@ -38,7 +38,7 @@
         @if (Application.IsConfidentialClient)
         {
 
-            <MudTextField UserAttributes="@(new (){{"id","txtClientSecret"}})" @bind-Value="Application.ClientSecret" Label="Client Secret" Variant="Variant.Text"
+            <MudTextField UserAttributes="@(new Dictionary<string, object?> {{"id","txtClientSecret"}})" @bind-Value="Application.ClientSecret" Label="Client Secret" Variant="Variant.Text"
                           InputType="@_passwordInputFieldType" Adornment="Adornment.End" AdornmentColor="Color.Primary"
                           AdornmentIcon="@_passwordInputIcon" OnAdornmentClick="OnTogglePasswordVisibility" />
             <ValidationMessage For="() => Application.ClientSecret"></ValidationMessage>
@@ -48,12 +48,12 @@
 
 @if (Application.IsConfidentialClient)
 {
-    <MudTextField UserAttributes="@(new (){{"id","txtJsonWebKeySet"}})" T="string" Label="Json Web Key Set" Variant="Variant.Text" @bind-Value="@Application.JsonWebKeySet" AutoGrow HelperText="public key of ECDSA private/public key pair used by the server to validate the client assertions" />
+    <MudTextField UserAttributes="@(new Dictionary<string, object?> {{"id","txtJsonWebKeySet"}})" T="string" Label="Json Web Key Set" Variant="Variant.Text" @bind-Value="@Application.JsonWebKeySet" AutoGrow HelperText="public key of ECDSA private/public key pair used by the server to validate the client assertions" />
     <ValidationMessage For="() => Application.JsonWebKeySet"></ValidationMessage>
 }
 
 <br />
-@if(Application.Permissions != null && Application.Permissions.Contains(OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode))
+@if(Application.Permissions.Contains(OpenIddictConstants.Permissions.GrantTypes.AuthorizationCode))
 {
     <MudStack Row="true" Spacing="3" Class="mt-3">
         <MudItem xs="6">
@@ -105,7 +105,7 @@
         <TitleContent>
             <div class="d-flex">
                 <MudText>Scope Permissions</MudText>
-                <MudIconButton UserAttributes="@(new (){{"id","btnAddScope"}})" Icon="@Icons.Material.Outlined.AddCircleOutline" Size="Size.Medium"
+                <MudIconButton UserAttributes="@(new Dictionary<string, object?> {{"id","btnAddScope"}})" Icon="@Icons.Material.Outlined.AddCircleOutline" Size="Size.Medium"
                                @onclick="AddScope" Color="Color.Primary" Class="ml-3" Style="padding:0;"></MudIconButton>
             </div>
         </TitleContent>
@@ -135,16 +135,16 @@
         <TitleContent>
             <div class="d-flex">
                 <MudText>Token LifeTimes</MudText>
-                <MudIconButton UserAttributes="@(new (){{"id","btnAddSetting"}})" Icon="@Icons.Material.Outlined.AddCircleOutline" Size="Size.Medium"
+                <MudIconButton UserAttributes="@(new Dictionary<string, object?> {{"id","btnAddSetting"}})" Icon="@Icons.Material.Outlined.AddCircleOutline" Size="Size.Medium"
                                @onclick="AddSetting" Color="Color.Primary" Class="ml-3" Style="padding:0;"></MudIconButton>
             </div>
         </TitleContent>
         <ChildContent>
             <EditableCollection TItem="KeyValuePair<string,string>" TValue="KeyValuePair<string,string>" ItemSize="3" Spacing="2"
                                 OnDeleteItem="@RemoveSetting"
-                                Items="Application.Settings ?? new Dictionary<string, string>()">
+                                Items="Application.Settings">
                 <ItemTemplate Context="item">
-                    <MudText Color="Color.Info" UserAttributes="@(new (){{"id", item.Key}})" Class="ml-2" Typo="Typo.subtitle1">@($"{Shared.Helpers.TokenLifeTimesHelper.GetNameFromValue(item.Key)} : {item.Value}")</MudText>
+                    <MudText Color="Color.Info" UserAttributes="@(new Dictionary<string, object?> {{"id", item.Key}})" Class="ml-2" Typo="Typo.subtitle1">@($"{Shared.Helpers.TokenLifeTimesHelper.GetNameFromValue(item.Key)} : {item.Value}")</MudText>
                 </ItemTemplate>
             </EditableCollection>
         </ChildContent>

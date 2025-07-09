@@ -1,0 +1,47 @@
+﻿@page "/identity/applications/new"
+@using Identity.Admin.Components.OpenIddict
+@using Identity.Admin.Components.OpenIddict.ViewModels
+
+<PageHeader Title="New Application" Header="New Application" SubHeader="Create new application from template" />
+
+@if (!_loaded)
+{
+    <MudProgressCircular Color="Color.Primary" Indeterminate="true" />
+}
+else
+{
+    <MudGrid Spacing="2" Justify="Justify.FlexStart" Class="p-2">
+         @* <MudItem xs="8"> *@
+         @*     <PageHeader Title="New Application" Header="New Application" SubHeader="Create new application from template" /> *@
+         @* </MudItem> *@
+         <MudItem xs="4">
+              <MudSelect UserAttributes="@(new (){{"id","cbPresets"}})" T="ApplicationPreset" ValueChanged="(v) => ApplyPreset(v)" Label="Apply Preset" 
+                AdornmentColor="Color.Secondary" FullWidth="false">
+                @foreach (ApplicationPreset item in Enum.GetValues(typeof(ApplicationPreset)))
+                {
+                    <MudSelectItem Value="@item">@_displayStringConverter(item)</MudSelectItem>
+                }
+                </MudSelect>
+         </MudItem>
+    </MudGrid>  
+
+    <br />
+    <MudPaper Elevation="4">
+        <EditForm Model="@_model" OnValidSubmit="AddApplicationDetailsAsync">
+            <FluentValidationValidator />
+            <MudCard>
+                <MudCardContent>
+                    <CascadingValue Value="_model">
+                        <ApplicationForm Dialog="Dialog" />
+                    </CascadingValue>
+                </MudCardContent>
+                <MudCardActions>
+                    <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled"
+                           Color="Color.Primary" Class="ml-auto">Create</MudButton>
+                </MudCardActions>
+            </MudCard>
+        </EditForm>
+    </MudPaper>
+    <br/>
+    <br/>
+}

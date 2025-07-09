@@ -1,6 +1,7 @@
 ﻿using Client.Infrastructure.Api;
 using Identity.Admin.Components.Dialogs;
 using Identity.Shared.Authorization;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Forms;
@@ -12,14 +13,17 @@ public partial class Profile
 {
     [CascadingParameter]
     protected Task<AuthenticationState>? AuthState { get; set; }
-    // [Inject]
-    // protected IAuthenticationService? AuthService { get; set; }
+    
     [Inject]
-    protected IApiClient PersonalClient { get; set; } = null!;
+    protected IAuthenticationService? AuthService { get; set; }
+    
+    [Inject]
+    public required IApiClient ApiClient { get; set; } 
 
-    private readonly UpdateUserCommand _profileModel = new();
+    private readonly UpdateUserCommand _model = new();
 
     private string? _imageUrl = string.Empty;
+    
     private Guid _userId = Guid.Empty;
     
     private char _firstLetterOfName;
@@ -28,52 +32,34 @@ public partial class Profile
 
     protected override async Task OnInitializedAsync()
     {
-        if (AuthState != null && (await AuthState).User is { } user)
+        
+        if (AuthState != null 
+            && (await AuthState).User is { Identity: not null } user 
+            && !string.IsNullOrEmpty(user.Identity.Name))
         {
-            var userProfile = await PersonalClient.GetUserByNameEndpointAsync(user.Identity!.Name);
+            var userProfile = await ApiClient.GetUserByEmailEndpointAsync(user.Identity.Name);
             _userId  = userProfile.Id;
             
-            _profileModel.Email = userProfile.Email;
-            _profileModel.FirstName = userProfile.FirstName;
-            _profileModel.LastName = userProfile.LastName;
-            _profileModel.PhoneNumber = userProfile.PhoneNumber;
-            _profileModel.UserName = userProfile.UserName;
+            _model.Email = userProfile.Email;
+            _model.FirstName = userProfile.FirstName;
+            _model.LastName = userProfile.LastName;
+            _model.PhoneNumber = userProfile.PhoneNumber;
+            _model.UserName = userProfile.UserName;
             
-            _profileModel.Id = _userId.ToString();
+            _model.Id = _userId.ToString();
         }
-
-        if (_profileModel.FirstName?.Length > 0)
+        
+        if (_model.FirstName?.Length > 0)
         {
-            _firstLetterOfName = _profileModel.FirstName.ToUpper(System.Globalization.CultureInfo.CurrentCulture).FirstOrDefault();
+            _firstLetterOfName = _model.FirstName.ToUpper(System.Globalization.CultureInfo.CurrentCulture).FirstOrDefault();
         }
     }
 
-    // protected override async Task OnInitializedAsync()
-    // {
-    //     if ((await AuthState).User is { } user)
-    //     {
-    //         _userId = user.GetUserId();
-    //         _profileModel.Email = user.GetEmail() ?? string.Empty;
-    //         _profileModel.FirstName = user.GetFirstName() ?? string.Empty;
-    //         _profileModel.LastName = user.GetSurname() ?? string.Empty;
-    //         _profileModel.PhoneNumber = user.GetPhoneNumber();
-    //         _profileModel.ImageUrl = user.GetImageUrl();
-    //         if (user.GetImageUrl() != null)
-    //         {
-    //             _imageUrl = user.GetImageUrl()!.ToString();
-    //         }
-    //         if (_userId is not null) _profileModel.Id = _userId;
-    //     }
-    //
-    //     if (_profileModel.FirstName?.Length > 0)
-    //     {
-    //         _firstLetterOfName = _profileModel.FirstName.ToUpper(System.Globalization.CultureInfo.CurrentCulture).FirstOrDefault();
-    //     }
-    // }
+
     private async Task UpdateProfileAsync()
     {
         if (await ApiHelper.ExecuteCallGuardedAsync(
-            () => PersonalClient.UpdateCurrentUserEndpointAsync(_profileModel), Toast, _customValidation))
+            () => ApiClient.UpdateCurrentUserEndpointAsync(_model), Toast, _customValidation))
         {
             Toast.Add("Your Profile has been updated. Please Login again to get update.", Severity.Success);
             // await AuthService.ReLoginAsync(Navigation.Uri);
@@ -97,7 +83,7 @@ public partial class Profile
             var buffer = new byte[imageFile.Size];
             _ = await imageFile.OpenReadStream(AppConstants.MaxAllowedSize).ReadAsync(buffer);
             var base64String = $"data:{AppConstants.StandardImageFormat};base64,{Convert.ToBase64String(buffer)}";
-            _profileModel.Image = new FileUploadCommand { Name = fileName, Data = base64String, Extension = extension };
+            _model.Image = new FileUploadCommand { Name = fileName, Data = base64String, Extension = extension };
 
             await UpdateProfileAsync();
         }
@@ -115,7 +101,7 @@ public partial class Profile
         var result = await dialog.Result;
         if (result is { Canceled: false })
         {
-            _profileModel.DeleteCurrentImage = true;
+            _model.DeleteCurrentImage = true;
             await UpdateProfileAsync();
         }
     }

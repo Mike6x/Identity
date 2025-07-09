@@ -4,12 +4,12 @@ using OpenIddict.Abstractions;
 namespace Identity.Admin.Components.OpenIddict.ViewModels
 {
     public enum ApplicationPreset
-    {
+    {   
+        None,
         AuthorizationCodeFlow,
         ClientCredentialsFlow,
         DeviceAuthorizationFlow,
-        Introspection,
-        None
+        Introspection
     }
 
     public static class ApplicationPresetManager
@@ -18,6 +18,11 @@ namespace Identity.Admin.Components.OpenIddict.ViewModels
         {
             applicationViewModel.Permissions ??= new List<string>();
             applicationViewModel.Requirements  ??= new List<string>();
+            
+            applicationViewModel.RedirectUris ??= new List<Uri>();
+            applicationViewModel.PostLogoutRedirectUris ??= new List<Uri>();
+            applicationViewModel.Settings = new Dictionary<string, string>();
+            
             
             applicationViewModel.Permissions.Clear();
             applicationViewModel.Requirements.Clear();

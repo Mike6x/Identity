@@ -71,8 +71,6 @@ namespace Identity.Admin.Components.OpenIddict
             //While editing an application back, we need to add any custom scope to the scopePermissions that was previously added 
             void AddCustomScopes()
             {
-                if (Application.Permissions == null) return;
-                
                 var scopes = Application.Permissions.Where(p => p.StartsWith("scp:"));
                 foreach (var scope in scopes)
                 {
@@ -114,7 +112,7 @@ namespace Identity.Admin.Components.OpenIddict
             var result = await dialog.Result;
             if (result != null && !result.Canceled && result.Data is ScopeDto customScope)
             {
-                if(Application.Permissions != null && Application.Permissions.Contains(customScope.Name))
+                if(Application.Permissions.Contains(customScope.Name))
                 {
                     SnackBar?.Add($"Selected scope {customScope.DisplayName} already exists in application permission.", Severity.Error);
                     return;
@@ -139,7 +137,7 @@ namespace Identity.Admin.Components.OpenIddict
 
         private void RemoveRedirectUri(Uri uri)
         {
-            if (Application.RedirectUris != null && Application.RedirectUris.Contains(uri))
+            if (Application.RedirectUris.Contains(uri))
             {
                 Application.RedirectUris.Remove(uri);
             }
@@ -159,7 +157,7 @@ namespace Identity.Admin.Components.OpenIddict
 
         private void RemovePostLogoutRedirectUri(Uri uri)
         {
-            if (Application.PostLogoutRedirectUris != null && Application.PostLogoutRedirectUris.Contains(uri))
+            if (Application.PostLogoutRedirectUris.Contains(uri))
             {
                 Application.PostLogoutRedirectUris.Remove(uri);
             }
@@ -167,12 +165,12 @@ namespace Identity.Admin.Components.OpenIddict
 
         private void TogglePermission(SwitchItemViewModel permission)
         {
-            if (Application.Permissions != null) ToggleSwitch(permission, Application.Permissions);
+            ToggleSwitch(permission, Application.Permissions);
         }
 
         private void ToggleRequirement(SwitchItemViewModel requirement)
         {
-            if (Application.Requirements != null) ToggleSwitch(requirement, Application.Requirements);
+            ToggleSwitch(requirement, Application.Requirements);
         }
 
         private void ToggleSwitch(SwitchItemViewModel item, ICollection<string> targetCollection)
@@ -213,22 +211,21 @@ namespace Identity.Admin.Components.OpenIddict
         {
             var parameters = new DialogParameters();
             List<string> configuredSettingNames = [];
-            if (Application.Settings != null)
+            
+            foreach (var setting in Application.Settings)
             {
-                foreach (var setting in Application.Settings)
-                {
-                    configuredSettingNames.Add(TokenLifeTimesHelper.GetNameFromValue(setting.Key));
-                }
-
-                parameters.Add("ConfiguredSettings", configuredSettingNames);
-                var dialog = await Dialog.ShowAsync<ApplicationSettings>("Add New Setting", parameters,
-                    new DialogOptions { MaxWidth = MaxWidth.Large, CloseButton = true });
-                var result = await dialog.Result;
-                if (result is { Canceled: false, Data: KeyValuePair<string, string> settingToAdd })
-                {
-                    Application.Settings.Add(settingToAdd.Key, settingToAdd.Value);
-                }
+                configuredSettingNames.Add(TokenLifeTimesHelper.GetNameFromValue(setting.Key));
             }
+
+            parameters.Add("ConfiguredSettings", configuredSettingNames);
+            var dialog = await Dialog.ShowAsync<ApplicationSettings>("Add New Setting", parameters,
+                new DialogOptions { MaxWidth = MaxWidth.Large, CloseButton = true });
+            var result = await dialog.Result;
+            if (result is { Canceled: false, Data: KeyValuePair<string, string> settingToAdd })
+            {
+                Application.Settings.Add(settingToAdd.Key, settingToAdd.Value);
+            }
+            
         }
 
         private void RemoveSetting(KeyValuePair<string, string> settingToRemove)
