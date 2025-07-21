@@ -47,7 +47,7 @@
           "dependencies": {
             "OpenIddict.Abstractions": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -432,15 +432,15 @@
             },
             "OpenIddict.Validation.AspNetCore": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[7.0.0, )"
             },
             "OpenIddict.Validation.SystemNetHttp": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[7.0.0, )"
             },
             "Scalar.AspNetCore": {
               "target": "Package",
-              "version": "[2.4.17, )"
+              "version": "[2.6.3, )"
             },
             "Serilog": {
               "target": "Package",

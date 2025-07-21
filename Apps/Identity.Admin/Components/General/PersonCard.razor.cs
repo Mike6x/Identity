@@ -32,7 +32,7 @@ public partial class PersonCard
         var user = (await AuthState).User;
         if (user.Identity?.IsAuthenticated == true && string.IsNullOrEmpty(UserId))
         {
-            FullName = user.GetFullName();
+            FullName = user.GetFirstName() + " " + user.GetLastName();
             UserId = user.GetUserId();
             Email = user.GetEmail();
             if (user.GetImageUrl() != null)

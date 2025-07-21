@@ -1,17 +1,15 @@
 /*
  * Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
  * See https://github.com/openiddict/openiddict-core for more information concerning
- * the license and the contributors participating to this project.
+ * the license and the contributors participating in this project.
  */
 
-using System.Collections.Immutable;
 using System.Security.Claims;
 using BuildingBlocks.Common.Extensions;
 using Identity.Core.Features.Authorization.ViewModels;
 using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Http;
-using Microsoft.IdentityModel.Tokens;
 using OpenIddict.Abstractions;
 using OpenIddict.Server.AspNetCore;
 using static OpenIddict.Abstractions.OpenIddictConstants;
@@ -28,7 +26,7 @@ public partial class OpenIdDictService
         var request = httpContext.GetOpenIddictServerRequest() ??
                       throw new InvalidOperationException("The OpenID Connect request cannot be retrieved.");
 
-        // If the user code was not specified in the query string (e.g as part of the verification_uri_complete),
+        // If the user code was not specified in the query string (e.g., as part of the verification_uri_complete),
         // render a form to ask the user to enter the user code manually (non-digit chars are automatically ignored).
         if (string.IsNullOrEmpty(request.UserCode))
         {
@@ -76,7 +74,7 @@ public partial class OpenIdDictService
                         "The specified access token is bound to an account that no longer exists."
                 }));
         
-        // Retrieve the profile of the logged in user.
+        // Retrieve the profile of the logged-in user.
         var user = await userManager.GetUserAsync(principal) ??
             throw new InvalidOperationException("The user details cannot be retrieved.");
 
@@ -84,24 +82,13 @@ public partial class OpenIdDictService
         {
             // Create the claims-based identity that will be used by Authorization to generate tokens.
             
-            // var identity = new ClaimsIdentity(
-            //     authenticationType: TokenValidationParameters.DefaultAuthenticationType,
-            //     nameType: Claims.Name,
-            //     roleType: Claims.Role);
-            //
-            // // Add the claims that will be persisted in the tokens.
-            // identity.SetClaim(Claims.Subject, await userManager.GetUserIdAsync(loggedInUser))
-            //         .SetClaim(Claims.Email, await userManager.GetEmailAsync(loggedInUser))
-            //         .SetClaim(Claims.Name, await userManager.GetUserNameAsync(loggedInUser))
-            //         .SetClaims(Claims.Role, [..(await userManager.GetRolesAsync(loggedInUser))]);
-            
-            var identity =  await CreateClaimsBasedIdentity(user, null);
+            var identity =  await CreateClaimsBasedIdentity(user, null,null);
 
             await AddUserClaimsAsync(identity, user);
 
-            // Note: in this sample, the granted scopes match the requested scope
+            // Note: in this sample, the granted scopes match the requested scope,
             // but you may want to allow the user to uncheck specific scopes.
-            // For that, simply restrict the list of scopes before calling SetScopes.
+            // For that, restrict the list of scopes before calling SetScopes.
             identity.SetScopes(result.Principal.GetScopes());
             identity.SetResources(await scopeManager.ListResourcesAsync(identity.GetScopes()).ToListAsync());
             identity.SetDestinations(GetDestinations);
@@ -113,10 +100,7 @@ public partial class OpenIdDictService
                 RedirectUri = "/pauth"
             };
 
-            return Results.SignIn(
-                new ClaimsPrincipal(identity),
-                properties: properties, 
-                authenticationScheme:OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
+            return Results.SignIn(new ClaimsPrincipal(identity), properties, OpenIddictServerAspNetCoreDefaults.AuthenticationScheme);
         }
 
         // Redisplay the form when the user code is not valid.
@@ -127,15 +111,15 @@ public partial class OpenIdDictService
         });
     }
 
-    // Notify Authorization that the authorization grant has been denied by the resource owner.
+    // Notify Authorization that the resource owner has denied the authorization grant.
     public IResult VerifyDeny() => Results.Forbid(
-        properties: new AuthenticationProperties
+        new AuthenticationProperties
         {
             // This property points to the address Authorization will automatically
             // redirect the user to after rejecting the authorization demand.
             RedirectUri = "/pauth"
         },
-        authenticationSchemes: [OpenIddictServerAspNetCoreDefaults.AuthenticationScheme,]);
+        [OpenIddictServerAspNetCoreDefaults.AuthenticationScheme,]);
 
     #endregion
 }

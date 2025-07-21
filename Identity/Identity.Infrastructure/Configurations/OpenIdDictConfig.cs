@@ -139,26 +139,26 @@ public static class OpenIdDictConfig
             
             // Check this session
             
-            .AddClient(options =>
-            {
-                options.AllowAuthorizationCodeFlow().AllowRefreshTokenFlow();
-            
-                options.AddDevelopmentEncryptionCertificate().AddDevelopmentSigningCertificate();
-            
-                options.UseAspNetCore().EnableRedirectionEndpointPassthrough();
-            
-                options.UseSystemNetHttp();
-            
-                // Register the Google integration.
-                options.UseWebProviders().AddGoogle(opt =>
-                {
-                    opt.SetClientId("client_id")
-                        .SetClientSecret("client_secrets")
-                        .SetRedirectUri("/signin-google")
-                        .SetProviderDisplayName("Sign In With Google")
-                        .AddScopes("email profile");
-                });
-            })
+            // .AddClient(options =>
+            // {
+            //     options.AllowAuthorizationCodeFlow().AllowRefreshTokenFlow();
+            //
+            //     options.AddDevelopmentEncryptionCertificate().AddDevelopmentSigningCertificate();
+            //
+            //     options.UseAspNetCore().EnableRedirectionEndpointPassthrough();
+            //
+            //     options.UseSystemNetHttp();
+            //
+            //     // Register the Google integration.
+            //     options.UseWebProviders().AddGoogle(opt =>
+            //     {
+            //         opt.SetClientId("client_id")
+            //             .SetClientSecret("client_secrets")
+            //             .SetRedirectUri("/signin-google")
+            //             .SetProviderDisplayName("Sign In With Google")
+            //             .AddScopes("email profile");
+            //     });
+            // })
             .AddValidation(options =>
             {
                 options.UseLocalServer();

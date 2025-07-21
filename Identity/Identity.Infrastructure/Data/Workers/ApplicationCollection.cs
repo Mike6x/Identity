@@ -270,6 +270,40 @@ public class ApplicationCollection
         // authorization-oidc-application - https://oidcdebugger.com/
         _applications.Add( new OpenIddictApplicationDescriptor
         {
+            ClientId = "oidc-debugger",
+            ClientSecret = "901564A5-E7FE-42CB-B10D-61EF6A8F3654",
+            ConsentType = ConsentTypes.Explicit,
+            DisplayName = "Postman client application",
+            RedirectUris =
+            {
+                new Uri("https://oidcdebugger.com/debug")
+            },
+            PostLogoutRedirectUris =
+            {
+                new Uri("https://oauth.pstmn.io/v1/callback")
+            },
+            Permissions =
+            {
+                Permissions.GrantTypes.AuthorizationCode,
+                
+                Permissions.Endpoints.Authorization,
+                Permissions.Endpoints.EndSession,
+                Permissions.Endpoints.Token,
+                Permissions.ResponseTypes.Code,
+                
+                Permissions.Scopes.Email,
+                Permissions.Scopes.Profile,
+                Permissions.Scopes.Roles,
+                $"{Permissions.Prefixes.Scope}api1"
+            },
+            //Requirements =
+            //{
+            //    Requirements.Features.ProofKeyForCodeExchange
+            //}
+        });
+        
+        _applications.Add( new OpenIddictApplicationDescriptor
+        {
             ClientId = "authorization-oidc-application",
             ClientSecret = "388D45FA-B36B-4988-BA59-B187D329C203",
             ConsentType = ConsentTypes.Explicit,

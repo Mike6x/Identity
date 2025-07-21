@@ -32,6 +32,7 @@ public class Login(
     public async Task<IActionResult> OnPostAsync(string? returnUrl = null)
     {
         returnUrl ??= Url.Content("~/");
+        
         ExternalLoginProviders = [.. await signInManager.GetExternalAuthenticationSchemesAsync()];
 
         if (!ModelState.IsValid) return Page();
@@ -49,17 +50,18 @@ public class Login(
         if (result.Succeeded)
         {
             List<Claim> claims = [new(ClaimTypes.Email, LoginModel.Email)];
-
+            
             var principal = new ClaimsPrincipal(
                 [new(claims, CookieAuthenticationDefaults.AuthenticationScheme)]
             );
-
+            
             await HttpContext.SignInAsync(
                 CookieAuthenticationDefaults.AuthenticationScheme,
                 principal
             );
-
+            
             return Redirect(returnUrl);
+            
         }
 
         if (result.RequiresTwoFactor)
@@ -67,6 +69,11 @@ public class Login(
                 "/Account/LoginTwoFactorWithAuthenticator",
                 new { LoginModel.RememberMe }
             );
+        
+        if (result.IsLockedOut)
+        {
+            return RedirectToPage("./Lockout");
+        }
 
         ModelState.AddModelError("Login", result.IsLockedOut ? "You are locked out." : "Failed to login.");
 
@@ -76,11 +83,13 @@ public class Login(
 
 public class LoginModel
 {
-    [Required] public string Email { get; set; } = string.Empty;
+    [Required] 
+    public string Email { get; set; } = string.Empty;
 
     [Required]
     [DataType(DataType.Password)]
     public string Password { get; set; } = string.Empty;
 
-    [Display(Name = "Remember Me")] public bool RememberMe { get; set; }
+    [Display(Name = "Remember Me?")] 
+    public bool RememberMe { get; set; }
 }

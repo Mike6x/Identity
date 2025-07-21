@@ -477,8 +477,8 @@ namespace Identity.Infrastructure.Data.Migrations
                         .HasColumnType("nvarchar(400)");
 
                     b.Property<string>("Type")
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.HasKey("Id");
 

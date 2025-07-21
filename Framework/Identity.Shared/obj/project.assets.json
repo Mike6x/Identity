@@ -99,7 +99,7 @@
           }
         }
       },
-      "OpenIddict.Abstractions/6.4.0": {
+      "OpenIddict.Abstractions/7.0.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.6",
@@ -323,10 +323,10 @@
         "microsoft.identitymodel.tokens.nuspec"
       ]
     },
-    "OpenIddict.Abstractions/6.4.0": {
-      "sha512": "sVhLvY4sZ3UFXudfc8A6gM45uyA9WwL8987ksf8zY4spVoADFH3cblkyj85OYF5fCQxRDxvOCvyeYfs7zTiaig==",
+    "OpenIddict.Abstractions/7.0.0": {
+      "sha512": "8GIdJ0WJVjnsXG0A72F2QPcyTQjn4B5lLWTw+FZ701rhRn/EvxHF8yH8dwJ6Jnq5j2FcIqIIIbANJrCgXmX8lw==",
       "type": "package",
-      "path": "openiddict.abstractions/6.4.0",
+      "path": "openiddict.abstractions/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -337,8 +337,6 @@
         "lib/net472/OpenIddict.Abstractions.xml",
         "lib/net48/OpenIddict.Abstractions.dll",
         "lib/net48/OpenIddict.Abstractions.xml",
-        "lib/net6.0/OpenIddict.Abstractions.dll",
-        "lib/net6.0/OpenIddict.Abstractions.xml",
         "lib/net8.0/OpenIddict.Abstractions.dll",
         "lib/net8.0/OpenIddict.Abstractions.xml",
         "lib/net9.0/OpenIddict.Abstractions.dll",
@@ -347,14 +345,14 @@
         "lib/netstandard2.0/OpenIddict.Abstractions.xml",
         "lib/netstandard2.1/OpenIddict.Abstractions.dll",
         "lib/netstandard2.1/OpenIddict.Abstractions.xml",
-        "openiddict.abstractions.6.4.0.nupkg.sha512",
+        "openiddict.abstractions.7.0.0.nupkg.sha512",
         "openiddict.abstractions.nuspec"
       ]
     }
   },
   "projectFileDependencyGroups": {
     "net9.0": [
-      "OpenIddict.Abstractions >= 6.4.0"
+      "OpenIddict.Abstractions >= 7.0.0"
     ]
   },
   "packageFolders": {
@@ -403,7 +401,7 @@
         "dependencies": {
           "OpenIddict.Abstractions": {
             "target": "Package",
-            "version": "[6.4.0, )"
+            "version": "[7.0.0, )"
           }
         },
         "imports": [

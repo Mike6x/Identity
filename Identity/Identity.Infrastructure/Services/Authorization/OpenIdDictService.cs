@@ -1,7 +1,7 @@
 /*
  * Licensed under the Apache License, Version 2.0 (http://www.apache.org/licenses/LICENSE-2.0)
  * See https://github.com/openiddict/openiddict-core for more information concerning
- * the license and the contributors participating to this project.
+ * the license and the contributors participating in this project.
  */
 
 using System.Collections.Immutable;
@@ -26,18 +26,18 @@ public sealed partial class OpenIdDictService(
     UserManager<AppUser> userManager,
     RoleManager<AppRole> roleManager) : IAuthorizationService
 {
-        private static IEnumerable<string> GetDestinations(Claim claim)
+    private static IEnumerable<string> GetDestinations(Claim claim)
     {
         // Note: by default, claims are NOT automatically included in the access and identity tokens.
-        // To allow Authorization to serialize them, you must attach them a destination, that specifies
+        // To allow Authorization to serialize them, you must attach them to a destination that specifies
         // whether they should be included in access tokens, in identity tokens or in both.
        
         switch (claim.Type)
         {
-            case Claims.Name or Claims.PreferredUsername:
+            case Claims.Name or Claims.FamilyName or Claims.Username:
                 yield return Destinations.AccessToken;
 
-                if (claim.Subject != null && claim.Subject.HasScope(Permissions.Scopes.Profile))
+                if (claim.Subject != null && claim.Subject.HasScope(Scopes.Profile))
                     yield return Destinations.IdentityToken;
 
                 yield break;
@@ -45,7 +45,7 @@ public sealed partial class OpenIdDictService(
             case Claims.Email:
                 yield return Destinations.AccessToken;
 
-                if (claim.Subject != null && claim.Subject.HasScope(Permissions.Scopes.Email))
+                if (claim.Subject != null && claim.Subject.HasScope(Scopes.Email))
                     yield return Destinations.IdentityToken;
 
                 yield break;
@@ -53,7 +53,7 @@ public sealed partial class OpenIdDictService(
             case Claims.Role:
                 yield return Destinations.AccessToken;
 
-                if (claim.Subject != null && claim.Subject.HasScope(Permissions.Scopes.Roles))
+                if (claim.Subject != null && claim.Subject.HasScope(Scopes.Roles))
                     yield return Destinations.IdentityToken;
 
                 yield break;
@@ -64,18 +64,17 @@ public sealed partial class OpenIdDictService(
 
             default:
               
-                if (claim.Properties.ContainsKey("IncludeInAccessToken"))
+                if (claim.Properties.TryGetValue("IncludeInAccessToken", out var property))
                 {
-                    if (bool.TryParse(claim.Properties["IncludeInAccessToken"], out bool includeInAccessToken)
-                        && includeInAccessToken)
+                    if (bool.TryParse(property, out var includeInAccessToken) && includeInAccessToken)
                     {
                         yield return Destinations.AccessToken;
                     }                        
                 }
                 
-                if (claim.Properties.ContainsKey("IncludeInIdentityToken"))
+                if (claim.Properties.TryGetValue("IncludeInIdentityToken", out var claimProperty))
                 {                       
-                    if (bool.TryParse(claim.Properties["IncludeInIdentityToken"], out bool includeInIdentityToken)
+                    if (bool.TryParse(claimProperty, out var includeInIdentityToken)
                         && includeInIdentityToken)
                     {
                         yield return Destinations.IdentityToken;
@@ -84,6 +83,47 @@ public sealed partial class OpenIdDictService(
                 yield break;
         }
     }
+    
+    // private static IEnumerable<string> GetDestinations(Claim claim, ClaimsPrincipal principal)
+    // {
+    //     // Note: by default, claims are NOT automatically included in the access and identity tokens.
+    //     // To allow OpenIddict to serialize them, you must attach them to a destination that specifies
+    //     // whether they should be included in access tokens, in identity tokens or in both.
+    //
+    //     switch (claim.Type)
+    //     {
+    //         case Claims.Name:
+    //             yield return Destinations.AccessToken;
+    //
+    //             if (principal.HasScope(Scopes.Profile))
+    //                 yield return Destinations.IdentityToken;
+    //
+    //             yield break;
+    //
+    //         case Claims.Email:
+    //             yield return Destinations.AccessToken;
+    //
+    //             if (principal.HasScope(Scopes.Email))
+    //                 yield return Destinations.IdentityToken;
+    //
+    //             yield break;
+    //
+    //         case Claims.Role:
+    //             yield return Destinations.AccessToken;
+    //
+    //             if (principal.HasScope(Scopes.Roles))
+    //                 yield return Destinations.IdentityToken;
+    //
+    //             yield break;
+    //
+    //         // Never include the security stamp in the access and identity tokens, as it's a secret value.
+    //         case "AspNet.Identity.SecurityStamp": yield break;
+    //
+    //         default:
+    //             yield return Destinations.AccessToken;
+    //             yield break;
+    //     }
+    // }
     
     private async Task AddUserClaimsAsync(ClaimsIdentity claimsIdentity, AppUser user)
     {
@@ -98,21 +138,29 @@ public sealed partial class OpenIdDictService(
         }
     }
     
-    private async Task<ClaimsIdentity> CreateClaimsBasedIdentity(AppUser user, object? application)
+    private async Task<ClaimsIdentity> CreateClaimsBasedIdentity(AppUser user, IEnumerable<Claim>? claims, object? application)
     {
-        var identity = new ClaimsIdentity(
-            authenticationType: TokenValidationParameters.DefaultAuthenticationType,
-            nameType: Claims.Name,
-            roleType: Claims.Role
-        );
+        var identity = claims == null
+            ? new ClaimsIdentity(
+                authenticationType: TokenValidationParameters.DefaultAuthenticationType,
+                nameType: Claims.Name,
+                roleType: Claims.Role)
+            : new ClaimsIdentity( 
+                claims: claims, 
+                authenticationType: TokenValidationParameters.DefaultAuthenticationType,
+                nameType: Claims.Name,
+                roleType: Claims.Role);
         
         // Override the user claims present in the principal in case they
         // changed since the authorization code/refresh token was issued.
+        
         identity.SetClaim(Claims.Subject, user.Id.ToString())
             .SetClaim(Claims.Email, user.Email)
             .SetClaim(Claims.Username, user.UserName)
-            .SetClaim(Claims.PreferredUsername, user.UserName)
-            .SetClaim(Claims.Name, $"{user.FirstName} {user.LastName}")
+            
+            .SetClaim(Claims.FamilyName, user.LastName)
+            .SetClaim(Claims.Name, user.FirstName)
+            
             .SetClaims(Claims.Role, [..await userManager.GetRolesAsync(user)]);
         
         // Create the claims-based identity that will be used by Authorization to generate tokens.
@@ -128,14 +176,6 @@ public sealed partial class OpenIdDictService(
             identity
                 .SetClaims(Claims.Audience, audiences);
         }
-        
-        // Add the claims that will be persisted in the tokens.
-        // identity
-        //     .SetClaim(Claims.Subject, await userManager.GetUserIdAsync(user))
-        //     .SetClaim(Claims.Email, await userManager.GetEmailAsync(user))
-        //     .SetClaim(Claims.Name, await userManager.GetUserNameAsync(user))
-        //     .SetClaim(Claims.PreferredUsername, await userManager.GetUserNameAsync(user))
-        //     .SetClaims(Claims.Role, [..(await userManager.GetRolesAsync(user))]);
         
         return identity;
     }

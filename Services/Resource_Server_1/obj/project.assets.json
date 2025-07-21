@@ -634,7 +634,7 @@
           "buildTransitive/net8.0/Microsoft.Extensions.Telemetry.Abstractions.targets": {}
         }
       },
-      "Microsoft.IdentityModel.Abstractions/8.12.0": {
+      "Microsoft.IdentityModel.Abstractions/8.12.1": {
         "type": "package",
         "compile": {
           "lib/net9.0/Microsoft.IdentityModel.Abstractions.dll": {
@@ -647,10 +647,10 @@
           }
         }
       },
-      "Microsoft.IdentityModel.JsonWebTokens/8.12.0": {
+      "Microsoft.IdentityModel.JsonWebTokens/8.12.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IdentityModel.Tokens": "8.12.0"
+          "Microsoft.IdentityModel.Tokens": "8.12.1"
         },
         "compile": {
           "lib/net9.0/Microsoft.IdentityModel.JsonWebTokens.dll": {
@@ -663,10 +663,10 @@
           }
         }
       },
-      "Microsoft.IdentityModel.Logging/8.12.0": {
+      "Microsoft.IdentityModel.Logging/8.12.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IdentityModel.Abstractions": "8.12.0"
+          "Microsoft.IdentityModel.Abstractions": "8.12.1"
         },
         "compile": {
           "lib/net9.0/Microsoft.IdentityModel.Logging.dll": {
@@ -712,10 +712,10 @@
           }
         }
       },
-      "Microsoft.IdentityModel.Tokens/8.12.0": {
+      "Microsoft.IdentityModel.Tokens/8.12.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IdentityModel.Logging": "8.12.0"
+          "Microsoft.IdentityModel.Logging": "8.12.1"
         },
         "compile": {
           "lib/net9.0/Microsoft.IdentityModel.Tokens.dll": {
@@ -1039,7 +1039,7 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "OpenIddict.Abstractions/6.4.0": {
+      "OpenIddict.Abstractions/7.0.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.DependencyInjection.Abstractions": "9.0.6",
@@ -1057,13 +1057,13 @@
           }
         }
       },
-      "OpenIddict.Validation/6.4.0": {
+      "OpenIddict.Validation/7.0.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Logging": "9.0.6",
           "Microsoft.IdentityModel.JsonWebTokens": "8.12.0",
           "Microsoft.IdentityModel.Protocols": "8.12.0",
-          "OpenIddict.Abstractions": "6.4.0"
+          "OpenIddict.Abstractions": "7.0.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Validation.dll": {
@@ -1076,10 +1076,10 @@
           }
         }
       },
-      "OpenIddict.Validation.AspNetCore/6.4.0": {
+      "OpenIddict.Validation.AspNetCore/7.0.0": {
         "type": "package",
         "dependencies": {
-          "OpenIddict.Validation": "6.4.0"
+          "OpenIddict.Validation": "7.0.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Validation.AspNetCore.dll": {
@@ -1095,12 +1095,12 @@
           "Microsoft.AspNetCore.App"
         ]
       },
-      "OpenIddict.Validation.SystemNetHttp/6.4.0": {
+      "OpenIddict.Validation.SystemNetHttp/7.0.0": {
         "type": "package",
         "dependencies": {
           "Microsoft.Extensions.Http.Polly": "9.0.6",
           "Microsoft.Extensions.Http.Resilience": "9.6.0",
-          "OpenIddict.Validation": "6.4.0"
+          "OpenIddict.Validation": "7.0.0"
         },
         "compile": {
           "lib/net9.0/OpenIddict.Validation.SystemNetHttp.dll": {
@@ -1200,11 +1200,11 @@
           }
         }
       },
-      "System.IdentityModel.Tokens.Jwt/8.12.0": {
+      "System.IdentityModel.Tokens.Jwt/8.12.1": {
         "type": "package",
         "dependencies": {
-          "Microsoft.IdentityModel.JsonWebTokens": "8.12.0",
-          "Microsoft.IdentityModel.Tokens": "8.12.0"
+          "Microsoft.IdentityModel.JsonWebTokens": "8.12.1",
+          "Microsoft.IdentityModel.Tokens": "8.12.1"
         },
         "compile": {
           "lib/net9.0/System.IdentityModel.Tokens.Jwt.dll": {
@@ -1263,7 +1263,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v9.0",
         "dependencies": {
-          "OpenIddict.Abstractions": "6.4.0"
+          "OpenIddict.Abstractions": "7.0.0"
         },
         "compile": {
           "bin/placeholder/Identity.Shared.dll": {}
@@ -2160,10 +2160,10 @@
         "microsoft.extensions.telemetry.abstractions.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.Abstractions/8.12.0": {
-      "sha512": "V7fHMFpfzvx7twWMV3jrf3OFVmYn3QhUYtvfMRD9yUPs9gxnQSaRMZh5NzCsnW3ZZ80J09EE7yyjM71y9JC6hQ==",
+    "Microsoft.IdentityModel.Abstractions/8.12.1": {
+      "sha512": "JzWhET0VOCORyJbqDc1Wtdl8Q/l+I1MjFB0I/Jko+Ma691JZll8X6o9XwZtUce8FkqGuV4uY4/V1808XZOpDVg==",
       "type": "package",
-      "path": "microsoft.identitymodel.abstractions/8.12.0",
+      "path": "microsoft.identitymodel.abstractions/8.12.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2180,14 +2180,14 @@
         "lib/net9.0/Microsoft.IdentityModel.Abstractions.xml",
         "lib/netstandard2.0/Microsoft.IdentityModel.Abstractions.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.Abstractions.xml",
-        "microsoft.identitymodel.abstractions.8.12.0.nupkg.sha512",
+        "microsoft.identitymodel.abstractions.8.12.1.nupkg.sha512",
         "microsoft.identitymodel.abstractions.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.JsonWebTokens/8.12.0": {
-      "sha512": "gOup2SmdwaXooLR0POKfrkyrw+R+G8nc8Nk80TL0196kFQK7Bg7Qr4x3jvOCm3TR8QLqU8cVpSVqBLtUaosPEg==",
+    "Microsoft.IdentityModel.JsonWebTokens/8.12.1": {
+      "sha512": "imi3xiRLzzKxN4m1aR9Z2X8GUmNsVH7GLA6AkwYStNnh3UzupFtHEEVk3GK1fCvnYdRbpnCGNYY6WQb9AfDAKg==",
       "type": "package",
-      "path": "microsoft.identitymodel.jsonwebtokens/8.12.0",
+      "path": "microsoft.identitymodel.jsonwebtokens/8.12.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2204,14 +2204,14 @@
         "lib/net9.0/Microsoft.IdentityModel.JsonWebTokens.xml",
         "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.JsonWebTokens.xml",
-        "microsoft.identitymodel.jsonwebtokens.8.12.0.nupkg.sha512",
+        "microsoft.identitymodel.jsonwebtokens.8.12.1.nupkg.sha512",
         "microsoft.identitymodel.jsonwebtokens.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.Logging/8.12.0": {
-      "sha512": "IakwNWUTy5RlcDcKwtL5TyfDLZmA8FFnSDhfr+wfGGPMON9GkpkUY8NakIJjdy6mv6C1lM/Jkn3IuaeS9MXesA==",
+    "Microsoft.IdentityModel.Logging/8.12.1": {
+      "sha512": "39HjVkU7Voe2jRLmORRB5PoTmta1ZPKzUZCc6ldlNlLzdx+um0+fAnvfk05LUQPrNxpvb5ZoqF00SrNvyO2Fzg==",
       "type": "package",
-      "path": "microsoft.identitymodel.logging/8.12.0",
+      "path": "microsoft.identitymodel.logging/8.12.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2228,7 +2228,7 @@
         "lib/net9.0/Microsoft.IdentityModel.Logging.xml",
         "lib/netstandard2.0/Microsoft.IdentityModel.Logging.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.Logging.xml",
-        "microsoft.identitymodel.logging.8.12.0.nupkg.sha512",
+        "microsoft.identitymodel.logging.8.12.1.nupkg.sha512",
         "microsoft.identitymodel.logging.nuspec"
       ]
     },
@@ -2279,10 +2279,10 @@
         "microsoft.identitymodel.protocols.openidconnect.nuspec"
       ]
     },
-    "Microsoft.IdentityModel.Tokens/8.12.0": {
-      "sha512": "WCU3wv5sioX5hhp3oHw8sCdygnfZJtRKJGCg+AckP6nbp0QGKK3VohTrxIF0dpuziLAPg57CPfS9X8UERroKxA==",
+    "Microsoft.IdentityModel.Tokens/8.12.1": {
+      "sha512": "DzgPEABn3eZmIk4lhov0QPcoHkIbnAfgkyDPM7uGuWDHeockR9DdqNCD9Zy30hPfExu5VhbOXn9oPRi+tFUhEQ==",
       "type": "package",
-      "path": "microsoft.identitymodel.tokens/8.12.0",
+      "path": "microsoft.identitymodel.tokens/8.12.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2299,7 +2299,7 @@
         "lib/net9.0/Microsoft.IdentityModel.Tokens.xml",
         "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.dll",
         "lib/netstandard2.0/Microsoft.IdentityModel.Tokens.xml",
-        "microsoft.identitymodel.tokens.8.12.0.nupkg.sha512",
+        "microsoft.identitymodel.tokens.8.12.1.nupkg.sha512",
         "microsoft.identitymodel.tokens.nuspec"
       ]
     },
@@ -2655,10 +2655,10 @@
         "nswag.generation.aspnetcore.nuspec"
       ]
     },
-    "OpenIddict.Abstractions/6.4.0": {
-      "sha512": "sVhLvY4sZ3UFXudfc8A6gM45uyA9WwL8987ksf8zY4spVoADFH3cblkyj85OYF5fCQxRDxvOCvyeYfs7zTiaig==",
+    "OpenIddict.Abstractions/7.0.0": {
+      "sha512": "8GIdJ0WJVjnsXG0A72F2QPcyTQjn4B5lLWTw+FZ701rhRn/EvxHF8yH8dwJ6Jnq5j2FcIqIIIbANJrCgXmX8lw==",
       "type": "package",
-      "path": "openiddict.abstractions/6.4.0",
+      "path": "openiddict.abstractions/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2669,8 +2669,6 @@
         "lib/net472/OpenIddict.Abstractions.xml",
         "lib/net48/OpenIddict.Abstractions.dll",
         "lib/net48/OpenIddict.Abstractions.xml",
-        "lib/net6.0/OpenIddict.Abstractions.dll",
-        "lib/net6.0/OpenIddict.Abstractions.xml",
         "lib/net8.0/OpenIddict.Abstractions.dll",
         "lib/net8.0/OpenIddict.Abstractions.xml",
         "lib/net9.0/OpenIddict.Abstractions.dll",
@@ -2679,14 +2677,14 @@
         "lib/netstandard2.0/OpenIddict.Abstractions.xml",
         "lib/netstandard2.1/OpenIddict.Abstractions.dll",
         "lib/netstandard2.1/OpenIddict.Abstractions.xml",
-        "openiddict.abstractions.6.4.0.nupkg.sha512",
+        "openiddict.abstractions.7.0.0.nupkg.sha512",
         "openiddict.abstractions.nuspec"
       ]
     },
-    "OpenIddict.Validation/6.4.0": {
-      "sha512": "fEolVRSiAymdCQA8SWCgiTXt1o1bS9aJHqXss7XFEID9d9mk4389i93JEDaNspOGKbazzqXUmeczG0xjHNBvcw==",
+    "OpenIddict.Validation/7.0.0": {
+      "sha512": "v7y02tWeU9xIIfJ/qCs98I3S/u1lksuiXpi4+NcPXyenbqyLEhfHuDRNbPV/Xkf65dnGxFhO//vRK4c8FSeqvQ==",
       "type": "package",
-      "path": "openiddict.validation/6.4.0",
+      "path": "openiddict.validation/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2697,8 +2695,6 @@
         "lib/net472/OpenIddict.Validation.xml",
         "lib/net48/OpenIddict.Validation.dll",
         "lib/net48/OpenIddict.Validation.xml",
-        "lib/net6.0/OpenIddict.Validation.dll",
-        "lib/net6.0/OpenIddict.Validation.xml",
         "lib/net8.0/OpenIddict.Validation.dll",
         "lib/net8.0/OpenIddict.Validation.xml",
         "lib/net9.0/OpenIddict.Validation.dll",
@@ -2707,14 +2703,14 @@
         "lib/netstandard2.0/OpenIddict.Validation.xml",
         "lib/netstandard2.1/OpenIddict.Validation.dll",
         "lib/netstandard2.1/OpenIddict.Validation.xml",
-        "openiddict.validation.6.4.0.nupkg.sha512",
+        "openiddict.validation.7.0.0.nupkg.sha512",
         "openiddict.validation.nuspec"
       ]
     },
-    "OpenIddict.Validation.AspNetCore/6.4.0": {
-      "sha512": "pjaoII93Qq7MwFRbOvj00Kbo8NeqlkNHnNhBBM9kZEcLMb7io6WPuY6mp6jajua+YDqgAclevperMUsU3vGBGA==",
+    "OpenIddict.Validation.AspNetCore/7.0.0": {
+      "sha512": "nJY/FDrC47b3FipjFlwkXxx3NZawLS5NZ8joef4wrX995OzhFsHpQB4lPB6RHDW5Qf0+ObOGXW+ytISfNtwjNQ==",
       "type": "package",
-      "path": "openiddict.validation.aspnetcore/6.4.0",
+      "path": "openiddict.validation.aspnetcore/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2725,20 +2721,18 @@
         "lib/net472/OpenIddict.Validation.AspNetCore.xml",
         "lib/net48/OpenIddict.Validation.AspNetCore.dll",
         "lib/net48/OpenIddict.Validation.AspNetCore.xml",
-        "lib/net6.0/OpenIddict.Validation.AspNetCore.dll",
-        "lib/net6.0/OpenIddict.Validation.AspNetCore.xml",
         "lib/net8.0/OpenIddict.Validation.AspNetCore.dll",
         "lib/net8.0/OpenIddict.Validation.AspNetCore.xml",
         "lib/net9.0/OpenIddict.Validation.AspNetCore.dll",
         "lib/net9.0/OpenIddict.Validation.AspNetCore.xml",
-        "openiddict.validation.aspnetcore.6.4.0.nupkg.sha512",
+        "openiddict.validation.aspnetcore.7.0.0.nupkg.sha512",
         "openiddict.validation.aspnetcore.nuspec"
       ]
     },
-    "OpenIddict.Validation.SystemNetHttp/6.4.0": {
-      "sha512": "H+5RiiUbQBzJJURqZR+Z9XqZfGxTX1vTOWfmCMV/HmivuVxxk3H2hZcAUyox1Ah8RTC+rvRomSHFjskhLAhWjA==",
+    "OpenIddict.Validation.SystemNetHttp/7.0.0": {
+      "sha512": "zX7xYV8YcQlyGFyWn5A/F/NhJaj23eOwywJOe6cn3jeHs4UyhuAql2BG6dINsiQEFNkEj1NKOY3s3BPHevbPZA==",
       "type": "package",
-      "path": "openiddict.validation.systemnethttp/6.4.0",
+      "path": "openiddict.validation.systemnethttp/7.0.0",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2749,8 +2743,6 @@
         "lib/net472/OpenIddict.Validation.SystemNetHttp.xml",
         "lib/net48/OpenIddict.Validation.SystemNetHttp.dll",
         "lib/net48/OpenIddict.Validation.SystemNetHttp.xml",
-        "lib/net6.0/OpenIddict.Validation.SystemNetHttp.dll",
-        "lib/net6.0/OpenIddict.Validation.SystemNetHttp.xml",
         "lib/net8.0/OpenIddict.Validation.SystemNetHttp.dll",
         "lib/net8.0/OpenIddict.Validation.SystemNetHttp.xml",
         "lib/net9.0/OpenIddict.Validation.SystemNetHttp.dll",
@@ -2759,7 +2751,7 @@
         "lib/netstandard2.0/OpenIddict.Validation.SystemNetHttp.xml",
         "lib/netstandard2.1/OpenIddict.Validation.SystemNetHttp.dll",
         "lib/netstandard2.1/OpenIddict.Validation.SystemNetHttp.xml",
-        "openiddict.validation.systemnethttp.6.4.0.nupkg.sha512",
+        "openiddict.validation.systemnethttp.7.0.0.nupkg.sha512",
         "openiddict.validation.systemnethttp.nuspec"
       ]
     },
@@ -2906,10 +2898,10 @@
         "polly.ratelimiting.nuspec"
       ]
     },
-    "System.IdentityModel.Tokens.Jwt/8.12.0": {
-      "sha512": "JpkST6AQlxrXXQ05jVNqoPsU9fjIfERJdCWMxIBWzGhuNH4q/TkP5suPdlNFtHhIN+ngWQ8rmaCNY35EhACHwg==",
+    "System.IdentityModel.Tokens.Jwt/8.12.1": {
+      "sha512": "jlYdVOJrdeyD80ppEqKJ8BhJdrV3MjeA+seURdhC0DnD41GyUA9Ik+P7Sb571ufVVCYIx93GjeqVvY3QyQxZAA==",
       "type": "package",
-      "path": "system.identitymodel.tokens.jwt/8.12.0",
+      "path": "system.identitymodel.tokens.jwt/8.12.1",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -2926,7 +2918,7 @@
         "lib/net9.0/System.IdentityModel.Tokens.Jwt.xml",
         "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll",
         "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.xml",
-        "system.identitymodel.tokens.jwt.8.12.0.nupkg.sha512",
+        "system.identitymodel.tokens.jwt.8.12.1.nupkg.sha512",
         "system.identitymodel.tokens.jwt.nuspec"
       ]
     },
@@ -3023,9 +3015,9 @@
       "NSwag.CodeGeneration.CSharp >= 14.4.0",
       "NSwag.CodeGeneration.TypeScript >= 14.4.0",
       "NSwag.Generation.AspNetCore >= 14.4.0",
-      "OpenIddict.Validation.AspNetCore >= 6.4.0",
-      "OpenIddict.Validation.SystemNetHttp >= 6.4.0",
-      "System.IdentityModel.Tokens.Jwt >= 8.12.0"
+      "OpenIddict.Validation.AspNetCore >= 7.0.0",
+      "OpenIddict.Validation.SystemNetHttp >= 7.0.0",
+      "System.IdentityModel.Tokens.Jwt >= 8.12.1"
     ]
   },
   "packageFolders": {
@@ -3128,15 +3120,15 @@
           },
           "OpenIddict.Validation.AspNetCore": {
             "target": "Package",
-            "version": "[6.4.0, )"
+            "version": "[7.0.0, )"
           },
           "OpenIddict.Validation.SystemNetHttp": {
             "target": "Package",
-            "version": "[6.4.0, )"
+            "version": "[7.0.0, )"
           },
           "System.IdentityModel.Tokens.Jwt": {
             "target": "Package",
-            "version": "[8.12.0, )"
+            "version": "[8.12.1, )"
           }
         },
         "imports": [

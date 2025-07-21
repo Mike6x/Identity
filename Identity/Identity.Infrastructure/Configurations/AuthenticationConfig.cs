@@ -13,13 +13,11 @@ public static class AuthenticationConfig
             .AddAuthentication(options =>
             {
                 options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
-                options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme; 
+                
+                // options.DefaultChallengeScheme = CookieAuthenticationDefaults.AuthenticationScheme; 
                 
                 //IdentityOIdc
                 // options.DefaultSignInScheme = IdentityConstants.ExternalScheme; 
-              
-                //Identity Fsh
-                //options.DefaultScheme = OpenIddictValidationAspNetCoreDefaults.AuthenticationScheme; 
                 
             })
             .AddCookie(options =>
@@ -30,13 +28,6 @@ public static class AuthenticationConfig
                 options.SlidingExpiration = true;
                 options.ExpireTimeSpan = TimeSpan.FromHours(8);
             });
-        
-        // services.AddSession(options =>
-        // {
-        //     options.IdleTimeout = TimeSpan.FromMinutes(5);
-        //     options.Cookie.HttpOnly = true;
-        //     options.Cookie.IsEssential = true;
-        // });
         
         services.AddSession(options =>
         {

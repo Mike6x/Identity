@@ -36,6 +36,9 @@ public static class OidcConfig
                     NameClaimType = "name",
                     RoleClaimType = "roles"
                 };
+
+                options.Scope.Add("email");
+                options.Scope.Add("roles");
                 options.Scope.Add("api3");
 
             });

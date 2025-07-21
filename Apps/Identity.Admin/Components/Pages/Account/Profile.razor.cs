@@ -18,48 +18,48 @@ public partial class Profile
     protected IAuthenticationService? AuthService { get; set; }
     
     [Inject]
-    public required IApiClient ApiClient { get; set; } 
+    public required IApiClient ApiClient { get; set; }
 
-    private readonly UpdateUserCommand _model = new();
+    private UserDto _model = new();
+    
+    private char _firstLetterOfName = 'U';
+
+    private AppValidation? _customValidation;
+    
+
+    private readonly UpdateUserCommand _request = new();
 
     private string? _imageUrl = string.Empty;
     
-    private Guid _userId = Guid.Empty;
-    
-    private char _firstLetterOfName;
-
-    private AppValidation? _customValidation;
-
     protected override async Task OnInitializedAsync()
     {
-        
-        if (AuthState != null 
-            && (await AuthState).User is { Identity: not null } user 
-            && !string.IsNullOrEmpty(user.Identity.Name))
+        if (AuthState == null) return;
+        var principal = (await AuthState).User;
         {
-            var userProfile = await ApiClient.GetUserByEmailEndpointAsync(user.Identity.Name);
-            _userId  = userProfile.Id;
+            var subjectId = principal.FindFirst("sub")?.Value ?? string.Empty;
+            if (string.IsNullOrEmpty(subjectId)) return;
+
+            _model = await ApiClient.GetUserEndpointAsync(subjectId);
             
-            _model.Email = userProfile.Email;
-            _model.FirstName = userProfile.FirstName;
-            _model.LastName = userProfile.LastName;
-            _model.PhoneNumber = userProfile.PhoneNumber;
-            _model.UserName = userProfile.UserName;
-            
-            _model.Id = _userId.ToString();
-        }
-        
-        if (_model.FirstName?.Length > 0)
-        {
-            _firstLetterOfName = _model.FirstName.ToUpper(System.Globalization.CultureInfo.CurrentCulture).FirstOrDefault();
+            _firstLetterOfName = _model.FirstName?.Length > 0 
+                ? _firstLetterOfName.ToString().ToUpper(System.Globalization.CultureInfo.CurrentCulture).FirstOrDefault()
+                : 'U';
         }
     }
 
 
     private async Task UpdateProfileAsync()
     {
+        _request.Email = _model.Email;
+        _request.FirstName = _model.FirstName;
+        _request.LastName = _model.LastName;
+        _request.PhoneNumber = _model.PhoneNumber;
+        _request.UserName = _model.UserName;
+            
+        _request.Id = _model.Id.ToString();
+        
         if (await ApiHelper.ExecuteCallGuardedAsync(
-            () => ApiClient.UpdateCurrentUserEndpointAsync(_model), Toast, _customValidation))
+            () => ApiClient.UpdateCurrentUserEndpointAsync(_request), Toast, _customValidation))
         {
             Toast.Add("Your Profile has been updated. Please Login again to get update.", Severity.Success);
             // await AuthService.ReLoginAsync(Navigation.Uri);
@@ -77,13 +77,13 @@ public partial class Profile
                 return;
             }
 
-            var fileName = $"{_userId}-{Guid.NewGuid():N}";
+            var fileName = $"{_model.Id}-{Guid.NewGuid():N}";
             fileName = fileName[..Math.Min(fileName.Length, 90)];
             var imageFile = await file.RequestImageFileAsync(AppConstants.StandardImageFormat, AppConstants.MaxImageWidth, AppConstants.MaxImageHeight);
             var buffer = new byte[imageFile.Size];
             _ = await imageFile.OpenReadStream(AppConstants.MaxAllowedSize).ReadAsync(buffer);
             var base64String = $"data:{AppConstants.StandardImageFormat};base64,{Convert.ToBase64String(buffer)}";
-            _model.Image = new FileUploadCommand { Name = fileName, Data = base64String, Extension = extension };
+            _request.Image = new FileUploadCommand { Name = fileName, Data = base64String, Extension = extension };
 
             await UpdateProfileAsync();
         }
@@ -101,11 +101,11 @@ public partial class Profile
         var result = await dialog.Result;
         if (result is { Canceled: false })
         {
-            _model.DeleteCurrentImage = true;
+            _request.DeleteCurrentImage = true;
             await UpdateProfileAsync();
         }
     }
     
     private void ViewProfile() =>
-        Navigation.NavigateTo($"/identity/users/{_userId}/profile");
+        Navigation.NavigateTo($"/identity/users/{_model.Id}/details");
 }

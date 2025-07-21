@@ -60,13 +60,14 @@ public partial class UserDetails
         if (AuthState == null || string.IsNullOrEmpty(Id)) return;
             
         var state = await AuthState;
+   
         if (AuthService != null)
         {
-            _currentUserId = state.User.GetUserId() ?? string.Empty;
-            
             _canEditItems = await AuthService.HasPermissionAsync(state.User, AppActions.Update, AppResources.Users);
             _canSearchItems = await AuthService.HasPermissionAsync(state.User, AppActions.Search, AppResources.Users);
         }
+        
+        _currentUserId = state.User.GetUserId() ?? string.Empty;
         
         if (await ApiHelper.ExecuteCallGuardedAsync(
                 () => ApiClient.GetUserEndpointAsync(Id), Toast, Navigation)

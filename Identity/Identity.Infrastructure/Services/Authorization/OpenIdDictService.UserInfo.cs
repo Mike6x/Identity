@@ -26,16 +26,18 @@ public partial class OpenIdDictService
         if (user == null) return Results.Unauthorized();
 
         var loggedInUser = await userManager.GetUserAsync(user);
-        if (loggedInUser is null) 
-            return Results.Challenge(
-                authenticationSchemes: [OpenIddictServerAspNetCoreDefaults.AuthenticationScheme],
-                properties: new AuthenticationProperties(new Dictionary<string, string?>
-                {
-                    [OpenIddictServerAspNetCoreConstants.Properties.Error] = OpenIddictConstants.Errors.InvalidToken,
-                    [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] =
-                        "The specified access token is bound to an account that no longer exists."
-                }));
-        
+        if (loggedInUser is null)
+        {
+            var properties= new AuthenticationProperties(new Dictionary<string, string?>
+            {
+                [OpenIddictServerAspNetCoreConstants.Properties.Error] = OpenIddictConstants.Errors.InvalidToken,
+                [OpenIddictServerAspNetCoreConstants.Properties.ErrorDescription] =
+                    "The specified access token is bound to an account that no longer exists."
+            });
+
+            return Results.Challenge(properties, [OpenIddictServerAspNetCoreDefaults.AuthenticationScheme]);
+        }
+
         var claims = new Dictionary<string, object>(StringComparer.Ordinal)
         {
             // Note: the "sub" claim is a mandatory claim and must be included in the JSON response.

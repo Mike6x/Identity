@@ -69,7 +69,7 @@
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[8.12.0, )"
+              "version": "[8.12.1, )"
             }
           },
           "imports": [
@@ -434,7 +434,7 @@
           "dependencies": {
             "OpenIddict.Abstractions": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[7.0.0, )"
             }
           },
           "imports": [

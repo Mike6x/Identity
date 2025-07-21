@@ -4,7 +4,7 @@ using Identity.Infrastructure.Data.Store;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using OpenIddict.Abstractions;
+using static OpenIddict.Abstractions.OpenIddictConstants;
 
 namespace Identity.Infrastructure.Configurations;
 public static class IdentityConfig
@@ -33,7 +33,7 @@ public static class IdentityConfig
             })
             .AddSignInManager()
             .AddDefaultTokenProviders()
-            .AddRoles<AppRole>() 
+            // .AddRoles<AppRole>() 
             .AddRoleStore<AppRoleStore>()
             .AddUserStore<AppUserStore>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
@@ -50,10 +50,10 @@ public static class IdentityConfig
                 // options.ClaimsIdentity.UserNameClaimType = OpenIddictConstants.Claims.Email;
                 // => options.ClaimsIdentity.UserNameClaimType = OpenIddictConstants.Claims.Name
                 
-                options.ClaimsIdentity.UserNameClaimType = OpenIddictConstants.Claims.Name;
-                options.ClaimsIdentity.UserIdClaimType = OpenIddictConstants.Claims.Subject;
-                options.ClaimsIdentity.RoleClaimType = OpenIddictConstants.Claims.Role;
-                options.ClaimsIdentity.EmailClaimType = OpenIddictConstants.Claims.Email;
+                options.ClaimsIdentity.UserNameClaimType = Claims.Name;
+                options.ClaimsIdentity.UserIdClaimType = Claims.Subject;
+                options.ClaimsIdentity.RoleClaimType = Claims.Role;
+                options.ClaimsIdentity.EmailClaimType = Claims.Email;
                 
                 options.SignIn.RequireConfirmedAccount = true;
             }); 

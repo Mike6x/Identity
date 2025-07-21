@@ -91,7 +91,7 @@
             },
             "MailKit": {
               "target": "Package",
-              "version": "[4.12.1, )"
+              "version": "[4.13.0, )"
             },
             "Mapster": {
               "target": "Package",
@@ -127,11 +127,11 @@
             },
             "OpenIddict.AspNetCore": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[7.0.0, )"
             },
             "OpenIddict.EntityFrameworkCore": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[7.0.0, )"
             },
             "Serilog": {
               "target": "Package",
@@ -147,7 +147,7 @@
             },
             "System.IdentityModel.Tokens.Jwt": {
               "target": "Package",
-              "version": "[8.12.0, )"
+              "version": "[8.12.1, )"
             }
           },
           "imports": [
@@ -512,7 +512,7 @@
           "dependencies": {
             "OpenIddict.Abstractions": {
               "target": "Package",
-              "version": "[6.4.0, )"
+              "version": "[7.0.0, )"
             }
           },
           "imports": [
@@ -897,7 +897,7 @@
             },
             "Microsoft.Identity.Web": {
               "target": "Package",
-              "version": "[3.9.3, )"
+              "version": "[3.10.0, )"
             }
           },
           "imports": [

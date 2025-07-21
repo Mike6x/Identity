@@ -11272,7 +11272,7 @@ namespace Client.Infrastructure.Api
     {
 
         [System.Text.Json.Serialization.JsonPropertyName("id")]
-        public string Id { get; set; } = default!;
+        public string? Id { get; set; } = default!;
 
         [System.Text.Json.Serialization.JsonPropertyName("firstName")]
         public string? FirstName { get; set; } = default!;
